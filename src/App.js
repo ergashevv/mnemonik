@@ -4,10 +4,16 @@ import './main.scss'
 import Next from './next.png'
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
+import { useEffect, useState } from 'react';
+import classNames from "classnames"
 
 
 
 function App() {
+  const [cursor, setCursor] = useState(0)
+  const [cursorW, setCursorW] = useState(3)
+
+
   const numbers = [
     0,
     1,
@@ -178,6 +184,9 @@ function App() {
 
 
   ]
+
+  console.log(cursor, "cursor");
+
   return (
     <div className="game container">
       <div className="header">
@@ -200,7 +209,9 @@ function App() {
             <Tab eventKey="profile" title="Second">
               {
                 numbers.map((item, key) => (
-                  <div className='card-number'>
+                  <div className={classNames("card-number", {
+                    active: (key >= cursor && key < cursor + cursorW)
+                  })}>
                     <p>{item}</p>
                   </div>
                 ))
@@ -229,11 +240,11 @@ function App() {
       </div>
 
       <div className="navigation">
-        <img className='next' src={Next} alt="" />
+        <img onClick={() => setCursor(cursor - cursorW)} className='next' src={Next} alt="" />
         <div className="numbers">
           <h1 className='m-0'>140</h1>
         </div>
-        <img className='prev' src={Next} alt="" />
+        <img onClick={() => setCursor(cursor + cursorW)} className='prev' src={Next} alt="" />
       </div>
     </div>
   );

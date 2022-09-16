@@ -41,10 +41,17 @@
             }
 
             .card-number {
-                /* border: 1px solid black; */
-    text-align: center;
-    width: 17px;
-    height: 25px;
+                text-align: center;
+                width: calc(100% / 20);
+                height: 25px;
+
+                &.active {
+                    background-color: red;
+
+                    p {
+                        color: white;
+                    }
+                }
 
                 p {
                     padding: 0;
