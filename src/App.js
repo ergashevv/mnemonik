@@ -4,7 +4,7 @@ import './main.scss'
 import Next from './next.png'
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import classNames from "classnames"
 
 
@@ -13,7 +13,7 @@ function App() {
   const [cursor, setCursor] = useState(0)
   const [cursorW, setCursorW] = useState(3)
 
-
+  console.log(setCursorW);
   const numbers = [
     0,
     1,
