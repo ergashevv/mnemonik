@@ -17,13 +17,33 @@
                 &.active {
                     display: flex !important;
                     flex-wrap: wrap !important;
+                    height: 400px;
+                    overflow-y: scroll;
+
+                    &::-webkit-scrollbar {
+                        width: 2px;
+                    }
+
+                    /* Track */
+                    &::-webkit-scrollbar-track {
+                        box-shadow: inset 0 0 5px grey;
+                        border-radius: 10px;
+                    }
+
+                    /* Handle */
+                    &::-webkit-scrollbar-thumb {
+                        background: greenyellow;
+                        border-radius: 10px;
+                    }
+
+
                 }
             }
 
             .card-number {
                 border: 1px solid black;
                 text-align: center;
-                width: 35px;
+                width: 34px;
                 height: 25px;
 
                 p {
