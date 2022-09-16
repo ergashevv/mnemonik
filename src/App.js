@@ -251,11 +251,12 @@ function App() {
           </Tabs>
         </div>
       </div>
-      <div className="numbers">
-        <h1 className='m-0'>140</h1>
-      </div>
+
       <div className="navigation">
         <img className='next' src={Next} alt="" />
+        <div className="numbers">
+          <h1 className='m-0'>140</h1>
+        </div>
         <img className='prev' src={Next} alt="" />
       </div>
     </div>
