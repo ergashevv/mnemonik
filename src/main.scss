@@ -1,0 +1,62 @@
+.game {
+    width: 100%;
+    max-width: 768px;
+    margin: 0 auto;
+    box-sizing: border-box;
+
+    .header {
+        .num {
+            flex-direction: column-reverse;
+            display: flex;
+
+            .tab-content {
+                margin: 3px 0 10px 0;
+            }
+
+            .tab-pane {
+                &.active {
+                    display: flex !important;
+                    flex-wrap: wrap !important;
+                }
+            }
+
+            .card-number {
+                border: 1px solid black;
+                text-align: center;
+                width: 35px;
+                height: 25px;
+
+                p {
+                    padding: 0;
+                    font-size: 14px;
+                    margin: 0;
+                }
+            }
+        }
+    }
+
+    .numbers {
+        h1 {
+            font-size: 60px;
+            text-align: center;
+        }
+    }
+
+    .navigation {
+        width: 70%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .prev {
+        width: 90px;
+        height: 90px;
+    }
+
+    .next {
+        width: 90px;
+        height: 90px;
+        transform: rotate(180deg);
+    }
+}
