@@ -48,6 +48,8 @@
                 &.active {
                     background-color: red;
 
+
+
                     p {
                         color: white;
                     }
@@ -90,4 +92,11 @@
 
 body {
     overflow: hidden !important;
+}
+
+button {
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background-color: transparent;
 }
