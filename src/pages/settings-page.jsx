@@ -12,7 +12,7 @@ const SettingsPage = () => {
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Control value={cursorW} onChange={(e) => setCursorW(e.target.value)} type="number" placeholder="Enter number" />
                 </Form.Group>
-                <button className='d-flex m-0 m-auto'>
+                <button disabled={cursorW < 1} className='d-flex m-0 m-auto'>
                     <Link to="/game">
                         start
                     </Link>

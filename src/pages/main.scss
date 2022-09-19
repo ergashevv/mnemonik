@@ -1,3 +1,13 @@
-.settings-page{
-    
+.start-game {
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+
+    .card-inputs {
+
+        width: 25px;
+        height: 25px;
+        padding: 4px;
+        text-align: center;
+    }
 }
