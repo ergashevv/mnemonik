@@ -4,6 +4,7 @@ const HomeContext = React.createContext(false)
 export const HomeContextProvider = ({ children }) => {
 
     const [cursorW, setCursorW] = useState(JSON.parse(localStorage.getItem("cursorW")), 1)
+    const [cursor, setCursor] = useState(0)
     const [numbers, setNumbers] = useState(
         [
             0,
@@ -180,7 +181,8 @@ export const HomeContextProvider = ({ children }) => {
     }, [cursorW])
     const value = {
         cursorW, setCursorW,
-        numbers, setNumbers
+        numbers, setNumbers,
+        cursor, setCursor
     }
     return (
         <HomeContext.Provider value={value}>

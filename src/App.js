@@ -1,8 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
 import './main.scss'
-
-
 import {
   BrowserRouter,
   Routes,
@@ -11,9 +8,6 @@ import {
 import NumbersGame from './pages/game-page';
 import SettingsPage from './pages/settings-page';
 import StartNumberGame from './pages/start-game';
-
-
-
 function App() {
   return (
     <>
@@ -28,8 +22,6 @@ function App() {
     </>
   )
 }
-
-
 export default App;
 
 
