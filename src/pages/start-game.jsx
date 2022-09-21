@@ -1,36 +1,78 @@
 import { useHomeContext } from "../context/home-context";
-import Form from 'react-bootstrap/Form';
 import './main.scss'
-import { useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import InputCell from "./input-cell";
 const StartNumberGame = () => {
     const { numbers } = useHomeContext();
-    const [value, setValue] = useState([]);
-    const codeChangeHandler = (event) => {
-        const element = event.target;
-        const nextSibling = element.nextElementSibling;
-        nextSibling ? nextSibling.focus() : console.log('fak');
-        if (event.key === "Backspace") {
-            const prevInput = element?.previousSibling
-            prevInput ? prevInput?.focus() : console.log('wtf');;
-        }
-    };
-    function onChange(e) {
-        if (!e.target.validity.patternMismatch) {
-           value? setValue.push(e.target.value): console.log('abs');
-            console.log(value)
-        }
-    }
+    const [inputs, setInputs] = useState(Array(numbers.length).fill(""));
+    console.log(inputs);
 
+    const handleValue = useCallback((val, index) => {
+        return setInputs((inputs) =>
+            inputs.map((input, i) => (i === index ? val : input))
+        )
+    }, [])
+
+
+    const handleShiftAdd = useCallback((e, index) => {
+        setInputs((inputs) => {
+            const start = inputs.slice(0, index)
+            const end = inputs.slice(index)
+            return start.concat([""], end)
+        })
+    }, [])
+
+    const handleShiftRemove = useCallback((e, index) => {
+        if (index) {
+            setInputs((inputs) => {
+                const start = inputs.slice(0, index)
+                const end = inputs.slice(index + 1)
+                return start.concat(end)
+            })
+        }
+    }, [])
+
+    const handleFocusOnNext = useCallback((e) => {
+        const nextInput = e.currentTarget?.nextSibling
+        nextInput?.focus()
+    }, [])
+
+    const handleFocusOnPrev = useCallback((e) => {
+        const prevInput = e.currentTarget?.previousSibling
+        prevInput?.focus()
+    }, [])
+    useEffect(() => {
+        console.log(inputs, 'inp');
+    }, [inputs])
+
+    const inputsCells = useMemo(
+        () =>
+            numbers.map((_, index) => (
+                <InputCell
+                    key={index}
+                    index={index}
+                    value={inputs[index]}
+                    onValue={handleValue}
+                    focusOnNext={handleFocusOnNext}
+                    focusOnPrev={handleFocusOnPrev}
+                    onShiftAdd={handleShiftAdd}
+                    onShiftRemove={handleShiftRemove}
+                />
+            )),
+        [
+            handleFocusOnNext,
+            handleFocusOnPrev,
+            handleShiftAdd,
+            handleShiftRemove,
+            handleValue,
+            inputs,
+            numbers,
+        ]
+    )
     return (
-        <>
-            <div className="start-game">
-                {
-                    numbers.map((item, key) => (
-                        <Form.Control className="card-inputs" pattern="^[0-9]*$" onChange={onChange} onKeyUp={(e) => codeChangeHandler(e)} id={key + 1} min={1} max={1} key={key} maxLength={1} />
-                    ))
-                }
-            </div>
-        </>
+        <div className="start-game">
+            {inputsCells}
+        </div>
     )
 }
 export default StartNumberGame
