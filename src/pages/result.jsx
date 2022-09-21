@@ -3,7 +3,7 @@ import { useHomeContext } from "../context/home-context";
 import Form from 'react-bootstrap/Form'
 
 const Result = () => {
-    const { numbers, result } = useHomeContext();
+    const { result, randomnumbers } = useHomeContext();
     useEffect(() => {
         function beforeUnload(e) {
             e.preventDefault()
@@ -20,7 +20,7 @@ const Result = () => {
                 {result?.map((value, index) => (
                     <Form.Control
                         style={{
-                            color: value !== numbers[index] && "red",
+                            color: value !== randomnumbers[index] && "red",
                         }}
                         readOnly placeholder={value} value={value} type="text" />
                 ))}

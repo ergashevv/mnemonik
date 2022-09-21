@@ -1,6 +1,6 @@
 import { useHomeContext } from "../context/home-context";
 import './main.scss'
-import { useCallback,  useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import InputCell from "./input-cell";
 import { Link } from 'react-router-dom'
 const StartNumberGame = () => {

@@ -1,8 +1,9 @@
 import { useHomeContext } from "../context/home-context";
 
 const ResultNumbers = () => {
-    const { cursorW, numbers, cursor } = useHomeContext();
-    const newnumbers = numbers.slice(parseInt(cursor), parseInt(cursor) + parseInt(cursorW))
+    const { cursorW, cursor, randomnumbers } = useHomeContext();
+
+    const newnumbers = randomnumbers.slice(parseInt(cursor), parseInt(cursor) + parseInt(cursorW))
     return (
         <>
             {
