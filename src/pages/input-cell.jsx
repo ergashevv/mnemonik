@@ -53,6 +53,7 @@ export default memo(function InputCell({
       maxLength={1}
       type="number"
       min={1}
+      pattern="[0-9]*"
       onKeyUp={handleKeyUp}
       onMouseOver={useCallback(
         (e) => onHover?.(e, index),
