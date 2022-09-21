@@ -48,10 +48,10 @@ export default memo(function InputCell({
     [onValue, index, focusOnNext, focusOnPrev, onShiftAdd, onShiftRemove]
   )
 
-
   return (
     <Form.Control
       maxLength={1}
+      type="number"
       min={1}
       onKeyUp={handleKeyUp}
       onMouseOver={useCallback(

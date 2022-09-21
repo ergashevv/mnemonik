@@ -1,11 +1,11 @@
 import { useHomeContext } from "../context/home-context";
 import './main.scss'
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback,  useMemo, useState } from "react";
 import InputCell from "./input-cell";
+import { Link } from 'react-router-dom'
 const StartNumberGame = () => {
-    const { numbers } = useHomeContext();
+    const { numbers, setResult } = useHomeContext();
     const [inputs, setInputs] = useState(Array(numbers.length).fill(""));
-    console.log(inputs);
 
     const handleValue = useCallback((val, index) => {
         return setInputs((inputs) =>
@@ -41,9 +41,7 @@ const StartNumberGame = () => {
         const prevInput = e.currentTarget?.previousSibling
         prevInput?.focus()
     }, [])
-    useEffect(() => {
-        console.log(inputs, 'inp');
-    }, [inputs])
+
 
     const inputsCells = useMemo(
         () =>
@@ -70,9 +68,16 @@ const StartNumberGame = () => {
         ]
     )
     return (
-        <div className="start-game">
-            {inputsCells}
-        </div>
+        <>
+            <div className="start-game">
+                {inputsCells}
+            </div>
+            <button onClick={() => setResult(inputs)}>
+                <Link to="/result">
+                    Finish
+                </Link>
+            </button>
+        </>
     )
 }
 export default StartNumberGame
