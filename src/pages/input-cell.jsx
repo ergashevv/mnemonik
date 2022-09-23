@@ -1,5 +1,4 @@
 import React, { memo, useCallback } from "react"
-import Form from 'react-bootstrap/Form'
 
 export default memo(function InputCell({
   index,
@@ -49,7 +48,7 @@ export default memo(function InputCell({
   )
 
   return (
-    <Form.Control
+    <input
       maxLength={1}
       type="number"
       min={1}

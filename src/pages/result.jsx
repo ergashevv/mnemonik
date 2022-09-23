@@ -1,28 +1,29 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useHomeContext } from "../context/home-context";
-import Form from 'react-bootstrap/Form'
+import classNames from "classnames"
 
 const Result = () => {
-    const { result, randomnumbers } = useHomeContext();
-    useEffect(() => {
-        function beforeUnload(e) {
-            e.preventDefault()
-            e.returnValue = "Are you sure?"
-        }
+    const { result, randomnumbers, cursorW, cursor, } = useHomeContext();
+    const [show, setShow] = useState(false)
 
-        document.addEventListener("beforeunload", beforeUnload, { capture: true })
 
-        return () => document.removeEventListener("beforeunload", beforeUnload, { capture: true })
-    }, [])
     return (
         <>
+            <button onClick={() => setShow(!show)}>
+                {
+                    show ? 'user result' : "show result"
+                }
+            </button>
             <div className="start-game">
                 {result?.map((value, index) => (
-                    <Form.Control
+                    <p
+                        className={show && 'show'}
                         style={{
                             color: value !== randomnumbers[index] && "red",
                         }}
-                        readOnly placeholder={value} value={value} type="text" />
+                    >
+                        {show ? (randomnumbers[index]) : value}
+                    </p>
                 ))}
             </div>
         </>

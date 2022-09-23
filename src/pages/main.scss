@@ -8,6 +8,53 @@
         height: 25px;
         padding: 4px;
         border-radius: 0;
+        border: 1px solid #ced4da;
         text-align: center;
+    }
+
+    .show {
+        color: black !important;
+    }
+
+    p {
+        border: 1px solid #ced4da;
+        margin: 0;
+        width: 25px;
+        height: 25px;
+        padding: 4px;
+    }
+
+}
+
+.cards {
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    width: 100%;
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+
+    button {
+        width: 40px;
+        height: 40px;
+        border-radius: 5px;
+        background-color: white;
+        border: 1px solid #ced4da;
+        color: black;
+        margin-right: 20px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        &.active {
+            color: white;
+            background-color: blue;
+
+        }
     }
 }

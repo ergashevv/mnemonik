@@ -2,18 +2,24 @@ import Next from '../assets/images/next.png'
 import { useHomeContext } from '../context/home-context';
 import ResultNumbers from './result-numbers';
 const NavigationBtn = () => {
-    const { cursorW, numbers, cursor, setCursor } = useHomeContext();
+    const { cursorW, numbers, cursor, setTab, dynum, tab, setCursor } = useHomeContext();
+    const handleNext = () => {
+        setCursor(parseInt(cursor) - parseInt(cursorW))
+    }
+    const handlePrev = () => {
+        setCursor(parseInt(cursor) + parseInt(cursorW))
+    }
     return (
         <>
             <div className="navigation">
-                <button disabled={cursor < cursorW} onClick={() => setCursor(parseInt(cursor) - parseInt(cursorW))}>
-                    <img className='next' src={Next} alt="" />
+                <button disabled={tab === 0 && cursor < cursorW} onClick={handleNext}>
+                    <img className='next' src={Next} alt="prev" />
                 </button>
-                <div className="numbers d-flex">
+                <div className="numbers">
                     <ResultNumbers />
                 </div>
-                <button disabled={cursor > numbers.length - cursorW - 1} onClick={() => setCursor(parseInt(cursor) + parseInt(cursorW))}>
-                    <img className='prev' src={Next} alt="" />
+                <button disabled={parseInt(cursor) > numbers.length - parseInt(cursorW) - 1} onClick={handlePrev}>
+                    <img disabled={tab === 3 && cursor >= 189} className='prev' src={Next} alt="next" />
                 </button>
             </div>
         </>
