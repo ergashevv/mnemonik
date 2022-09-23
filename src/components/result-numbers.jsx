@@ -1,10 +1,9 @@
 import { useHomeContext } from "../context/home-context";
 
 const ResultNumbers = () => {
-    const { cursorW, cursor, tab, randomnumbers } = useHomeContext();
+    const { cursorW, cursor, tab, dynum, randomnumbers } = useHomeContext();
 
-    const newnumbers = randomnumbers.slice(190 * tab, 190 * (tab + 1)).slice(parseInt(cursor), parseInt(cursor) + parseInt(cursorW))
-    console.log(newnumbers);
+    const newnumbers = randomnumbers.slice(dynum * tab, dynum * (tab + 1)).slice(parseInt(cursor), parseInt(cursor) + parseInt(cursorW))
     return (
         <>
             {

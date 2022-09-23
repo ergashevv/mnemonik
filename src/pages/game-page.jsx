@@ -7,22 +7,25 @@ import { useEffect, useState } from 'react';
 const NumbersGame = () => {
     const { cursorW, cursor, randomnumbers, tab, setCursor, dynum, seTdynum, setTab } = useHomeContext();
     const resetCursor = (index) => {
-        setTab(index)
         setCursor(0)
+        setTab(index)
     }
+    console.log(cursor, 'cur');
     useEffect(() => {
         if (parseInt(cursorW) === 4) {
-            seTdynum(dynum - 2)
+            seTdynum(188)
             console.log('188');
         }
         if (parseInt(cursorW) === 3) {
-            seTdynum(dynum - 1)
+            seTdynum(189)
             console.log('189');
         }
-        else {
+        if (parseInt(cursorW) === 2) {
             seTdynum(190)
+            console.log('190');
         }
-    }, [seTdynum])
+
+    }, [seTdynum, dynum])
     console.log(dynum);
     return (
         <div className="game container">
