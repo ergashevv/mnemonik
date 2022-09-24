@@ -61,18 +61,7 @@ const NumbersGame = () => {
                                     {
                                         randomnumbers.slice(dynum * tab, dynum * (tab + 1)).map((i, k) => (
                                             <>
-                                                {
-                                                    cursor >= 190 - cursorW && setTab(1)
-                                                }
-                                                {
-                                                    cursor >= 190 - cursorW && setCursor(0)
-                                                }
-                                                {
-                                                    tab === 1 ? cursor >= 190 - cursorW && setTab(2) : null
-                                                }
-                                                {
-                                                    tab === 2 ? cursor >= 190 - cursorW && setTab(3) : null
-                                                }
+
                                                 <div
                                                     className={classNames("card-number", {
                                                         active: (k >= cursor && k < cursor + parseInt(cursorW))

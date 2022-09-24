@@ -18,8 +18,7 @@ function App() {
           <Route path="/start" element={<StartNumberGame />} />
           <Route path="/result" element={<Result />} />
         </Routes>
-      </BrowserRouter>,
-
+      </BrowserRouter>
     </>
   )
 }

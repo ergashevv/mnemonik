@@ -1,14 +1,25 @@
+import { useEffect } from 'react';
 import Next from '../assets/images/next.png'
 import { useHomeContext } from '../context/home-context';
 import ResultNumbers from './result-numbers';
 const NavigationBtn = () => {
-    const { cursorW, numbers, cursor, tab, setCursor } = useHomeContext();
+    const { cursorW, numbers, cursor, tab, dynum, setTab, setCursor } = useHomeContext();
     const handleNext = () => {
         setCursor(parseInt(cursor) - parseInt(cursorW))
     }
     const handlePrev = () => {
         setCursor(parseInt(cursor) + parseInt(cursorW))
     }
+    useEffect(() => {
+        if (cursor > (dynum - parseInt(cursorW))) {
+            setTab(tab + 1)
+            setCursor(0)
+        }
+        if (cursor < 0) {
+            setTab(tab - 1)
+            setCursor(dynum - parseInt(cursorW))
+        }
+    }, [tab, setTab, setCursor, dynum, cursor,cursorW])
     return (
         <>
             <div className="navigation">
