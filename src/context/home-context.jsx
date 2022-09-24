@@ -12,7 +12,7 @@ export const HomeContextProvider = ({ children }) => {
     const [randomnumbers, setrandomnumbers] = useState([])
     const shuffle = arr => [...arr].sort(() => Math.random() - 0.5);
 
-
+    // eslint-disable-next-line no-use-before-define
     const [numbers, setNumbers] = useState(
         [
             "0",
@@ -731,7 +731,9 @@ export const HomeContextProvider = ({ children }) => {
     )
     useEffect(() => {
         setrandomnumbers(shuffle(numbers))
-    }, [setrandomnumbers])
+        /* eslint-disable no-alert, no-console */
+    }, [setrandomnumbers,numbers]) /* eslint-disable no-alert, no-console */
+    /* eslint-disable no-alert, no-console */
 
     useEffect(() => {
         if (cursorW) {

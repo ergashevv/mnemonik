@@ -3,14 +3,13 @@ import NavigationBtn from '../components/navigation-buttons-game';
 import { useHomeContext } from '../context/home-context';
 import classNames from "classnames"
 import './main.scss'
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 const NumbersGame = () => {
     const { cursorW, cursor, randomnumbers, tab, setCursor, dynum, seTdynum, setTab } = useHomeContext();
     const resetCursor = (index) => {
         setCursor(0)
         setTab(index)
     }
-    console.log(cursor, 'cur');
     useEffect(() => {
         if (parseInt(cursorW) === 4) {
             seTdynum(188)
@@ -25,8 +24,7 @@ const NumbersGame = () => {
             console.log('190');
         }
 
-    }, [seTdynum, dynum])
-    console.log(dynum);
+    }, [seTdynum, dynum, cursorW])
     return (
         <div className="game container">
             <div className="header">

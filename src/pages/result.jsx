@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useHomeContext } from "../context/home-context";
-import classNames from "classnames"
 
 const Result = () => {
-    const { result, randomnumbers, cursorW, cursor, } = useHomeContext();
+    const { result, randomnumbers } = useHomeContext();
     const [show, setShow] = useState(false)
 
 
