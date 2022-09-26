@@ -4,7 +4,11 @@ import { useCallback, useMemo, useState } from "react";
 import InputCell from "./input-cell";
 import { Link } from 'react-router-dom'
 const StartNumberGame = () => {
-    const { numbers, setResult } = useHomeContext();
+    const { numbers, setResult, tab, setCursor, setTab, dynum } = useHomeContext();
+    const resetCursor = (index) => {
+        setCursor(0)
+        setTab(index)
+    }
     const [inputs, setInputs] = useState(Array(numbers.length).fill(""));
 
     const handleValue = useCallback((val, index) => {
@@ -45,7 +49,7 @@ const StartNumberGame = () => {
 
     const inputsCells = useMemo(
         () =>
-            numbers.map((_, index) => (
+            numbers.slice(dynum * tab, dynum * (tab + 1)).map((_, index) => (
                 <InputCell
                     key={index}
                     index={index}
@@ -68,16 +72,57 @@ const StartNumberGame = () => {
         ]
     )
     return (
-        <>
-            <div className="start-game">
-                {inputsCells}
+        <div className="game">
+            <div className="d-flex">
+                <div style={{
+                    marginRight: "4px"
+                }}>
+                    {
+                        Array(Math.floor(40)).fill(null).map((_, index) => (
+                            <>
+                                {
+                                    tab === 0 && index < 10 ?
+                                        <span className="num-or">{index + 1}</span> : null
+                                }
+                                {
+                                    tab === 1 && index > 9 && index < 20 ?
+                                        <span className="num-or">{index + 1}</span> : null
+                                }
+                                {
+                                    tab === 2 && index > 19 && index < 30 ?
+                                        <span className="num-or">{index + 1}</span> : null
+                                }
+                                {
+                                    tab === 3 && index > 29 && index <= 40 ?
+                                        <span className="num-or">{index + 1}</span> : null
+                                }
+                            </>
+                        ))
+                    }
+                </div>
+                {Array(4).fill(null).map((_, index) => (
+                    <>
+                        {tab === index &&
+                            <div className="start-game">
+                                {inputsCells}
+                            </div>
+                        }
+                    </>
+                ))}
             </div>
+            <div className="tabs">
+                {Array(4).fill(null).map((_, index) => (
+                    <button className={tab === index && 'active'} onClick={() => resetCursor(index)} key={index}>{index + 1}</button>
+                ))}
+            </div>
+
+
             <button onClick={() => setResult(inputs)}>
                 <Link to="/result">
                     Finish
                 </Link>
             </button>
-        </>
+        </div>
     )
 }
 export default StartNumberGame

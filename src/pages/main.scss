@@ -1,15 +1,19 @@
 .start-game {
-    display: flex;
-    flex-wrap: wrap;
-    overflow-y: scroll;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    width: 100%;
+    gap: 3px;
 
     input {
-        width: 25px;
-        height: 25px;
-        padding: 4px;
+        width: 100%;
         border-radius: 0;
         border: 1px solid #ced4da;
         text-align: center;
+
+        &:focus-visible {
+            box-shadow: none;
+            outline: none;
+        }
     }
 
     .show {
@@ -19,8 +23,10 @@
     p {
         border: 1px solid #ced4da;
         margin: 0;
-        width: 25px;
-        height: 25px;
+        width: 5px;
+        font-size: 6px;
+        text-align: center;
+        height: 5px;
         padding: 4px;
     }
 
@@ -57,4 +63,9 @@
 
         }
     }
+}
+
+.num-or {
+    display: block;
+    padding: 5px 0;
 }

@@ -2,14 +2,30 @@ import { Link } from 'react-router-dom'
 import NavigationBtn from '../components/navigation-buttons-game';
 import { useHomeContext } from '../context/home-context';
 import classNames from "classnames"
+import { useNavigate } from 'react-router'
 import './main.scss'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 const NumbersGame = () => {
     const { cursorW, cursor, randomnumbers, tab, setCursor, dynum, seTdynum, setTab } = useHomeContext();
     const resetCursor = (index) => {
         setCursor(0)
         setTab(index)
     }
+
+    const [seconds, setSeconds] = useState(60)
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        setTimeout(() => setSeconds(seconds - 1), 1000)
+    }, [seconds])
+
+    useEffect(() => {
+        if (seconds > 0) {
+            setTimeout(() => setSeconds(seconds - 1), 1000)
+        } if (seconds < 0) {
+            navigate('/start')
+        }
+    })
     useEffect(() => {
         if (parseInt(cursorW) === 4) {
             seTdynum(188)
@@ -27,6 +43,10 @@ const NumbersGame = () => {
     }, [seTdynum, dynum, cursorW])
     return (
         <div className="game container">
+            <div className='screen-countdown' style={{ display: seconds >= 0 ? 'block' : 'none' }}>
+                <h3>Memorization starts in: </h3>
+                <span>{seconds} s</span>
+            </div>
             <div className="header">
                 <div
                     className="num">
@@ -36,19 +56,19 @@ const NumbersGame = () => {
                                 <>
                                     {
                                         tab === 0 && index < 10 ?
-                                            <h2>{index + 1}</h2> : null
+                                            <span>{index + 1}</span> : null
                                     }
                                     {
                                         tab === 1 && index > 9 && index < 20 ?
-                                            <h2>{index + 1}</h2> : null
+                                            <span>{index + 1}</span> : null
                                     }
                                     {
                                         tab === 2 && index > 19 && index < 30 ?
-                                            <h2>{index + 1}</h2> : null
+                                            <span>{index + 1}</span> : null
                                     }
                                     {
                                         tab === 3 && index > 29 && index <= 40 ?
-                                            <h2>{index + 1}</h2> : null
+                                            <span>{index + 1}</span> : null
                                     }
                                 </>
                             ))
@@ -61,7 +81,6 @@ const NumbersGame = () => {
                                     {
                                         randomnumbers.slice(dynum * tab, dynum * (tab + 1)).map((i, k) => (
                                             <>
-
                                                 <div
                                                     className={classNames("card-number", {
                                                         active: (k >= cursor && k < cursor + parseInt(cursorW))
