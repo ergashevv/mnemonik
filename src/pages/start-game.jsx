@@ -4,13 +4,13 @@ import { useCallback, useMemo, useState } from "react";
 import InputCell from "./input-cell";
 import { Link } from 'react-router-dom'
 const StartNumberGame = () => {
-    const { numbers, setResult, tab, setCursor, setTab, dynum } = useHomeContext();
+    const { numbers, randomnumbers, setResult, tab, setCursor, setTab, dynum } = useHomeContext();
     const resetCursor = (index) => {
         setCursor(0)
         setTab(index)
     }
     const [inputs, setInputs] = useState(Array(numbers.length).fill(""));
-
+    console.log(inputs);
     const handleValue = useCallback((val, index) => {
         return setInputs((inputs) =>
             inputs.map((input, i) => (i === index ? val : input))
@@ -49,7 +49,7 @@ const StartNumberGame = () => {
 
     const inputsCells = useMemo(
         () =>
-            numbers.slice(dynum * tab, dynum * (tab + 1)).map((_, index) => (
+            randomnumbers.map((_, index) => (
                 <InputCell
                     key={index}
                     index={index}
@@ -68,7 +68,7 @@ const StartNumberGame = () => {
             handleShiftRemove,
             handleValue,
             inputs,
-            numbers,
+            randomnumbers,
         ]
     )
     return (
@@ -104,7 +104,7 @@ const StartNumberGame = () => {
                     <>
                         {tab === index &&
                             <div className="start-game">
-                                {inputsCells}
+                                {inputsCells.slice(dynum * tab, dynum * (tab + 1))}
                             </div>
                         }
                     </>
@@ -115,8 +115,6 @@ const StartNumberGame = () => {
                     <button className={tab === index && 'active'} onClick={() => resetCursor(index)} key={index}>{index + 1}</button>
                 ))}
             </div>
-
-
             <button onClick={() => setResult(inputs)}>
                 <Link to="/result">
                     Finish

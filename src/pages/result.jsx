@@ -4,7 +4,7 @@ import { useHomeContext } from "../context/home-context";
 const Result = () => {
     const [show, setShow] = useState(false)
 
-    const { numbers, setResult, result, tab, randomnumbers, setCursor, setTab, dynum } = useHomeContext();
+    const { result, tab, randomnumbers, setCursor, setTab, dynum } = useHomeContext();
     const resetCursor = (index) => {
         setCursor(0)
         setTab(index)
@@ -12,8 +12,6 @@ const Result = () => {
 
     return (
         <>
-
-
             <div className="d-flex">
                 <div style={{
                     marginRight: "4px"
@@ -45,14 +43,24 @@ const Result = () => {
                     <>
                         {tab === index &&
                             <div className="start-game">
-                                {result?.slice(dynum * tab, dynum * (tab + 1)).map((value, index) => (
-                                    <input
-                                        readOnly
-                                        style={{
-                                            color: value !== randomnumbers[index] && "red",
-                                        }}
-                                        value={show ? (randomnumbers[index]) : value} type="text" />
-                                ))}
+                                {
+                                    show ?
+                                        <>
+                                            {
+                                                randomnumbers?.slice(dynum * tab, dynum * (tab + 1)).map((value, index) => (
+                                                    <input
+                                                        readOnly
+                                                        value={value} type="text" />
+                                                ))}
+                                        </> :
+                                        result?.slice(dynum * tab, dynum * (tab + 1)).map((value, index) => (
+                                            <input
+                                                readOnly
+                                                style={{
+                                                    color: value !== randomnumbers[index] && "red",
+                                                }}
+                                                value={value} type="text" />
+                                        ))}
                             </div>
                         }
                     </>
