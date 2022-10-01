@@ -11,10 +11,16 @@
             .sort-num {
                 margin-right: 20px;
 
+                &.active {
+                    span {
+                        padding: 12px 0;
+                    }
+                }
+
                 span {
                     display: block;
-                    font-size: 20px;
-                    margin-bottom: 5px;
+                    font-size: 19px;
+                    // margin-bottom: 5px;
                     padding: 9px 0;
                 }
             }
@@ -53,7 +59,7 @@
             .card-number {
                 text-align: center;
                 max-width: 50px;
-                padding: 13px 0;
+                padding: 10px 0;
 
                 &.active {
                     background-color: red;

@@ -51,6 +51,7 @@ export default memo(function InputCell({
     <input
       maxLength={1}
       type="number"
+      value={value}
       min={1}
       pattern="[0-9]*"
       onKeyUp={handleKeyUp}

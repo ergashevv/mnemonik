@@ -5,14 +5,15 @@ import classNames from "classnames"
 import { useNavigate } from 'react-router'
 import './main.scss'
 import { useEffect, useState } from 'react';
+import StartGameModal from '../components/start-game';
 const NumbersGame = () => {
-	const { cursorW, cursor, randomnumbers, tab, setCursor, dynum, seTdynum, setTab } = useHomeContext();
+	const { cursorW, cursor, randomnumbers, tab, setCursor, dynum, seTdynum, setTab, starttime, line } = useHomeContext();
 	const resetCursor = (index) => {
 		setCursor(0)
 		setTab(index)
 	}
 
-	const [seconds, setSeconds] = useState(60)
+	const [seconds, setSeconds] = useState(120)
 	const navigate = useNavigate()
 
 	useEffect(() => {
@@ -27,85 +28,90 @@ const NumbersGame = () => {
 		}
 	})
 	useEffect(() => {
-		if (parseInt(cursorW) === 4) {
-			seTdynum(188)
-			console.log('188');
-		}
 		if (parseInt(cursorW) === 3) {
 			seTdynum(189)
-			console.log('189');
 		}
-		if (parseInt(cursorW) === 2) {
-			seTdynum(190)
-			console.log('190');
-		}
-
 	}, [seTdynum, dynum, cursorW])
 	return (
-		<div className="game container">
-			<div className='screen-countdown' style={{ display: seconds >= 0 ? 'block' : 'none' }}>
-				<h3>Memorization starts in: </h3>
-				<span>{seconds} s</span>
-			</div>
-			<div className="header">
-				<div
-					className="num">
-					<div className="sort-num">
-						{
-							Array(Math.floor(40)).fill(null).map((_, index) => (
-								<>
+
+		<>
+			{
+				starttime ?
+					<>
+						<StartGameModal time={starttime} />
+					</>
+					:
+					<div className="game container">
+						<div className='screen-countdown' style={{
+							display: seconds >= 0 ? 'flex' : 'none',
+							justifyContent: "space-between"
+						}}>
+							<span>{seconds} s</span>
+							<Link to="/start">Start</Link>
+						</div>
+						<div className="header">
+							<div
+								className="num">
+								<div className={parseInt(cursorW) >= 4 ? "sort-num active" : "sort-num"} >
 									{
-										tab === 0 && index < 10 ?
-											<span>{index + 1}</span> : null
-									}
-									{
-										tab === 1 && index > 9 && index < 20 ?
-											<span>{index + 1}</span> : null
-									}
-									{
-										tab === 2 && index > 19 && index < 30 ?
-											<span>{index + 1}</span> : null
-									}
-									{
-										tab === 3 && index > 29 && index <= 40 ?
-											<span>{index + 1}</span> : null
-									}
-								</>
-							))
-						}
-					</div>
-					{Array(4).fill(null).map((_, index) => (
-						<>
-							{tab === index &&
-								<div className={`cards abs${index}`}>
-									{
-										randomnumbers.slice(dynum * tab, dynum * (tab + 1)).map((i, k) => (
+										Array(Math.floor(40)).fill(null).map((_, index) => (
 											<>
-												<div
-													className={classNames("card-number", {
-														active: (k >= cursor && k < cursor + parseInt(cursorW))
-													})}>
-													<p>
-														{i}
-													</p>
-												</div>
+												{
+													tab === 0 && index < 10 ?
+														<span>{index + 1})</span> : null
+												}
+												{
+													tab === 1 && index > 9 && index < 20 ?
+														<span>{index + 1})</span> : null
+												}
+												{
+													tab === 2 && index > 19 && index < 30 ?
+														<span>{index + 1})</span> : null
+												}
+												{
+													tab === 3 && index > 29 && index <= 40 ?
+														<span>{index + 1})</span> : null
+												}
 											</>
 										))
 									}
 								</div>
-							}
-						</>
-					))}
-				</div>
-			</div>
-			<div className="tabs">
-				{Array(4).fill(null).map((_, index) => (
-					<button className={tab === index && 'active'} onClick={() => resetCursor(index)} key={index}>{index + 1}</button>
-				))}
-			</div>
-			<NavigationBtn />
-			<Link to="/start">Start</Link>
-		</div >
+								{Array(4).fill(null).map((_, index) => (
+									<>
+										{tab === index &&
+											<div style={{
+												gridTemplateColumns: parseInt(cursorW) === 3 ? "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr" : "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr"
+											}} className={`cards`}>
+												{
+													randomnumbers.slice(dynum * tab, dynum * (tab + 1)).map((i, k) => (
+														<div key={k} className={(k + 1) % line === 0 ? "active card" : "card"}>
+															<div
+																className={classNames("card-number", {
+																	active: (k >= cursor && k < cursor + parseInt(cursorW))
+																})}>
+																<p >
+																	{i}
+																</p>
+															</div>
+														</div>
+													))
+												}
+											</div>
+										}
+									</>
+								))}
+							</div>
+						</div>
+						<div className="tabs">
+							{Array(4).fill(null).map((_, index) => (
+								<button className={tab === index && 'active'} onClick={() => resetCursor(index)} key={index}>{index + 1}</button>
+							))}
+						</div>
+						<NavigationBtn />
+					</div >
+			}
+		</>
+
 	);
 }
 

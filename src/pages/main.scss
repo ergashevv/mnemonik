@@ -35,8 +35,15 @@
 .cards {
 
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     width: 100%;
+
+    .card {
+        margin-bottom: 10px;
+
+        &.active {
+            border-right: 1px solid red;
+        }
+    }
 }
 
 .tabs {
@@ -68,4 +75,16 @@
 .num-or {
     display: block;
     padding: 5px 0;
+}
+
+.result-card {
+    .num-or {
+        display: block;
+        padding: 5px 0;
+
+        &.active {
+            padding: 16px 0;
+            margin-bottom: -1px;
+        }
+    }
 }

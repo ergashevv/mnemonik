@@ -4,14 +4,20 @@ const HomeContext = React.createContext(false)
 export const HomeContextProvider = ({ children }) => {
 
     const [cursorW, setCursorW] = useState(JSON.parse(localStorage.getItem("cursorW")), '1')
+    const [line, setLine] = useState(JSON.parse(localStorage.getItem("line")), 3)
     const [cursor, setCursor] = useState('0')
     const [result, setResult] = useState(null)
     const [tab, setTab] = useState(0)
     const [state, setState] = useState(0)
-    const [dynum, seTdynum] = useState(190)
+    const [navigation, setNavigation] = useState()
+    const [autosec, setAutosec] = useState()
     const [randomnumbers, setrandomnumbers] = useState([])
+    const [dynum, seTdynum] = useState(200)
+    const [starttime, setStartTime] = useState(5)
+    useEffect(() => {
+        setTimeout(() => setStartTime(starttime > 0 && starttime - 1), 1000)
+    }, [setStartTime, starttime])
     const shuffle = arr => [...arr].sort(() => Math.random() - 0.5);
-
     const [numbers, setNumbers] = useState(
         [
             "0",
@@ -730,13 +736,16 @@ export const HomeContextProvider = ({ children }) => {
     )
     useEffect(() => {
         setrandomnumbers(shuffle(numbers))
-    }, [setrandomnumbers,numbers]) 
+    }, [setrandomnumbers, numbers])
 
     useEffect(() => {
         if (cursorW) {
             localStorage.setItem("cursorW", JSON.stringify(cursorW))
         }
-    }, [cursorW])
+        if (line) {
+            localStorage.setItem("line", JSON.stringify(line))
+        }
+    }, [cursorW, line])
     const value = {
         cursorW, setCursorW,
         numbers, setNumbers,
@@ -745,7 +754,11 @@ export const HomeContextProvider = ({ children }) => {
         randomnumbers, setrandomnumbers,
         tab, setTab,
         state, setState,
-        dynum, seTdynum
+        dynum, seTdynum,
+        line, setLine,
+        navigation, setNavigation,
+        autosec, setAutosec,
+        starttime, setStartTime,
     }
     return (
         <HomeContext.Provider value={value}>
