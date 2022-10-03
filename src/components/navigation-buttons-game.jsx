@@ -3,7 +3,7 @@ import Next from '../assets/images/next.png'
 import { useHomeContext } from '../context/home-context';
 import ResultNumbers from './result-numbers';
 const NavigationBtn = () => {
-    const { cursorW, numbers, cursor, tab, dynum, setTab, setCursor, navigation, autosec, setAutosec } = useHomeContext();
+    const { cursorW, numbers, cursor, tab, dynum, setTab, setCursor, navigation, autosec } = useHomeContext();
     const handleNext = () => {
         setCursor(parseInt(cursor) - parseInt(cursorW))
     }
@@ -19,7 +19,7 @@ const NavigationBtn = () => {
             setTab(tab - 1)
             setCursor(dynum - parseInt(cursorW))
         }
-        if (tab == 3 && cursor > (dynum - parseInt(cursorW))) {
+        if (tab === 3 && cursor > (dynum - parseInt(cursorW))) {
             setTab(0)
         }
     }, [navigation, tab, setTab, setCursor, dynum, cursor, cursorW])
@@ -31,7 +31,7 @@ const NavigationBtn = () => {
             }, autosec * 1000);
             return () => clearTimeout(timer);
         }
-    }, [cursor]);
+    }, [navigation, cursor, cursorW, autosec, setCursor]);
     return (
         <>
             <div className="navigation">

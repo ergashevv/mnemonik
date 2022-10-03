@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import InputCell from "./input-cell";
 import { Link, useNavigate } from 'react-router-dom'
 const StartNumberGame = () => {
-    const { numbers, randomnumbers, setResult, tab, setCursor, setTab, dynum } = useHomeContext();
+    const { numbers, randomnumbers, setResult, tab, setCursor, setTab } = useHomeContext();
     const resetCursor = (index) => {
         setCursor(0)
         setTab(index)
@@ -92,7 +92,7 @@ const StartNumberGame = () => {
                 justifyContent: "space-between"
             }} className="d-flex">
                 <span>{seconds} s</span>
-                <button disabled={inputsCells.length} onClick={() => setResult(inputs)}>
+                <button onClick={() => setResult(inputs)}>
                     <Link to="/result">
                         Finish
                     </Link>
@@ -129,8 +129,9 @@ const StartNumberGame = () => {
                 {Array(4).fill(null).map((_, index) => (
                     <>
                         {tab === index &&
-                            <div className="start-game">
-                                {inputsCells.slice(dynum * tab, dynum * (tab + 1))}
+                            <div
+                                className="start-game">
+                                {inputsCells.slice(190 * index, 190 * (index + 1))}
                             </div>
                         }
                     </>

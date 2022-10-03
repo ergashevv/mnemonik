@@ -746,6 +746,11 @@ export const HomeContextProvider = ({ children }) => {
             localStorage.setItem("line", JSON.stringify(line))
         }
     }, [cursorW, line])
+    useEffect(() => {
+        if (parseInt(cursorW) === 3) {
+            seTdynum(189)
+        }
+    }, [seTdynum, dynum, cursorW])
     const value = {
         cursorW, setCursorW,
         numbers, setNumbers,

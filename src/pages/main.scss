@@ -1,8 +1,9 @@
 .start-game {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     width: 100%;
     gap: 3px;
+    margin-right: 20px;
 
     input {
         width: 100%;
@@ -77,6 +78,7 @@
     padding: 5px 0;
 }
 
+
 .result-card {
     .num-or {
         display: block;
@@ -85,6 +87,17 @@
         &.active {
             padding: 16px 0;
             margin-bottom: -1px;
+        }
+    }
+
+    .result-num-or {
+        .num-or {
+            padding: 8px 0;
+
+            &.active {
+                padding: 21px 0;
+                margin-bottom: -1px;
+            }
         }
     }
 }
