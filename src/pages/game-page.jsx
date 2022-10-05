@@ -7,7 +7,7 @@ import './main.scss'
 import { useEffect, useState } from 'react';
 import StartGameModal from '../components/start-game';
 const NumbersGame = () => {
-	const { cursorW, cursor, randomnumbers, tab, setCursor, dynum,  setTab, starttime, line } = useHomeContext();
+	const { cursorW, cursor, randomnumbers, tab, setCursor, dynum, setTab, starttime, line } = useHomeContext();
 	const resetCursor = (index) => {
 		setCursor(0)
 		setTab(index)
@@ -78,14 +78,15 @@ const NumbersGame = () => {
 											<div style={{
 												gridTemplateColumns: parseInt(cursorW) === 3 ? "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr" : "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr"
 											}}
-											 className={`cards`}>
+												className={`cards`}>
 												{
 													randomnumbers.slice(dynum * tab, dynum * (tab + 1)).map((i, k) => (
 														<div key={k} className={(k + 1) % line === 0 ? "active card" : "card"}>
 															<div
 																className={classNames("card-number", {
 																	active: (k >= cursor && k < cursor + parseInt(cursorW))
-																})}>
+																})}
+															>
 																<p >
 																	{i}
 																</p>
