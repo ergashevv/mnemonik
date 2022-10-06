@@ -3,7 +3,7 @@ import { useHomeContext } from "../context/home-context";
 const ResultNumbers = () => {
     const { cursorW, cursor, tab, dynum, randomnumbers } = useHomeContext();
 
-    const newnumbers = randomnumbers.slice(dynum * tab, dynum * (tab + 1)).slice(parseInt(cursor), parseInt(cursor) + parseInt(cursorW))
+    const newnumbers = randomnumbers.slice(dynum * tab, dynum * (tab + 1)).slice(cursor, cursor + parseInt(cursorW!))
     return (
         <>
             {

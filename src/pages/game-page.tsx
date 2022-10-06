@@ -8,12 +8,12 @@ import { useEffect, useState } from 'react';
 import StartGameModal from '../components/start-game';
 const NumbersGame = () => {
 	const { cursorW, cursor, randomnumbers, tab, setCursor, dynum, setTab, starttime, line } = useHomeContext();
-	const resetCursor = (index) => {
+	const resetCursor = (index: number) => {
 		setCursor(0)
 		setTab(index)
 	}
-
-	const [seconds, setSeconds] = useState(120)
+	const cursorWidth = cursorW
+	const [seconds, setSeconds] = useState<number>(120)
 	const navigate = useNavigate()
 
 	useEffect(() => {
@@ -48,7 +48,7 @@ const NumbersGame = () => {
 						<div className="header">
 							<div
 								className="num">
-								<div className={parseInt(cursorW) >= 4 ? "sort-num active" : "sort-num"} >
+								<div className={Number(cursorWidth) >= 4 ? "sort-num active" : "sort-num"} >
 									{
 										Array(Math.floor(40)).fill(null).map((_, index) => (
 											<>
@@ -76,15 +76,15 @@ const NumbersGame = () => {
 									<>
 										{tab === index &&
 											<div style={{
-												gridTemplateColumns: parseInt(cursorW) === 3 ? "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr" : "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr"
+												gridTemplateColumns: Number(cursorWidth) === 3 ? "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr" : "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr"
 											}}
 												className={`cards`}>
 												{
 													randomnumbers.slice(dynum * tab, dynum * (tab + 1)).map((i, k) => (
-														<div key={k} className={(k + 1) % line === 0 ? "active card" : "card"}>
+														<div key={k} className={(k + 1) % parseInt(line!) === 0 ? "active card" : "card"}>
 															<div
 																className={classNames("card-number", {
-																	active: (k >= cursor && k < cursor + parseInt(cursorW))
+																	active: (k >= cursor && k < cursor + parseInt(cursorWidth!))
 																})}
 															>
 																<p >
@@ -102,7 +102,7 @@ const NumbersGame = () => {
 						</div>
 						<div className="tabs">
 							{Array(4).fill(null).map((_, index) => (
-								<button className={tab === index && 'active'} onClick={() => resetCursor(index)} key={index}>{index + 1}</button>
+								<button className={tab === index ? 'active' : undefined} onClick={() => resetCursor(index)} key={index}>{index + 1}</button>
 							))}
 						</div>
 						<NavigationBtn />

@@ -4,12 +4,17 @@ import { Link } from 'react-router-dom'
 import './main.scss'
 const SettingsPage = () => {
     const { setCursorW, cursorW, line, setLine, navigation, setNavigation, autosec, setAutosec } = useHomeContext();
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setCursorW(event.target.value);
+    };
     return (
         <>
             <div className="setting-page container">
                 <h1>Change cursor numbers</h1>
                 <form className="mb-3" >
-                    <input className='set-num-inp' pattern="[0-9]*" value={cursorW} onChange={(e) => setCursorW(e.target.value)} type="number" placeholder="Enter number" />
+                    <input className='set-num-inp' pattern="[0-9]*" value={cursorW}
+                        onChange={handleChange}
+                        type="number" placeholder="Enter number" />
                     <h2>Enter Line number</h2>
                     <input className='set-num-inp' pattern="[0-9]*" value={line} onChange={(e) => setLine(e.target.value)} type="number" placeholder="Enter number" />
                     <h1>Select navigation</h1>
@@ -28,7 +33,7 @@ const SettingsPage = () => {
                             null
                     }
                 </form>
-                <button disabled={cursorW < 1} className='d-flex m-0 m-auto'>
+                <button disabled={parseInt(cursorW!) < 1} className='d-flex m-0 m-auto'>
                     <Link to="/game">
                         start
                     </Link>

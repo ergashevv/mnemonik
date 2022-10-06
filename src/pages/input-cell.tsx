@@ -1,5 +1,27 @@
 import React, { memo, useCallback } from "react"
 
+interface InputCellProps extends React.HTMLAttributes<HTMLInputElement> {
+  index?: number
+
+  success?: boolean
+
+  failure?: boolean
+
+  isHovered?: boolean
+
+  value?: string
+
+  onValue?: (val: any, index: number | undefined) => void
+
+  focusOnPrev?: (e: any) => void
+  focusOnNext?: (e: any) => void
+
+  onShiftAdd?: (e: any, index: number | undefined) => void
+  onShiftRemove?: (e: any, index: number | undefined) => void
+
+  onHover?: (e: any, index: number | undefined) => void
+  onUnhover?: (e: any, index: number | undefined) => void
+}
 export default memo(function InputCell({
   index,
   success = false,
@@ -13,11 +35,10 @@ export default memo(function InputCell({
   onShiftRemove,
   onHover,
   onUnhover,
-  className,
   ...props
-}) {
+}: InputCellProps) {
   const handleKeyUp = useCallback(
-    (e) => {
+    (e: any) => {
       if (/^[0-9]$/.test(e.key)) {
         onValue?.(e.key, index)
         focusOnNext?.(e)
@@ -56,11 +77,11 @@ export default memo(function InputCell({
       pattern="[0-9]*"
       onKeyUp={handleKeyUp}
       onMouseOver={useCallback(
-        (e) => onHover?.(e, index),
+        (e: any) => onHover?.(e, index),
         [index, onHover]
       )}
       onMouseLeave={useCallback(
-        (e) => onUnhover?.(e, index),
+        (e: any) => onUnhover?.(e, index),
         [index, onUnhover]
       )}
       {...props}

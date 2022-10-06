@@ -5,12 +5,12 @@ import InputCell from "./input-cell";
 import { Link, useNavigate } from 'react-router-dom'
 const StartNumberGame = () => {
     const { numbers, randomnumbers, setResult, tab, setCursor, setTab } = useHomeContext();
-    const resetCursor = (index) => {
+    const resetCursor = (index: number) => {
         setCursor(0)
         setTab(index)
     }
     const [inputs, setInputs] = useState(Array(numbers.length).fill(""));
-    const handleValue = useCallback((val, index) => {
+    const handleValue = useCallback((val: any, index: number | undefined) => {
         return setInputs((inputs) =>
             inputs.map((input, i) => (i === index ? val : input))
         )
@@ -33,7 +33,7 @@ const StartNumberGame = () => {
     })
 
 
-    const handleShiftAdd = useCallback((e, index) => {
+    const handleShiftAdd = useCallback((e: any, index: number | undefined) => {
         setInputs((inputs) => {
             const start = inputs.slice(0, index)
             const end = inputs.slice(index)
@@ -41,7 +41,7 @@ const StartNumberGame = () => {
         })
     }, [])
 
-    const handleShiftRemove = useCallback((e, index) => {
+    const handleShiftRemove = useCallback((e: any, index: number | undefined) => {
         if (index) {
             setInputs((inputs) => {
                 const start = inputs.slice(0, index)
@@ -51,12 +51,12 @@ const StartNumberGame = () => {
         }
     }, [])
 
-    const handleFocusOnNext = useCallback((e) => {
+    const handleFocusOnNext = useCallback((e: any) => {
         const nextInput = e.currentTarget?.nextSibling
         nextInput?.focus()
     }, [])
 
-    const handleFocusOnPrev = useCallback((e) => {
+    const handleFocusOnPrev = useCallback((e: any) => {
         const prevInput = e.currentTarget?.previousSibling
         prevInput?.focus()
     }, [])
@@ -139,7 +139,7 @@ const StartNumberGame = () => {
             </div>
             <div className="tabs">
                 {Array(4).fill(null).map((_, index) => (
-                    <button className={tab === index && 'active'} onClick={() => resetCursor(index)} key={index}>{index + 1}</button>
+                    <button className={tab === index ? 'active' : undefined} onClick={() => resetCursor(index)} key={index}>{index + 1}</button>
                 ))}
             </div>
 

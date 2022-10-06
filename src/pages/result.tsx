@@ -6,7 +6,7 @@ const Result = () => {
     const [show, setShow] = useState(false)
 
     const { result, tab, randomnumbers, setCursor, setTab } = useHomeContext();
-    const resetCursor = (index) => {
+    const resetCursor = (index: any) => {
         setCursor(0)
         setTab(index)
     }
@@ -15,7 +15,7 @@ const Result = () => {
     const count = useMemo(() => {
         let count = 0
 
-        result?.forEach((item, k) => {
+        result?.forEach((item: any, k: any) => {
             if (item !== randomnumbers[k]) count++
         });
 
@@ -69,12 +69,12 @@ const Result = () => {
                         {tab === index &&
                             <div className="start-game">
                                 {
-                                    result?.slice(190 * index, 190 * (index + 1)).map((value, index) => (
+                                    result?.slice(190 * index, 190 * (index + 1)).map((value: any, index: any) => (
                                         <div>
                                             <input
                                                 readOnly
                                                 style={{
-                                                    color: value === randomnumbers[index] ? "green" : "red",
+                                                    color: value == randomnumbers[index] ? "green" : "red",
                                                     fontWeight: "bold"
                                                 }}
                                                 value={value} type="text" />
@@ -92,8 +92,8 @@ const Result = () => {
                 ))}
             </div>
             <div className="tabs">
-                {Array(4).fill(null).map((_, index) => (
-                    <button className={tab === index && 'active'} onClick={() => resetCursor(index)} key={index}>{index + 1}</button>
+                {Array(4).fill(null).map((_, index: number) => (
+                    <button className={Number(tab) === index ? 'active' : undefined} onClick={() => resetCursor(index)} key={index}>{index + 1}</button>
                 ))}
             </div>
             <button onClick={() => setShow(!show)}>
