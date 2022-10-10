@@ -9,6 +9,9 @@ const HomePage = () => {
           <Link to="/numbers/settings">Numbers game</Link>
           <Link to="/cards/settings">Cards game</Link>
           <Link to="/dates/settings">Dates game</Link>
+          <Link to="/names-and-faces/settings">names-and-faces</Link>
+          <Link to="/words/settings">Words</Link>
+          <Link to="/flash-cards/settings">Flash cards</Link>
         </div>
       </div>
     </>
