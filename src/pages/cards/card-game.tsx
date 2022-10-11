@@ -7,7 +7,7 @@ import "./main.scss"
 import StartGameModal from "../../components/numbers-components/start-game"
 import { useHomeContext } from "../../context/home-context"
 const CardGame = () => {
-  const { starttime } = useHomeContext()
+  const { startTime: starttime } = useHomeContext()
   const { data, cursor, randomcard, setCursor, cursorW, navigation, show } =
     useCardsContext()
   const parsedCursorW = parseInt(cursorW!)

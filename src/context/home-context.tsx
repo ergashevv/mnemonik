@@ -19,7 +19,7 @@ export interface IContext {
   autosec?: number
   randomNumbers: number[]
   dynum: number
-  starttime: number
+  startTime: number
   setStartTime: (starttime: number) => void
   setCursorW: Function
   setLine: Function
@@ -53,15 +53,19 @@ export const HomeContextProvider = ({ children }: { children: ReactNode }) => {
 
   const [dynum, seTdynum] = useState(200)
 
-  const [starttime, setStartTime] = useState<number>(5)
-  console.log(starttime)
+  const [startTime, setStartTime] = useState<number>(5)
 
   useEffect(() => {
-    setTimeout(
-      () => setStartTime(starttime > 0 ? starttime - 1 : starttime),
-      1000
-    )
-  }, [setStartTime, starttime])
+    const timeout: NodeJS.Timeout = setTimeout(() => {
+      const newTime = startTime > 0 ? startTime - 1 : startTime
+
+      setStartTime(newTime)
+
+      if (newTime === 0) clearTimeout(timeout)
+    }, 1000)
+
+    return () => clearTimeout(timeout)
+  }, [setStartTime, startTime])
 
   const shuffle = (arr: number[]) => [...arr].sort(() => Math.random() - 0.5)
 
@@ -116,7 +120,7 @@ export const HomeContextProvider = ({ children }: { children: ReactNode }) => {
     setNavigation,
     autosec,
     setAutosec,
-    starttime,
+    startTime,
     setStartTime,
   }
 

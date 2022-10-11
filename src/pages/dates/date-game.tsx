@@ -8,7 +8,7 @@ import { useHomeContext } from "../../context/home-context"
 
 const DatesGamePage = () => {
   const { data, even } = useDatedContext()
-  const { setCursor, cursor, starttime } = useHomeContext()
+  const { setCursor, cursor, startTime: starttime } = useHomeContext()
   console.log(even)
 
   const elementClick = (e: any) => {

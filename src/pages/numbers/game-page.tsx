@@ -16,7 +16,7 @@ const NumbersGame = () => {
     setCursor,
     dynum,
     setTab,
-    starttime,
+    startTime: starttime,
     line,
   } = useHomeContext()
 
