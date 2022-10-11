@@ -1,4 +1,4 @@
-import { useFlashCardsContext } from '../../../context/FlashCardsContext'
+import { useFlashCardsContext } from '../../context/FlashCardsContext'
 import './Results.css'
 
 const Results = () => {

@@ -1,8 +1,7 @@
-import { ChangeEvent } from "react"
-import { useNavigate } from "react-router"
-import { useHomeContext } from "../../../context/home-context"
-import { useWordsContext } from "../../../context/WordsContext"
-import "./Start.css"
+import { ChangeEvent } from 'react'
+import { useNavigate } from 'react-router'
+import { useHomeContext } from '../../context/home-context'
+import { useWordsContext } from '../../context/WordsContext'
 
 const Start = () => {
   const { setCountDown, setMinutesForRecall, setMinutesForAnswer } =

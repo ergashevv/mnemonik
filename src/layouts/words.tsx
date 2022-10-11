@@ -1,9 +1,9 @@
 import "./main.scss"
 import { Route, Routes } from "react-router-dom"
-import Start from "../components/words-component/start-component/WordsStart"
-import Results from "../components/words-component/result-component/WordsResult"
-import Answer from "../components/words-component/answers-component/WordsAnswer"
-import Game from "../components/words-component/game-component/WordsRecall"
+import Start from "../pages/words/WordsStart"
+import Results from "../pages/words/WordsResult"
+import Answer from "../pages/words/WordsAnswer"
+import Game from "../pages/words/WordsRecall"
 
 const WordsLayout = () => {
   return (

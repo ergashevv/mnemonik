@@ -4,11 +4,12 @@ import {
   useContext,
   useEffect,
   useState,
-} from 'react'
-import data from '../datas/words/WordsData'
+} from "react"
+import data from "../datas/words/WordsData"
+import { useNamesAndFacesContext } from "./NamesAndFacesContext"
 
 type StringSetter = (
-  strings: string[] | ((strings: string[]) => string[]),
+  strings: string[] | ((strings: string[]) => string[])
 ) => void
 
 type NumberSetter = (numbers: number | ((numbers: number) => number)) => void
@@ -16,12 +17,6 @@ type NumberSetter = (numbers: number | ((numbers: number) => number)) => void
 interface IContext {
   words: string[]
   setWords: StringSetter
-  currentPageRecall: number
-  setCurrentPageRecall: NumberSetter
-  currentPageAnswers: number
-  setCurrentPageAnswers: NumberSetter
-  currentPageResults: number
-  setCurrentPageResults: NumberSetter
 
   wordsPerPage: number
   currentWords: string[]
@@ -43,17 +38,16 @@ interface IContext {
 const WordsContext = createContext<IContext>({} as IContext)
 
 export const WordsContextProvider = ({ children }: { children: ReactNode }) => {
+  const { currentPage } = useNamesAndFacesContext()
+
   const [words, setWords] = useState<string[]>(data)
-  const [answers, setAnswers] = useState<string[]>(() => Array(200).fill(''))
-  const [currentPageRecall, setCurrentPageRecall] = useState<number>(1)
-  const [currentPageAnswers, setCurrentPageAnswers] = useState<number>(1)
-  const [currentPageResults, setCurrentPageResults] = useState<number>(1)
+  const [answers, setAnswers] = useState<string[]>(() => Array(200).fill(""))
   const [wordsPerPage] = useState(10)
   const [countDown, setCountDown] = useState<number>(5)
   const [minutesForRecall, setMinutesForRecall] = useState<number>(5)
   const [minutesForAnswer, setMinutesForAnswer] = useState<number>(5)
 
-  const indexOfLastWord = currentPageRecall * wordsPerPage
+  const indexOfLastWord = currentPage * wordsPerPage
   const indexOfFirstWord = indexOfLastWord - wordsPerPage
   const currentWords = words.slice(indexOfFirstWord, indexOfLastWord)
 
@@ -72,22 +66,14 @@ export const WordsContextProvider = ({ children }: { children: ReactNode }) => {
   const value = {
     words,
     setWords,
-
-    currentPageRecall,
-    setCurrentPageRecall,
-    currentPageAnswers,
-    setCurrentPageAnswers,
-    currentPageResults,
-    setCurrentPageResults,
+    answers,
+    setAnswers,
 
     wordsPerPage,
     currentWords,
+    currentAnswers,
     indexOfFirstWord,
     indexOfLastWord,
-
-    answers,
-    setAnswers,
-    currentAnswers,
 
     countDown,
     setCountDown,

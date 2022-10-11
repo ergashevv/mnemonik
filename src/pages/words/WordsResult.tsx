@@ -1,33 +1,28 @@
 import { useState } from "react"
 import { ArrowLeft, ArrowRight, Eye, Rewind } from "react-feather"
-import { useWordsContext } from "../../../context/WordsContext"
-import NextPage from "../button-component/WordsNextPage"
-import PrevPage from "../button-component/WordsPrevPage"
-import "../WordsStyle.css"
+import NextPage from "../../components/button-control-component/NextPage"
+import PrevPage from "../../components/button-control-component/PrevPage"
+import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
+import { useWordsContext } from "../../context/WordsContext"
+import "./WordsStyle.css"
 
 const Results = () => {
-  const {
-    words,
-    currentPageResults,
-    setCurrentPageResults,
-    wordsPerPage,
-    currentAnswers,
-    answers,
-  } = useWordsContext()
+  const { words, wordsPerPage, currentAnswers, answers } = useWordsContext()
+  const { currentPage, setCurrentPage } = useNamesAndFacesContext()
 
-  const { prevResultsHandlers } = PrevPage()
-  const { nextResultsHandlers } = NextPage()
+  const { prevHandlersWords } = PrevPage()
+  const { nextHandlersWords } = NextPage()
 
   const [visibleInputs, setVisibleInputs] = useState(
     Array(answers?.length).fill(false)
   )
 
   const correctAnswers = words?.filter(
-    (el, index) => el === answers[index + (currentPageResults - 1) * 10]
+    (el, index) => el === answers[index + (currentPage - 1) * 10]
   )
 
   const firstPage = () => {
-    setCurrentPageResults(1)
+    setCurrentPage(1)
   }
 
   return (
@@ -50,42 +45,40 @@ const Results = () => {
                     type="text"
                     placeholder={(
                       index +
-                      (currentPageResults - 1) * 10 +
+                      (currentPage - 1) * 10 +
                       1
                     ).toString()}
                     style={{
                       backgroundColor:
-                        words[index + (currentPageResults - 1) * 10] !==
-                        answers[index + (currentPageResults - 1) * 10]
+                        words[index + (currentPage - 1) * 10] !==
+                        answers[index + (currentPage - 1) * 10]
                           ? "rgb(255, 0, 0, .5)"
                           : "rgba(26, 161, 19, .5)",
                     }}
                     value={
-                      visibleInputs[index + (currentPageResults - 1) * 10]
-                        ? words[index + (currentPageResults - 1) * 10]
-                        : answers[index + (currentPageResults - 1) * 10]
+                      visibleInputs[index + (currentPage - 1) * 10]
+                        ? words[index + (currentPage - 1) * 10]
+                        : answers[index + (currentPage - 1) * 10]
                     }
                   />
                   <Eye
                     className="form-preview"
                     style={{
                       backgroundColor:
-                        visibleInputs[index + (currentPageResults - 1) * 10] &&
+                        visibleInputs[index + (currentPage - 1) * 10] &&
                         "black",
                       color:
-                        visibleInputs[index + (currentPageResults - 1) * 10] &&
+                        visibleInputs[index + (currentPage - 1) * 10] &&
                         "white",
                       padding:
-                        visibleInputs[index + (currentPageResults - 1) * 10] &&
+                        visibleInputs[index + (currentPage - 1) * 10] &&
                         ".1rem",
                     }}
                     onClick={() => {
                       setVisibleInputs((inputs) =>
                         inputs?.map((input, inputIndex) =>
-                          index + (currentPageResults - 1) * 10 === inputIndex
-                            ? !visibleInputs[
-                                index + (currentPageResults - 1) * 10
-                              ]
+                          index + (currentPage - 1) * 10 === inputIndex
+                            ? !visibleInputs[index + (currentPage - 1) * 10]
                             : input
                         )
                       )
@@ -97,17 +90,16 @@ const Results = () => {
           })}
         </div>
         <div className="results-section__indicator">
-          <span>{currentPageResults}</span>/
-          <span>{words?.length / wordsPerPage}</span>
+          <span>{currentPage}</span>/<span>{words?.length / wordsPerPage}</span>
         </div>
         <div className="results-section__control-buttons">
           <button onClick={firstPage} className="first-button">
             <Rewind size={32} />
           </button>
-          <button {...prevResultsHandlers} className="prev-button">
+          <button {...prevHandlersWords} className="prev-button">
             <ArrowLeft size={32} />
           </button>
-          <button {...nextResultsHandlers} className="next-button">
+          <button {...nextHandlersWords} className="next-button">
             <ArrowRight size={32} />
           </button>
         </div>

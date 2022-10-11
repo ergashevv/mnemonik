@@ -1,19 +1,18 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { ArrowLeft, ArrowRight, Rewind } from "react-feather"
 import { useNavigate } from "react-router"
-import { Link } from "react-router-dom"
-import { useHomeContext } from "../../../context/home-context"
-import { useNamesAndFacesContext } from "../../../context/NamesAndFacesContext"
-import StartGameModal from "../../numbers-components/start-game"
-import NextPage from "../button-component/NextPage"
-import PrevPage from "../button-component/PrevPage"
-import "../Styles.css"
+import NextPage from "../../components/button-control-component/NextPage"
+import PrevPage from "../../components/button-control-component/PrevPage"
+import StartGameModal from "../../components/numbers-components/start-game"
+import { useHomeContext } from "../../context/home-context"
+import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
+import "./Styles.css"
 
 const Game = () => {
   const {
     people,
-    currentPageRecall,
-    setCurrentPageRecall,
+    currentPage,
+    setCurrentPage,
     countDown,
     setCountDown,
     minutesForRecall,
@@ -25,8 +24,8 @@ const Game = () => {
   const [seconds, setSeconds] = useState<number>(0)
   const navigate = useNavigate()
 
-  const { prevRecallHandlers } = PrevPage()
-  const { nextRecallHandlers } = NextPage()
+  const { prevHandlers } = PrevPage()
+  const { nextHandlers } = NextPage()
 
   useEffect(() => {
     setTimeout(() => {
@@ -59,7 +58,12 @@ const Game = () => {
   })
 
   const firstPage = () => {
-    setCurrentPageRecall(1)
+    setCurrentPage(1)
+  }
+
+  const handleNavigate = () => {
+    navigate("/names-and-faces/answers")
+    setCurrentPage(1)
   }
 
   return (
@@ -67,7 +71,7 @@ const Game = () => {
       <div className="container">
         {/* <div
           className="screen-countdown"
-          style={{ display: countDown > 0 ? 'block' : 'none' }}
+          style={{ display: countDown > 0 ? "block" : "none" }}
         >
           <h3>Memorization starts in: </h3>
           <span>{countDown} s</span>
@@ -84,18 +88,18 @@ const Game = () => {
               </p>
             )}
             <p className="faces-section__header-title">Recall</p>
-            <Link
-              to="/names-and-faces/answers"
+            <button
+              onClick={handleNavigate}
               style={{ textDecoration: "none" }}
               className="faces-section__header-finish"
             >
               Finish
-            </Link>
+            </button>
           </div>
           <div className="faces-section__cards">
             {people.map((person, index) => {
               const { img, firstName, lastName } = person
-              if (currentPageRecall - 1 === index) {
+              if (currentPage - 1 === index) {
                 return (
                   <article key={index}>
                     <img src={img} alt={firstName} />
@@ -109,16 +113,16 @@ const Game = () => {
             })}
           </div>
           <div className="faces-section__indicator">
-            <span>{currentPageRecall}</span>/<span>{people.length}</span>
+            <span>{currentPage}</span>/<span>{people.length}</span>
           </div>
           <div className="faces-section__control-buttons">
             <button onClick={firstPage} className="first-button">
               <Rewind size={32} />
             </button>
-            <button {...prevRecallHandlers} className="prev-button">
+            <button {...prevHandlers} className="prev-button">
               <ArrowLeft size={32} />
             </button>
-            <button {...nextRecallHandlers} className="next-button">
+            <button {...nextHandlers} className="next-button">
               <ArrowRight size={32} />
             </button>
           </div>

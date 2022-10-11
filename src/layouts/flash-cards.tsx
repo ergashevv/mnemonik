@@ -1,8 +1,8 @@
 import "./main.scss"
 import { Route, Routes } from "react-router-dom"
-import Start from "../components/flash-cards-component/start-component/FlashCardsStart"
-import Results from "../components/flash-cards-component/results-component/FlashCardsResult"
-import Cards from "../components/flash-cards-component/cards-component/FlashCardsRecall"
+import Start from "../pages/flash-cards/FlashCardsStart"
+import Results from "../pages/flash-cards/FlashCardsResult"
+import Cards from "../pages/flash-cards/FlashCardsRecall"
 
 const FlashCardLayout = () => {
   return (

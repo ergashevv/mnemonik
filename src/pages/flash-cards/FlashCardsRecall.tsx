@@ -1,18 +1,17 @@
 import { useEffect, useRef, useState } from "react"
 import { ArrowLeft, ArrowRight, Rewind } from "react-feather"
-import { Link } from "react-router-dom"
-import { useFlashCardsContext } from "../../../context/FlashCardsContext"
-import { useHomeContext } from "../../../context/home-context"
-import StartGameModal from "../../numbers-components/start-game"
-import NextPage from "../buttons-component/NextPage"
-import PrevPage from "../buttons-component/PrevPage"
+import { useNavigate } from "react-router-dom"
+import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
+import { useFlashCardsContext } from "../../context/FlashCardsContext"
+import NextPage from "../../components/button-control-component/NextPage"
+import PrevPage from "../../components/button-control-component/PrevPage"
 import "./Cards.css"
+import { useHomeContext } from "../../context/home-context"
+import StartGameModal from "../../components/numbers-components/start-game"
 
 const Cards = () => {
   const {
     flashCards,
-    currentFlashCard,
-    setCurrentFlashCard,
     countDown,
     setCountDown,
     time,
@@ -20,10 +19,13 @@ const Cards = () => {
   } = useFlashCardsContext()
   const { startTime } = useHomeContext()
 
-  const { nextHandlers } = NextPage()
-  const { prevHandlers } = PrevPage()
+  const { currentPage, setCurrentPage } = useNamesAndFacesContext()
+
+  const { nextHandlersCards } = NextPage()
+  const { prevHandlersCards } = PrevPage()
 
   const [flipCards, setFlipCards] = useState(() => Array(100).fill(false))
+  const navigate = useNavigate()
 
   const interval = useRef<ReturnType<typeof setTimeout>>()
 
@@ -34,14 +36,14 @@ const Cards = () => {
       if (countDown < 0) {
         setTime((numbers) =>
           numbers.map((number, index) =>
-            currentFlashCard - 1 === index ? number + 0.1 : number
+            currentPage - 1 === index ? number + 0.01 : number
           )
         )
       }
-    }, 100)
+    }, 10)
 
     return () => clearInterval(Number(interval.current))
-  }, [countDown, setTime, currentFlashCard, time])
+  }, [countDown, setTime, currentPage, time])
 
   useEffect(() => {
     if (countDown >= 0) {
@@ -50,7 +52,11 @@ const Cards = () => {
   })
 
   const firstPage = () => {
-    setCurrentFlashCard(1)
+    setCurrentPage(1)
+  }
+
+  const handleNavigate = () => {
+    navigate("/flash-cards/results")
   }
 
   return (
@@ -71,20 +77,20 @@ const Cards = () => {
         >
           <div className="cards-section__header">
             <h1 className="cards-section__header-timer">
-              {time[currentFlashCard - 1].toFixed(2)} s
+              {time[currentPage - 1].toFixed(2)} s
             </h1>
-            <Link
-              to="/flash-cards/results"
+            <button
+              onClick={handleNavigate}
               style={{ textDecoration: "none" }}
               className="cards-section__header-finish"
             >
               Finish
-            </Link>
+            </button>
           </div>
           <div className="cards-section__items">
             {flashCards?.map((flashCard, index) => {
               const { number, text } = flashCard
-              if (index === currentFlashCard - 1) {
+              if (index === currentPage - 1) {
                 return (
                   <article
                     key={index}
@@ -107,16 +113,16 @@ const Cards = () => {
             })}
           </div>
           <div className="indicator">
-            <span>{currentFlashCard}</span>/<span>{flashCards?.length}</span>
+            <span>{currentPage}</span>/<span>{flashCards?.length}</span>
           </div>
           <div className="control-buttons">
             <button onClick={firstPage} className="first-button">
               <Rewind size={32} />
             </button>
-            <button {...prevHandlers} className="prev-button">
+            <button {...prevHandlersCards} className="prev-button">
               <ArrowLeft size={32} />
             </button>
-            <button {...nextHandlers} className="next-button">
+            <button {...nextHandlersCards} className="next-button">
               <ArrowRight size={32} />
             </button>
           </div>

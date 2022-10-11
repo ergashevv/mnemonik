@@ -1,8 +1,7 @@
-import { ChangeEvent } from "react"
-import { Link } from "react-router-dom"
-import { useFlashCardsContext } from "../../../context/FlashCardsContext"
-import { useHomeContext } from "../../../context/home-context"
-import "./Start.css"
+import { ChangeEvent } from "react";
+import { Link } from "react-router-dom";
+import { useFlashCardsContext } from "../../context/FlashCardsContext";
+import { useHomeContext } from "../../context/home-context";
 
 const Start = () => {
   const { setCountDown } = useFlashCardsContext()
