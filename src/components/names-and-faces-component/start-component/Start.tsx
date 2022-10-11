@@ -1,5 +1,6 @@
 import React, { ChangeEvent, useCallback, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { useHomeContext } from "../../../context/home-context"
 import { useNamesAndFacesContext } from "../../../context/NamesAndFacesContext"
 import "./Start.css"
 
@@ -13,7 +14,7 @@ const blobToBase64 = (blob: Blob) =>
 
 const Start = () => {
   const [imagesLoading, setImagesLoading] = useState<boolean>(false)
-
+  const { setStartTime } = useHomeContext()
   const {
     people,
     setPeople,
@@ -62,7 +63,8 @@ const Start = () => {
   }, [navigate, people, setPeople, setShuffledPeople])
 
   const handleCountDown = (e: ChangeEvent<HTMLInputElement>) => {
-    setCountDown(+e.target.value)
+    // setCountDown(+e.target.value)
+    setStartTime(+e.target.value)
   }
 
   const handleMinutesForRecall = (e: ChangeEvent<HTMLInputElement>) => {
@@ -79,7 +81,8 @@ const Start = () => {
           <label htmlFor="">Boshlang'ich vaqtni kiriting</label>
           <input
             type="number"
-            onChange={handleCountDown}
+            // onChange={handleCountDown}
+            onChange={(e: any) => setStartTime(e.target.value)}
             placeholder="Standart vaqt 5 soniya"
           />
 
@@ -98,7 +101,11 @@ const Start = () => {
           />
         </form>
         <div className="start-button">
-          <button onClick={handleNavigate} disabled={imagesLoading}>
+          <button
+            type="submit"
+            onClick={handleNavigate}
+            disabled={imagesLoading}
+          >
             {imagesLoading
               ? `Loading images (${imagesFetched} / ${people.length})`
               : "Start"}

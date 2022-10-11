@@ -20,7 +20,7 @@ export interface IContext {
   randomNumbers: number[]
   dynum: number
   startTime: number
-  setStartTime: (starttime: number) => void
+  setStartTime: (startTime: number) => void
   setCursorW: Function
   setLine: Function
   setNavigation: Function

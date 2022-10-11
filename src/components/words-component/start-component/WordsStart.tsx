@@ -1,24 +1,22 @@
-import { ChangeEvent } from 'react'
-import { useNavigate } from 'react-router'
-import { useWordsContext } from '../../../context/WordsContext'
-import './Start.css'
+import { ChangeEvent } from "react"
+import { useNavigate } from "react-router"
+import { useHomeContext } from "../../../context/home-context"
+import { useWordsContext } from "../../../context/WordsContext"
+import "./Start.css"
 
 const Start = () => {
-  const {
-    setCountDown,
-    setMinutesForRecall,
-    setMinutesForAnswer,
-  } = useWordsContext()
+  const { setCountDown, setMinutesForRecall, setMinutesForAnswer } =
+    useWordsContext()
+  const { setStartTime } = useHomeContext()
 
   const navigate = useNavigate()
-
   const handleNavigate = () => {
-    navigate('/words/recall')
+    navigate("/words/recall")
   }
 
-  const handleCountDown = (e: ChangeEvent<HTMLInputElement>) => {
-    setCountDown(+e.target.value)
-  }
+  // const handleCountDown = (e: ChangeEvent<HTMLInputElement>) => {
+  //   setCountDown(+e.target.value)
+  // }
 
   const handleMinutesForRecall = (e: ChangeEvent<HTMLInputElement>) => {
     setMinutesForRecall(+e.target.value)
@@ -35,7 +33,7 @@ const Start = () => {
           <label htmlFor="">Boshlang'ich vaqtni kiriting</label>
           <input
             type="number"
-            onChange={handleCountDown}
+            onChange={(e: any) => setStartTime(e.target.value)}
             placeholder="Standart vaqt 5 soniya"
           />
 

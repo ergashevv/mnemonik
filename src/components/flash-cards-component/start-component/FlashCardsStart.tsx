@@ -1,14 +1,16 @@
-import { ChangeEvent } from "react";
-import { Link } from "react-router-dom";
-import { useFlashCardsContext } from "../../../context/FlashCardsContext";
-import "./Start.css";
+import { ChangeEvent } from "react"
+import { Link } from "react-router-dom"
+import { useFlashCardsContext } from "../../../context/FlashCardsContext"
+import { useHomeContext } from "../../../context/home-context"
+import "./Start.css"
 
 const Start = () => {
-  const { setCountDown } = useFlashCardsContext();
+  const { setCountDown } = useFlashCardsContext()
+  const { setStartTime } = useHomeContext()
 
   const handleCountDown = (e: ChangeEvent<HTMLInputElement>) => {
-    setCountDown(+e.target.value);
-  };
+    setCountDown(+e.target.value)
+  }
 
   return (
     <div className="settings">
@@ -17,7 +19,8 @@ const Start = () => {
           <label htmlFor="">Boshlang'ich vaqtni kiriting</label>
           <input
             type="number"
-            onChange={handleCountDown}
+            // onChange={handleCountDown}
+            onChange={(e: any) => setStartTime(e.target.value)}
             placeholder="Standart vaqt 5 soniya"
           />
         </form>
@@ -28,7 +31,7 @@ const Start = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Start;
+export default Start

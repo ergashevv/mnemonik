@@ -13,9 +13,14 @@
 
   .events {
     width: 100%;
+    margin-bottom: 100px;
+    span {
+      font-size: 14px;
+    }
   }
 
   .dates {
+    margin-bottom: 100px;
     .card {
       padding-right: 40px;
     }

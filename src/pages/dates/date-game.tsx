@@ -16,9 +16,9 @@ const DatesGamePage = () => {
   }
   const handleBottom = () => {
     setCursor(cursor + 1)
-    let scroll_to_bottom = document.getElementById("card")
-    scroll_to_bottom!.scrollTop = scroll_to_bottom!.scrollHeight
+    window.scrollTo(0, 30)
   }
+
   return (
     <>
       {starttime ? (
@@ -44,7 +44,7 @@ const DatesGamePage = () => {
             <div className="events">
               {even?.map((el: string, k: any) => (
                 <div
-                  id={k}
+                  id={"div"}
                   onClick={() => elementClick(k)}
                   className={classNames("card", {
                     active: k === cursor,
@@ -61,18 +61,14 @@ const DatesGamePage = () => {
               disabled={cursor === 0}
               onClick={() => setCursor(cursor - 1)}
             >
-              <a href={`#${cursor - 3}`}>
-                <img src={NavigationBtnImg} alt="" />
-              </a>
+              <img src={NavigationBtnImg} alt="" />
             </button>
             <button
               className="bottom"
-              disabled={cursor > data?.length - 3}
+              disabled={cursor > data?.length - 2}
               onClick={handleBottom}
             >
-              <a href={`#${cursor - 3}`}>
-                <img className="bottom-img" src={NavigationBtnImg} alt="" />
-              </a>
+              <img className="bottom-img" src={NavigationBtnImg} alt="" />
             </button>
           </div>
         </>

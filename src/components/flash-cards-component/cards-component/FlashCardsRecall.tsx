@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react"
 import { ArrowLeft, ArrowRight, Rewind } from "react-feather"
 import { Link } from "react-router-dom"
 import { useFlashCardsContext } from "../../../context/FlashCardsContext"
+import { useHomeContext } from "../../../context/home-context"
+import StartGameModal from "../../numbers-components/start-game"
 import NextPage from "../buttons-component/NextPage"
 import PrevPage from "../buttons-component/PrevPage"
 import "./Cards.css"
@@ -16,6 +18,7 @@ const Cards = () => {
     time,
     setTime,
   } = useFlashCardsContext()
+  const { startTime } = useHomeContext()
 
   const { nextHandlers } = NextPage()
   const { prevHandlers } = PrevPage()
@@ -53,13 +56,15 @@ const Cards = () => {
   return (
     <div className="cards">
       <div className="container">
-        <div
+        {/* <div
           className="screen-countdown"
           style={{ display: countDown > 0 ? "block" : "none" }}
         >
           <h3>Memorization starts in: </h3>
           <span>{countDown} s</span>
-        </div>
+        </div> */}
+        <StartGameModal time={startTime} />
+
         <div
           className="cards-section"
           style={{ display: countDown > 0 ? "none" : "block" }}

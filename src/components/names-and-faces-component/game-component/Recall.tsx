@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import { ArrowLeft, ArrowRight, Rewind } from 'react-feather'
-import { useNavigate } from 'react-router'
-import { Link } from 'react-router-dom'
-import { useNamesAndFacesContext } from '../../../context/NamesAndFacesContext'
-import NextPage from '../button-component/NextPage'
-import PrevPage from '../button-component/PrevPage'
-import '../Styles.css'
+import React, { useEffect, useState } from "react"
+import { ArrowLeft, ArrowRight, Rewind } from "react-feather"
+import { useNavigate } from "react-router"
+import { Link } from "react-router-dom"
+import { useHomeContext } from "../../../context/home-context"
+import { useNamesAndFacesContext } from "../../../context/NamesAndFacesContext"
+import StartGameModal from "../../numbers-components/start-game"
+import NextPage from "../button-component/NextPage"
+import PrevPage from "../button-component/PrevPage"
+import "../Styles.css"
 
 const Game = () => {
   const {
@@ -17,6 +19,8 @@ const Game = () => {
     minutesForRecall,
     setMinutesForRecall,
   } = useNamesAndFacesContext()
+
+  const { startTime } = useHomeContext()
 
   const [seconds, setSeconds] = useState<number>(0)
   const navigate = useNavigate()
@@ -31,7 +35,7 @@ const Game = () => {
           setSeconds((seconds) => seconds - 1)
         } else if (seconds === 0) {
           if (minutesForRecall === 0) {
-            navigate('/names-and-faces/answers')
+            navigate("/names-and-faces/answers")
           } else {
             setMinutesForRecall((minutesForRecall) => minutesForRecall - 1)
             setSeconds(59)
@@ -61,15 +65,16 @@ const Game = () => {
   return (
     <div className="faces">
       <div className="container">
-        <div
+        {/* <div
           className="screen-countdown"
           style={{ display: countDown > 0 ? 'block' : 'none' }}
         >
           <h3>Memorization starts in: </h3>
           <span>{countDown} s</span>
-        </div>
+        </div> */}
+        <StartGameModal time={startTime} />
         <div
-          style={{ display: countDown > 0 ? 'none' : 'flex' }}
+          style={{ display: countDown > 0 ? "none" : "flex" }}
           className="faces-section"
         >
           <div className="faces-section__header">
@@ -81,7 +86,7 @@ const Game = () => {
             <p className="faces-section__header-title">Recall</p>
             <Link
               to="/names-and-faces/answers"
-              style={{ textDecoration: 'none' }}
+              style={{ textDecoration: "none" }}
               className="faces-section__header-finish"
             >
               Finish
@@ -93,10 +98,7 @@ const Game = () => {
               if (currentPageRecall - 1 === index) {
                 return (
                   <article key={index}>
-                    <img
-                      src={img}
-                      alt={firstName}
-                    />
+                    <img src={img} alt={firstName} />
                     <h4>{firstName}</h4>
                     <h4>{lastName}</h4>
                   </article>
