@@ -1,7 +1,6 @@
-import React, { ChangeEvent, useCallback, useState } from "react"
+import { ChangeEvent, useCallback, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { useNamesAndFacesContext } from "../../../context/NamesAndFacesContext"
-import "./Start.css"
+import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
 
 const blobToBase64 = (blob: Blob) =>
   new Promise((resolve, reject) => {

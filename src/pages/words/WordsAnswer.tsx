@@ -1,16 +1,15 @@
-import { ChangeEvent, useEffect, useState } from 'react'
-import { ArrowLeft, ArrowRight, Rewind } from 'react-feather'
-import { Link, useNavigate } from 'react-router-dom'
-import { useWordsContext } from '../../../context/WordsContext'
-import NextPage from '../button-component/WordsNextPage'
-import PrevPage from '../button-component/WordsPrevPage'
-import '../WordsStyle.css'
+import { ChangeEvent, useEffect, useState } from "react"
+import { ArrowLeft, ArrowRight, Rewind } from "react-feather"
+import { useNavigate } from "react-router-dom"
+import NextPage from "../../components/button-control-component/NextPage"
+import PrevPage from "../../components/button-control-component/PrevPage"
+import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
+import { useWordsContext } from "../../context/WordsContext"
+import "./WordsStyle.css"
 
 const Answer = () => {
   const {
     words,
-    currentPageAnswers,
-    setCurrentPageAnswers,
     wordsPerPage,
     currentAnswers,
     setAnswers,
@@ -19,8 +18,10 @@ const Answer = () => {
     setMinutesForAnswer,
   } = useWordsContext()
 
-  const { prevAnswersHandlers } = PrevPage()
-  const { nextAnswersHandlers } = NextPage()
+  const { currentPage, setCurrentPage } = useNamesAndFacesContext()
+
+  const { prevHandlersWords } = PrevPage()
+  const { nextHandlersWords } = NextPage()
 
   const navigate = useNavigate()
   const [seconds, setSeconds] = useState(0)
@@ -31,7 +32,7 @@ const Answer = () => {
         setSeconds((seconds) => seconds - 1)
       } else if (seconds === 0) {
         if (minutesForAnswer === 0) {
-          navigate('/words/results')
+          navigate("/words/results")
         } else {
           setMinutesForAnswer((minutesForAnswer) => minutesForAnswer - 1)
           setSeconds(59)
@@ -43,13 +44,18 @@ const Answer = () => {
   const handleInputs = (e: ChangeEvent<HTMLInputElement>, index: number) => {
     setAnswers((answers) =>
       answers.map((oldValue, currentIndex) =>
-        currentIndex === index ? e.target.value : oldValue,
-      ),
+        currentIndex === index ? e.target.value : oldValue
+      )
     )
   }
 
   const firstPage = () => {
-    setCurrentPageAnswers(1)
+    setCurrentPage(1)
+  }
+
+  const handleNavigate = () => {
+    navigate("/words/results")
+    setCurrentPage(1)
   }
 
   return (
@@ -62,13 +68,13 @@ const Answer = () => {
             </h3>
           )}
           <p className="answers-section__header-title">Answer</p>
-          <Link
-            to="/words/results"
-            style={{ textDecoration: 'none' }}
+          <button
+            onClick={handleNavigate}
+            style={{ textDecoration: "none" }}
             className="answers-section__header-finish"
           >
             Finish
-          </Link>
+          </button>
         </div>
         <div className="answers-section__items">
           {currentAnswers?.map((_, index) => {
@@ -76,14 +82,10 @@ const Answer = () => {
               <form className="form">
                 <input
                   type="text"
-                  placeholder={(
-                    index +
-                    (currentPageAnswers - 1) * 10 +
-                    1
-                  ).toString()}
-                  value={answers[index + (currentPageAnswers - 1) * 10]}
+                  placeholder={(index + (currentPage - 1) * 10 + 1).toString()}
+                  value={answers[index + (currentPage - 1) * 10]}
                   onChange={(e) =>
-                    handleInputs(e, index + (currentPageAnswers - 1) * 10)
+                    handleInputs(e, index + (currentPage - 1) * 10)
                   }
                 />
               </form>
@@ -91,17 +93,16 @@ const Answer = () => {
           })}
         </div>
         <div className="answers-section__indicator">
-          <span>{currentPageAnswers}</span>/
-          <span>{words?.length / wordsPerPage}</span>
+          <span>{currentPage}</span>/<span>{words?.length / wordsPerPage}</span>
         </div>
         <div className="answers-section__control-buttons">
           <button onClick={firstPage} className="first-button">
             <Rewind size={32} />
           </button>
-          <button {...prevAnswersHandlers} className="prev-button">
+          <button {...prevHandlersWords} className="prev-button">
             <ArrowLeft size={32} />
           </button>
-          <button {...nextAnswersHandlers} className="next-button">
+          <button {...nextHandlersWords} className="next-button">
             <ArrowRight size={32} />
           </button>
         </div>

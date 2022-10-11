@@ -1,7 +1,6 @@
 import { ChangeEvent } from 'react'
 import { useNavigate } from 'react-router'
-import { useWordsContext } from '../../../context/WordsContext'
-import './Start.css'
+import { useWordsContext } from '../../context/WordsContext'
 
 const Start = () => {
   const {

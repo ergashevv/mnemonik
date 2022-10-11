@@ -1,7 +1,6 @@
 import { ChangeEvent } from "react";
 import { Link } from "react-router-dom";
-import { useFlashCardsContext } from "../../../context/FlashCardsContext";
-import "./Start.css";
+import { useFlashCardsContext } from "../../context/FlashCardsContext";
 
 const Start = () => {
   const { setCountDown } = useFlashCardsContext();

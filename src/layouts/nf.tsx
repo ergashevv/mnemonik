@@ -1,9 +1,9 @@
 import "./main.scss"
 import { Route, Routes } from "react-router-dom"
-import Game from "../components/names-and-faces-component/game-component/Recall"
-import Answers from "../components/names-and-faces-component/answers-component/Answers"
-import Result from "../components/names-and-faces-component/result-component/Results"
-import Start from "../components/names-and-faces-component/start-component/Start"
+import Game from "../pages/names-and-faces/Recall"
+import Answers from "../pages/names-and-faces/Answers"
+import Result from "../pages/names-and-faces/Results"
+import Start from "../pages/names-and-faces/Start"
 
 const NamesAndFaceLayout = () => {
   return (

@@ -1,17 +1,16 @@
-import { ChangeEvent, useEffect, useState } from 'react'
-import { ArrowLeft, ArrowRight, Rewind } from 'react-feather'
-import { useNavigate } from 'react-router'
-import { Link } from 'react-router-dom'
-import { useNamesAndFacesContext } from '../../../context/NamesAndFacesContext'
-import NextPage from '../button-component/NextPage'
-import PrevPage from '../button-component/PrevPage'
-import '../Styles.css'
+import { ChangeEvent, useEffect, useState } from "react"
+import { ArrowLeft, ArrowRight, Rewind } from "react-feather"
+import { useNavigate } from "react-router"
+import NextPage from "../../components/button-control-component/NextPage"
+import PrevPage from "../../components/button-control-component/PrevPage"
+import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
+import "./Styles.css"
 
 const Answers = () => {
   let {
     shuffledPeople,
-    currentPageAnswers,
-    setCurrentPageAnswers,
+    currentPage,
+    setCurrentPage,
     firstNames,
     lastNames,
     setFirstNames,
@@ -20,8 +19,8 @@ const Answers = () => {
     setMinutesForAnswer,
   } = useNamesAndFacesContext()
 
-  const { nextAnswersHandlers } = NextPage()
-  const { prevAnswersHandlers } = PrevPage()
+  const { nextHandlers } = NextPage()
+  const { prevHandlers } = PrevPage()
 
   const navigate = useNavigate()
   const [seconds, setSeconds] = useState(0)
@@ -32,7 +31,7 @@ const Answers = () => {
         setSeconds((seconds) => seconds - 1)
       } else if (seconds === 0) {
         if (minutesForAnswer === 0) {
-          navigate('/names-and-faces/results')
+          navigate("/names-and-faces/results")
         } else {
           setMinutesForAnswer((minutesForAnswer) => minutesForAnswer - 1)
           setSeconds(59)
@@ -44,21 +43,26 @@ const Answers = () => {
   const handleLastName = (e: ChangeEvent<HTMLInputElement>, index: number) => {
     setLastNames((lastNames) =>
       lastNames.map((oldValue, currentIndex) =>
-        currentIndex === index ? e.target.value : oldValue,
-      ),
+        currentIndex === index ? e.target.value : oldValue
+      )
     )
   }
 
   const handleFirstName = (e: ChangeEvent<HTMLInputElement>, index: number) => {
     setFirstNames((firstNames) =>
       firstNames.map((oldValue, currentIndex) =>
-        currentIndex === index ? e.target.value : oldValue,
-      ),
+        currentIndex === index ? e.target.value : oldValue
+      )
     )
   }
 
   const firstPage = () => {
-    setCurrentPageAnswers(1)
+    setCurrentPage(1)
+  }
+
+  const handleNavigate = () => {
+    navigate("/names-and-faces/results")
+    setCurrentPage(1)
   }
 
   return (
@@ -72,18 +76,18 @@ const Answers = () => {
               </p>
             )}
             <p className="faces-section__header-title">Answer</p>
-            <Link
-              to="/names-and-faces/results"
-              style={{ textDecoration: 'none' }}
+            <button
+              onClick={handleNavigate}
+              style={{ textDecoration: "none" }}
               className="faces-section__header-finish"
             >
               Finish
-            </Link>
+            </button>
           </div>
           <div className="faces-section__cards">
             {shuffledPeople?.map((shuffledPerson, index) => {
               const { img, firstName } = shuffledPerson
-              if (index === currentPageAnswers - 1) {
+              if (index === currentPage - 1) {
                 return (
                   <article key={index}>
                     <img src={img} alt={firstName} />
@@ -109,17 +113,16 @@ const Answers = () => {
             })}
           </div>
           <div className="faces-section__indicator">
-            <span>{currentPageAnswers}</span>/
-            <span>{shuffledPeople?.length}</span>
+            <span>{currentPage}</span>/<span>{shuffledPeople?.length}</span>
           </div>
           <div className="faces-section__control-buttons">
             <button onClick={firstPage} className="first-button">
               <Rewind size={32} />
             </button>
-            <button {...prevAnswersHandlers} className="prev-button">
+            <button {...prevHandlers} className="prev-button">
               <ArrowLeft size={32} />
             </button>
-            <button {...nextAnswersHandlers} className="next-button">
+            <button {...nextHandlers} className="next-button">
               <ArrowRight size={32} />
             </button>
           </div>
