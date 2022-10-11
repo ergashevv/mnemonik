@@ -44,10 +44,6 @@ body {
     padding-top: 30px;
 }
 
-.container {
-    max-width: 1000px;
-    margin: 0 auto;
-}
 
 .faces-section__header {
     display: flex;

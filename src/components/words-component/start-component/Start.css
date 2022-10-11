@@ -15,10 +15,6 @@ body {
     align-items: center;
 }
 
-.container {
-    max-width: 1000px;
-    margin: 0 auto;
-}
 
 .settings-time {
     display: flex;

@@ -1,9 +1,9 @@
-import { useState } from 'react'
-import { ArrowLeft, ArrowRight, Eye, Rewind } from 'react-feather'
-import { useWordsContext } from '../../../context/WordsContext'
-import NextPage from '../button-component/WordsNextPage'
-import PrevPage from '../button-component/WordsPrevPage'
-import '../WordsStyle.css'
+import { useState } from "react"
+import { ArrowLeft, ArrowRight, Eye, Rewind } from "react-feather"
+import { useWordsContext } from "../../../context/WordsContext"
+import NextPage from "../button-component/WordsNextPage"
+import PrevPage from "../button-component/WordsPrevPage"
+import "../WordsStyle.css"
 
 const Results = () => {
   const {
@@ -19,11 +19,11 @@ const Results = () => {
   const { nextResultsHandlers } = NextPage()
 
   const [visibleInputs, setVisibleInputs] = useState(
-    Array(answers?.length).fill(false),
+    Array(answers?.length).fill(false)
   )
 
   const correctAnswers = words?.filter(
-    (el, index) => el === answers[index + (currentPageResults - 1) * 10],
+    (el, index) => el === answers[index + (currentPageResults - 1) * 10]
   )
 
   const firstPage = () => {
@@ -44,7 +44,7 @@ const Results = () => {
           {currentAnswers?.map((_, index) => {
             return (
               <form className="form">
-                <div style={{ position: 'relative' }}>
+                <div style={{ position: "relative" }}>
                   <input
                     readOnly
                     type="text"
@@ -57,8 +57,8 @@ const Results = () => {
                       backgroundColor:
                         words[index + (currentPageResults - 1) * 10] !==
                         answers[index + (currentPageResults - 1) * 10]
-                          ? 'rgb(255, 0, 0, .5)'
-                          : 'rgba(26, 161, 19, .5)',
+                          ? "rgb(255, 0, 0, .5)"
+                          : "rgba(26, 161, 19, .5)",
                     }}
                     value={
                       visibleInputs[index + (currentPageResults - 1) * 10]
@@ -71,13 +71,13 @@ const Results = () => {
                     style={{
                       backgroundColor:
                         visibleInputs[index + (currentPageResults - 1) * 10] &&
-                        'black',
+                        "black",
                       color:
                         visibleInputs[index + (currentPageResults - 1) * 10] &&
-                        'white',
+                        "white",
                       padding:
                         visibleInputs[index + (currentPageResults - 1) * 10] &&
-                        '.1rem',
+                        ".1rem",
                     }}
                     onClick={() => {
                       setVisibleInputs((inputs) =>
@@ -86,8 +86,8 @@ const Results = () => {
                             ? !visibleInputs[
                                 index + (currentPageResults - 1) * 10
                               ]
-                            : input,
-                        ),
+                            : input
+                        )
                       )
                     }}
                   />

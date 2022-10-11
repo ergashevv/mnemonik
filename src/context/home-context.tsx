@@ -20,7 +20,7 @@ export interface IContext {
   randomNumbers: number[]
   dynum: number
   starttime: number
-  setStartTime: Function
+  setStartTime: (starttime: number) => void
   setCursorW: Function
   setLine: Function
   setNavigation: Function
@@ -54,6 +54,7 @@ export const HomeContextProvider = ({ children }: { children: ReactNode }) => {
   const [dynum, seTdynum] = useState(200)
 
   const [starttime, setStartTime] = useState<number>(5)
+  console.log(starttime)
 
   useEffect(() => {
     setTimeout(

@@ -11,7 +11,7 @@ const WordsLayout = () => {
       <Routes>
         <Route path="/recall" element={<Game />} />
         <Route path="/answers" element={<Answer />} />
-        <Route path="/result" element={<Results />} />
+        <Route path="/results" element={<Results />} />
         <Route path="/settings" element={<Start />} />
       </Routes>
     </div>

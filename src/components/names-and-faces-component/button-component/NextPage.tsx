@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { useNamesAndFacesContext } from '../../../context/NamesAndFacesContext' 
+import { useEffect, useState } from "react"
+import { useNamesAndFacesContext } from "../../../context/NamesAndFacesContext"
 const NextPage = () => {
   const {
     people,

@@ -65,7 +65,7 @@ const NumbersGame = () => {
         <StartGameModal time={starttime} />
       ) : (
         <div className="game container">
-          <div className="screen-countdown" style={screenCountdownStyle}>
+          <div style={screenCountdownStyle}>
             <span>{seconds} s</span>
             <Link to="/numbers/start">Start</Link>
           </div>

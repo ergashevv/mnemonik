@@ -9,7 +9,7 @@ const FlashCardLayout = () => {
     <div className="cards-game-page">
       <Routes>
         <Route path="/recall" element={<Cards />} />
-        <Route path="/result" element={<Results />} />
+        <Route path="/results" element={<Results />} />
         <Route path="/settings" element={<Start />} />
       </Routes>
     </div>

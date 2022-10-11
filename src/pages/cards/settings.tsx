@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom"
 import { useCardsContext } from "../../context/cards-context"
+import { useHomeContext } from "../../context/home-context"
 import "./main.scss"
 const Settings = () => {
   const { setCursorW, setNavigation, navigation, cursorW, setShow, show } =
     useCardsContext()
+  const { setStartTime } = useHomeContext()
+
   return (
     <>
-      <div className="container settings">
+      <div className="settings-cards">
         <h1> Select cards</h1>
         <select
           onChange={(e) => setCursorW(e.target.value)}
@@ -22,7 +25,11 @@ const Settings = () => {
           <option value="8">8</option>
         </select>
       </div>
-      <div className="navigation-cards container">
+      <input
+        onChange={(e: any) => setStartTime(e.target.value)}
+        type="number"
+      />
+      <div className="navigation-cards">
         <h1>Select navigation</h1>
         <select
           defaultValue={navigation}
