@@ -3,7 +3,8 @@ import { ArrowLeft, ArrowRight, Eye, Rewind } from "react-feather"
 import NextPage from "../../components/button-control-component/NextPage"
 import PrevPage from "../../components/button-control-component/PrevPage"
 import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
-import "./Styles.css"
+import "./NF.scss"
+
 
 const Result = () => {
   const {
@@ -168,10 +169,10 @@ const Result = () => {
               }
             })}
           </div>
-          <div className="faces-section__indicator">
+          <div className="indicator">
             <span>{currentPage}</span>/<span>{people.length}</span>
           </div>
-          <div className="faces-section__control-buttons">
+          <div className="control-buttons">
             <button onClick={firstPage} className="first-button">
               <Rewind size={32} />
             </button>

@@ -5,15 +5,14 @@ import NextPage from "../../components/button-control-component/NextPage"
 import PrevPage from "../../components/button-control-component/PrevPage"
 import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
 import { useWordsContext } from "../../context/WordsContext"
-import "./WordsStyle.css"
+import "./Words.scss"
 
-const Answer = () => {
+const WordsAnswer = () => {
   const {
     words,
     wordsPerPage,
     currentAnswers,
     setAnswers,
-    answers,
     minutesForAnswer,
     setMinutesForAnswer,
   } = useWordsContext()
@@ -59,43 +58,49 @@ const Answer = () => {
   }
 
   return (
-    <section className="answers">
+    <section className="words">
       <div className="container">
-        <div className="answers-section__header">
+        <div className="words-section__header">
           {minutesForAnswer === 0 && seconds === 0 ? null : (
-            <h3 className="answers-section__header-time">
+            <h3 className="words-section__header-timer">
               {minutesForAnswer}m {seconds < 10 ? `0${seconds}` : seconds}s
             </h3>
           )}
-          <p className="answers-section__header-title">Answer</p>
+          <p className="words-section__header-title">Answer</p>
           <button
             onClick={handleNavigate}
             style={{ textDecoration: "none" }}
-            className="answers-section__header-finish"
+            className="words-section__header-finish"
           >
             Finish
           </button>
         </div>
-        <div className="answers-section__items">
+        <div className="words-section__cards">
           {currentAnswers?.map((_, index) => {
             return (
-              <form className="form">
-                <input
-                  type="text"
-                  placeholder={(index + (currentPage - 1) * 10 + 1).toString()}
-                  value={answers[index + (currentPage - 1) * 10]}
-                  onChange={(e) =>
-                    handleInputs(e, index + (currentPage - 1) * 10)
-                  }
-                />
-              </form>
+              <article key={index}>
+                <form>
+                  <input
+                    type="text"
+                    placeholder={(
+                      index +
+                      (currentPage - 1) * 10 +
+                      1
+                    ).toString()}
+                    value={currentAnswers[index + (currentPage - 1) * 10]}
+                    onChange={(e) =>
+                      handleInputs(e, index + (currentPage - 1) * 10)
+                    }
+                  />
+                </form>
+              </article>
             )
           })}
         </div>
-        <div className="answers-section__indicator">
+        <div className="indicator">
           <span>{currentPage}</span>/<span>{words?.length / wordsPerPage}</span>
         </div>
-        <div className="answers-section__control-buttons">
+        <div className="control-buttons">
           <button onClick={firstPage} className="first-button">
             <Rewind size={32} />
           </button>
@@ -111,4 +116,4 @@ const Answer = () => {
   )
 }
 
-export default Answer
+export default WordsAnswer

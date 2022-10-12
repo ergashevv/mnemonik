@@ -9,7 +9,7 @@ import './main.scss'
 
 const DatesLayout = () => {
     return (
-        <div className="cards-game-page">
+        <div className="cards-main-page">
             <Routes>
                 <Route path="/game" element={<DatesGamePage />} />
                 <Route path="/settings" element={<DatesSettings />} />

@@ -4,9 +4,9 @@ import NextPage from "../../components/button-control-component/NextPage"
 import PrevPage from "../../components/button-control-component/PrevPage"
 import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
 import { useWordsContext } from "../../context/WordsContext"
-import "./WordsStyle.css"
+import "./Words.scss"
 
-const Results = () => {
+const WordsResult = () => {
   const { words, wordsPerPage, currentAnswers, answers } = useWordsContext()
   const { currentPage, setCurrentPage } = useNamesAndFacesContext()
 
@@ -26,73 +26,75 @@ const Results = () => {
   }
 
   return (
-    <div className="results">
+    <div className="words">
       <div className="container">
-        <div className="results-section__correct-answers">
+        <div className="words-section__correct-answers">
           <p>
             Umumiy: {words.length} ta
             <br />
             To'g'ri topilganlar: {correctAnswers.length}ta <br />
           </p>
         </div>
-        <div className="results-section__items">
+        <div className="words-section__cards">
           {currentAnswers?.map((_, index) => {
             return (
-              <form className="form">
-                <div style={{ position: "relative" }}>
-                  <input
-                    readOnly
-                    type="text"
-                    placeholder={(
-                      index +
-                      (currentPage - 1) * 10 +
-                      1
-                    ).toString()}
-                    style={{
-                      backgroundColor:
-                        words[index + (currentPage - 1) * 10] !==
-                        answers[index + (currentPage - 1) * 10]
-                          ? "rgb(255, 0, 0, .5)"
-                          : "rgba(26, 161, 19, .5)",
-                    }}
-                    value={
-                      visibleInputs[index + (currentPage - 1) * 10]
-                        ? words[index + (currentPage - 1) * 10]
-                        : answers[index + (currentPage - 1) * 10]
-                    }
-                  />
-                  <Eye
-                    className="form-preview"
-                    style={{
-                      backgroundColor:
-                        visibleInputs[index + (currentPage - 1) * 10] &&
-                        "black",
-                      color:
-                        visibleInputs[index + (currentPage - 1) * 10] &&
-                        "white",
-                      padding:
-                        visibleInputs[index + (currentPage - 1) * 10] &&
-                        ".1rem",
-                    }}
-                    onClick={() => {
-                      setVisibleInputs((inputs) =>
-                        inputs?.map((input, inputIndex) =>
-                          index + (currentPage - 1) * 10 === inputIndex
-                            ? !visibleInputs[index + (currentPage - 1) * 10]
-                            : input
+              <article key={index}>
+                <form>
+                  <div style={{ position: "relative" }}>
+                    <input
+                      readOnly
+                      type="text"
+                      placeholder={(
+                        index +
+                        (currentPage - 1) * 10 +
+                        1
+                      ).toString()}
+                      style={{
+                        backgroundColor:
+                          words[index + (currentPage - 1) * 10] !==
+                          answers[index + (currentPage - 1) * 10]
+                            ? "rgb(255, 0, 0, .5)"
+                            : "rgba(26, 161, 19, .5)",
+                      }}
+                      value={
+                        visibleInputs[index + (currentPage - 1) * 10]
+                          ? words[index + (currentPage - 1) * 10]
+                          : answers[index + (currentPage - 1) * 10]
+                      }
+                    />
+                    <Eye
+                      className="form-preview"
+                      style={{
+                        backgroundColor:
+                          visibleInputs[index + (currentPage - 1) * 10] &&
+                          "black",
+                        color:
+                          visibleInputs[index + (currentPage - 1) * 10] &&
+                          "white",
+                        padding:
+                          visibleInputs[index + (currentPage - 1) * 10] &&
+                          ".1rem",
+                      }}
+                      onClick={() => {
+                        setVisibleInputs((inputs) =>
+                          inputs?.map((input, inputIndex) =>
+                            index + (currentPage - 1) * 10 === inputIndex
+                              ? !visibleInputs[index + (currentPage - 1) * 10]
+                              : input
+                          )
                         )
-                      )
-                    }}
-                  />
-                </div>
-              </form>
+                      }}
+                    />
+                  </div>
+                </form>
+              </article>
             )
           })}
         </div>
-        <div className="results-section__indicator">
+        <div className="indicator">
           <span>{currentPage}</span>/<span>{words?.length / wordsPerPage}</span>
         </div>
-        <div className="results-section__control-buttons">
+        <div className="control-buttons">
           <button onClick={firstPage} className="first-button">
             <Rewind size={32} />
           </button>
@@ -108,4 +110,4 @@ const Results = () => {
   )
 }
 
-export default Results
+export default WordsResult

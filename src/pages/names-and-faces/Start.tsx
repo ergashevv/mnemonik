@@ -18,7 +18,6 @@ const Start = () => {
     people,
     setPeople,
     setShuffledPeople,
-    setCountDown,
     setMinutesForRecall,
     setMinutesForAnswer,
   } = useNamesAndFacesContext()
@@ -61,8 +60,7 @@ const Start = () => {
     navigate("/names-and-faces/recall")
   }, [navigate, people, setPeople, setShuffledPeople])
 
-  const handleCountDown = (e: ChangeEvent<HTMLInputElement>) => {
-    // setCountDown(+e.target.value)
+  const handleStartTime = (e: ChangeEvent<HTMLInputElement>) => {
     setStartTime(+e.target.value)
   }
 
@@ -73,15 +71,15 @@ const Start = () => {
   const handleMinutesForAnswer = (e: ChangeEvent<HTMLInputElement>) => {
     setMinutesForAnswer(+e.target.value)
   }
+  
   return (
     <div className="settings">
       <div className="container">
-        <form className="time-settings">
+        <form className="settings-form">
           <label htmlFor="">Boshlang'ich vaqtni kiriting</label>
           <input
             type="number"
-            // onChange={handleCountDown}
-            onChange={(e: any) => setStartTime(e.target.value)}
+            onChange={handleStartTime}
             placeholder="Standart vaqt 5 soniya"
           />
 
@@ -98,8 +96,7 @@ const Start = () => {
             onChange={handleMinutesForAnswer}
             placeholder="Standart vaqt 5 daqiqa "
           />
-        </form>
-        <div className="start-button">
+
           <button
             type="submit"
             onClick={handleNavigate}
@@ -109,7 +106,7 @@ const Start = () => {
               ? `Loading images (${imagesFetched} / ${people.length})`
               : "Start"}
           </button>
-        </div>
+        </form>
       </div>
     </div>
   )

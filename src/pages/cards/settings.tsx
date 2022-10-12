@@ -1,53 +1,76 @@
-import { Link } from "react-router-dom"
+import { ChangeEvent } from "react"
+import { useNavigate } from "react-router-dom"
+import "../../assets/styles/StartStyles.scss"
 import { useCardsContext } from "../../context/cards-context"
 import { useHomeContext } from "../../context/home-context"
-import "./main.scss"
+
 const Settings = () => {
-  const { setCursorW, setNavigation, navigation, cursorW, setShow, show } =
-    useCardsContext()
+  const {
+    setCursorW,
+    setNavigation,
+    navigation,
+    cursorW,
+    setShow,
+    show,
+  } = useCardsContext()
+
   const { setStartTime } = useHomeContext()
 
+  const navigate = useNavigate()
+
+  const handleCursorW = (e: ChangeEvent<HTMLSelectElement>) => {
+    setCursorW(e.target.value)
+  }
+
+  const handleStartTime = (e: ChangeEvent<HTMLInputElement>) => {
+    setStartTime(+e.target.value)
+  }
+
+  const handleNavigation = (e: ChangeEvent<HTMLSelectElement>) => {
+    setNavigation(e.target.value)
+  }
+
+  const handleShow = (e: ChangeEvent<HTMLSelectElement>) => {
+    setShow(e.target.value)
+  }
+
+  const handleNavigate = () => {
+    navigate("/cards/game")
+  }
+
   return (
-    <>
-      <div className="settings-cards">
-        <h1> Select cards</h1>
-        <select
-          onChange={(e) => setCursorW(e.target.value)}
-          defaultValue={cursorW}
-        >
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-        </select>
-      </div>
-      <input
-        onChange={(e: any) => setStartTime(e.target.value)}
-        type="number"
-      />
-      <div className="navigation-cards">
-        <h1>Select navigation</h1>
-        <select
-          defaultValue={navigation}
-          onChange={(e) => setNavigation(e.target.value)}
-        >
-          <option value="left">Left to right</option>
-          <option value="right">Right to left</option>
-        </select>
-        <div className="show-cards">
-          <h1>Show cards</h1>
-          <select defaultValue={show} onChange={(e) => setShow(e.target.value)}>
-            <option value="small">small</option>
-            <option value="large">large</option>
+    <div className="settings">
+      <div className="container">
+        <form className="settings-form">
+          <label>Select cards</label>
+          <select onChange={handleCursorW} defaultValue={cursorW}>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
           </select>
-        </div>
+
+          <input onChange={handleStartTime} type="number" />
+          <label>Select navigation</label>
+          <select defaultValue={navigation} onChange={handleNavigation}>
+            <option value="left">Left to right</option>
+            <option value="right">Right to left</option>
+          </select>
+
+          <label>Show cards</label>
+          <select defaultValue={show} onChange={handleShow}>
+            <option value="small">Small</option>
+            <option value="large">Large</option>
+          </select>
+
+          <button onClick={handleNavigate}>Start</button>
+        </form>
       </div>
-      <Link to="/cards/game">start</Link>
-    </>
+    </div>
   )
 }
 export default Settings

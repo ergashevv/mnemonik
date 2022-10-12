@@ -1,16 +1,16 @@
 import "./main.scss"
 import { Route, Routes } from "react-router-dom"
-import Game from "../pages/names-and-faces/Recall"
-import Answers from "../pages/names-and-faces/Answers"
-import Result from "../pages/names-and-faces/Results"
+import Recall from "../pages/names-and-faces/Recall"
+import Answer from "../pages/names-and-faces/Answer"
+import Result from "../pages/names-and-faces/Result"
 import Start from "../pages/names-and-faces/Start"
 
 const NamesAndFaceLayout = () => {
   return (
     <div className="cards-game-page">
       <Routes>
-        <Route path="/recall" element={<Game />} />
-        <Route path="/answers" element={<Answers />} />
+        <Route path="/recall" element={<Recall />} />
+        <Route path="/answers" element={<Answer />} />
         <Route path="/results" element={<Result />} />
         <Route path="/settings" element={<Start />} />
       </Routes>

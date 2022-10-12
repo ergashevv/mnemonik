@@ -1,22 +1,21 @@
 import { useEffect, useRef, useState } from "react"
 import { ArrowLeft, ArrowRight, Rewind } from "react-feather"
 import { useNavigate } from "react-router-dom"
-import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
-import { useFlashCardsContext } from "../../context/FlashCardsContext"
 import NextPage from "../../components/button-control-component/NextPage"
 import PrevPage from "../../components/button-control-component/PrevPage"
-import "./Cards.css"
-import { useHomeContext } from "../../context/home-context"
 import StartGameModal from "../../components/numbers-components/start-game"
+import { useFlashCardsContext } from "../../context/FlashCardsContext"
+import { useHomeContext } from "../../context/home-context"
+import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
+import "./FlashCards.scss"
 
-const Cards = () => {
+const FlashCardsRecall = () => {
   const {
     flashCards,
-    countDown,
-    setCountDown,
     time,
     setTime,
   } = useFlashCardsContext()
+
   const { startTime } = useHomeContext()
 
   const { currentPage, setCurrentPage } = useNamesAndFacesContext()
@@ -33,23 +32,16 @@ const Cards = () => {
     if (interval.current) clearInterval(interval.current)
 
     interval.current = setTimeout(() => {
-      if (countDown < 0) {
         setTime((numbers) =>
           numbers.map((number, index) =>
             currentPage - 1 === index ? number + 0.01 : number
           )
         )
-      }
     }, 10)
 
     return () => clearInterval(Number(interval.current))
-  }, [countDown, setTime, currentPage, time])
+  }, [setTime, currentPage, time])
 
-  useEffect(() => {
-    if (countDown >= 0) {
-      setTimeout(() => setCountDown(countDown - 1), 1000)
-    }
-  })
 
   const firstPage = () => {
     setCurrentPage(1)
@@ -60,34 +52,26 @@ const Cards = () => {
   }
 
   return (
-    <div className="cards">
+    <div className="flashCards">
       <div className="container">
-        {/* <div
-          className="screen-countdown"
-          style={{ display: countDown > 0 ? "block" : "none" }}
-        >
-          <h3>Memorization starts in: </h3>
-          <span>{countDown} s</span>
-        </div> */}
         <StartGameModal time={startTime} />
-
         <div
-          className="cards-section"
-          style={{ display: countDown > 0 ? "none" : "block" }}
+          className="flashCards-section"
+          style={{ display: startTime > 0 ? "none" : "block" }}
         >
-          <div className="cards-section__header">
-            <h1 className="cards-section__header-timer">
+          <div className="flashCards-section__header">
+            <h1 className="flashCards-section__header-timer">
               {time[currentPage - 1].toFixed(2)} s
             </h1>
             <button
               onClick={handleNavigate}
               style={{ textDecoration: "none" }}
-              className="cards-section__header-finish"
+              className="flashCards-section__header-finish"
             >
               Finish
             </button>
           </div>
-          <div className="cards-section__items">
+          <div className="flashCards-section__items">
             {flashCards?.map((flashCard, index) => {
               const { number, text } = flashCard
               if (index === currentPage - 1) {
@@ -132,4 +116,4 @@ const Cards = () => {
   )
 }
 
-export default Cards
+export default FlashCardsRecall

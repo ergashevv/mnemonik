@@ -1,7 +1,7 @@
-import { useFlashCardsContext } from '../../context/FlashCardsContext'
-import './Results.css'
+import { useFlashCardsContext } from "../../context/FlashCardsContext"
+import "./FlashCards.scss"
 
-const Results = () => {
+const FlashCardsResult = () => {
   const { time, flashCards } = useFlashCardsContext()
   return (
     <div className="results">
@@ -23,4 +23,4 @@ const Results = () => {
   )
 }
 
-export default Results
+export default FlashCardsResult

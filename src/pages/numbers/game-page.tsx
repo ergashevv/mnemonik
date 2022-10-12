@@ -14,7 +14,7 @@ const NumbersGame = () => {
     randomNumbers,
     tab,
     setCursor,
-    dynum,
+    dynamic: dynum,
     setTab,
     startTime: starttime,
     line,

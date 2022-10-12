@@ -51,8 +51,6 @@ interface Types {
   setShuffledPeople: PersonSetter
   currentPage: number
   setCurrentPage: NumberSetter
-  countDown: number
-  setCountDown: NumberSetter
   minutesForRecall: number
   setMinutesForRecall: NumberSetter
   minutesForAnswer: number
@@ -74,7 +72,6 @@ export const NamesAndFacesContextProvider = ({
   const [people, setPeople] = useState<Person[]>([])
   const [shuffledPeople, setShuffledPeople] = useState<Person[]>([])
   const [currentPage, setCurrentPage] = useState<number>(1)
-  const [countDown, setCountDown] = useState<number>(5)
   const [minutesForRecall, setMinutesForRecall] = useState<number>(5)
   const [minutesForAnswer, setMinutesForAnswer] = useState<number>(5)
 
@@ -211,8 +208,6 @@ export const NamesAndFacesContextProvider = ({
     setLastNames,
     shuffledPeople,
     results,
-    countDown,
-    setCountDown,
     minutesForRecall,
     setMinutesForRecall,
     minutesForAnswer,
