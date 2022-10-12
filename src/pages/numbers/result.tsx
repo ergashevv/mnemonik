@@ -1,32 +1,26 @@
 import { useMemo } from "react"
 import { useState } from "react"
+import Tabs from "../../components/tabs"
 import { useHomeContext } from "../../context/home-context"
 
 const Result = () => {
   const [show, setShow] = useState(false)
 
-  const {
-    result,
-    tab,
-    randomNumbers: randomnumbers,
-    setCursor,
-    setTab,
-  } = useHomeContext()
+  const { result, tab, randomNumbers, setCursor, setTab } = useHomeContext()
   const resetCursor = (index: any) => {
     setCursor(0)
     setTab(index)
   }
-  console.log(result)
 
   const count = useMemo(() => {
     let count = 0
 
     result?.forEach((item: any, k: any) => {
-      if (item !== randomnumbers[k]) count++
+      if (item !== randomNumbers[k]) count++
     })
 
     return count
-  }, [randomnumbers, result])
+  }, [randomNumbers, result])
 
   console.log(count)
 
@@ -39,7 +33,7 @@ const Result = () => {
         }}
       >
         {" "}
-        Umumiy {randomnumbers.length}
+        Umumiy {randomNumbers.length}
       </span>
       <span
         style={{
@@ -48,7 +42,7 @@ const Result = () => {
         }}
       >
         {" "}
-        To'g'ri javoblar {randomnumbers.length - count}
+        To'g'ri javoblar {randomNumbers.length - count}
       </span>
       <span> Xato javoblar {count}</span>
       <div className="d-flex result-card">
@@ -98,7 +92,7 @@ const Result = () => {
                           readOnly
                           style={{
                             color:
-                              value == randomnumbers[index] ? "green" : "red",
+                              value == randomNumbers[index] ? "green" : "red",
                             fontWeight: "bold",
                           }}
                           value={value}
@@ -107,7 +101,7 @@ const Result = () => {
                         {show && (
                           <input
                             readOnly
-                            value={randomnumbers[index]}
+                            value={randomNumbers[index]}
                             type="text"
                           />
                         )}
@@ -118,18 +112,9 @@ const Result = () => {
             </>
           ))}
       </div>
+      {console.log(randomNumbers)}
       <div className="tabs">
-        {Array(4)
-          .fill(null)
-          .map((_, index: number) => (
-            <button
-              className={Number(tab) === index ? "active" : undefined}
-              onClick={() => resetCursor(index)}
-              key={index}
-            >
-              {index + 1}
-            </button>
-          ))}
+        <Tabs tabnumber={4} />
       </div>
       <button onClick={() => setShow(!show)}>
         {show ? "user result" : "show result"}

@@ -2,8 +2,10 @@ import classNames from "classnames"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router"
 import { Link } from "react-router-dom"
+import LeftNumber from "../../components/left-numbers"
 import NavigationBtn from "../../components/numbers-components/navigation-buttons-game"
 import StartGameModal from "../../components/numbers-components/start-game"
+import Tabs from "../../components/tabs"
 import TimerComponent from "../../components/timer"
 import { useHomeContext } from "../../context/home-context"
 import "./main.scss"
@@ -14,28 +16,10 @@ const NumbersGame = () => {
     cursor,
     randomNumbers,
     tab,
-    setCursor,
     dynum,
-    setTab,
     startTime: starttime,
     line,
   } = useHomeContext()
-
-  const resetCursor = (index: number) => {
-    setCursor(0)
-    setTab(index)
-  }
-
-  const lineNumbers = Array(Math.floor(40))
-    .fill(null)
-    .map((_, index) => (
-      <>
-        {tab === 0 && index < 10 && <span>{index + 1})</span>}
-        {tab === 1 && index > 9 && index < 20 && <span>{index + 1})</span>}
-        {tab === 2 && index > 19 && index < 30 && <span>{index + 1})</span>}
-        {tab === 3 && index > 29 && index <= 40 && <span>{index + 1})</span>}
-      </>
-    ))
 
   return (
     <>
@@ -52,7 +36,7 @@ const NumbersGame = () => {
                   Number(cursorWidth) >= 4 ? "sort-num active" : "sort-num"
                 }
               >
-                {lineNumbers}
+                <LeftNumber />
               </div>
               {Array(4)
                 .fill(null)
@@ -97,17 +81,7 @@ const NumbersGame = () => {
             </div>
           </div>
           <div className="tabs">
-            {Array(4)
-              .fill(null)
-              .map((_, index) => (
-                <button
-                  className={tab === index ? "active" : undefined}
-                  onClick={() => resetCursor(index)}
-                  key={index}
-                >
-                  {index + 1}
-                </button>
-              ))}
+            <Tabs tabnumber={4} />
           </div>
           <NavigationBtn />
         </div>

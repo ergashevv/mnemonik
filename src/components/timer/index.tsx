@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router"
-import { Link } from "react-router-dom"
+import { useHomeContext } from "../../context/home-context"
 interface ITimerProps {
   time: number
   navigateTo: string
+  // result?: string[]
+  finishTimeFunc?: any
 }
-const TimerComponent = ({ time, navigateTo }: ITimerProps) => {
+
+const TimerComponent = ({ time, navigateTo, finishTimeFunc }: ITimerProps) => {
   const [seconds, setSeconds] = useState<number>(time)
-
+  const { setResult } = useHomeContext()
   const navigate = useNavigate()
-
   useEffect(() => {
     setTimeout(() => setSeconds(seconds - 1), 1000)
   }, [seconds])
@@ -18,9 +20,11 @@ const TimerComponent = ({ time, navigateTo }: ITimerProps) => {
     if (seconds > 0) {
       setTimeout(() => setSeconds(seconds - 1), 1000)
     }
-
     if (seconds < 1) {
       navigate(navigateTo)
+      if (finishTimeFunc) {
+        finishTimeFunc()
+      }
     }
   })
   const screenCountdownStyle = {
