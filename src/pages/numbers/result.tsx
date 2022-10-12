@@ -86,7 +86,7 @@ const Result = () => {
                 <div className="start-game">
                   {result
                     ?.slice(190 * index, 190 * (index + 1))
-                    .map((value: any, index: any) => (
+                    .map((value: any, index) => (
                       <div>
                         <input
                           readOnly

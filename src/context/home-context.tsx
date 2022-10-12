@@ -17,7 +17,7 @@ export interface IContext {
   setCursor: Function
   navigation?: string
   autosec?: number
-  randomNumbers: string[]
+  randomNumbers: number[]
   dynum: number
   startTime: number
   setStartTime: (startTime: number) => void
@@ -49,7 +49,7 @@ export const HomeContextProvider = ({ children }: { children: ReactNode }) => {
 
   const [autosec, setAutosec] = useState()
 
-  const [randomNumbers, setRandomNumbers] = useState<string[]>([])
+  const [randomNumbers, setRandomNumbers] = useState<number[]>([])
 
   const [dynum, seTdynum] = useState(200)
 
@@ -68,7 +68,7 @@ export const HomeContextProvider = ({ children }: { children: ReactNode }) => {
   })
 
   useEffect(() => {
-    setRandomNumbers(numbers)
+    setRandomNumbers(shuffle(numbers.map((str) => Number(str))))
   }, [setRandomNumbers, numbers])
 
   useEffect(() => {

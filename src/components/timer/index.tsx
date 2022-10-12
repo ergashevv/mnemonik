@@ -10,7 +10,7 @@ interface ITimerProps {
 
 const TimerComponent = ({ time, navigateTo, finishTimeFunc }: ITimerProps) => {
   const [seconds, setSeconds] = useState<number>(time)
-  const { setResult } = useHomeContext()
+
   const navigate = useNavigate()
   useEffect(() => {
     setTimeout(() => setSeconds(seconds - 1), 1000)
