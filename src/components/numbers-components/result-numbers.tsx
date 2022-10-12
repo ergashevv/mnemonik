@@ -5,7 +5,7 @@ const ResultNumbers = () => {
     cursorW,
     cursor,
     tab,
-    dynum,
+    dynamic: dynum,
     randomNumbers: randomnumbers,
   } = useHomeContext()
 

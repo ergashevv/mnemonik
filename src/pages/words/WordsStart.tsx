@@ -1,21 +1,21 @@
-import { ChangeEvent } from 'react'
-import { useNavigate } from 'react-router'
-import { useHomeContext } from '../../context/home-context'
-import { useWordsContext } from '../../context/WordsContext'
+import { ChangeEvent } from "react"
+import { useNavigate } from "react-router"
+import { useHomeContext } from "../../context/home-context"
+import { useWordsContext } from "../../context/WordsContext"
 
-const Start = () => {
-  const { setCountDown, setMinutesForRecall, setMinutesForAnswer } =
-    useWordsContext()
+const WordsStart = () => {
+  const { setMinutesForRecall, setMinutesForAnswer } = useWordsContext()
   const { setStartTime } = useHomeContext()
 
   const navigate = useNavigate()
+
   const handleNavigate = () => {
     navigate("/words/recall")
   }
 
-  // const handleCountDown = (e: ChangeEvent<HTMLInputElement>) => {
-  //   setCountDown(+e.target.value)
-  // }
+  const handleStartTime = (e: ChangeEvent<HTMLInputElement>) => {
+    setStartTime(+e.target.value)
+  }
 
   const handleMinutesForRecall = (e: ChangeEvent<HTMLInputElement>) => {
     setMinutesForRecall(+e.target.value)
@@ -28,15 +28,15 @@ const Start = () => {
   return (
     <div className="settings">
       <div className="container">
-        <form className="settings-time">
+        <form className="settings-form">
           <label htmlFor="">Boshlang'ich vaqtni kiriting</label>
           <input
             type="number"
-            onChange={(e: any) => setStartTime(e.target.value)}
+            onChange={handleStartTime}
             placeholder="Standart vaqt 5 soniya"
           />
 
-          <label htmlFor=""> Eslab qolish vaqtini kiriting</label>
+          <label htmlFor="">Eslab qolish vaqtini kiriting</label>
           <input
             type="number"
             onChange={handleMinutesForAnswer}
@@ -49,13 +49,11 @@ const Start = () => {
             onChange={handleMinutesForRecall}
             placeholder="Standart vaqt 5 daqiqa "
           />
-        </form>
-        <div className="settings-start">
           <button onClick={handleNavigate}>Start</button>
-        </div>
+        </form>
       </div>
     </div>
   )
 }
 
-export default Start
+export default WordsStart

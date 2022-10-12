@@ -1,9 +1,7 @@
-import React, {
-  createContext,
-  useContext,
+import {
+  createContext, ReactNode, useContext,
   useEffect,
-  useState,
-  ReactNode,
+  useState
 } from "react"
 
 export interface IContext {
@@ -16,15 +14,16 @@ export interface IContext {
   setTab: Function
   setCursor: Function
   navigation?: string
-  autosec?: number
+  autoSecond?: number
   randomNumbers: number[]
-  dynum: number
+  dynamic: number
+  setDynamic: Function
   startTime: number
   setStartTime: (startTime: number) => void
   setCursorW: Function
   setLine: Function
   setNavigation: Function
-  setAutosec: Function
+  setAutoSecond: Function
   setResult: Function
 }
 
@@ -34,25 +33,16 @@ export const HomeContextProvider = ({ children }: { children: ReactNode }) => {
   const [cursorW, setCursorW] = useState<string>(() =>
     JSON.parse(localStorage.getItem("cursorW")!)
   )
-
   const [line, setLine] = useState<string>(() =>
     JSON.parse(localStorage.getItem("line")!)
   )
-
   const [cursor, setCursor] = useState(0)
-
   const [result, setResult] = useState<string[]>()
-
   const [tab, setTab] = useState<number>(0)
-
   const [navigation, setNavigation] = useState<string>()
-
-  const [autosec, setAutosec] = useState()
-
+  const [autoSecond, setAutoSecond] = useState()
   const [randomNumbers, setRandomNumbers] = useState<number[]>([])
-
-  const [dynum, seTdynum] = useState(200)
-
+  const [dynamic, setDynamic] = useState(200)
   const [startTime, setStartTime] = useState<number>(5)
 
   const shuffle = (arr: number[]) => [...arr].sort(() => Math.random() - 0.5)
@@ -83,9 +73,9 @@ export const HomeContextProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     if (parseInt(cursorW!) === 3) {
-      seTdynum(189)
+      setDynamic(189)
     }
-  }, [seTdynum, dynum, cursorW])
+  }, [setDynamic, dynamic, cursorW])
 
   const value = {
     cursorW,
@@ -100,14 +90,14 @@ export const HomeContextProvider = ({ children }: { children: ReactNode }) => {
     setRandomNumbers,
     tab,
     setTab,
-    dynum,
-    seTdynum,
+    dynamic,
+    setDynamic,
     line,
     setLine,
     navigation,
     setNavigation,
-    autosec,
-    setAutosec,
+    autoSecond,
+    setAutoSecond,
     startTime,
     setStartTime,
   }

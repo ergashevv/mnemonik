@@ -1,6 +1,7 @@
 .date-game {
   display: flex;
   overflow-y: scroll;
+
   .card {
     background-color: #fff;
     padding: 10px;
@@ -14,6 +15,7 @@
   .events {
     width: 100%;
     margin-bottom: 100px;
+
     span {
       font-size: 14px;
     }
@@ -21,6 +23,7 @@
 
   .dates {
     margin-bottom: 100px;
+
     .card {
       padding-right: 40px;
     }
@@ -45,10 +48,13 @@
     background-color: transparent;
     margin: 10px 10px 10px 0;
     border: none;
+
     &:first-child {
       transform: rotate(270deg);
     }
+
     transform: rotate(90deg);
+
     img {
       width: 100%;
     }

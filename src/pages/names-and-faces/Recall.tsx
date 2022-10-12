@@ -6,15 +6,13 @@ import PrevPage from "../../components/button-control-component/PrevPage"
 import StartGameModal from "../../components/numbers-components/start-game"
 import { useHomeContext } from "../../context/home-context"
 import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
-import "./Styles.css"
+import "./NF.scss"
 
-const Game = () => {
+const Recall = () => {
   const {
     people,
     currentPage,
     setCurrentPage,
-    countDown,
-    setCountDown,
     minutesForRecall,
     setMinutesForRecall,
   } = useNamesAndFacesContext()
@@ -29,7 +27,6 @@ const Game = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      if (countDown < 0) {
         if (seconds > 0) {
           setSeconds((seconds) => seconds - 1)
         } else if (seconds === 0) {
@@ -40,22 +37,8 @@ const Game = () => {
             setSeconds(59)
           }
         }
-      }
     }, 1000)
-  }, [
-    countDown,
-    seconds,
-    minutesForRecall,
-    setSeconds,
-    setMinutesForRecall,
-    navigate,
-  ])
-
-  useEffect(() => {
-    if (countDown >= 0) {
-      setTimeout(() => setCountDown(countDown - 1), 1000)
-    }
-  })
+  }, [seconds, minutesForRecall, setSeconds, setMinutesForRecall, navigate])
 
   const firstPage = () => {
     setCurrentPage(1)
@@ -69,16 +52,9 @@ const Game = () => {
   return (
     <div className="faces">
       <div className="container">
-        {/* <div
-          className="screen-countdown"
-          style={{ display: countDown > 0 ? "block" : "none" }}
-        >
-          <h3>Memorization starts in: </h3>
-          <span>{countDown} s</span>
-        </div> */}
         <StartGameModal time={startTime} />
         <div
-          style={{ display: countDown > 0 ? "none" : "flex" }}
+          style={{ display: startTime > 0 ? "none" : "flex" }}
           className="faces-section"
         >
           <div className="faces-section__header">
@@ -112,10 +88,10 @@ const Game = () => {
               }
             })}
           </div>
-          <div className="faces-section__indicator">
+          <div className="indicator">
             <span>{currentPage}</span>/<span>{people.length}</span>
           </div>
-          <div className="faces-section__control-buttons">
+          <div className="control-buttons">
             <button onClick={firstPage} className="first-button">
               <Rewind size={32} />
             </button>
@@ -132,4 +108,4 @@ const Game = () => {
   )
 }
 
-export default Game
+export default Recall

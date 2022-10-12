@@ -1,6 +1,6 @@
 import { useEffect } from "react"
-import { useHomeContext } from "../../context/home-context"
 import Next from "../../assets/images/next.png"
+import { useHomeContext } from "../../context/home-context"
 import ResultNumbers from "./result-numbers"
 
 const NavigationBtn = () => {
@@ -9,11 +9,11 @@ const NavigationBtn = () => {
     numbers,
     cursor,
     tab,
-    dynum,
+    dynamic,
     setTab,
     setCursor,
     navigation,
-    autosec,
+    autoSecond,
   } = useHomeContext()
 
   const parsedCursorW = parseInt(cursorW!)
@@ -27,30 +27,30 @@ const NavigationBtn = () => {
   }
 
   useEffect(() => {
-    if (cursor > Number(dynum) - Number(parsedCursorW)) {
+    if (cursor > Number(dynamic) - Number(parsedCursorW)) {
       setTab(Number(tab) + 1)
       setCursor(0)
     }
 
     if (cursor < 0) {
       setTab(tab - 1)
-      setCursor(dynum - parsedCursorW)
+      setCursor(dynamic - parsedCursorW)
     }
 
-    if (tab === 3 && cursor > dynum - Number(parsedCursorW)) {
+    if (tab === 3 && cursor > dynamic - Number(parsedCursorW)) {
       setTab(0)
     }
-  }, [navigation, tab, setTab, setCursor, dynum, cursor, parsedCursorW])
+  }, [navigation, tab, setTab, setCursor, dynamic, cursor, parsedCursorW])
 
   useEffect(() => {
     if (navigation === "auto") {
       const timer = setTimeout(() => {
         setCursor(cursor + parsedCursorW)
-      }, Number(autosec) * 1000)
+      }, Number(autoSecond) * 1000)
 
       return () => clearTimeout(timer)
     }
-  }, [navigation, cursor, cursorW, autosec, setCursor])
+  }, [navigation, cursor, cursorW, autoSecond, setCursor, parsedCursorW])
 
   const disablePrevButton = tab === 0 && cursor < parsedCursorW
 
@@ -60,7 +60,7 @@ const NavigationBtn = () => {
     <>
       <div className="navigation">
         <button disabled={disablePrevButton} onClick={handleNext}>
-          <img className="next" src={Next} alt="" />
+          <img className="next" src={Next} alt="next" />
         </button>
 
         <div className="numbers">
@@ -68,7 +68,7 @@ const NavigationBtn = () => {
         </div>
 
         <button disabled={disableNextButton} onClick={handlePrev}>
-          <img className="prev" src={Next} alt="" />
+          <img className="prev" src={Next} alt="prev" />
         </button>
       </div>
     </>

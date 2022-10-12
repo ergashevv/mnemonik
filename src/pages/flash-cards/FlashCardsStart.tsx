@@ -1,36 +1,35 @@
-import { ChangeEvent } from "react";
-import { Link } from "react-router-dom";
-import { useFlashCardsContext } from "../../context/FlashCardsContext";
-import { useHomeContext } from "../../context/home-context";
+import { ChangeEvent } from "react"
+import { useNavigate } from "react-router-dom"
+import { useHomeContext } from "../../context/home-context"
 
-const Start = () => {
-  const { setCountDown } = useFlashCardsContext()
+const FlashCardsStart = () => {
   const { setStartTime } = useHomeContext()
 
-  const handleCountDown = (e: ChangeEvent<HTMLInputElement>) => {
-    setCountDown(+e.target.value)
+  const navigate = useNavigate()
+
+  const handleStartTime = (e: ChangeEvent<HTMLInputElement>) => {
+    setStartTime(+e.target.value)
+  }
+
+  const handleNavigate = () => {
+    navigate("/flash-cards/recall")
   }
 
   return (
     <div className="settings">
       <div className="container">
-        <form className="time-settings">
+        <form className="settings-form">
           <label htmlFor="">Boshlang'ich vaqtni kiriting</label>
           <input
             type="number"
-            // onChange={handleCountDown}
-            onChange={(e: any) => setStartTime(e.target.value)}
+            onChange={handleStartTime}
             placeholder="Standart vaqt 5 soniya"
           />
+          <button onClick={handleNavigate}>Start</button>
         </form>
-        <div className="start-button">
-          <Link to="/flash-cards/recall">
-            <button>Start</button>
-          </Link>
-        </div>
       </div>
     </div>
   )
 }
 
-export default Start
+export default FlashCardsStart

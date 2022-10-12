@@ -1,0 +1,33 @@
+
+.indicator {
+    display: flex;
+    justify-content: center;
+    font-family: var(--font-family);
+    font-size: 1.5rem;
+    margin: 1rem;
+}
+
+.control-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+}
+
+.first-button,
+.prev-button,
+.next-button {
+    padding: 1rem;
+    border: none;
+    background-color: var(--primary-color);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    color: #fff;
+    user-select: none;
+}
+
+.first-button:focus,
+.prev-button:focus,
+.next-button:focus {
+    outline: none;
+}

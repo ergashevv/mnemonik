@@ -16,7 +16,9 @@ const NumbersGame = () => {
     cursor,
     randomNumbers,
     tab,
-    dynum,
+    setCursor,
+    dynamic: dynum,
+    setTab,
     startTime: starttime,
     line,
   } = useHomeContext()
