@@ -4,6 +4,7 @@ import { useNavigate } from "react-router"
 import { Link } from "react-router-dom"
 import NavigationBtn from "../../components/numbers-components/navigation-buttons-game"
 import StartGameModal from "../../components/numbers-components/start-game"
+import TimerComponent from "../../components/timer"
 import { useHomeContext } from "../../context/home-context"
 import "./main.scss"
 
@@ -25,29 +26,6 @@ const NumbersGame = () => {
     setTab(index)
   }
 
-  const [seconds, setSeconds] = useState<number>(120)
-
-  const navigate = useNavigate()
-
-  useEffect(() => {
-    setTimeout(() => setSeconds(seconds - 1), 1000)
-  }, [seconds])
-
-  useEffect(() => {
-    if (seconds > 0) {
-      setTimeout(() => setSeconds(seconds - 1), 1000)
-    }
-
-    if (seconds < 0) {
-      navigate("/start")
-    }
-  })
-
-  const screenCountdownStyle = {
-    display: seconds >= 0 ? "flex" : "none",
-    justifyContent: "space-between",
-  }
-
   const lineNumbers = Array(Math.floor(40))
     .fill(null)
     .map((_, index) => (
@@ -65,10 +43,8 @@ const NumbersGame = () => {
         <StartGameModal time={starttime} />
       ) : (
         <div className="game container">
-          <div style={screenCountdownStyle}>
-            <span>{seconds} s</span>
-            <Link to="/numbers/start">Start</Link>
-          </div>
+          <TimerComponent time={70} navigateTo={"/numbers/start"} />
+          <Link to="/numbers/start">Start</Link>
           <div className="header">
             <div className="num">
               <div

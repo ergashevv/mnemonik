@@ -3,6 +3,7 @@ import "./main.scss"
 import { useCallback, useEffect, useMemo, useState } from "react"
 import InputCell from "./input-cell"
 import { Link, useNavigate } from "react-router-dom"
+import TimerComponent from "../../components/timer"
 const StartNumberGame = () => {
   const {
     numbers,
@@ -22,23 +23,6 @@ const StartNumberGame = () => {
       inputs.map((input, i) => (i === index ? val : input))
     )
   }, [])
-
-  const [seconds, setSeconds] = useState(60)
-  const navigate = useNavigate()
-
-  useEffect(() => {
-    setTimeout(() => setSeconds(seconds - 1), 1000)
-  }, [seconds])
-
-  useEffect(() => {
-    if (seconds > 0) {
-      setTimeout(() => setSeconds(seconds - 1), 1000)
-    }
-    if (seconds < 0) {
-      navigate("/result")
-      setResult(inputs)
-    }
-  })
 
   const handleShiftAdd = useCallback((e: any, index: number | undefined) => {
     setInputs((inputs) => {
@@ -100,7 +84,8 @@ const StartNumberGame = () => {
         }}
         className="d-flex"
       >
-        <span>{seconds} s</span>
+        <TimerComponent time={10} navigateTo={"/numbers/result"} />
+
         <button onClick={() => setResult(inputs)}>
           <Link to="/numbers/result">Finish</Link>
         </button>

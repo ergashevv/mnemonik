@@ -15,6 +15,7 @@ body {
   display: flex;
   align-items: center;
 }
+
 .game {
   width: 100%;
   max-width: 768px;
@@ -37,7 +38,6 @@ body {
         span {
           display: block;
           font-size: 19px;
-          // margin-bottom: 5px;
           padding: 9px 0;
         }
       }
@@ -45,26 +45,20 @@ body {
       .tab-content {
         margin: 3px 0 10px 0;
       }
-
       .tab-pane {
         &.active {
           display: flex !important;
           flex-wrap: wrap !important;
           height: 400px;
           overflow-y: scroll;
-
           &::-webkit-scrollbar {
             width: 2px;
           }
-
-          /* Track */
           &::-webkit-scrollbar-track {
             box-shadow: inset 0 0 5px grey;
             border-radius: 10px;
           }
-
-          /* Handle */
-          &::-webkit-scrollbar-thumb {
+          s &::-webkit-scrollbar-thumb {
             background: greenyellow;
             border-radius: 10px;
           }

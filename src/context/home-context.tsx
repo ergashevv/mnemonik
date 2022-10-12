@@ -56,16 +56,16 @@ export const HomeContextProvider = ({ children }: { children: ReactNode }) => {
   const [startTime, setStartTime] = useState<number>(5)
 
   useEffect(() => {
-    const timeout: NodeJS.Timeout = setTimeout(() => {
-      const newTime = startTime > 0 ? startTime - 1 : startTime
-
-      setStartTime(newTime)
-
-      if (newTime === 0) clearTimeout(timeout)
-    }, 1000)
-
-    return () => clearTimeout(timeout)
+    if (window.location.pathname.includes("game")) {
+      const timeout: NodeJS.Timeout = setTimeout(() => {
+        const newTime = startTime > 0 ? startTime - 1 : startTime
+        setStartTime(newTime)
+        if (newTime === 0) clearTimeout(timeout)
+      }, 1000)
+      return () => clearTimeout(timeout)
+    }
   }, [setStartTime, startTime])
+  console.log(startTime)
 
   const shuffle = (arr: number[]) => [...arr].sort(() => Math.random() - 0.5)
 
