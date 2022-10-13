@@ -28,7 +28,7 @@ const TimerComponent = ({ time, navigateTo, finishTimeFunc }: ITimerProps) => {
     }
   })
   const screenCountdownStyle = {
-    display: seconds >= 0 ? "flex" : "none",
+    display: seconds >= 0 ? "block" : "none",
     justifyContent: "space-between",
   }
   return (

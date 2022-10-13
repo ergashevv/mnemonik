@@ -1,6 +1,6 @@
 :root {
   --primary-color: rgb(42, 150, 237);
-  --border-radius: .5rem;
+  --border-radius: 0.5rem;
   --font-family: sans-serif;
 }
 
@@ -8,6 +8,7 @@
   width: 100%;
   max-width: 500px;
   margin: 0 auto;
+  padding: 0 15px;
 }
 
 body {
@@ -38,9 +39,11 @@ body {
     .num {
       display: flex;
 
+      h2 {
+        margin: 0;
+        padding: 9px 0;
+      }
       .sort-num {
-        margin-right: 20px;
-
         &.active {
           span {
             padding: 12px 0;
@@ -139,13 +142,4 @@ button {
   width: 100%;
   padding: 10px 5px;
   box-sizing: border-box;
-}
-
-.sort-num {
-  margin-right: 20px;
-
-  h2 {
-    margin: 0;
-    padding: 9px 0;
-  }
 }

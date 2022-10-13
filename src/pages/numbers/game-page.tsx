@@ -29,8 +29,10 @@ const NumbersGame = () => {
         <StartGameModal time={starttime} />
       ) : (
         <div className="game container">
-          <TimerComponent time={70} navigateTo={"/numbers/start"} />
-          <Link to="/numbers/start">Start</Link>
+          <div className="d-flex">
+            <TimerComponent time={70} navigateTo={"/numbers/start"} />
+            <Link to="/numbers/start">Start</Link>
+          </div>
           <div className="header">
             <div className="num">
               <div
