@@ -1,6 +1,6 @@
 import { useHomeContext } from "../../context/home-context"
 import "./main.scss"
-import { useCallback, useEffect, useMemo, useState } from "react"
+import { useCallback, useMemo, useState } from "react"
 import InputCell from "./input-cell"
 import { Link, useNavigate } from "react-router-dom"
 import TimerComponent from "../../components/timer"
@@ -17,6 +17,7 @@ const StartNumberGame = () => {
   } = useHomeContext()
 
   const [inputs, setInputs] = useState(Array(numbers.length).fill(""))
+
   const handleValue = useCallback((val: any, index: number | undefined) => {
     return setInputs((inputs) =>
       inputs.map((input, i) => (i === index ? val : input))
@@ -79,6 +80,7 @@ const StartNumberGame = () => {
     setResult(inputs)
     setTab(0)
   }
+  
   return (
     <div className="game">
       <div

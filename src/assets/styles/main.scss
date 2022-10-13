@@ -43,7 +43,9 @@ body {
         margin: 0;
         padding: 9px 0;
       }
+
       .sort-num {
+        
         &.active {
           span {
             padding: 12px 0;
@@ -60,6 +62,7 @@ body {
       .tab-content {
         margin: 3px 0 10px 0;
       }
+
       .tab-pane {
         &.active {
           display: flex !important;

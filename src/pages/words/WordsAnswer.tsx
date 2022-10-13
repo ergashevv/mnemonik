@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from "react"
+import { ChangeEvent } from "react"
 import { ArrowLeft, ArrowRight, Rewind } from "react-feather"
 import { useNavigate } from "react-router-dom"
 import NextPage from "../../components/button-control-component/NextPage"
@@ -6,16 +6,10 @@ import PrevPage from "../../components/button-control-component/PrevPage"
 import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
 import { useWordsContext } from "../../context/WordsContext"
 import "./Words.scss"
+import TimerComponent from "../../components/timer"
 
 const WordsAnswer = () => {
-  const {
-    words,
-    wordsPerPage,
-    currentAnswers,
-    setAnswers,
-    minutesForAnswer,
-    setMinutesForAnswer,
-  } = useWordsContext()
+  const { words, wordsPerPage, currentAnswers, setAnswers } = useWordsContext()
 
   const { currentPage, setCurrentPage } = useNamesAndFacesContext()
 
@@ -23,22 +17,6 @@ const WordsAnswer = () => {
   const { nextHandlersWords } = NextPage()
 
   const navigate = useNavigate()
-  const [seconds, setSeconds] = useState(0)
-
-  useEffect(() => {
-    setTimeout(() => {
-      if (seconds > 0) {
-        setSeconds((seconds) => seconds - 1)
-      } else if (seconds === 0) {
-        if (minutesForAnswer === 0) {
-          navigate("/words/results")
-        } else {
-          setMinutesForAnswer((minutesForAnswer) => minutesForAnswer - 1)
-          setSeconds(59)
-        }
-      }
-    }, 1000)
-  }, [minutesForAnswer, seconds, setMinutesForAnswer, setSeconds, navigate])
 
   const handleInputs = (e: ChangeEvent<HTMLInputElement>, index: number) => {
     setAnswers((answers) =>
@@ -61,11 +39,7 @@ const WordsAnswer = () => {
     <section className="words">
       <div className="container">
         <div className="words-section__header">
-          {minutesForAnswer === 0 && seconds === 0 ? null : (
-            <h3 className="words-section__header-timer">
-              {minutesForAnswer}m {seconds < 10 ? `0${seconds}` : seconds}s
-            </h3>
-          )}
+          <TimerComponent time={100} navigateTo="/words/results" />
           <p className="words-section__header-title">Answer</p>
           <button
             onClick={handleNavigate}

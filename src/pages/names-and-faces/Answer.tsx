@@ -1,8 +1,9 @@
-import { ChangeEvent, useEffect, useState } from "react"
+import { ChangeEvent } from "react"
 import { ArrowLeft, ArrowRight, Rewind } from "react-feather"
 import { useNavigate } from "react-router"
 import NextPage from "../../components/button-control-component/NextPage"
 import PrevPage from "../../components/button-control-component/PrevPage"
+import TimerComponent from "../../components/timer"
 import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
 import "./NF.scss"
 
@@ -15,30 +16,12 @@ const Answer = () => {
     lastNames,
     setFirstNames,
     setLastNames,
-    minutesForAnswer,
-    setMinutesForAnswer,
   } = useNamesAndFacesContext()
 
   const { nextHandlers } = NextPage()
   const { prevHandlers } = PrevPage()
 
   const navigate = useNavigate()
-  const [seconds, setSeconds] = useState(0)
-
-  useEffect(() => {
-    setTimeout(() => {
-      if (seconds > 0) {
-        setSeconds((seconds) => seconds - 1)
-      } else if (seconds === 0) {
-        if (minutesForAnswer === 0) {
-          navigate("/names-and-faces/results")
-        } else {
-          setMinutesForAnswer((minutesForAnswer) => minutesForAnswer - 1)
-          setSeconds(59)
-        }
-      }
-    }, 1000)
-  }, [minutesForAnswer, seconds, setMinutesForAnswer, setSeconds, navigate])
 
   const handleLastName = (e: ChangeEvent<HTMLInputElement>, index: number) => {
     setLastNames((lastNames) =>
@@ -70,11 +53,11 @@ const Answer = () => {
       <div className="container">
         <div className="faces-section">
           <div className="faces-section__header">
-            {minutesForAnswer === 0 && seconds === 0 ? null : (
-              <p className="faces-section__header-timer">
-                {minutesForAnswer}m {seconds < 10 ? `0${seconds}` : seconds}s
-              </p>
-            )}
+            <TimerComponent
+              time={100}
+              navigateTo={"/names-and-faces/results"}
+            />
+
             <p className="faces-section__header-title">Answer</p>
             <button
               onClick={handleNavigate}
