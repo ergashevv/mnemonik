@@ -1,0 +1,11 @@
+.time {
+  font-size: 12rem;
+  position: absolute;
+  // top: 35%;
+  transform: translateY(100%);
+  left: 39%;
+  &.active {
+    font-size: 10rem;
+    transition: all linear 0.5s;
+  }
+}

@@ -4,6 +4,7 @@ const DatesScore = () => {
   console.log(userdate)
   return (
     <>
+      <h4>Your score</h4>
       <div className="start-date-game">
         <div className="inputs">
           <div className="inp">
@@ -20,14 +21,7 @@ const DatesScore = () => {
           </div>
           <div className="text">
             {even.map((item, key) => (
-              <p
-                key={key}
-                style={{
-                  marginBottom: "3px",
-                }}
-              >
-                <span>{item}</span>
-              </p>
+              <p key={key}>{item}</p>
             ))}
           </div>
         </div>

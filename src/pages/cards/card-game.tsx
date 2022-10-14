@@ -6,6 +6,7 @@ import NavigationBtn from "../../assets/images/next.png"
 import "./main.scss"
 import StartGameModal from "../../components/numbers-components/start-game"
 import { useHomeContext } from "../../context/home-context"
+import TimerComponent from "../../components/timer"
 const CardGame = () => {
   const { startTime: starttime } = useHomeContext()
   const { data, cursor, randomcard, setCursor, cursorW, navigation, show } =
@@ -40,6 +41,15 @@ const CardGame = () => {
       ) : (
         <>
           <div className="container">
+            <div
+              style={{
+                justifyContent: "space-between",
+              }}
+              className="d-flex"
+            >
+              <TimerComponent time={70} navigateTo={"/cards/start"} />
+              <Link to="/cards/start">Start</Link>
+            </div>
             <div className="show-card">
               {showcards.map((i, k) => (
                 <img key={k} src={i.image} alt="" />
@@ -74,7 +84,7 @@ const CardGame = () => {
                 >
                   <img
                     style={{
-                      marginRight: show === "small" ? "-80px" : "-30px",
+                      marginRight: show === "small" ? "-60px" : "-30px",
                     }}
                     src={item.image}
                     alt=""
@@ -105,7 +115,6 @@ const CardGame = () => {
               </button>
             </div>
           </div>
-          <Link to="/cards/start">Start</Link>
         </>
       )}
     </>

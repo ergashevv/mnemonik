@@ -4,7 +4,6 @@ import DatesGamePage from "../pages/dates/date-game"
 import DatesSettings from "../pages/dates/date-settings"
 import DatesStartGame from "../pages/dates/start-game"
 import DatesScore from "../pages/dates/dates-score"
-import './main.scss'
 
 
 const DatesLayout = () => {

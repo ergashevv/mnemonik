@@ -29,7 +29,12 @@ const NumbersGame = () => {
         <StartGameModal time={starttime} />
       ) : (
         <div className="game container">
-          <div className="d-flex">
+          <div
+            style={{
+              justifyContent: "space-between",
+            }}
+            className="d-flex"
+          >
             <TimerComponent time={70} navigateTo={"/numbers/start"} />
             <Link to="/numbers/start">Start</Link>
           </div>

@@ -3,9 +3,8 @@ import { useNavigate } from "react-router-dom"
 import "../../assets/styles/StartStyles.scss"
 import { useHomeContext } from "../../context/home-context"
 
-
 const DatesSettings = () => {
-  const { setStartTime } = useHomeContext()
+  const { startTime, setStartTime } = useHomeContext()
 
   const navigate = useNavigate()
 
@@ -22,7 +21,7 @@ const DatesSettings = () => {
       <div className="container">
         <form className="settings-form">
           <label>Enter time</label>
-          <input onChange={handleStartTime} type="number"/>
+          <input value={startTime} onChange={handleStartTime} type="number" />
           <button onClick={handleNavigate}>Start</button>
         </form>
       </div>

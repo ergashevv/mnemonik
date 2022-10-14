@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import TimerComponent from "../../components/timer"
 import { useDatedContext } from "../../context/date-context"
 import "./main.scss"
 const DatesStartGame = () => {
@@ -21,8 +22,16 @@ const DatesStartGame = () => {
     }
   }
   return (
-    <>
-      <Link to="/dates/result">Finish</Link>
+    <div className="container">
+      <div
+        className="d-flex"
+        style={{
+          justifyContent: "space-between",
+        }}
+      >
+        <TimerComponent time={30} navigateTo={"/dates/result"} />
+        <Link to="/dates/result">Finish</Link>
+      </div>
       <div className="start-date-game">
         <div className="inputs">
           <div className="inp">
@@ -39,21 +48,12 @@ const DatesStartGame = () => {
           </div>
           <div className="text">
             {even.map((item, key) => (
-              <p
-                key={key}
-                style={{
-                  marginBottom: "3px",
-                }}
-              >
-                <>
-                  <span>{item}</span>
-                </>
-              </p>
+              <p key={key}>{item}</p>
             ))}
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 export default DatesStartGame

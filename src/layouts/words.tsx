@@ -1,4 +1,3 @@
-import "./main.scss"
 import { Route, Routes } from "react-router-dom"
 import WordsStart from "../pages/words/WordsStart"
 import WordsResult from "../pages/words/WordsResult"

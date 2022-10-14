@@ -5,16 +5,10 @@ import { useCardsContext } from "../../context/cards-context"
 import { useHomeContext } from "../../context/home-context"
 
 const Settings = () => {
-  const {
-    setCursorW,
-    setNavigation,
-    navigation,
-    cursorW,
-    setShow,
-    show,
-  } = useCardsContext()
+  const { setCursorW, setNavigation, navigation, cursorW, setShow, show } =
+    useCardsContext()
 
-  const { setStartTime } = useHomeContext()
+  const { setStartTime, startTime } = useHomeContext()
 
   const navigate = useNavigate()
 
@@ -53,20 +47,18 @@ const Settings = () => {
             <option value="7">7</option>
             <option value="8">8</option>
           </select>
-
-          <input onChange={handleStartTime} type="number" />
+          <h2>Enter start time</h2>
+          <input value={startTime} onChange={handleStartTime} type="number" />
           <label>Select navigation</label>
           <select defaultValue={navigation} onChange={handleNavigation}>
             <option value="left">Left to right</option>
             <option value="right">Right to left</option>
           </select>
-
           <label>Show cards</label>
           <select defaultValue={show} onChange={handleShow}>
             <option value="small">Small</option>
             <option value="large">Large</option>
           </select>
-
           <button onClick={handleNavigate}>Start</button>
         </form>
       </div>

@@ -1,5 +1,6 @@
 import { useCallback } from "react"
 import { Link } from "react-router-dom"
+import TimerComponent from "../../components/timer"
 import { Card, useCardsContext } from "../../context/cards-context"
 
 import "./main.scss"
@@ -19,6 +20,15 @@ const StartCard = () => {
   return (
     <div>
       <div className="empty-cards">
+        <div
+          style={{
+            justifyContent: "space-between",
+          }}
+          className="d-flex"
+        >
+          <TimerComponent time={70} navigateTo={"/cards/result"} />
+          <Link to="/cards/result">Result</Link>
+        </div>
         <div className="empty">
           {inputs?.map((img, index) => (
             <div
@@ -37,7 +47,7 @@ const StartCard = () => {
             </div>
           ))}
         </div>
-        <div className="cards">
+        <div className="cards-start-game">
           {data.map((item: any, key) => (
             <div
               key={key}
@@ -55,7 +65,6 @@ const StartCard = () => {
           ))}
         </div>
       </div>
-      <Link to="/cards/result">Finish</Link>
     </div>
   )
 }

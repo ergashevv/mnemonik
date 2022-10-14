@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 import NavigationBtnImg from "../../assets/images/next.png"
 import StartGameModal from "../../components/numbers-components/start-game"
 import { useHomeContext } from "../../context/home-context"
+import TimerComponent from "../../components/timer"
 
 const DatesGamePage = () => {
   const { data, even } = useDatedContext()
@@ -25,7 +26,10 @@ const DatesGamePage = () => {
         <StartGameModal time={starttime} />
       ) : (
         <>
-          <Link to="/dates/start">Start</Link>
+          <div className="d-flex">
+            <TimerComponent time={70} navigateTo={"/dates/start"} />
+            <Link to="/dates/start">Start</Link>
+          </div>
           <div className="date-game container load-anim">
             <div className="dates">
               {data?.map((item, key) => (

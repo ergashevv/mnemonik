@@ -1,7 +1,9 @@
 import {
-  createContext, ReactNode, useContext,
+  createContext,
+  ReactNode,
+  useContext,
   useEffect,
-  useState
+  useState,
 } from "react"
 
 export interface IContext {
@@ -43,6 +45,7 @@ export const HomeContextProvider = ({ children }: { children: ReactNode }) => {
   const [autoSecond, setAutoSecond] = useState()
   const [randomNumbers, setRandomNumbers] = useState<number[]>([])
   const [dynamic, setDynamic] = useState(200)
+  console.log(dynamic)
   const [startTime, setStartTime] = useState<number>(5)
 
   const shuffle = (arr: number[]) => [...arr].sort(() => Math.random() - 0.5)

@@ -3,7 +3,6 @@ import NumbersGame from "../pages/numbers/game-page"
 import Result from "../pages/numbers/result"
 import SettingsPage from "../pages/numbers/settings-page"
 import StartNumberGame from "../pages/numbers/start-game"
-import "./main.scss"
 
 const NumberLayout = () => {
   return (

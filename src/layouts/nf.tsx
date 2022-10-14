@@ -1,4 +1,3 @@
-import "./main.scss"
 import { Route, Routes } from "react-router-dom"
 import Recall from "../pages/names-and-faces/Recall"
 import Answer from "../pages/names-and-faces/Answer"

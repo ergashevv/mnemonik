@@ -1,4 +1,103 @@
 .numbers-game-page {
+  .game {
+    position: relative;
+    height: 100vh;
+    .header {
+      .num {
+        display: flex;
+
+        h2 {
+          margin: 0;
+          padding: 9px 0;
+        }
+        .sort-num {
+          &.active {
+            span {
+              padding: 10px 0;
+            }
+          }
+
+          span {
+            display: block;
+            font-size: 19px;
+            padding: 9px 0;
+          }
+        }
+
+        .tab-content {
+          margin: 3px 0 10px 0;
+        }
+        .tab-pane {
+          &.active {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            height: 400px;
+            overflow-y: scroll;
+            &::-webkit-scrollbar {
+              width: 2px;
+            }
+            &::-webkit-scrollbar-track {
+              box-shadow: inset 0 0 5px grey;
+              border-radius: 10px;
+            }
+            s &::-webkit-scrollbar-thumb {
+              background: greenyellow;
+              border-radius: 10px;
+            }
+          }
+        }
+
+        .card-number {
+          text-align: center;
+          max-width: 50px;
+          padding: 6.8px 0;
+
+          &.active {
+            background-color: red;
+
+            p {
+              color: white;
+            }
+          }
+
+          p {
+            font-size: 14px;
+            margin: 0;
+          }
+        }
+      }
+    }
+
+    .numbers {
+      margin-top: 30px;
+      align-items: center;
+      display: flex;
+
+      h1 {
+        font-size: 40px;
+        text-align: center;
+      }
+    }
+
+    .navigation {
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .prev {
+      width: 90px;
+      height: 90px;
+    }
+
+    .next {
+      width: 90px;
+      height: 90px;
+      transform: rotate(180deg);
+    }
+  }
+
   .start-game {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -6,28 +105,17 @@
     gap: 3px;
     margin-right: 20px;
     position: relative;
-
+    height: 100%;
     input {
       width: 100%;
       border-radius: 0;
       border: 1px solid #ced4da;
       text-align: center;
-      padding: 3px;
+      // padding: 6px 5px;
+      height: 25px;
       &:focus-visible {
         box-shadow: none;
         outline: none;
-      }
-    }
-    .time {
-      font-size: 12rem;
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%) translateY(-50%);
-
-      &.active {
-        font-size: 10rem;
-        transition: all linear 0.5s;
       }
     }
 
@@ -62,8 +150,7 @@
   .tabs {
     display: flex;
     justify-content: center;
-    margin-top: 30px;
-
+    margin-top: 10px;
     button {
       width: 40px;
       height: 40px;
@@ -76,14 +163,12 @@
       &:last-child {
         margin-right: 0;
       }
-
       &.active {
         color: white;
         background-color: blue;
       }
     }
   }
-
   .num-or {
     display: block;
     padding: 5px 0;
@@ -91,9 +176,6 @@
 
   .result-card {
     .num-or {
-      display: block;
-      padding: 5px 0;
-
       &.active {
         padding: 16px 0;
         margin-bottom: -1px;
@@ -102,10 +184,10 @@
 
     .result-num-or {
       .num-or {
-        padding: 8px 0;
+        // padding: 8px 0;
 
         &.active {
-          padding: 21px 0;
+          padding: 18px 0;
           margin-bottom: -1px;
         }
       }

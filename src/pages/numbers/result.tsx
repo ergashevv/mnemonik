@@ -6,23 +6,24 @@ import { useHomeContext } from "../../context/home-context"
 const Result = () => {
   const [show, setShow] = useState(false)
 
-  const { result, tab, randomNumbers, setCursor, setTab } = useHomeContext()
-  const resetCursor = (index: any) => {
-    setCursor(0)
-    setTab(index)
-  }
+  const {
+    result,
+    tab,
+    randomNumbers,
+    dynamic: dynum,
+    setCursor,
+    setTab,
+  } = useHomeContext()
 
   const count = useMemo(() => {
     let count = 0
-
     result?.forEach((item: any, k: any) => {
       if (item !== randomNumbers[k]) count++
     })
 
     return count
   }, [randomNumbers, result])
-
-  console.log(count)
+  console.log(result)
 
   return (
     <>
@@ -83,28 +84,38 @@ const Result = () => {
           .map((_, index) => (
             <>
               {tab === index && (
-                <div className="start-game">
+                <div
+                  style={{
+                    gridTemplateColumns:
+                      dynum == 189
+                        ? "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr"
+                        : "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr",
+                  }}
+                  className="start-game"
+                >
                   {result
-                    ?.slice(190 * index, 190 * (index + 1))
+                    ?.slice(dynum * tab, dynum * (tab + 1))
                     .map((value: any, index) => (
                       <div>
-                        <input
-                          readOnly
-                          style={{
-                            color:
-                              value == randomNumbers[index] ? "green" : "red",
-                            fontWeight: "bold",
-                          }}
-                          value={value}
-                          type="text"
-                        />
-                        {show && (
+                        <>
                           <input
                             readOnly
-                            value={randomNumbers[index]}
+                            style={{
+                              color:
+                                value == randomNumbers[index] ? "green" : "red",
+                              fontWeight: "bold",
+                            }}
+                            value={value}
                             type="text"
                           />
-                        )}
+                          {show && (
+                            <input
+                              readOnly
+                              value={randomNumbers[index]}
+                              type="text"
+                            />
+                          )}
+                        </>
                       </div>
                     ))}
                 </div>
@@ -112,7 +123,6 @@ const Result = () => {
             </>
           ))}
       </div>
-      {console.log(randomNumbers)}
       <div className="tabs">
         <Tabs tabnumber={4} />
       </div>
