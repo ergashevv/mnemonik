@@ -11,7 +11,7 @@ import TimerComponent from "../../components/timer"
 const WordsAnswer = () => {
   const { words, wordsPerPage, currentAnswers, setAnswers } = useWordsContext()
 
-  const { currentPage, setCurrentPage } = useNamesAndFacesContext()
+  const { currentPage, setCurrentPage, timerForAnswer } = useNamesAndFacesContext()
 
   const { prevHandlersWords } = PrevPage()
   const { nextHandlersWords } = NextPage()
@@ -39,7 +39,7 @@ const WordsAnswer = () => {
     <section className="words">
       <div className="container">
         <div className="words-section__header">
-          <TimerComponent time={100} navigateTo="/words/results" />
+          <TimerComponent time={timerForAnswer} navigateTo="/words/results" />
           <p className="words-section__header-title">Answer</p>
           <button
             onClick={handleNavigate}

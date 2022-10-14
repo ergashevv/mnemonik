@@ -1,10 +1,10 @@
 import { ChangeEvent } from "react"
 import { useNavigate } from "react-router"
 import { useHomeContext } from "../../context/home-context"
-import { useWordsContext } from "../../context/WordsContext"
+import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
 
 const WordsStart = () => {
-  const { setMinutesForRecall, setMinutesForAnswer } = useWordsContext()
+  const { setTimerForRecall, setTimerForAnswer } = useNamesAndFacesContext()
   const { setStartTime } = useHomeContext()
 
   const navigate = useNavigate()
@@ -18,11 +18,11 @@ const WordsStart = () => {
   }
 
   const handleMinutesForRecall = (e: ChangeEvent<HTMLInputElement>) => {
-    setMinutesForRecall(+e.target.value)
+    setTimerForRecall(+e.target.value)
   }
 
   const handleMinutesForAnswer = (e: ChangeEvent<HTMLInputElement>) => {
-    setMinutesForAnswer(+e.target.value)
+    setTimerForAnswer(+e.target.value)
   }
 
   return (
@@ -40,14 +40,14 @@ const WordsStart = () => {
           <input
             type="number"
             onChange={handleMinutesForAnswer}
-            placeholder="Standart vaqt 5 daqiqa"
+            placeholder="Standart vaqt 100 soniya"
           />
 
           <label htmlFor="">Javob berish vaqtini kiriting</label>
           <input
             type="number"
             onChange={handleMinutesForRecall}
-            placeholder="Standart vaqt 5 daqiqa "
+            placeholder="Standart vaqt 100 soniya"
           />
           <button onClick={handleNavigate}>Start</button>
         </form>

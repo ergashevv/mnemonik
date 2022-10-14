@@ -11,10 +11,10 @@ import "./Words.scss"
 
 const WordsRecall = () => {
   const { words, wordsPerPage, currentWords } = useWordsContext()
-
+  
   const { startTime } = useHomeContext()
 
-  const { currentPage, setCurrentPage } = useNamesAndFacesContext()
+  const { currentPage, setCurrentPage, timerForRecall } = useNamesAndFacesContext()
 
   const { prevHandlersWords } = PrevPage()
   const { nextHandlersWords } = NextPage()
@@ -40,7 +40,7 @@ const WordsRecall = () => {
         >
           <div className="words-section__header">
             {startTime === 0 && (
-              <TimerComponent time={100} navigateTo="/words/answers" />
+              <TimerComponent time={timerForRecall} navigateTo="/words/answers" />
             )}
             <p className="words-section__header-title">Recall</p>
             <button
@@ -53,16 +53,14 @@ const WordsRecall = () => {
           </div>
 
           <div className="words-section__cards">
-            {currentWords?.map((word, index) => {
-              return (
-                <article key={index + (currentPage - 1) * 10 + 1}>
-                  <div className="number">
-                    {index + (currentPage - 1) * 10 + 1}.
-                  </div>
-                  <div className="word"> {word}</div>
-                </article>
-              )
-            })}
+            {currentWords?.map((word, index) => (
+              <article key={index + (currentPage - 1) * 10 + 1}>
+                <div className="number">
+                  {index + (currentPage - 1) * 10 + 1}.
+                </div>
+                <div className="word">{word}</div>
+              </article>
+            ))}
           </div>
           <div className="indicator">
             <span>{currentPage}</span>/

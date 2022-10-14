@@ -18,8 +18,8 @@ const Start = () => {
     people,
     setPeople,
     setShuffledPeople,
-    setMinutesForRecall,
-    setMinutesForAnswer,
+    setTimerForRecall,
+    setTimerForAnswer
   } = useNamesAndFacesContext()
 
   const [imagesFetched, setImagesFetched] = useState<number>(0)
@@ -65,11 +65,11 @@ const Start = () => {
   }
 
   const handleMinutesForRecall = (e: ChangeEvent<HTMLInputElement>) => {
-    setMinutesForRecall(+e.target.value)
+    setTimerForRecall(+e.target.value)
   }
 
   const handleMinutesForAnswer = (e: ChangeEvent<HTMLInputElement>) => {
-    setMinutesForAnswer(+e.target.value)
+    setTimerForAnswer(+e.target.value)
   }
   
   return (
