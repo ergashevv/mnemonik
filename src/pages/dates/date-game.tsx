@@ -1,21 +1,20 @@
-import { useDatedContext } from "../../context/date-context"
 import classNames from "classnames"
-import "./main.scss"
 import { Link } from "react-router-dom"
 import NavigationBtnImg from "../../assets/images/next.png"
 import StartGameModal from "../../components/numbers-components/start-game"
-import { useHomeContext } from "../../context/home-context"
 import TimerComponent from "../../components/timer"
+import { useDatedContext } from "../../context/date-context"
+import { useHomeContext } from "../../context/home-context"
+import "./main.scss"
 
 const DatesGamePage = () => {
   const { data, even } = useDatedContext()
-  const { setCursor, cursor, startTime: starttime } = useHomeContext()
-  console.log(even)
+  const { setCursor, cursor, startTime } = useHomeContext()
 
   const elementClick = (e: any) => {
     setCursor(e)
   }
-  
+
   const handleBottom = () => {
     setCursor(cursor + 1)
     window.scrollTo(0, 30)
@@ -23,8 +22,8 @@ const DatesGamePage = () => {
 
   return (
     <>
-      {starttime ? (
-        <StartGameModal time={starttime} />
+      {startTime ? (
+        <StartGameModal time={startTime} />
       ) : (
         <>
           <div className="d-flex">

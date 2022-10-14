@@ -1,19 +1,11 @@
-import { useMemo } from "react"
-import { useState } from "react"
+import { useMemo, useState } from "react"
 import Tabs from "../../components/tabs"
 import { useHomeContext } from "../../context/home-context"
 
 const Result = () => {
   const [show, setShow] = useState(false)
 
-  const {
-    result,
-    tab,
-    randomNumbers,
-    dynamic: dynum,
-    setCursor,
-    setTab,
-  } = useHomeContext()
+  const { result, tab, randomNumbers, dynamic } = useHomeContext()
 
   const count = useMemo(() => {
     let count = 0
@@ -23,7 +15,6 @@ const Result = () => {
 
     return count
   }, [randomNumbers, result])
-  console.log(result)
 
   return (
     <>
@@ -55,7 +46,7 @@ const Result = () => {
           {Array(Math.floor(40))
             .fill(null)
             .map((_, index) => (
-              <div className="result-num-or">
+              <div className="result-num-or" key={index}>
                 {tab === 0 && index < 10 ? (
                   <span className={show ? "num-or active" : "num-or"}>
                     {index + 1})
@@ -82,21 +73,21 @@ const Result = () => {
         {Array(4)
           .fill(null)
           .map((_, index) => (
-            <>
+            <div key={index}>
               {tab === index && (
                 <div
                   style={{
                     gridTemplateColumns:
-                      dynum == 189
+                      dynamic == 189
                         ? "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr"
                         : "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr",
                   }}
                   className="start-game"
                 >
                   {result
-                    ?.slice(dynum * tab, dynum * (tab + 1))
+                    ?.slice(dynamic * tab, dynamic * (tab + 1))
                     .map((value: any, index) => (
-                      <div>
+                      <div key={index}>
                         <>
                           <input
                             readOnly
@@ -120,11 +111,11 @@ const Result = () => {
                     ))}
                 </div>
               )}
-            </>
+            </div>
           ))}
       </div>
       <div className="tabs">
-        <Tabs tabnumber={4} />
+        <Tabs tabNumber={4} />
       </div>
       <button onClick={() => setShow(!show)}>
         {show ? "user result" : "show result"}

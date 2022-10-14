@@ -10,6 +10,7 @@ import Qarga9 from "../../assets/images/10qarga.png"
 import Qarga10 from "../../assets/images/valetqarga.png"
 import Qarga11 from "../../assets/images/damaqarga.png"
 import Qarga12 from "../../assets/images/karolqarga.png"
+
 const Cards = [
   {
     image: Qarga1,

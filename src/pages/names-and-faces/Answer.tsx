@@ -16,6 +16,7 @@ const Answer = () => {
     lastNames,
     setFirstNames,
     setLastNames,
+    timerForAnswer
   } = useNamesAndFacesContext()
 
   const { nextHandlers } = NextPage()
@@ -54,7 +55,7 @@ const Answer = () => {
         <div className="faces-section">
           <div className="faces-section__header">
             <TimerComponent
-              time={100}
+              time={timerForAnswer}
               navigateTo={"/names-and-faces/results"}
             />
 

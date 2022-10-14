@@ -5,8 +5,14 @@ import { useCardsContext } from "../../context/cards-context"
 import { useHomeContext } from "../../context/home-context"
 
 const Settings = () => {
-  const { setCursorW, setNavigation, navigation, cursorW, setShow, show } =
-    useCardsContext()
+  const {
+    setCursorW,
+    setNavigation,
+    navigation,
+    cursorW,
+    setShow,
+    show,
+  } = useCardsContext()
 
   const { setStartTime, startTime } = useHomeContext()
 

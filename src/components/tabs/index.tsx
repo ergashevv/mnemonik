@@ -1,12 +1,11 @@
 import { useHomeContext } from "../../context/home-context"
-import React, { useState } from "react"
+
 interface ITabsProps {
-  tabnumber: number
+  tabNumber: number
 }
 
-const Tabs = ({ tabnumber }: ITabsProps) => {
+const Tabs = ({ tabNumber }: ITabsProps) => {
   const { setCursor, tab, setTab } = useHomeContext()
-  //   const [tab, setTab] = useState<number>(0)
   const resetCursor = (index: number) => {
     setCursor(0)
     setTab(index)
@@ -14,7 +13,7 @@ const Tabs = ({ tabnumber }: ITabsProps) => {
   return (
     <>
       <div className="tabs">
-        {Array(tabnumber)
+        {Array(tabNumber)
           .fill(null)
           .map((_, index) => {
             const className = tab === index ? "active" : undefined

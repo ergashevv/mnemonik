@@ -24,6 +24,7 @@ const DatasDate = [
     "1731",
     "1188",
 ]
+
 const Events = [
     "Presidential speech too long",
     "Ceiling of Baptist church collapses",

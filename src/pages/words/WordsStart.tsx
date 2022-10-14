@@ -17,11 +17,11 @@ const WordsStart = () => {
     setStartTime(+e.target.value)
   }
 
-  const handleMinutesForRecall = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleTimerForRecall = (e: ChangeEvent<HTMLInputElement>) => {
     setTimerForRecall(+e.target.value)
   }
 
-  const handleMinutesForAnswer = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleTimerForAnswer = (e: ChangeEvent<HTMLInputElement>) => {
     setTimerForAnswer(+e.target.value)
   }
 
@@ -39,14 +39,14 @@ const WordsStart = () => {
           <label htmlFor="">Eslab qolish vaqtini kiriting</label>
           <input
             type="number"
-            onChange={handleMinutesForAnswer}
+            onChange={handleTimerForRecall}
             placeholder="Standart vaqt 100 soniya"
           />
 
           <label htmlFor="">Javob berish vaqtini kiriting</label>
           <input
             type="number"
-            onChange={handleMinutesForRecall}
+            onChange={handleTimerForAnswer}
             placeholder="Standart vaqt 100 soniya"
           />
           <button onClick={handleNavigate}>Start</button>

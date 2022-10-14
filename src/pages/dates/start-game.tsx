@@ -2,8 +2,9 @@ import { Link } from "react-router-dom"
 import TimerComponent from "../../components/timer"
 import { useDatedContext } from "../../context/date-context"
 import "./main.scss"
+
 const DatesStartGame = () => {
-  const { data, even, userdate, setUserdate } = useDatedContext()
+  const { data, even, setUserDate } = useDatedContext()
 
   const handleFocusOnNext = (e: any, index: number) => {
     if (e.target.value.length >= 4) {
@@ -11,11 +12,11 @@ const DatesStartGame = () => {
       nextInput?.focus()
     }
 
-    return setUserdate((userdate: string[]) =>
-      userdate.map((input, i) => (i === index ? e.target.value : input))
+    return setUserDate((userDate: string[]) =>
+      userDate.map((input, i) => (i === index ? e.target.value : input))
     )
   }
-  
+
   const removeHandler = (e: any) => {
     if (e.target.value.length === 0) {
       if (e.key === "Backspace") {
@@ -46,6 +47,7 @@ const DatesStartGame = () => {
                   onKeyUp={(e) => removeHandler(e)}
                   onChange={(e) => handleFocusOnNext(e, index)}
                   type="number"
+                  key={index}
                 />
               ))}
           </div>

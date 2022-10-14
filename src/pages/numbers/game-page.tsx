@@ -1,6 +1,4 @@
 import classNames from "classnames"
-import { useEffect, useState } from "react"
-import { useNavigate } from "react-router"
 import { Link } from "react-router-dom"
 import LeftNumber from "../../components/left-numbers"
 import NavigationBtn from "../../components/numbers-components/navigation-buttons-game"
@@ -12,21 +10,19 @@ import "./main.scss"
 
 const NumbersGame = () => {
   const {
-    cursorW: cursorWidth,
+    cursorW,
     cursor,
     randomNumbers,
     tab,
-    setCursor,
-    dynamic: dynum,
-    setTab,
-    startTime: starttime,
+    dynamic,
+    startTime,
     line,
   } = useHomeContext()
 
   return (
     <>
-      {starttime ? (
-        <StartGameModal time={starttime} />
+      {startTime ? (
+        <StartGameModal time={startTime} />
       ) : (
         <div className="game container">
           <div
@@ -42,7 +38,7 @@ const NumbersGame = () => {
             <div className="num">
               <div
                 className={
-                  Number(cursorWidth) >= 4 ? "sort-num active" : "sort-num"
+                  Number(cursorW) >= 4 ? "sort-num active" : "sort-num"
                 }
               >
                 <LeftNumber />
@@ -55,14 +51,14 @@ const NumbersGame = () => {
                       <div
                         style={{
                           gridTemplateColumns:
-                            Number(cursorWidth) === 3
+                            Number(cursorW) === 3
                               ? "repeat(21, 1fr)"
                               : "repeat(20, 1fr)",
                         }}
                         className={`cards`}
                       >
                         {randomNumbers
-                          .slice(dynum * tab, dynum * (tab + 1))
+                          .slice(dynamic * tab, dynamic * (tab + 1))
                           .map((i, k) => (
                             <div
                               key={k}
@@ -76,7 +72,7 @@ const NumbersGame = () => {
                                 className={classNames("card-number", {
                                   active:
                                     k >= cursor &&
-                                    k < cursor + parseInt(cursorWidth!),
+                                    k < cursor + parseInt(cursorW!),
                                 })}
                               >
                                 <p>{i}</p>
@@ -90,7 +86,7 @@ const NumbersGame = () => {
             </div>
           </div>
           <div className="tabs">
-            <Tabs tabnumber={4} />
+            <Tabs tabNumber={4} />
           </div>
           <NavigationBtn />
         </div>

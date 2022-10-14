@@ -23,7 +23,7 @@ const NumbersTab = ({ tab }: IProps) => {
         })
 
         return (
-          <div className={className}>
+          <div className={className} key={key}>
             <p>{item}</p>
           </div>
         )

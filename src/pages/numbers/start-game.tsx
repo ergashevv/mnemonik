@@ -1,20 +1,14 @@
-import { useHomeContext } from "../../context/home-context"
-import "./main.scss"
 import { useCallback, useMemo, useState } from "react"
-import InputCell from "./input-cell"
-import { Link, useNavigate } from "react-router-dom"
-import TimerComponent from "../../components/timer"
-import Tabs from "../../components/tabs"
+import { Link } from "react-router-dom"
 import LeftNumber from "../../components/left-numbers"
+import Tabs from "../../components/tabs"
+import TimerComponent from "../../components/timer"
+import { useHomeContext } from "../../context/home-context"
+import InputCell from "./input-cell"
+import "./main.scss"
+
 const StartNumberGame = () => {
-  const {
-    numbers,
-    randomNumbers: randomnumbers,
-    setResult,
-    tab,
-    setCursor,
-    setTab,
-  } = useHomeContext()
+  const { numbers, randomNumbers, setResult, tab, setTab } = useHomeContext()
 
   const [inputs, setInputs] = useState(Array(numbers.length).fill(""))
 
@@ -54,7 +48,7 @@ const StartNumberGame = () => {
 
   const inputsCells = useMemo(
     () =>
-      randomnumbers.map((_, index) => (
+      randomNumbers.map((_, index) => (
         <InputCell
           key={index}
           index={index}
@@ -73,14 +67,14 @@ const StartNumberGame = () => {
       handleShiftRemove,
       handleValue,
       inputs,
-      randomnumbers,
+      randomNumbers,
     ]
   )
   const finishGame = () => {
     setResult(inputs)
     setTab(0)
   }
-  
+
   return (
     <div className="game">
       <div
@@ -116,16 +110,16 @@ const StartNumberGame = () => {
               190 * (index + 1)
             )
             return (
-              <>
+              <div key={index}>
                 {tab === index && (
                   <div className="start-game">{slicedInputs}</div>
                 )}
-              </>
+              </div>
             )
           })}
       </div>
       <div className="tabs">
-        <Tabs tabnumber={4} />
+        <Tabs tabNumber={4} />
       </div>
     </div>
   )

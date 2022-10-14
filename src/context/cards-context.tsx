@@ -1,16 +1,19 @@
-import React, {
+import {
+  createContext,
+  ReactNode,
   useContext,
   useEffect,
   useState,
-  createContext,
-  ReactNode,
 } from "react"
-import { Cards } from "../datas/data-cards"
+
 import CardImg from "../assets/images/empty.png"
+import { Cards } from "../datas/data-cards"
+
 export interface Card {
   image: string
   id: number
 }
+
 export interface ICardsContext {
   line?: string
   cursor: number
@@ -19,13 +22,13 @@ export interface ICardsContext {
   setCursor: Function
   show?: string
   navigation?: string
-  randomcard?: Card[]
+  randomCard?: Card[]
   setShow: (show: string) => void
   inputs: Card[]
   setInputs: Function
   data: Card[]
   setFocus: (focus: number) => void
-  setRandomCard?: (randomcard: number[]) => void
+  setRandomCard?: (randomCard: number[]) => void
   setCursorW: (cursorW: string) => void
   setNavigation: (navigation: string) => void
 }
@@ -54,7 +57,7 @@ export const CardsContextProvider = ({ children }: { children: ReactNode }) => {
 
   const [focus, setFocus] = useState(0)
 
-  const [randomcard, setRandomcard] = useState<Card[]>([])
+  const [randomCard, setRandomCard] = useState<Card[]>([])
 
   useEffect(() => {
     if (cursorW) {
@@ -79,11 +82,10 @@ export const CardsContextProvider = ({ children }: { children: ReactNode }) => {
   }, [cursorW, navigation, show])
 
   const shuffle = (arr: Card[]) => [...arr].sort(() => Math.random() - 0.5)
-  
 
   useEffect(() => {
-    setRandomcard(shuffle(data))
-  }, [setRandomcard, data])
+    setRandomCard(shuffle(data))
+  }, [setRandomCard, data])
 
   const value = {
     cursorW,
@@ -98,8 +100,8 @@ export const CardsContextProvider = ({ children }: { children: ReactNode }) => {
     setNavigation,
     focus,
     setFocus,
-    randomcard,
-    setRandomcard,
+    randomCard,
+    setRandomcard: setRandomCard,
     show,
     setShow,
   }
