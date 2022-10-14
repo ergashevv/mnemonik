@@ -2,13 +2,15 @@ import { useCallback } from "react"
 import { Link } from "react-router-dom"
 import TimerComponent from "../../components/timer"
 import { Card, useCardsContext } from "../../context/cards-context"
-
 import "./main.scss"
+
 const StartCard = () => {
   const { data, inputs, focus, setFocus, setInputs, show } = useCardsContext()
+
   const handleRemove = useCallback((_: any, index: number) => {
     setFocus(index)
   }, [])
+  
   const handleAdd = useCallback(
     (val: Card[], _: any) => {
       setInputs((inputs: Card[]) =>
@@ -17,6 +19,7 @@ const StartCard = () => {
     },
     [inputs, focus, setInputs]
   )
+
   return (
     <div>
       <div className="empty-cards">

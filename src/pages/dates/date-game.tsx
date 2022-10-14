@@ -15,6 +15,7 @@ const DatesGamePage = () => {
   const elementClick = (e: any) => {
     setCursor(e)
   }
+  
   const handleBottom = () => {
     setCursor(cursor + 1)
     window.scrollTo(0, 30)

@@ -11,16 +11,26 @@ const StartGameModal = ({ time }: TimeProps) => {
 
   useEffect(() => {
     const timeout: NodeJS.Timeout = setTimeout(() => {
-      const newTime = startTime > 0 ? startTime-1 : startTime
+      const newTime = startTime > 0 ? startTime - 1 : startTime
+
       setStartTime(newTime)
-      if (newTime === 0) clearTimeout(timeout)
+      if (newTime === 0) {
+        clearTimeout(timeout)
+        // setStartTime(5)
+      }
     }, 1000)
 
     return () => clearTimeout(timeout)
   }, [setStartTime, startTime])
+  console.log(startTime)
 
   return (
-    <div className="start-game">
+    <div
+      style={{
+        display: startTime < 1 ? "none" : "block",
+      }}
+      className={"start-timer"}
+    >
       {Array(time)
         .fill(null)
         .map((_, index: number) => (

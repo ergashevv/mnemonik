@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react"
 import { ArrowLeft, ArrowRight, Rewind } from "react-feather"
 import { useNavigate } from "react-router"
 import NextPage from "../../components/button-control-component/NextPage"
@@ -7,38 +6,17 @@ import StartGameModal from "../../components/numbers-components/start-game"
 import { useHomeContext } from "../../context/home-context"
 import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
 import "./NF.scss"
+import TimerComponent from "../../components/timer"
 
 const Recall = () => {
-  const {
-    people,
-    currentPage,
-    setCurrentPage,
-    minutesForRecall,
-    setMinutesForRecall,
-  } = useNamesAndFacesContext()
+  const { people, currentPage, setCurrentPage } = useNamesAndFacesContext()
 
   const { startTime } = useHomeContext()
 
-  const [seconds, setSeconds] = useState<number>(0)
   const navigate = useNavigate()
 
   const { prevHandlers } = PrevPage()
   const { nextHandlers } = NextPage()
-
-  useEffect(() => {
-    setTimeout(() => {
-        if (seconds > 0) {
-          setSeconds((seconds) => seconds - 1)
-        } else if (seconds === 0) {
-          if (minutesForRecall === 0) {
-            navigate("/names-and-faces/answers")
-          } else {
-            setMinutesForRecall((minutesForRecall) => minutesForRecall - 1)
-            setSeconds(59)
-          }
-        }
-    }, 1000)
-  }, [seconds, minutesForRecall, setSeconds, setMinutesForRecall, navigate])
 
   const firstPage = () => {
     setCurrentPage(1)
@@ -58,10 +36,11 @@ const Recall = () => {
           className="faces-section"
         >
           <div className="faces-section__header">
-            {minutesForRecall === 0 && seconds === 0 ? null : (
-              <p className="faces-section__header-timer">
-                {minutesForRecall}m {seconds < 10 ? `0${seconds}` : seconds}s
-              </p>
+            {startTime === 0 && (
+              <TimerComponent
+                time={100}
+                navigateTo={"/names-and-faces/answers"}
+              />
             )}
             <p className="faces-section__header-title">Recall</p>
             <button
