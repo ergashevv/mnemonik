@@ -7,17 +7,20 @@ import "./main.scss"
 const StartCard = () => {
   const { data, inputs, focus, setFocus, setInputs, show } = useCardsContext()
 
-  const handleRemove = useCallback((_: any, index: number) => {
-    setFocus(index)
-  }, [])
-  
+  const handleRemove = useCallback(
+    (_: any, index: number) => {
+      setFocus(index)
+    },
+    [setFocus]
+  )
+
   const handleAdd = useCallback(
     (val: Card[], _: any) => {
       setInputs((inputs: Card[]) =>
         inputs.map((input: any, i: number) => (i === focus ? val : input))
       )
     },
-    [inputs, focus, setInputs]
+    [focus, setInputs]
   )
 
   return (

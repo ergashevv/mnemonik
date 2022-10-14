@@ -6,14 +6,7 @@ import { useHomeContext } from "../../context/home-context"
 const Result = () => {
   const [show, setShow] = useState(false)
 
-  const {
-    result,
-    tab,
-    randomNumbers,
-    dynamic: dynum,
-    setCursor,
-    setTab,
-  } = useHomeContext()
+  const { result, tab, randomNumbers, dynamic: dynum } = useHomeContext()
 
   const count = useMemo(() => {
     let count = 0
@@ -52,7 +45,7 @@ const Result = () => {
             marginRight: "4px",
           }}
         >
-          {Array(Math.floor(40))
+          {Array(Math.floor(38))
             .fill(null)
             .map((_, index) => (
               <div className="result-num-or">
@@ -102,7 +95,13 @@ const Result = () => {
                             readOnly
                             style={{
                               color:
-                                value == randomNumbers[index] ? "green" : "red",
+                                value ==
+                                randomNumbers.slice(
+                                  dynum * tab,
+                                  dynum * (tab + 1)
+                                )[index]
+                                  ? "green"
+                                  : "red",
                               fontWeight: "bold",
                             }}
                             value={value}
@@ -111,7 +110,12 @@ const Result = () => {
                           {show && (
                             <input
                               readOnly
-                              value={randomNumbers[index]}
+                              value={
+                                randomNumbers.slice(
+                                  dynum * tab,
+                                  dynum * (tab + 1)
+                                )[index]
+                              }
                               type="text"
                             />
                           )}
