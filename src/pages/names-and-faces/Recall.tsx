@@ -9,8 +9,7 @@ import "./NF.scss"
 import TimerComponent from "../../components/timer"
 
 const Recall = () => {
-  const { people, currentPage, setCurrentPage } = useNamesAndFacesContext()
-
+  const { people, currentPage, setCurrentPage, timerForRecall } = useNamesAndFacesContext()
   const { startTime } = useHomeContext()
 
   const navigate = useNavigate()
@@ -38,7 +37,7 @@ const Recall = () => {
           <div className="faces-section__header">
             {startTime === 0 && (
               <TimerComponent
-                time={100}
+                time={timerForRecall}
                 navigateTo={"/names-and-faces/answers"}
               />
             )}

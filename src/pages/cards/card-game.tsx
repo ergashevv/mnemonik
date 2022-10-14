@@ -1,25 +1,37 @@
 import classNames from "classnames"
 import { useEffect } from "react"
 import { Link } from "react-router-dom"
-import { useCardsContext } from "../../context/cards-context"
 import NavigationBtn from "../../assets/images/next.png"
-import "./main.scss"
 import StartGameModal from "../../components/numbers-components/start-game"
-import { useHomeContext } from "../../context/home-context"
 import TimerComponent from "../../components/timer"
+import { useCardsContext } from "../../context/cards-context"
+import { useHomeContext } from "../../context/home-context"
+import "./main.scss"
+
 const CardGame = () => {
   const { startTime: starttime } = useHomeContext()
-  const { data, cursor, randomcard, setCursor, cursorW, navigation, show } =
-    useCardsContext()
+  const {
+    data,
+    cursor,
+    randomCard,
+    setCursor,
+    cursorW,
+    navigation,
+    show,
+  } = useCardsContext()
+
   const parsedCursorW = parseInt(cursorW!)
-  const showcards = randomcard!.slice(cursor, cursor + parsedCursorW)
+
+  const showCards = randomCard!.slice(cursor, cursor + parsedCursorW)
+
   useEffect(() => {
     if (navigation === "right") {
       setCursor(data.length - parsedCursorW)
     } else {
       setCursor(0)
     }
-  }, [setCursor, navigation])
+  }, [setCursor, navigation, data.length, parsedCursorW])
+
   const nextNavigate = () => {
     if (navigation === "right") {
       setCursor(cursor - parsedCursorW)
@@ -27,6 +39,7 @@ const CardGame = () => {
       setCursor(cursor + parsedCursorW)
     }
   }
+
   const prevNavigate = () => {
     if (navigation === "right") {
       setCursor(cursor + parsedCursorW)
@@ -34,6 +47,7 @@ const CardGame = () => {
       setCursor(cursor - parsedCursorW)
     }
   }
+
   return (
     <>
       {starttime ? (
@@ -51,7 +65,7 @@ const CardGame = () => {
               <Link to="/cards/start">Start</Link>
             </div>
             <div className="show-card">
-              {showcards.map((i, k) => (
+              {showCards.map((i, k) => (
                 <img key={k} src={i.image} alt="" />
               ))}
             </div>
@@ -75,7 +89,7 @@ const CardGame = () => {
               )}
             </div>
             <div className="cards">
-              {randomcard!.map((item, key) => (
+              {randomCard!.map((item, key) => (
                 <div
                   className={classNames("card", {
                     active: key >= cursor && key < cursor + parsedCursorW,

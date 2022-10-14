@@ -8,7 +8,7 @@ const LeftNumber = () => {
       {Array(Math.floor(40))
         .fill(null)
         .map((_, index) => (
-          <>
+          <div key={index}>
             {tab === 0 && index < 10 ? (
               <span className="num-or">{index + 1})</span>
             ) : null}
@@ -21,7 +21,7 @@ const LeftNumber = () => {
             {tab === 3 && index > 29 && index <= 40 ? (
               <span className="num-or">{index + 1})</span>
             ) : null}
-          </>
+          </div>
         ))}
     </>
   )

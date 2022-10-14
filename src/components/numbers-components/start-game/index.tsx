@@ -16,13 +16,11 @@ const StartGameModal = ({ time }: TimeProps) => {
       setStartTime(newTime)
       if (newTime === 0) {
         clearTimeout(timeout)
-        // setStartTime(5)
       }
     }, 1000)
 
     return () => clearTimeout(timeout)
   }, [setStartTime, startTime])
-  console.log(startTime)
 
   return (
     <div

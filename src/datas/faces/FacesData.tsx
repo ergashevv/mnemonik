@@ -1,4 +1,3 @@
-// import ImgM1 from "../../assets/images/faceImages/menFaces/1.jpg"
 import ImgM1 from "../../assets/images/names-and-faces/images/faceImages/menFaces/1.jpg"
 import ImgM2 from "../../assets/images/names-and-faces/images/faceImages/menFaces/2.jpg"
 import ImgM3 from "../../assets/images/names-and-faces/images/faceImages/menFaces/3.jpg"

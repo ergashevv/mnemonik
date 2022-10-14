@@ -1,9 +1,9 @@
-import { useState, useCallback } from "react"
+import { useState } from "react"
 import { Card, useCardsContext } from "../../context/cards-context"
-
 import "./main.scss"
+
 const ResultCard = () => {
-  const { inputs, randomcard } = useCardsContext()
+  const { inputs, randomCard } = useCardsContext()
   const [show, setShow] = useState(false)
 
   return (
@@ -14,13 +14,13 @@ const ResultCard = () => {
             <div
               onClick={() => setShow(!show)}
               style={{
-                background: item.id !== randomcard![index].id ? "red" : "black",
+                background: item.id !== randomCard![index].id ? "red" : "black",
               }}
               key={index}
               className={"empty-card"}
             >
               {show ? (
-                <img width="50px" src={randomcard![index].image} alt="" />
+                <img width="50px" src={randomCard![index].image} alt="" />
               ) : (
                 <img width="50px" src={item.image} alt="" />
               )}

@@ -9,6 +9,7 @@ import NamesAndFaceLayout from "./layouts/nf"
 import NumberLayout from "./layouts/numbers"
 import WordsLayout from "./layouts/words"
 import HomePage from "./pages/home/home"
+
 function App() {
   return (
     <Routes>

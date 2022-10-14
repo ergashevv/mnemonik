@@ -20,7 +20,7 @@ interface InputCellProps extends React.HTMLAttributes<HTMLInputElement> {
   onShiftRemove?: (e: any, index: number | undefined) => void
 
   onHover?: (e: any, index: number | undefined) => void
-  onUnhover?: (e: any, index: number | undefined) => void
+  onUnHover?: (e: any, index: number | undefined) => void
 }
 
 export default memo(function InputCell({
@@ -35,7 +35,7 @@ export default memo(function InputCell({
   onShiftAdd,
   onShiftRemove,
   onHover,
-  onUnhover,
+  onUnHover,
   ...props
 }: InputCellProps) {
   const handleKeyUp = useCallback(
@@ -69,15 +69,15 @@ export default memo(function InputCell({
     [onValue, index, focusOnNext, focusOnPrev, onShiftAdd, onShiftRemove]
   )
 
-  const handleMouseOver = useCallback(
-    (e: any) => onHover?.(e, index),
-    [index, onHover]
-  )
+  const handleMouseOver = useCallback((e: any) => onHover?.(e, index), [
+    index,
+    onHover,
+  ])
 
-  const handleMouseLeave = useCallback(
-    (e: any) => onUnhover?.(e, index),
-    [index, onUnhover]
-  )
+  const handleMouseLeave = useCallback((e: any) => onUnHover?.(e, index), [
+    index,
+    onUnHover,
+  ])
 
   return (
     <input

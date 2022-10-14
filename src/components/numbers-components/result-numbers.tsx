@@ -5,16 +5,16 @@ const ResultNumbers = () => {
     cursorW,
     cursor,
     tab,
-    dynamic: dynum,
-    randomNumbers: randomnumbers,
+    dynamic,
+    randomNumbers,
   } = useHomeContext()
 
-  const newnumbers = randomnumbers
-    .slice(dynum * tab, dynum * (tab + 1))
+  const newNumbers = randomNumbers
+    .slice(dynamic * tab, dynamic * (tab + 1))
     .slice(cursor, cursor + parseInt(cursorW!))
   return (
     <>
-      {newnumbers?.map((item, key) => (
+      {newNumbers?.map((item, key) => (
         <h1 key={key} className="m-0">
           {item}
         </h1>
