@@ -6,9 +6,11 @@ import TimerComponent from "../../components/timer"
 import { useHomeContext } from "../../context/home-context"
 import InputCell from "./input-cell"
 import "./main.scss"
+import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
 
 const StartNumberGame = () => {
   const { numbers, randomNumbers, setResult, tab, setTab } = useHomeContext()
+  const { timerForAnswer} = useNamesAndFacesContext()
 
   const [inputs, setInputs] = useState(Array(numbers.length).fill(""))
 
@@ -84,7 +86,7 @@ const StartNumberGame = () => {
         className="d-flex"
       >
         <TimerComponent
-          time={40}
+          time={timerForAnswer}
           navigateTo={"/numbers/result"}
           finishTimeFunc={finishGame}
         />

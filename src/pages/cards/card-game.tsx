@@ -6,6 +6,7 @@ import StartGameModal from "../../components/numbers-components/start-game"
 import TimerComponent from "../../components/timer"
 import { useCardsContext } from "../../context/cards-context"
 import { useHomeContext } from "../../context/home-context"
+import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
 import "./main.scss"
 
 const CardGame = () => {
@@ -19,6 +20,8 @@ const CardGame = () => {
     navigation,
     show,
   } = useCardsContext()
+
+  const { timerForRecall } = useNamesAndFacesContext()
 
   const parsedCursorW = parseInt(cursorW!)
 
@@ -61,7 +64,7 @@ const CardGame = () => {
               }}
               className="d-flex"
             >
-              <TimerComponent time={70} navigateTo={"/cards/start"} />
+              <TimerComponent time={timerForRecall} navigateTo={"/cards/start"} />
               <Link to="/cards/start">Start</Link>
             </div>
             <div className="show-card">

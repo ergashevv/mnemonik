@@ -10,11 +10,21 @@ import { useWordsContext } from "../../context/WordsContext"
 import "./Words.scss"
 
 const WordsRecall = () => {
-  const { words, wordsPerPage, currentWords } = useWordsContext()
-  
+  const {
+    words,
+    wordsPerPage,
+    currentWords,
+    cursorWidth,
+    activeWords,
+    setActiveWords,
+  } = useWordsContext()
   const { startTime } = useHomeContext()
 
-  const { currentPage, setCurrentPage, timerForRecall } = useNamesAndFacesContext()
+  const {
+    currentPage,
+    setCurrentPage,
+    timerForRecall,
+  } = useNamesAndFacesContext()
 
   const { prevHandlersWords } = PrevPage()
   const { nextHandlersWords } = NextPage()
@@ -22,6 +32,7 @@ const WordsRecall = () => {
   const navigate = useNavigate()
 
   const firstPage = () => {
+    setActiveWords(0)
     setCurrentPage(1)
   }
 
@@ -40,7 +51,10 @@ const WordsRecall = () => {
         >
           <div className="words-section__header">
             {startTime === 0 && (
-              <TimerComponent time={timerForRecall} navigateTo="/words/answers" />
+              <TimerComponent
+                time={timerForRecall}
+                navigateTo="/words/answers"
+              />
             )}
             <p className="words-section__header-title">Recall</p>
             <button
@@ -54,9 +68,20 @@ const WordsRecall = () => {
 
           <div className="words-section__cards">
             {currentWords?.map((word, index) => (
-              <article key={index + (currentPage - 1) * 10 + 1}>
+              <article
+                key={index}
+                style={{
+                  backgroundColor:
+                    index >= activeWords && index < activeWords + cursorWidth
+                      ? "red"
+                      : "",
+                }}
+              >
                 <div className="number">
-                  {index + (currentPage - 1) * 10 + 1}.
+                  {cursorWidth === 3 || cursorWidth === 4
+                    ? index + (currentPage - 1) * 12 + 1
+                    : index + (currentPage - 1) * 10 + 1}
+                  .
                 </div>
                 <div className="word">{word}</div>
               </article>
@@ -64,7 +89,11 @@ const WordsRecall = () => {
           </div>
           <div className="indicator">
             <span>{currentPage}</span>/
-            <span>{words?.length / wordsPerPage}</span>
+            <span>
+              {cursorWidth === 3 || cursorWidth === 4
+                ? (words?.length / (wordsPerPage + 2)).toFixed()
+                : words?.length / wordsPerPage}
+            </span>
           </div>
           <div className="control-buttons">
             <button onClick={firstPage} className="first-button">

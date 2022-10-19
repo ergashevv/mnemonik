@@ -7,6 +7,7 @@ import Tabs from "../../components/tabs"
 import TimerComponent from "../../components/timer"
 import { useHomeContext } from "../../context/home-context"
 import "./main.scss"
+import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
 
 const NumbersGame = () => {
   const {
@@ -18,6 +19,8 @@ const NumbersGame = () => {
     startTime,
     line,
   } = useHomeContext()
+
+  const { timerForRecall } = useNamesAndFacesContext()
 
   return (
     <>
@@ -31,7 +34,7 @@ const NumbersGame = () => {
             }}
             className="d-flex"
           >
-            <TimerComponent time={70} navigateTo={"/numbers/start"} />
+            <TimerComponent time={timerForRecall} navigateTo={"/numbers/start"} />
             <Link to="/numbers/start">Start</Link>
           </div>
           <div className="header">

@@ -13,7 +13,9 @@ const SettingsPage = () => {
     setNavigation,
     autoSecond,
     setAutoSecond,
+    setStartTime,
   } = useHomeContext()
+
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setCursorW(event.target.value)
@@ -37,10 +39,21 @@ const SettingsPage = () => {
     navigate("/numbers/game")
   }
 
+  const handleStartTime = (e: ChangeEvent<HTMLInputElement>) => {
+    setStartTime(+e.target.value)
+  }
+
   return (
     <div className="settings">
       <div className="container">
         <form className="settings-form">
+          <label htmlFor="">Boshlang'ich vaqtni kiriting</label>
+          <input
+            type="number"
+            onChange={handleStartTime}
+            placeholder="Standart vaqt 5 soniya"
+          />
+
           <label htmlFor="">Change cursor numbers</label>
           <input
             pattern="[0-9]*"

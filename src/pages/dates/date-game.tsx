@@ -5,11 +5,14 @@ import StartGameModal from "../../components/numbers-components/start-game"
 import TimerComponent from "../../components/timer"
 import { useDatedContext } from "../../context/date-context"
 import { useHomeContext } from "../../context/home-context"
+import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
 import "./main.scss"
 
 const DatesGamePage = () => {
   const { data, even } = useDatedContext()
   const { setCursor, cursor, startTime } = useHomeContext()
+
+  const { timerForRecall } = useNamesAndFacesContext()
 
   const elementClick = (e: any) => {
     setCursor(e)
@@ -27,7 +30,7 @@ const DatesGamePage = () => {
       ) : (
         <>
           <div className="d-flex">
-            <TimerComponent time={70} navigateTo={"/dates/start"} />
+            <TimerComponent time={timerForRecall} navigateTo={"/dates/start"} />
             <Link to="/dates/start">Start</Link>
           </div>
           <div className="date-game container load-anim">

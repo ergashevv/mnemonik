@@ -14,7 +14,7 @@ const Settings = () => {
     show,
   } = useCardsContext()
 
-  const { setStartTime, startTime } = useHomeContext()
+  const { setStartTime } = useHomeContext()
 
   const navigate = useNavigate()
 
@@ -38,10 +38,19 @@ const Settings = () => {
     navigate("/cards/game")
   }
 
+
+
   return (
     <div className="settings">
       <div className="container">
         <form className="settings-form">
+          <label htmlFor="">Boshlang'ich vaqtni kiriting</label>
+          <input
+            type="number"
+            onChange={handleStartTime}
+            placeholder="Standart vaqt 5 soniya"
+          />
+          
           <label>Select cards</label>
           <select onChange={handleCursorW} defaultValue={cursorW}>
             <option value="1">1</option>
@@ -53,18 +62,19 @@ const Settings = () => {
             <option value="7">7</option>
             <option value="8">8</option>
           </select>
-          <h2>Enter start time</h2>
-          <input value={startTime} onChange={handleStartTime} type="number" />
+
           <label>Select navigation</label>
           <select defaultValue={navigation} onChange={handleNavigation}>
             <option value="left">Left to right</option>
             <option value="right">Right to left</option>
           </select>
+
           <label>Show cards</label>
           <select defaultValue={show} onChange={handleShow}>
             <option value="small">Small</option>
             <option value="large">Large</option>
           </select>
+
           <button onClick={handleNavigate}>Start</button>
         </form>
       </div>

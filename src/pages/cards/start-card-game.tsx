@@ -2,10 +2,13 @@ import { useCallback } from "react"
 import { Link } from "react-router-dom"
 import TimerComponent from "../../components/timer"
 import { Card, useCardsContext } from "../../context/cards-context"
+import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
 import "./main.scss"
 
 const StartCard = () => {
   const { data, inputs, focus, setFocus, setInputs, show } = useCardsContext()
+
+  const { timerForAnswer } = useNamesAndFacesContext()
 
   const handleRemove = useCallback(
     (_: any, index: number) => {
@@ -32,7 +35,7 @@ const StartCard = () => {
           }}
           className="d-flex"
         >
-          <TimerComponent time={70} navigateTo={"/cards/result"} />
+          <TimerComponent time={timerForAnswer} navigateTo={"/cards/result"} />
           <Link to="/cards/result">Result</Link>
         </div>
         <div className="empty">

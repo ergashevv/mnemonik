@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom"
 import TimerComponent from "../../components/timer"
 import { useDatedContext } from "../../context/date-context"
+import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
 import "./main.scss"
 
 const DatesStartGame = () => {
   const { data, even, setUserDate } = useDatedContext()
+
+  const { timerForAnswer } = useNamesAndFacesContext()
 
   const handleFocusOnNext = (e: any, index: number) => {
     if (e.target.value.length >= 4) {
@@ -33,7 +36,7 @@ const DatesStartGame = () => {
           justifyContent: "space-between",
         }}
       >
-        <TimerComponent time={30} navigateTo={"/dates/result"} />
+        <TimerComponent time={timerForAnswer} navigateTo={"/dates/result"} />
         <Link to="/dates/result">Finish</Link>
       </div>
       <div className="start-date-game">

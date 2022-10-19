@@ -5,7 +5,6 @@ import PrevPage from "../../components/button-control-component/PrevPage"
 import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
 import "./NF.scss"
 
-
 const Result = () => {
   const {
     people,
@@ -18,17 +17,6 @@ const Result = () => {
   const { prevHandlers } = PrevPage()
   const { nextHandlers } = NextPage()
 
-  const [previewFirstName, setPreviewFirstName] = useState<boolean>(false)
-  const [previewLastName, setPreviewLastName] = useState<boolean>(false)
-
-  const handlePreviewFirstName = () => {
-    setPreviewFirstName((current) => !current)
-  }
-
-  const handlePreviewLastName = () => {
-    setPreviewLastName((current) => !current)
-  }
-
   const [visibleFirstNames, setVisibleFirstNames] = useState<boolean[]>(
     Array(results?.length).fill(false)
   )
@@ -38,10 +26,14 @@ const Result = () => {
   )
 
   const correctFirstNames = results.filter(
-    (el, index) => el?.firstName === shuffledPeople[index]?.firstName
+    (el, index) =>
+      el?.firstName.toLowerCase() ===
+      shuffledPeople[index]?.firstName.toLowerCase()
   )
   const correctLastNames = results.filter(
-    (el, index) => el?.lastName === shuffledPeople[index]?.lastName
+    (el, index) =>
+      el?.lastName.toLowerCase() ===
+      shuffledPeople[index]?.lastName.toLowerCase()
   )
 
   const firstPage = () => {
@@ -79,15 +71,13 @@ const Result = () => {
                           style={{
                             backgroundColor:
                               results[index]?.firstName === ""
-                                ? "rgb(255, 255, 255)"
-                                : results[index]?.firstName !==
-                                    shuffledPeople[index]?.firstName &&
-                                  results[index]?.firstName.length > 0
+                                ? "#fff"
+                                : results[index]?.firstName.length > 0 &&
+                                  results[index]?.firstName.toLowerCase() !==
+                                    shuffledPeople[
+                                      index
+                                    ]?.firstName.toLowerCase()
                                 ? "rgba(255, 0, 0, .5)"
-                                : results[index]?.firstName !==
-                                    shuffledPeople[index]?.firstName &&
-                                  results[index]?.firstName.length > 0
-                                ? "rgba(26,161, 19, .5)"
                                 : "rgba(26, 161, 19, .5)",
                           }}
                           value={
@@ -99,10 +89,10 @@ const Result = () => {
                         <Eye
                           className="faces-section__form-preview"
                           style={{
-                            backgroundColor: previewFirstName
+                            backgroundColor: visibleFirstNames[index]
                               ? "black"
-                              : "white",
-                            color: previewFirstName ? "white" : "black",
+                              : "",
+                            color: visibleFirstNames[index] ? "white" : "",
                           }}
                           onClick={() => {
                             setVisibleFirstNames((firstNames) =>
@@ -112,8 +102,6 @@ const Result = () => {
                                   : firstName
                               )
                             )
-
-                            handlePreviewFirstName()
                           }}
                         />
                       </div>
@@ -127,11 +115,13 @@ const Result = () => {
                           style={{
                             backgroundColor:
                               results[index]?.lastName === ""
-                                ? "rgb(255, 255, 255)"
-                                : results[index]?.lastName !==
-                                    shuffledPeople[index]?.lastName &&
-                                  results[index].lastName.length > 0
-                                ? "rgb(255, 0, 0, .5)"
+                                ? "#fff"
+                                : results[index]?.lastName.length > 0 &&
+                                  results[index]?.lastName.toLowerCase() !==
+                                    shuffledPeople[
+                                      index
+                                    ]?.lastName.toLowerCase()
+                                ? "rgba(255, 0, 0, .5)"
                                 : "rgba(26, 161, 19, .5)",
                           }}
                           value={
@@ -143,10 +133,10 @@ const Result = () => {
                         <Eye
                           className="faces-section__form-preview"
                           style={{
-                            backgroundColor: previewLastName
+                            backgroundColor: visibleLastNames[index]
                               ? "black"
-                              : "white",
-                            color: previewLastName ? "white" : "black",
+                              : "",
+                            color: visibleLastNames[index] ? "white" : "",
                           }}
                           onClick={() => {
                             setVisibleLastNames((lastNames) =>
@@ -156,8 +146,6 @@ const Result = () => {
                                   : lastName
                               )
                             )
-
-                            handlePreviewLastName()
                           }}
                         />
                       </div>

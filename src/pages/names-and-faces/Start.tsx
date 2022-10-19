@@ -18,8 +18,7 @@ const Start = () => {
     people,
     setPeople,
     setShuffledPeople,
-    setTimerForRecall,
-    setTimerForAnswer
+    setCurrentPage
   } = useNamesAndFacesContext()
 
   const [imagesFetched, setImagesFetched] = useState<number>(0)
@@ -41,6 +40,7 @@ const Start = () => {
 
         return { ...person, img: url }
       })
+
     )
 
     setShuffledPeople((shuffledPeople) =>
@@ -58,18 +58,11 @@ const Start = () => {
     setPeople(updatedPeople)
 
     navigate("/names-and-faces/recall")
-  }, [navigate, people, setPeople, setShuffledPeople])
+    setCurrentPage(1)
+  }, [navigate, people, setCurrentPage, setPeople, setShuffledPeople])
 
   const handleStartTime = (e: ChangeEvent<HTMLInputElement>) => {
     setStartTime(+e.target.value)
-  }
-
-  const handleMinutesForRecall = (e: ChangeEvent<HTMLInputElement>) => {
-    setTimerForRecall(+e.target.value)
-  }
-
-  const handleMinutesForAnswer = (e: ChangeEvent<HTMLInputElement>) => {
-    setTimerForAnswer(+e.target.value)
   }
   
   return (
@@ -81,20 +74,6 @@ const Start = () => {
             type="number"
             onChange={handleStartTime}
             placeholder="Standart vaqt 5 soniya"
-          />
-
-          <label htmlFor=""> Eslab qolish vaqtini kiriting</label>
-          <input
-            type="number"
-            onChange={handleMinutesForRecall}
-            placeholder="Standart vaqt 5 daqiqa"
-          />
-
-          <label htmlFor="">Javob berish vaqtini kiriting</label>
-          <input
-            type="number"
-            onChange={handleMinutesForAnswer}
-            placeholder="Standart vaqt 5 daqiqa "
           />
 
           <button

@@ -4,8 +4,15 @@ import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
 import { useWordsContext } from "../../context/WordsContext"
 
 const NextPage = () => {
-  const { people, setCurrentPage } = useNamesAndFacesContext()
-  const { words, wordsPerPage } = useWordsContext()
+  const { people, setCurrentPage, currentPage } = useNamesAndFacesContext()
+  const {
+    words,
+    wordsPerPage,
+    currentWords,
+    cursorWidth,
+    activeWords,
+    setActiveWords,
+  } = useWordsContext()
   const { flashCards } = useFlashCardsContext()
 
   const [longPress, setLongPress] = useState(false)
@@ -23,14 +30,38 @@ const NextPage = () => {
   }, [people?.length, setCurrentPage])
 
   const nextPageWords = useCallback(() => {
-    setCurrentPage((oldPage: number) => {
-      let nextPage = oldPage + 1
-      if (nextPage > words?.length / wordsPerPage) {
-        nextPage = 1
-      }
-      return nextPage
-    })
-  }, [setCurrentPage, words?.length, wordsPerPage])
+    setActiveWords((oldActiveWords) => oldActiveWords + cursorWidth)
+
+    console.log(activeWords, 'next')
+
+    if (activeWords + cursorWidth >= currentWords.length) {
+      setCurrentPage((oldPage) => {
+        let nextPage = oldPage + 1
+
+        if (cursorWidth === 3 || cursorWidth === 4) {
+          if (nextPage > +(words.length / (wordsPerPage + 2)).toFixed()) {
+            nextPage = 1
+          }
+        }
+
+        if (nextPage > words.length / wordsPerPage) {
+          nextPage = 1
+        }
+
+        return nextPage
+      })
+
+      setActiveWords(0)
+    }
+  }, [
+    activeWords,
+    currentWords.length,
+    cursorWidth,
+    setActiveWords,
+    setCurrentPage,
+    words.length,
+    wordsPerPage,
+  ])
 
   const nextPageCards = useCallback(() => {
     setCurrentPage((oldPage: number) => {
