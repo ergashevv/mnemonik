@@ -9,35 +9,42 @@ interface ITimerProps {
 }
 
 const TimerComponent = ({ time, navigateTo, finishTimeFunc }: ITimerProps) => {
-  const [seconds, setSeconds] = useState<number>(time)
+  const [seconds, setSeconds] = useState<number>(0)
+  const [minutes, setMinutes] = useState<number>(time)
 
   const navigate = useNavigate()
-  useEffect(() => {
-    setTimeout(() => setSeconds(seconds - 1), 1000)
-  }, [seconds])
 
   useEffect(() => {
-    if (seconds > 0) {
-      setTimeout(() => setSeconds(seconds - 1), 1000)
-    }
-
-    if (seconds < 1) {
-      navigate(navigateTo)
-      if (finishTimeFunc) {
-        finishTimeFunc()
+    const timeInterval = setInterval(() => {
+      if (seconds === 0) {
+        if (minutes === 0) {
+          navigate(navigateTo)
+          if (finishTimeFunc) {
+            finishTimeFunc()
+          }
+          clearInterval(timeInterval)
+        } else {
+          setMinutes(minutes - 1)
+          setSeconds(59)
+        }
       }
-    }
-  })
 
-  const screenCountdownStyle = {
-    display: seconds >= 0 ? "block" : "none",
-    justifyContent: "space-between",
-  }
+      if (seconds > 0) {
+        setSeconds(seconds - 1)
+      }
+    }, 1000)
+
+    return () => {
+      clearInterval(timeInterval)
+    }
+  }, [finishTimeFunc, minutes, navigate, navigateTo, seconds])
 
   return (
     <>
-      <div style={screenCountdownStyle}>
-        <span>{seconds} s</span>
+      <div>
+        <span>
+          {minutes}m : {seconds < 10 ? `${seconds}` : seconds}s{" "}
+        </span>
       </div>
     </>
   )

@@ -1,9 +1,11 @@
 import { ChangeEvent } from "react"
 import { useNavigate } from "react-router-dom"
 import { useHomeContext } from "../../context/home-context"
+import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
 
 const FlashCardsStart = () => {
   const { setStartTime } = useHomeContext()
+  const { setCurrentPage } = useNamesAndFacesContext()
 
   const navigate = useNavigate()
 
@@ -13,6 +15,7 @@ const FlashCardsStart = () => {
 
   const handleNavigate = () => {
     navigate("/flash-cards/recall")
+    setCurrentPage(1)
   }
 
   return (

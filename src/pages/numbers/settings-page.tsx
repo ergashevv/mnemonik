@@ -14,6 +14,7 @@ const SettingsPage = () => {
     setNavigation,
     autoSecond,
     setAutoSecond,
+    setStartTime,
   } = useHomeContext()
   console.log(autoSecond, "auto")
 

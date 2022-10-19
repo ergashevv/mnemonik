@@ -7,6 +7,7 @@ import Tabs from "../../components/tabs"
 import TimerComponent from "../../components/timer"
 import { useHomeContext } from "../../context/home-context"
 import "./main.scss"
+import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
 
 const NumbersGame = () => {
   const {
@@ -23,6 +24,8 @@ const NumbersGame = () => {
     setTab(0)
   }
   console.log(tab)
+
+  const { timerForRecall } = useNamesAndFacesContext()
 
   return (
     <>

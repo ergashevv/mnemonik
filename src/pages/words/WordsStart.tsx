@@ -4,25 +4,18 @@ import { useHomeContext } from "../../context/home-context"
 import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
 
 const WordsStart = () => {
-  const { setTimerForRecall, setTimerForAnswer } = useNamesAndFacesContext()
+  const { setCurrentPage } = useNamesAndFacesContext()
   const { setStartTime } = useHomeContext()
 
   const navigate = useNavigate()
 
   const handleNavigate = () => {
     navigate("/words/recall")
+    setCurrentPage(1)
   }
 
   const handleStartTime = (e: ChangeEvent<HTMLInputElement>) => {
     setStartTime(e.target.value)
-  }
-
-  const handleTimerForRecall = (e: ChangeEvent<HTMLInputElement>) => {
-    setTimerForRecall(+e.target.value)
-  }
-
-  const handleTimerForAnswer = (e: ChangeEvent<HTMLInputElement>) => {
-    setTimerForAnswer(+e.target.value)
   }
 
   return (
@@ -34,20 +27,6 @@ const WordsStart = () => {
             type="number"
             onChange={handleStartTime}
             placeholder="Standart vaqt 5 soniya"
-          />
-
-          <label htmlFor="">Eslab qolish vaqtini kiriting</label>
-          <input
-            type="number"
-            onChange={handleTimerForRecall}
-            placeholder="Standart vaqt 100 soniya"
-          />
-
-          <label htmlFor="">Javob berish vaqtini kiriting</label>
-          <input
-            type="number"
-            onChange={handleTimerForAnswer}
-            placeholder="Standart vaqt 100 soniya"
           />
           <button onClick={handleNavigate}>Start</button>
         </form>

@@ -2,15 +2,17 @@ import { ChangeEvent } from "react"
 import { useNavigate } from "react-router-dom"
 import "../../assets/styles/StartStyles.scss"
 import { useHomeContext } from "../../context/home-context"
+import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
 
 const DatesSettings = () => {
-  const { startTime, setStartTime } = useHomeContext()
+  const { setStartTime } = useHomeContext()
 
   const navigate = useNavigate()
 
   const handleStartTime = (e: ChangeEvent<HTMLInputElement>) => {
     setStartTime(e.target.value)
   }
+
 
   const handleNavigate = () => {
     navigate("/dates/game")
@@ -20,8 +22,12 @@ const DatesSettings = () => {
     <div className="settings">
       <div className="container">
         <form className="settings-form">
-          <label>Enter time</label>
-          <input value={startTime} onChange={handleStartTime} type="number" />
+          <label htmlFor="">Boshlang'ich vaqtni kiriting</label>
+          <input
+            type="number"
+            onChange={handleStartTime}
+            placeholder="Standart vaqt 5 soniya"
+          />
           <button onClick={handleNavigate}>Start</button>
         </form>
       </div>

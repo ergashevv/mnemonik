@@ -33,6 +33,11 @@ interface IContext {
   setMinutesForRecall: NumberSetter
   minutesForAnswer: number
   setMinutesForAnswer: NumberSetter
+
+  cursorWidth: number
+  setCursorWidth: NumberSetter
+  activeWords: number
+  setActiveWords: NumberSetter
 }
 
 const WordsContext = createContext<IContext>({} as IContext)
@@ -46,11 +51,20 @@ export const WordsContextProvider = ({ children }: { children: ReactNode }) => {
   const [countDown, setCountDown] = useState<number>(5)
   const [minutesForRecall, setMinutesForRecall] = useState<number>(5)
   const [minutesForAnswer, setMinutesForAnswer] = useState<number>(5)
+  const [cursorWidth, setCursorWidth] = useState<number>(4)
+  const [activeWords, setActiveWords]  = useState<number>(0)
 
-  const indexOfLastWord = currentPage * wordsPerPage
-  const indexOfFirstWord = indexOfLastWord - wordsPerPage
-  const currentWords = words.slice(indexOfFirstWord, indexOfLastWord)
+  const indexOfLastWord =
+    cursorWidth === 3 || cursorWidth === 4
+      ? currentPage * (wordsPerPage + 2)
+      : currentPage * wordsPerPage
 
+  const indexOfFirstWord =
+    cursorWidth === 3 || cursorWidth === 4
+      ? indexOfLastWord - (wordsPerPage + 2)
+      : indexOfLastWord - wordsPerPage
+
+  const currentWords = words?.slice(indexOfFirstWord, indexOfLastWord)
   const currentAnswers = answers?.slice(indexOfFirstWord, indexOfLastWord)
 
   const shuffledWords = words
@@ -82,6 +96,11 @@ export const WordsContextProvider = ({ children }: { children: ReactNode }) => {
     setMinutesForRecall,
     minutesForAnswer,
     setMinutesForAnswer,
+    cursorWidth,
+    setCursorWidth,
+
+    activeWords,
+    setActiveWords
   }
 
   return <WordsContext.Provider value={value}>{children}</WordsContext.Provider>

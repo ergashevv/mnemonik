@@ -71,9 +71,9 @@ export const NamesAndFacesContextProvider = ({
 }) => {
   const [people, setPeople] = useState<Person[]>([])
   const [shuffledPeople, setShuffledPeople] = useState<Person[]>([])
-  const [currentPage, setCurrentPage] = useState<number>(1)
-  const [timerForRecall, setTimerForRecall] = useState<number>(100)
-  const [timerForAnswer, setTimerForAnswer] = useState<number>(100)
+  const [currentPage, setCurrentPage] = useState<number>(1) 
+  const [timerForRecall, setTimerForRecall] = useState<number>(5)
+  const [timerForAnswer, setTimerForAnswer] = useState<number>(15)
 
   const [firstNames, setFirstNames] = useState<string[]>(() =>
     Array(50).fill("")

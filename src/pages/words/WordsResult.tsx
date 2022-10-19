@@ -18,7 +18,8 @@ const WordsResult = () => {
   )
 
   const correctAnswers = words?.filter(
-    (el, index) => el === answers[index + (currentPage - 1) * 10]
+    (el, index) =>
+      el.toLowerCase() === answers[index + (currentPage - 1) * 10].toLowerCase()
   )
 
   const firstPage = () => {
@@ -51,9 +52,17 @@ const WordsResult = () => {
                       ).toString()}
                       style={{
                         backgroundColor:
-                          words[index + (currentPage - 1) * 10] !==
-                          answers[index + (currentPage - 1) * 10]
-                            ? "rgb(255, 0, 0, .5)"
+                          answers[index + (currentPage - 1) * 10] === ""
+                            ? "#fff"
+                            : answers[index + (currentPage - 1) * 10].length >
+                                0 &&
+                              words[
+                                index + (currentPage - 1) * 10
+                              ].toLowerCase() !==
+                                answers[
+                                  index + (currentPage - 1) * 10
+                                ].toLowerCase()
+                            ? "rgba(255, 0, 0, .5)"
                             : "rgba(26, 161, 19, .5)",
                       }}
                       value={
