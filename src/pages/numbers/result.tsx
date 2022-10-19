@@ -10,11 +10,12 @@ const Result = () => {
   const count = useMemo(() => {
     let count = 0
     result?.forEach((item: any, k: any) => {
-      if (item !== randomNumbers[k]) count++
+      if (item !== randomNumbers.slice(dynum * tab, dynum * (tab + 1))[k])
+        count++
     })
 
     return count
-  }, [randomNumbers, result])
+  }, [dynum, randomNumbers, result, tab])
 
   return (
     <>
@@ -78,7 +79,7 @@ const Result = () => {
                 <div
                   style={{
                     gridTemplateColumns:
-                    dynum == 189
+                      dynum == 189
                         ? "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr"
                         : "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr",
                   }}

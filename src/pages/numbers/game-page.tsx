@@ -2,7 +2,7 @@ import classNames from "classnames"
 import { Link } from "react-router-dom"
 import LeftNumber from "../../components/left-numbers"
 import NavigationBtn from "../../components/numbers-components/navigation-buttons-game"
-import StartGameModal from "../../components/numbers-components/start-game"
+import StartGameModal from "../../components/start-game"
 import Tabs from "../../components/tabs"
 import TimerComponent from "../../components/timer"
 import { useHomeContext } from "../../context/home-context"
@@ -11,6 +11,7 @@ import "./main.scss"
 const NumbersGame = () => {
   const {
     cursorW,
+    setTab,
     cursor,
     randomNumbers,
     tab,
@@ -18,11 +19,15 @@ const NumbersGame = () => {
     startTime,
     line,
   } = useHomeContext()
+  const finishGame = () => {
+    setTab(0)
+  }
+  console.log(tab)
 
   return (
     <>
-      {startTime ? (
-        <StartGameModal time={startTime} />
+      {Number(startTime) > 0 ? (
+        <StartGameModal time={String(startTime)} />
       ) : (
         <div className="game container">
           <div
@@ -31,7 +36,11 @@ const NumbersGame = () => {
             }}
             className="d-flex"
           >
-            <TimerComponent time={70} navigateTo={"/numbers/start"} />
+            <TimerComponent
+              finishTimeFunc={finishGame}
+              time={5}
+              navigateTo={"/numbers/start"}
+            />
             <Link to="/numbers/start">Start</Link>
           </div>
           <div className="header">

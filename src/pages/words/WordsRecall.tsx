@@ -2,22 +2,28 @@ import { ArrowLeft, ArrowRight, Rewind } from "react-feather"
 import { useNavigate } from "react-router"
 import NextPage from "../../components/button-control-component/NextPage"
 import PrevPage from "../../components/button-control-component/PrevPage"
-import StartGameModal from "../../components/numbers-components/start-game"
+import StartGameModal from "../../components/start-game"
 import TimerComponent from "../../components/timer"
 import { useHomeContext } from "../../context/home-context"
 import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
 import { useWordsContext } from "../../context/WordsContext"
+import { useState } from "react"
 import "./Words.scss"
 
 const WordsRecall = () => {
   const { words, wordsPerPage, currentWords } = useWordsContext()
-  
-  const { startTime } = useHomeContext()
 
-  const { currentPage, setCurrentPage, timerForRecall } = useNamesAndFacesContext()
+  const { startTime, cursor, setCursor } = useHomeContext()
+  const { currentPage, setCurrentPage, timerForRecall } =
+    useNamesAndFacesContext()
 
   const { prevHandlersWords } = PrevPage()
   const { nextHandlersWords } = NextPage()
+
+  const changeCursorHandler = () => {
+    setCursor(cursor + 1)
+  }
+  console.log(cursor)
 
   const navigate = useNavigate()
 
@@ -33,14 +39,17 @@ const WordsRecall = () => {
   return (
     <div className="words">
       <div className="container">
-        <StartGameModal time={startTime} />
+        <StartGameModal time={startTime!} />
         <div
           className="words-section"
-          style={{ display: startTime > 0 ? "none" : "flex" }}
+          style={{ display: Number(startTime) > 0 ? "none" : "flex" }}
         >
           <div className="words-section__header">
-            {startTime === 0 && (
-              <TimerComponent time={timerForRecall} navigateTo="/words/answers" />
+            {Number(startTime) === 0 && (
+              <TimerComponent
+                time={timerForRecall}
+                navigateTo="/words/answers"
+              />
             )}
             <p className="words-section__header-title">Recall</p>
             <button
@@ -54,7 +63,15 @@ const WordsRecall = () => {
 
           <div className="words-section__cards">
             {currentWords?.map((word, index) => (
-              <article key={index + (currentPage - 1) * 10 + 1}>
+              <article
+                style={{
+                  background:
+                    index + (currentPage - 1) * 10 + 1 === cursor
+                      ? "red"
+                      : "white",
+                }}
+                key={index + (currentPage - 1) * 10 + 1}
+              >
                 <div className="number">
                   {index + (currentPage - 1) * 10 + 1}.
                 </div>
@@ -73,7 +90,11 @@ const WordsRecall = () => {
             <button {...prevHandlersWords} className="prev-button">
               <ArrowLeft size={32} />
             </button>
-            <button {...nextHandlersWords} className="next-button">
+            <button
+              // onClick={changeCursorHandler}
+              {...nextHandlersWords}
+              className="next-button"
+            >
               <ArrowRight size={32} />
             </button>
           </div>

@@ -14,7 +14,7 @@ const WordsStart = () => {
   }
 
   const handleStartTime = (e: ChangeEvent<HTMLInputElement>) => {
-    setStartTime(+e.target.value)
+    setStartTime(e.target.value)
   }
 
   const handleTimerForRecall = (e: ChangeEvent<HTMLInputElement>) => {

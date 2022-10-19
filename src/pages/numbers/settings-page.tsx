@@ -1,6 +1,7 @@
 import { ChangeEvent } from "react"
 import { useNavigate } from "react-router-dom"
 import "../../assets/styles/StartStyles.scss"
+import SelectStartTime from "../../components/start-game-select"
 import { useHomeContext } from "../../context/home-context"
 
 const SettingsPage = () => {
@@ -14,6 +15,7 @@ const SettingsPage = () => {
     autoSecond,
     setAutoSecond,
   } = useHomeContext()
+  console.log(autoSecond, "auto")
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setCursorW(event.target.value)
@@ -26,8 +28,9 @@ const SettingsPage = () => {
   }
 
   const handleNavigation = (e: ChangeEvent<HTMLSelectElement>) => {
-    setNavigation(+e.target.value)
+    setNavigation(e.target.value)
   }
+  console.log(navigation)
 
   const handleAutoSecond = (e: ChangeEvent<HTMLInputElement>) => {
     setAutoSecond(+e.target.value)
@@ -58,25 +61,22 @@ const SettingsPage = () => {
             type="number"
             placeholder="Enter number"
           />
-
+          <h1>Enter memorizing time</h1>
+          <SelectStartTime time={5} />
           <label>Select navigation</label>
-          <select
-            defaultValue={"custom"}
-            onChange={handleNavigation}
-            name=""
-            id=""
-          >
+          <select defaultValue={autoSecond} onChange={handleNavigation}>
             <option value="custom">Custom</option>
             <option value="auto">Auto</option>
           </select>
           {navigation === "auto" ? (
             <div>
               <label>Enter auto navigate second</label>
+              <h2>value : {Number(autoSecond) / 2}</h2>
               <input
                 value={autoSecond}
                 onChange={handleAutoSecond}
-                pattern="[0-9]*"
-                type=" number"
+                max={10}
+                type="range"
               />
             </div>
           ) : null}

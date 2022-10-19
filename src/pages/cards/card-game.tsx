@@ -2,28 +2,17 @@ import classNames from "classnames"
 import { useEffect } from "react"
 import { Link } from "react-router-dom"
 import NavigationBtn from "../../assets/images/next.png"
-import StartGameModal from "../../components/numbers-components/start-game"
+import StartGameModal from "../../components/start-game"
 import TimerComponent from "../../components/timer"
 import { useCardsContext } from "../../context/cards-context"
 import { useHomeContext } from "../../context/home-context"
 import "./main.scss"
-
 const CardGame = () => {
   const { startTime: starttime } = useHomeContext()
-  const {
-    data,
-    cursor,
-    randomCard,
-    setCursor,
-    cursorW,
-    navigation,
-    show,
-  } = useCardsContext()
-
+  const { data, cursor, randomCard, setCursor, cursorW, navigation, show } =
+    useCardsContext()
   const parsedCursorW = parseInt(cursorW!)
-
   const showCards = randomCard!.slice(cursor, cursor + parsedCursorW)
-
   useEffect(() => {
     if (navigation === "right") {
       setCursor(data.length - parsedCursorW)
@@ -31,7 +20,6 @@ const CardGame = () => {
       setCursor(0)
     }
   }, [setCursor, navigation, data.length, parsedCursorW])
-
   const nextNavigate = () => {
     if (navigation === "right") {
       setCursor(cursor - parsedCursorW)
@@ -39,7 +27,6 @@ const CardGame = () => {
       setCursor(cursor + parsedCursorW)
     }
   }
-
   const prevNavigate = () => {
     if (navigation === "right") {
       setCursor(cursor + parsedCursorW)
@@ -47,11 +34,10 @@ const CardGame = () => {
       setCursor(cursor - parsedCursorW)
     }
   }
-
   return (
     <>
-      {starttime ? (
-        <StartGameModal time={starttime} />
+      {Number(starttime) >= 1 ? (
+        <StartGameModal time={starttime!} />
       ) : (
         <>
           <div className="container">

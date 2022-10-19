@@ -62,6 +62,7 @@ export const WordsContextProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     setWords(shuffledWords)
   }, [])
+  console.log(currentWords)
 
   const value = {
     words,

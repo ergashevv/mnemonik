@@ -8,7 +8,7 @@ const FlashCardsStart = () => {
   const navigate = useNavigate()
 
   const handleStartTime = (e: ChangeEvent<HTMLInputElement>) => {
-    setStartTime(+e.target.value)
+    setStartTime(e.target.value)
   }
 
   const handleNavigate = () => {

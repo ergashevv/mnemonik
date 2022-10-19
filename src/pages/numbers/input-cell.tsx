@@ -1,5 +1,5 @@
-import React, { memo, useCallback } from "react"
-
+import React, { memo, useCallback, useEffect } from "react"
+import { useHomeContext } from "../../context/home-context"
 interface InputCellProps extends React.HTMLAttributes<HTMLInputElement> {
   index?: number
 
@@ -38,6 +38,7 @@ export default memo(function InputCell({
   onUnHover,
   ...props
 }: InputCellProps) {
+  const { dynamic, setTab, tab, randomNumbers } = useHomeContext()
   const handleKeyUp = useCallback(
     (e: any) => {
       if (/^[0-9]$/.test(e.key)) {
@@ -69,27 +70,35 @@ export default memo(function InputCell({
     [onValue, index, focusOnNext, focusOnPrev, onShiftAdd, onShiftRemove]
   )
 
-  const handleMouseOver = useCallback((e: any) => onHover?.(e, index), [
-    index,
-    onHover,
-  ])
+  const handleMouseOver = useCallback(
+    (e: any) => onHover?.(e, index),
+    [index, onHover]
+  )
 
-  const handleMouseLeave = useCallback((e: any) => onUnHover?.(e, index), [
-    index,
-    onUnHover,
-  ])
+  const handleMouseLeave = useCallback(
+    (e: any) => onUnHover?.(e, index),
+    [index, onUnHover]
+  )
+  useEffect(() => {
+    if (index === 189) {
+      setTab(tab + 1)
+    }
+  }, [index, setTab, tab])
 
   return (
-    <input
-      maxLength={1}
-      type="number"
-      value={value}
-      min={1}
-      pattern="[0-9]*"
-      onKeyUp={handleKeyUp}
-      onMouseOver={handleMouseOver}
-      onMouseLeave={handleMouseLeave}
-      {...props}
-    />
+    <>
+      {console.log(index)}
+      <input
+        maxLength={1}
+        type="number"
+        value={value}
+        min={1}
+        pattern="[0-9]*"
+        onKeyUp={handleKeyUp}
+        onMouseOver={handleMouseOver}
+        onMouseLeave={handleMouseLeave}
+        {...props}
+      />
+    </>
   )
 })

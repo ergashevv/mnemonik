@@ -1,7 +1,7 @@
 import classNames from "classnames"
 import { Link } from "react-router-dom"
 import NavigationBtnImg from "../../assets/images/next.png"
-import StartGameModal from "../../components/numbers-components/start-game"
+import StartGameModal from "../../components/start-game"
 import TimerComponent from "../../components/timer"
 import { useDatedContext } from "../../context/date-context"
 import { useHomeContext } from "../../context/home-context"

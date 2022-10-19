@@ -1,29 +1,17 @@
 import { ChangeEvent } from "react"
 import { useNavigate } from "react-router-dom"
 import "../../assets/styles/StartStyles.scss"
+import SelectStartTime from "../../components/start-game-select"
 import { useCardsContext } from "../../context/cards-context"
-import { useHomeContext } from "../../context/home-context"
 
 const Settings = () => {
-  const {
-    setCursorW,
-    setNavigation,
-    navigation,
-    cursorW,
-    setShow,
-    show,
-  } = useCardsContext()
-
-  const { setStartTime, startTime } = useHomeContext()
+  const { setCursorW, setNavigation, navigation, cursorW, setShow, show } =
+    useCardsContext()
 
   const navigate = useNavigate()
 
   const handleCursorW = (e: ChangeEvent<HTMLSelectElement>) => {
     setCursorW(e.target.value)
-  }
-
-  const handleStartTime = (e: ChangeEvent<HTMLInputElement>) => {
-    setStartTime(+e.target.value)
   }
 
   const handleNavigation = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -54,7 +42,8 @@ const Settings = () => {
             <option value="8">8</option>
           </select>
           <h2>Enter start time</h2>
-          <input value={startTime} onChange={handleStartTime} type="number" />
+          <SelectStartTime time={5} />
+          {/* <input value={startTime} onChange={handleStartTime} type="number" /> */}
           <label>Select navigation</label>
           <select defaultValue={navigation} onChange={handleNavigation}>
             <option value="left">Left to right</option>

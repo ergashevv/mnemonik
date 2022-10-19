@@ -84,7 +84,7 @@ const StartNumberGame = () => {
         className="d-flex"
       >
         <TimerComponent
-          time={40}
+          time={5}
           navigateTo={"/numbers/result"}
           finishTimeFunc={finishGame}
         />

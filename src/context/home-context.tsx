@@ -20,8 +20,8 @@ export interface IContext {
   randomNumbers: number[]
   dynamic: number
   setDynamic: Function
-  startTime: number
-  setStartTime: (startTime: number) => void
+  startTime?: string
+  setStartTime: (startTime: string) => void
   setCursorW: Function
   setLine: Function
   setNavigation: Function
@@ -38,14 +38,23 @@ export const HomeContextProvider = ({ children }: { children: ReactNode }) => {
   const [line, setLine] = useState<string>(() =>
     JSON.parse(localStorage.getItem("line")!)
   )
+  const [navigation, setNavigation] = useState<string>(() =>
+    JSON.parse(localStorage.getItem("navigation")!)
+  )
+  const [startTime, setStartTime] = useState<string>(() =>
+    JSON.parse(localStorage.getItem("startTime")!)
+  )
+
   const [cursor, setCursor] = useState(0)
   const [result, setResult] = useState<string[]>()
   const [tab, setTab] = useState<number>(0)
-  const [navigation, setNavigation] = useState<string>()
-  const [autoSecond, setAutoSecond] = useState()
+  // const [navigation, setNavigation] = useState<string>()
+  const [autoSecond, setAutoSecond] = useState(1)
+  console.log(autoSecond)
+
   const [randomNumbers, setRandomNumbers] = useState<number[]>([])
   const [dynamic, setDynamic] = useState(200)
-  const [startTime, setStartTime] = useState<number>(5)
+  // const [startTime, setStartTime] = useState<number>(5)
 
   const shuffle = (arr: number[]) => [...arr].sort(() => Math.random() - 0.5)
 
@@ -71,7 +80,16 @@ export const HomeContextProvider = ({ children }: { children: ReactNode }) => {
     if (line) {
       localStorage.setItem("line", JSON.stringify(line))
     }
-  }, [cursorW, line])
+    if (startTime) {
+      localStorage.setItem("startTime", JSON.stringify(startTime))
+    }
+    if (navigation === "auto") {
+      localStorage.setItem("navigation", JSON.stringify(navigation))
+    }
+    if (navigation === "custom") {
+      localStorage.removeItem("navigation")
+    }
+  }, [cursorW, line, navigation, startTime])
 
   useEffect(() => {
     if (parseInt(cursorW!) === 3) {

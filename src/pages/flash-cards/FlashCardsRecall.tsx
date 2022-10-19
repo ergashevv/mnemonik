@@ -3,18 +3,14 @@ import { ArrowLeft, ArrowRight, Rewind } from "react-feather"
 import { useNavigate } from "react-router-dom"
 import NextPage from "../../components/button-control-component/NextPage"
 import PrevPage from "../../components/button-control-component/PrevPage"
-import StartGameModal from "../../components/numbers-components/start-game"
+import StartGameModal from "../../components/start-game"
 import { useFlashCardsContext } from "../../context/FlashCardsContext"
 import { useHomeContext } from "../../context/home-context"
 import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
 import "./FlashCards.scss"
 
 const FlashCardsRecall = () => {
-  const {
-    flashCards,
-    time,
-    setTime,
-  } = useFlashCardsContext()
+  const { flashCards, time, setTime } = useFlashCardsContext()
 
   const { startTime } = useHomeContext()
 
@@ -32,16 +28,15 @@ const FlashCardsRecall = () => {
     if (interval.current) clearInterval(interval.current)
 
     interval.current = setTimeout(() => {
-        setTime((numbers) =>
-          numbers.map((number, index) =>
-            currentPage - 1 === index ? number + 0.01 : number
-          )
+      setTime((numbers) =>
+        numbers.map((number, index) =>
+          currentPage - 1 === index ? number + 0.01 : number
         )
+      )
     }, 10)
 
     return () => clearInterval(Number(interval.current))
   }, [setTime, currentPage, time])
-
 
   const firstPage = () => {
     setCurrentPage(1)
@@ -54,10 +49,10 @@ const FlashCardsRecall = () => {
   return (
     <div className="flashCards">
       <div className="container">
-        <StartGameModal time={startTime} />
+        <StartGameModal time={startTime!} />
         <div
           className="flashCards-section"
-          style={{ display: startTime > 0 ? "none" : "block" }}
+          style={{ display: Number(startTime )> 0 ? "none" : "block" }}
         >
           <div className="flashCards-section__header">
             <h1 className="flashCards-section__header-timer">

@@ -2,14 +2,15 @@ import { ArrowLeft, ArrowRight, Rewind } from "react-feather"
 import { useNavigate } from "react-router"
 import NextPage from "../../components/button-control-component/NextPage"
 import PrevPage from "../../components/button-control-component/PrevPage"
-import StartGameModal from "../../components/numbers-components/start-game"
+import StartGameModal from "../../components/start-game"
 import { useHomeContext } from "../../context/home-context"
 import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
 import "./NF.scss"
 import TimerComponent from "../../components/timer"
 
 const Recall = () => {
-  const { people, currentPage, setCurrentPage, timerForRecall } = useNamesAndFacesContext()
+  const { people, currentPage, setCurrentPage, timerForRecall } =
+    useNamesAndFacesContext()
   const { startTime } = useHomeContext()
 
   const navigate = useNavigate()
@@ -29,13 +30,13 @@ const Recall = () => {
   return (
     <div className="faces">
       <div className="container">
-        <StartGameModal time={startTime} />
+        <StartGameModal time={startTime!} />
         <div
-          style={{ display: startTime > 0 ? "none" : "flex" }}
+          style={{ display: Number(startTime) > 0 ? "none" : "flex" }}
           className="faces-section"
         >
           <div className="faces-section__header">
-            {startTime === 0 && (
+            {Number(startTime) === 0 && (
               <TimerComponent
                 time={timerForRecall}
                 navigateTo={"/names-and-faces/answers"}

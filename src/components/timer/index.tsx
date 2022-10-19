@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router"
+import { useHomeContext } from "../../context/home-context"
 
 interface ITimerProps {
   time: number

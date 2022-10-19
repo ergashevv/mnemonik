@@ -46,16 +46,36 @@ const NavigationBtn = () => {
     if (navigation === "auto") {
       const timer = setTimeout(() => {
         setCursor(cursor + parsedCursorW)
-      }, Number(autoSecond) * 1000)
+      }, (Number(autoSecond) / 2) * 1000)
 
       return () => clearTimeout(timer)
     }
-  }, [navigation, cursor, cursorW, autoSecond, setCursor, parsedCursorW])
+    if (
+      tab === 3 &&
+      cursor >
+        Number(numbers.slice(dynamic * tab, dynamic * (tab + 1)).length) -
+          Number(cursorW) +
+          1
+    ) {
+      setTab(0)
+      setCursor(0)
+    }
+  }, [
+    navigation,
+    cursor,
+    cursorW,
+    autoSecond,
+    setCursor,
+    parsedCursorW,
+    tab,
+    numbers,
+    dynamic,
+    setTab,
+  ])
 
   const disablePrevButton = tab === 0 && cursor < parsedCursorW
 
   const disableNextButton = cursor > numbers.length - parsedCursorW - 1
-
   return (
     <>
       <div className="navigation">

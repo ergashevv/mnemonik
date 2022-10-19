@@ -61,7 +61,7 @@ const Start = () => {
   }, [navigate, people, setPeople, setShuffledPeople])
 
   const handleStartTime = (e: ChangeEvent<HTMLInputElement>) => {
-    setStartTime(+e.target.value)
+    setStartTime(e.target.value)
   }
 
   const handleMinutesForRecall = (e: ChangeEvent<HTMLInputElement>) => {
