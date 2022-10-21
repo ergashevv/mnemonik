@@ -1,11 +1,12 @@
 import { ChangeEvent } from "react"
 import { useNavigate } from "react-router"
-import { useHomeContext } from "../../context/home-context"
+import SelectStartTime from "../../components/start-game-select"
 import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
+import { useWordsContext } from "../../context/WordsContext"
 
 const WordsStart = () => {
   const { setCurrentPage } = useNamesAndFacesContext()
-  const { setStartTime } = useHomeContext()
+  const { setCursorWidth, cursorWidth } = useWordsContext()
 
   const navigate = useNavigate()
 
@@ -14,20 +15,25 @@ const WordsStart = () => {
     setCurrentPage(1)
   }
 
-  const handleStartTime = (e: ChangeEvent<HTMLInputElement>) => {
-    setStartTime(e.target.value)
+  const handleSelect = (e: ChangeEvent<HTMLSelectElement>) => {
+    setCursorWidth(+e.target.value)
   }
 
   return (
     <div className="settings">
       <div className="container">
         <form className="settings-form">
-          <label htmlFor="">Boshlang'ich vaqtni kiriting</label>
-          <input
-            type="number"
-            onChange={handleStartTime}
-            placeholder="Standart vaqt 5 soniya"
-          />
+          <label>Select memorization time</label>
+          <SelectStartTime time={5} />
+
+          <label>Select cursor numbers</label>
+          <select defaultValue={cursorWidth} onChange={handleSelect}>
+            <option selected value={1}>1</option>
+            <option value={2}>2</option>
+            <option value={3}>3</option>
+            <option value={4}>4</option>
+            <option value={5}>5</option>
+          </select>
           <button onClick={handleNavigate}>Start</button>
         </form>
       </div>

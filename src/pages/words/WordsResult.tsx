@@ -7,11 +7,17 @@ import { useWordsContext } from "../../context/WordsContext"
 import "./Words.scss"
 
 const WordsResult = () => {
-  const { words, wordsPerPage, currentAnswers, answers } = useWordsContext()
+  const {
+    words,
+    wordsPerPage,
+    currentAnswers,
+    answers,
+    cursorWidth,
+  } = useWordsContext()
   const { currentPage, setCurrentPage } = useNamesAndFacesContext()
 
-  const { prevHandlersWords } = PrevPage()
-  const { nextHandlersWords } = NextPage()
+  const { prevHandlersWords2 } = PrevPage()
+  const { nextHandlersWords2 } = NextPage()
 
   const [visibleInputs, setVisibleInputs] = useState(
     Array(answers?.length).fill(false)
@@ -19,7 +25,8 @@ const WordsResult = () => {
 
   const correctAnswers = words?.filter(
     (el, index) =>
-      el.toLowerCase() === answers[index + (currentPage - 1) * 10].toLowerCase()
+      el?.toLowerCase() ===
+      answers[index + (currentPage - 1) * 10]?.toLowerCase()
   )
 
   const firstPage = () => {
@@ -39,16 +46,21 @@ const WordsResult = () => {
         <div className="words-section__cards">
           {currentAnswers?.map((_, index) => {
             return (
-              <article key={index}>
+              <article
+                key={
+                  cursorWidth === 3 || cursorWidth === 4
+                    ? index + (currentPage - 1) * 12 + 1
+                    : index + (currentPage - 1) * 10 + 1
+                }
+              >
                 <form>
                   <div style={{ position: "relative" }}>
                     <input
                       readOnly
                       type="text"
-                      placeholder={(
-                        index +
-                        (currentPage - 1) * 10 +
-                        1
+                      placeholder={(cursorWidth === 3 || cursorWidth === 4
+                        ? index + (currentPage - 1) * 12 + 1
+                        : index + (currentPage - 1) * 10 + 1
                       ).toString()}
                       style={{
                         backgroundColor:
@@ -58,10 +70,10 @@ const WordsResult = () => {
                                 0 &&
                               words[
                                 index + (currentPage - 1) * 10
-                              ].toLowerCase() !==
+                              ]?.toLowerCase() !==
                                 answers[
                                   index + (currentPage - 1) * 10
-                                ].toLowerCase()
+                                ]?.toLowerCase()
                             ? "rgba(255, 0, 0, .5)"
                             : "rgba(26, 161, 19, .5)",
                       }}
@@ -101,16 +113,21 @@ const WordsResult = () => {
           })}
         </div>
         <div className="indicator">
-          <span>{currentPage}</span>/<span>{words?.length / wordsPerPage}</span>
+          <span>{currentPage}</span>/
+          <span>
+            {cursorWidth === 3 || cursorWidth === 4
+              ? (words?.length / (wordsPerPage + 2)).toFixed()
+              : words?.length / wordsPerPage}
+          </span>
         </div>
         <div className="control-buttons">
           <button onClick={firstPage} className="first-button">
             <Rewind size={32} />
           </button>
-          <button {...prevHandlersWords} className="prev-button">
+          <button {...prevHandlersWords2} className="prev-button">
             <ArrowLeft size={32} />
           </button>
-          <button {...nextHandlersWords} className="next-button">
+          <button {...nextHandlersWords2} className="next-button">
             <ArrowRight size={32} />
           </button>
         </div>

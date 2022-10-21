@@ -7,7 +7,6 @@ import TimerComponent from "../../components/timer"
 import { useHomeContext } from "../../context/home-context"
 import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
 import { useWordsContext } from "../../context/WordsContext"
-import { useState } from "react"
 import "./Words.scss"
 
 const WordsRecall = () => {
@@ -19,18 +18,14 @@ const WordsRecall = () => {
     activeWords,
     setActiveWords,
   } = useWordsContext()
-  const { startTime, cursor, setCursor } = useHomeContext()
+
+  const { startTime } = useHomeContext()
 
   const { currentPage, setCurrentPage, timerForRecall } =
     useNamesAndFacesContext()
 
   const { prevHandlersWords } = PrevPage()
   const { nextHandlersWords } = NextPage()
-
-  const changeCursorHandler = () => {
-    setCursor(cursor + 1)
-  }
-  console.log(cursor)
 
   const navigate = useNavigate()
 
@@ -106,7 +101,6 @@ const WordsRecall = () => {
               <ArrowLeft size={32} />
             </button>
             <button
-              // onClick={changeCursorHandler}
               {...nextHandlersWords}
               className="next-button"
             >
