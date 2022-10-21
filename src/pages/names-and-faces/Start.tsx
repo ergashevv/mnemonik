@@ -2,6 +2,7 @@ import { useCallback, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import SelectStartTime from "../../components/start-game-select"
 import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
+import ArrowLeft from "../../assets/images/icons/arrow-left.svg"
 
 const blobToBase64 = (blob: Blob) =>
   new Promise((resolve, reject) => {
@@ -59,11 +60,21 @@ const Start = () => {
     setCurrentPage(1)
   }, [navigate, people, setCurrentPage, setPeople, setShuffledPeople])
 
+  const handleBack = () => {
+    navigate("/")
+  }
+
   return (
     <div className="settings">
       <div className="container">
+        <div className="settings-header">
+          <div className="settings-header__back">
+            <img src={ArrowLeft} alt="Back" onClick={handleBack} />
+          </div>
+          <div className="settings-header__title">Playing Cards</div>
+        </div>
         <form className="settings-form">
-          <label>Select memorization time</label>
+          <label>Tayyorgarlik vaqti</label>
           <SelectStartTime time={5} />
 
           <button
@@ -73,7 +84,7 @@ const Start = () => {
           >
             {imagesLoading
               ? `Loading images (${imagesFetched} / ${people.length})`
-              : "Start"}
+              : "Boshlash"}
           </button>
         </form>
       </div>

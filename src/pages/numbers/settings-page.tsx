@@ -10,6 +10,7 @@ const SettingsPage = () => {
     setCursorW,
     cursorW,
     setLine,
+    line,
     navigation,
     setNavigation,
     autoSecond,
@@ -41,12 +42,16 @@ const SettingsPage = () => {
     navigate("/numbers/game")
   }
 
+  const handleBack = () => {
+    navigate("/")
+  }
+
   return (
     <div className="settings">
       <div className="container">
         <div className="settings-header">
           <div className="settings-header__back">
-            <img src={ArrowLeft} alt="Back" />
+            <img src={ArrowLeft} alt="Back" onClick={handleBack} />
           </div>
           <div className="settings-header__title">Raqamlar</div>
         </div>
@@ -54,27 +59,45 @@ const SettingsPage = () => {
           <div className="settings-form__wrapper">
             <div>
               <label>Kursor kengligi</label>
-              <input pattern="[0-9]*" onChange={handleChange} type="number" />
+              <input
+                pattern="[0-9]*"
+                onChange={handleChange}
+                value={cursorW}
+                type="number"
+              />
             </div>
-            
+
             <div>
               <label>Ajratuvchi chiziqlar</label>
-              <input pattern="[0-9]*" onChange={handleLine} type="number" />
+              <input
+                pattern="[0-9]*"
+                onChange={handleLine}
+                value={line}
+                type="number"
+              />
             </div>
           </div>
 
-          <label>Eslab qolish vaqti</label>
+          <label>Tayyorgarlik vaqti</label>
           <SelectStartTime time={5} />
 
-          <label>Select navigation</label>
-          <select defaultValue={autoSecond} onChange={handleNavigation}>
-            <option value="custom">Custom</option>
-            <option value="auto">Auto</option>
+          <label>O'tish vaqti</label>
+          <select
+            className="select"
+            defaultValue={autoSecond}
+            onChange={handleNavigation}
+          >
+            <option className="option" value="custom">
+              Custom
+            </option>
+            <option className="option" value="auto">
+              Auto
+            </option>
           </select>
           {navigation === "auto" ? (
             <div>
-              <label>Enter auto navigate second</label>
-              <h2>value : {Number(autoSecond) / 2}</h2>
+              <label>Avtomatik o'tish vaqti</label>
+              <h3>Vaqt: {Number(autoSecond) / 2}s</h3>
               <input
                 value={autoSecond}
                 onChange={handleAutoSecond}
@@ -84,7 +107,7 @@ const SettingsPage = () => {
             </div>
           ) : null}
           <button onClick={handleNavigate} disabled={parseInt(cursorW!) < 1}>
-            Start
+            Boshlash
           </button>
         </form>
       </div>
