@@ -27,13 +27,13 @@ const Result = () => {
 
   const correctFirstNames = results.filter(
     (el, index) =>
-      el?.firstName.toLowerCase() ===
-      shuffledPeople[index]?.firstName.toLowerCase()
+      el?.firstName?.toLowerCase() ===
+      shuffledPeople[index]?.firstName?.toLowerCase()
   )
   const correctLastNames = results.filter(
     (el, index) =>
-      el?.lastName.toLowerCase() ===
-      shuffledPeople[index]?.lastName.toLowerCase()
+      el?.lastName?.toLowerCase() ===
+      shuffledPeople[index]?.lastName?.toLowerCase()
   )
 
   const firstPage = () => {
@@ -73,10 +73,10 @@ const Result = () => {
                               results[index]?.firstName === ""
                                 ? "#fff"
                                 : results[index]?.firstName.length > 0 &&
-                                  results[index]?.firstName.toLowerCase() !==
+                                  results[index]?.firstName?.toLowerCase() !==
                                     shuffledPeople[
                                       index
-                                    ]?.firstName.toLowerCase()
+                                    ]?.firstName?.toLowerCase()
                                 ? "rgba(255, 0, 0, .5)"
                                 : "rgba(26, 161, 19, .5)",
                           }}
@@ -117,10 +117,10 @@ const Result = () => {
                               results[index]?.lastName === ""
                                 ? "#fff"
                                 : results[index]?.lastName.length > 0 &&
-                                  results[index]?.lastName.toLowerCase() !==
+                                  results[index]?.lastName?.toLowerCase() !==
                                     shuffledPeople[
                                       index
-                                    ]?.lastName.toLowerCase()
+                                    ]?.lastName?.toLowerCase()
                                 ? "rgba(255, 0, 0, .5)"
                                 : "rgba(26, 161, 19, .5)",
                           }}

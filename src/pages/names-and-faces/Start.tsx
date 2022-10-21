@@ -1,6 +1,6 @@
-import { ChangeEvent, useCallback, useState } from "react"
+import { useCallback, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { useHomeContext } from "../../context/home-context"
+import SelectStartTime from "../../components/start-game-select"
 import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
 
 const blobToBase64 = (blob: Blob) =>
@@ -13,12 +13,11 @@ const blobToBase64 = (blob: Blob) =>
 
 const Start = () => {
   const [imagesLoading, setImagesLoading] = useState<boolean>(false)
-  const { setStartTime } = useHomeContext()
   const {
     people,
     setPeople,
     setShuffledPeople,
-    setCurrentPage
+    setCurrentPage,
   } = useNamesAndFacesContext()
 
   const [imagesFetched, setImagesFetched] = useState<number>(0)
@@ -40,7 +39,6 @@ const Start = () => {
 
         return { ...person, img: url }
       })
-
     )
 
     setShuffledPeople((shuffledPeople) =>
@@ -61,20 +59,12 @@ const Start = () => {
     setCurrentPage(1)
   }, [navigate, people, setCurrentPage, setPeople, setShuffledPeople])
 
-  const handleStartTime = (e: ChangeEvent<HTMLInputElement>) => {
-    setStartTime(e.target.value)
-  }
-  
   return (
     <div className="settings">
       <div className="container">
         <form className="settings-form">
-          <label htmlFor="">Boshlang'ich vaqtni kiriting</label>
-          <input
-            type="number"
-            onChange={handleStartTime}
-            placeholder="Standart vaqt 5 soniya"
-          />
+          <label>Select memorization time</label>
+          <SelectStartTime time={5} />
 
           <button
             type="submit"

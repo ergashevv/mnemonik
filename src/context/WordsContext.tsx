@@ -51,8 +51,16 @@ export const WordsContextProvider = ({ children }: { children: ReactNode }) => {
   const [countDown, setCountDown] = useState<number>(5)
   const [minutesForRecall, setMinutesForRecall] = useState<number>(5)
   const [minutesForAnswer, setMinutesForAnswer] = useState<number>(5)
-  const [cursorWidth, setCursorWidth] = useState<number>(4)
-  const [activeWords, setActiveWords]  = useState<number>(0)
+  const [cursorWidth, setCursorWidth] = useState<number>(() =>
+    JSON.parse(localStorage.getItem("cursorWidth")!)
+  )
+  const [activeWords, setActiveWords] = useState<number>(0)
+
+  useEffect(() => {
+    if (cursorWidth) {
+      localStorage.setItem("cursorWidth", JSON.stringify(cursorWidth))
+    }
+  }, [cursorWidth])
 
   const indexOfLastWord =
     cursorWidth === 3 || cursorWidth === 4
@@ -76,7 +84,6 @@ export const WordsContextProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     setWords(shuffledWords)
   }, [])
-  console.log(currentWords)
 
   const value = {
     words,
@@ -100,7 +107,7 @@ export const WordsContextProvider = ({ children }: { children: ReactNode }) => {
     setCursorWidth,
 
     activeWords,
-    setActiveWords
+    setActiveWords,
   }
 
   return <WordsContext.Provider value={value}>{children}</WordsContext.Provider>

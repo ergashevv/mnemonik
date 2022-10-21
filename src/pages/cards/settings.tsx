@@ -3,13 +3,16 @@ import { useNavigate } from "react-router-dom"
 import "../../assets/styles/StartStyles.scss"
 import SelectStartTime from "../../components/start-game-select"
 import { useCardsContext } from "../../context/cards-context"
-import { useHomeContext } from "../../context/home-context"
 
 const Settings = () => {
-  const { setCursorW, setNavigation, navigation, cursorW, setShow, show } =
-    useCardsContext()
-
-  const { setStartTime } = useHomeContext()
+  const {
+    setCursorW,
+    setNavigation,
+    navigation,
+    cursorW,
+    setShow,
+    show,
+  } = useCardsContext()
 
   const navigate = useNavigate()
 
@@ -33,7 +36,9 @@ const Settings = () => {
     <div className="settings">
       <div className="container">
         <form className="settings-form">
-          <label htmlFor="">Boshlang'ich vaqtni kiriting</label>
+          <label>Select memorization time</label>
+          <SelectStartTime time={5} />
+
           <label>Select cards</label>
           <select onChange={handleCursorW} defaultValue={cursorW}>
             <option value="1">1</option>
@@ -45,9 +50,7 @@ const Settings = () => {
             <option value="7">7</option>
             <option value="8">8</option>
           </select>
-          <h2>Enter start time</h2>
-          <SelectStartTime time={5} />
-          {/* <input value={startTime} onChange={handleStartTime} type="number" /> */}
+
           <label>Select navigation</label>
           <select defaultValue={navigation} onChange={handleNavigation}>
             <option value="left">Left to right</option>

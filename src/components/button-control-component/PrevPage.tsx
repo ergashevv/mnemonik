@@ -4,7 +4,7 @@ import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
 import { useWordsContext } from "../../context/WordsContext"
 
 const PrevPage = () => {
-  const { people, currentPage, setCurrentPage } = useNamesAndFacesContext()
+  const { people, setCurrentPage } = useNamesAndFacesContext()
   const {
     words,
     wordsPerPage,
@@ -18,6 +18,7 @@ const PrevPage = () => {
   const [longPress, setLongPress] = useState(false)
   const [longPress2, setLongPress2] = useState(false)
   const [longPress3, setLongPress3] = useState(false)
+  const [longPress4, setLongPress4] = useState(false)
 
   const prevPage = useCallback(() => {
     setCurrentPage((oldPage: number) => {
@@ -35,6 +36,7 @@ const PrevPage = () => {
     if (activeWords - cursorWidth < 0) {
       setCurrentPage((oldPage) => {
         let prevPage = oldPage - 1
+
         if (cursorWidth === 3 || cursorWidth === 4) {
           if (prevPage < 1) {
             prevPage = +(words.length / (wordsPerPage + 2)).toFixed()
@@ -60,6 +62,24 @@ const PrevPage = () => {
     wordsPerPage,
   ])
 
+  const prevPageWords2 = useCallback(() => {
+    setCurrentPage((oldPage) => {
+      let prevPage = oldPage - 1
+
+      if (cursorWidth === 3 || cursorWidth === 4) {
+        if (prevPage < 1) {
+          prevPage = +(words.length / (wordsPerPage + 2)).toFixed()
+        }
+      }
+
+      if (prevPage < 1) {
+        prevPage = words.length / wordsPerPage
+      }
+
+      return prevPage
+    })
+  }, [cursorWidth, setCurrentPage, words.length, wordsPerPage])
+
   const prevPageCards = useCallback(() => {
     setCurrentPage((oldPage: number) => {
       let prevPage = oldPage - 1
@@ -73,6 +93,7 @@ const PrevPage = () => {
   let intervalId = useRef<null | ReturnType<typeof setInterval>>(null)
   let intervalId2 = useRef<null | ReturnType<typeof setInterval>>(null)
   let intervalId3 = useRef<null | ReturnType<typeof setInterval>>(null)
+  let intervalId4 = useRef<null | ReturnType<typeof setInterval>>(null)
 
   useEffect(() => {
     if (longPress) {
@@ -110,6 +131,18 @@ const PrevPage = () => {
     }
   }, [prevPageCards, longPress3])
 
+  useEffect(() => {
+    if (longPress4) {
+      intervalId4.current = setInterval(prevPageWords2, 150)
+    } else {
+      clearInterval(Number(intervalId4.current))
+    }
+
+    return () => {
+      clearInterval(Number(intervalId4.current))
+    }
+  }, [longPress4, prevPageWords2])
+
   return {
     prevHandlers: {
       onClick: prevPage,
@@ -136,6 +169,15 @@ const PrevPage = () => {
       onMouseLeave: () => setLongPress3(false),
       onTouchStart: () => setLongPress3(true),
       onTouchEnd: () => setLongPress3(false),
+    },
+
+    prevHandlersWords2: {
+      onClick: prevPageWords2,
+      onMouseDown: () => setLongPress4(true),
+      onMouseUp: () => setLongPress4(false),
+      onMouseLeave: () => setLongPress4(false),
+      onTouchStart: () => setLongPress4(true),
+      onTouchEnd: () => setLongPress4(false),
     },
   }
 }
