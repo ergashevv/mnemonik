@@ -29,13 +29,16 @@ const PrevPage = () => {
       return prevPage
     })
   }, [people?.length, setCurrentPage])
-
+  useEffect(() => {
+    if (activeWords < 0) {
+      setActiveWords(currentWords.length - cursorWidth)
+    }
+  }, [activeWords, currentWords.length, cursorWidth, setActiveWords])
   ///////////////////////////////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////////////////////
   const prevPageWords = useCallback(() => {
     setActiveWords((oldActiveWords) => oldActiveWords - cursorWidth)
-
     if (activeWords - cursorWidth < 0) {
       setCurrentPage((oldPage) => {
         let prevPage = oldPage - 1
@@ -52,22 +55,20 @@ const PrevPage = () => {
 
         return prevPage
       })
-
-      setActiveWords(currentWords.length - cursorWidth)
     }
   }, [
     activeWords,
-    currentWords.length,
     cursorWidth,
     setActiveWords,
     setCurrentPage,
     words.length,
     wordsPerPage,
   ])
+
   ///////////////////////////////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////////////////////
-  
+
   const prevPageWords2 = useCallback(() => {
     setCurrentPage((oldPage) => {
       let prevPage = oldPage - 1

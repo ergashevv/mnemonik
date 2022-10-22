@@ -48,16 +48,12 @@ export const HomeContextProvider = ({ children }: { children: ReactNode }) => {
   const [cursor, setCursor] = useState(0)
   const [result, setResult] = useState<string[]>()
   const [tab, setTab] = useState<number>(0)
-  // const [navigation, setNavigation] = useState<string>()
   const [autoSecond, setAutoSecond] = useState(1)
   console.log(autoSecond)
 
   const [randomNumbers, setRandomNumbers] = useState<number[]>([])
   const [dynamic, setDynamic] = useState(200)
-  // const [startTime, setStartTime] = useState<number>(5)
-
   const shuffle = (arr: number[]) => [...arr].sort(() => Math.random() - 0.5)
-
   const [numbers, setNumbers] = useState<string[]>(() => {
     const numbers0to9 = Array(10)
       .fill(0)
