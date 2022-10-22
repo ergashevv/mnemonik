@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect } from "react"
+import { ChangeEvent } from "react"
 import { useNavigate } from "react-router-dom"
 import "../../assets/styles/StartStyles.scss"
 import SelectStartTime from "../../components/start-game-select"
@@ -39,14 +39,16 @@ const SettingsPage = () => {
     navigate("/numbers/game")
   }
 
-
+  const handleBack = () => {
+    navigate("/")
+  }
 
   return (
     <div className="settings">
       <div className="container">
         <div className="settings-header">
           <div className="settings-header__back">
-            <img src={ArrowLeft} alt="Back" />
+            <img src={ArrowLeft} alt="Back" onClick={handleBack} />
           </div>
           <div className="settings-header__title">Raqamlar</div>
         </div>
@@ -73,7 +75,7 @@ const SettingsPage = () => {
             </div>
           </div>
 
-          <label>Eslab qolish vaqti</label>
+          <label>Tayyorgarlik vaqti</label>
           <SelectStartTime time={5} />
 
           <label>Select navigation</label>
@@ -86,8 +88,8 @@ const SettingsPage = () => {
           </select>
           {navigation === "auto" ? (
             <div>
-              <label>Enter auto navigate second</label>
-              <h2>value : {Number(autoSecond) / 2}</h2>
+              <label>Avtomatik o'tish vaqti</label>
+              <h3>Vaqt: {Number(autoSecond) / 2}s</h3>
               <input
                 value={autoSecond}
                 onChange={handleAutoSecond}
@@ -97,7 +99,7 @@ const SettingsPage = () => {
             </div>
           ) : null}
           <button onClick={handleNavigate} disabled={parseInt(cursorW!) < 1}>
-            Start
+            Boshlash
           </button>
         </form>
       </div>
