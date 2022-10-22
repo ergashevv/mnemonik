@@ -3,15 +3,19 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #fff;
-    position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    padding: 10px 15px;
+    margin-top: 25px;
+
+    .logo {
+      width: 147px;
+      height: 27px;
+      object-fit: contain;
+    }
   }
   .banner {
-    margin-top: 100px;
+    margin-top: 25px;
     background-position: right;
     background-size: cover;
     background-repeat: no-repeat;
@@ -19,25 +23,26 @@
     padding: 18px 22px;
     border-radius: 10px;
     margin-bottom: 50px;
+
     h2 {
       font-style: normal;
       font-weight: 600;
       font-size: 19px;
       line-height: 22px;
       color: #ffffff;
-      margin-bottom: 15px;
-      width: 72%;
+      margin-bottom: 8px;
+      width: 78%;
     }
+
     a {
       font-style: normal;
-      font-weight: 600;
       font-size: 16px;
-      line-height: 19px;
-      letter-spacing: -0.307763px;
       color: #d69358;
     }
+
     button {
       background: #ffffff;
+      font-weight: 600;
       border-radius: 10px;
       padding: 8px 10px;
       color: #d69358;
@@ -46,16 +51,17 @@
   .category-games {
     h2 {
       font-style: normal;
-      font-weight: bold;
+      font-weight: 600;
       font-size: 21px;
       line-height: 25px;
       color: #000000;
       margin-bottom: 20px;
     }
+
     .game-cards {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
+      gap: 12px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
     }
   }
   .product-cards {
@@ -115,6 +121,8 @@
     }
   }
   .reyting-mnemics {
+    margin-top: 50px;
+
     .titles {
       display: flex;
       align-items: center;
@@ -137,9 +145,9 @@
       }
     }
     .reyting {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
+      gap: 10px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
     }
   }
   .top-reyting {
@@ -147,9 +155,9 @@
     margin: 0 auto;
     margin-bottom: 40px;
     max-width: 400px;
-    background-image: url("../../assets/images/bgi.png");
+    background-image: url("../../assets/images/bgi.svg");
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: top;
     text-align: center;
     img {
       text-align: center;

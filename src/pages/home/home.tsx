@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import "./main.scss"
-import Logo from "../../assets/images/Logotype.svg"
+import Logo from "../../assets/images/logotype.png"
 import Hmaburger from "../../assets/images/menu.svg"
 import Numbers from "../../assets/images/numbers.svg"
 import Cards from "../../assets/images/card.svg"
@@ -11,7 +11,7 @@ import Flash from "../../assets/images/flash.svg"
 import TimerImg from "../../assets/images/timer.png"
 import HomeCategoryCard from "../../components/home-components/home-card"
 import HomeBanner from "../../components/home-components/Banner"
-import Bgi from "../../assets/images/Banner.png"
+import Bgi from "../../assets/images/banner.png"
 import Mnemonics from "../../components/mnemonics"
 import Behzodakaimg from "../../assets/images/behzodaka.png"
 import ProductCard from "../../components/product-card"
@@ -70,19 +70,8 @@ const HomePage = () => {
       name: "MegaMind",
       score: 1830,
     },
-    {
-      img: Behzodakaimg,
-      link: "https://t.me/bekzod_memory",
-      name: "MegaMind",
-      score: 1827,
-    },
-    {
-      img: Behzodakaimg,
-      link: "https://t.me/bekzod_memory",
-      name: "MegaMind",
-      score: 1827,
-    },
   ]
+
   const products = [
     {
       img: TimerImg,
@@ -138,12 +127,10 @@ const HomePage = () => {
   return (
     <>
       <div className="home container">
-        <div className="home-header container">
-          <div className="logo">
-            <Link to="/">
-              <img src={Logo} alt="" />
-            </Link>
-          </div>
+        <div className="home-header">
+          <Link to="/">
+            <img src={Logo} alt="" className="logo" />
+          </Link>
           <div className="menu">
             <button>
               <img src={Hmaburger} alt="" />
@@ -175,7 +162,7 @@ const HomePage = () => {
           </div>
           <div className="top-reyting">
             <img src={largest.img} alt="" />
-            <h2>{largest.score}</h2>
+            <h2>{largest.score} ball</h2>
             <h3>{largest.name}</h3>
             <a href={largest.link}>@bekzod_memory</a>
           </div>

@@ -13,4 +13,5 @@ const HomeCategoryCard = ({ img, link, text }: IHomeCard) => {
     </Link>
   )
 }
+
 export default HomeCategoryCard
