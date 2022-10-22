@@ -1,11 +1,18 @@
 import { useMemo, useState } from "react"
+import LeftNumber from "../../components/left-numbers"
 import Tabs from "../../components/tabs"
 import { useHomeContext } from "../../context/home-context"
 
 const Result = () => {
   const [show, setShow] = useState(false)
 
-  const { result, tab, randomNumbers, dynamic: dynum } = useHomeContext()
+  const {
+    result,
+    tab,
+    cursorW,
+    randomNumbers,
+    dynamic: dynum,
+  } = useHomeContext()
 
   const count = useMemo(() => {
     let count = 0
@@ -40,36 +47,11 @@ const Result = () => {
       <span> Xato javoblar {count}</span>
       <div className="d-flex result-card">
         <div
-          style={{
-            marginRight: "4px",
-          }}
+          className={
+            Number(cursorW) >= 4 ? "sort-numbers active" : "sort-numbers"
+          }
         >
-          {Array(Math.floor(38))
-            .fill(null)
-            .map((_, index) => (
-              <div className="result-num-or" key={index}>
-                {tab === 0 && index < 10 ? (
-                  <span className={show ? "num-or active" : "num-or"}>
-                    {index + 1})
-                  </span>
-                ) : null}
-                {tab === 1 && index > 9 && index < 20 ? (
-                  <span className={show ? "num-or active" : "num-or"}>
-                    {index + 1})
-                  </span>
-                ) : null}
-                {tab === 2 && index > 19 && index < 30 ? (
-                  <span className={show ? "num-or active" : "num-or"}>
-                    {index + 1})
-                  </span>
-                ) : null}
-                {tab === 3 && index > 29 && index <= 40 ? (
-                  <span className={show ? "num-or active" : "num-or"}>
-                    {index + 1})
-                  </span>
-                ) : null}
-              </div>
-            ))}
+          <LeftNumber />
         </div>
         {Array(4)
           .fill(null)

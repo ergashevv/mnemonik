@@ -5,14 +5,8 @@ import SelectStartTime from "../../components/start-game-select"
 import { useCardsContext } from "../../context/cards-context"
 
 const Settings = () => {
-  const {
-    setCursorW,
-    setNavigation,
-    navigation,
-    cursorW,
-    setShow,
-    show,
-  } = useCardsContext()
+  const { setCursorW, setNavigation, navigation, cursorW, setShow, show } =
+    useCardsContext()
 
   const navigate = useNavigate()
 
@@ -40,7 +34,7 @@ const Settings = () => {
           <SelectStartTime time={5} />
 
           <label>Select cards</label>
-          <select onChange={handleCursorW} defaultValue={cursorW}>
+          <select onChange={handleCursorW} defaultValue={cursorW ? cursorW : 3}>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>

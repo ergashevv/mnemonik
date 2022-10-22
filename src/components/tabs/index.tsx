@@ -1,5 +1,5 @@
 import { useHomeContext } from "../../context/home-context"
-
+import "./main.scss"
 interface ITabsProps {
   tabNumber: number
 }
@@ -12,7 +12,7 @@ const Tabs = ({ tabNumber }: ITabsProps) => {
   }
   return (
     <>
-      <div className="tabs">
+      <div className="tab">
         {Array(tabNumber)
           .fill(null)
           .map((_, index) => {

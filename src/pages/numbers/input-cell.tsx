@@ -79,11 +79,6 @@ export default memo(function InputCell({
     (e: any) => onUnHover?.(e, index),
     [index, onUnHover]
   )
-  useEffect(() => {
-    if (index === 189) {
-      setTab(tab + 1)
-    }
-  }, [index, setTab, tab])
 
   return (
     <>

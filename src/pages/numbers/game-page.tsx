@@ -7,7 +7,6 @@ import Tabs from "../../components/tabs"
 import TimerComponent from "../../components/timer"
 import { useHomeContext } from "../../context/home-context"
 import "./main.scss"
-import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
 
 const NumbersGame = () => {
   const {
@@ -23,10 +22,6 @@ const NumbersGame = () => {
   const finishGame = () => {
     setTab(0)
   }
-  console.log(tab)
-
-  const { timerForRecall } = useNamesAndFacesContext()
-
   return (
     <>
       {Number(startTime) > 0 ? (
@@ -37,20 +32,20 @@ const NumbersGame = () => {
             style={{
               justifyContent: "space-between",
             }}
-            className="d-flex"
+            className="d-flex game-header"
           >
             <TimerComponent
               finishTimeFunc={finishGame}
               time={5}
               navigateTo={"/numbers/start"}
             />
-            <Link to="/numbers/start">Start</Link>
+            <Link to="/numbers/start">Hoziroq tugatish</Link>
           </div>
           <div className="header">
-            <div className="num">
+            <div className="numbers">
               <div
                 className={
-                  Number(cursorW) >= 4 ? "sort-num active" : "sort-num"
+                  Number(cursorW) >= 4 ? "sort-numbers active" : "sort-numbers"
                 }
               >
                 <LeftNumber />
@@ -60,15 +55,7 @@ const NumbersGame = () => {
                 .map((_, index) => (
                   <>
                     {tab === index && (
-                      <div
-                        style={{
-                          gridTemplateColumns:
-                            Number(cursorW) === 3
-                              ? "repeat(21, 1fr)"
-                              : "repeat(20, 1fr)",
-                        }}
-                        className={`cards`}
-                      >
+                      <div className={`cards`}>
                         {randomNumbers
                           .slice(dynamic * tab, dynamic * (tab + 1))
                           .map((i, k) => (
@@ -76,8 +63,8 @@ const NumbersGame = () => {
                               key={k}
                               className={
                                 (k + 1) % parseInt(line!) === 0
-                                  ? "active card"
-                                  : "card"
+                                  ? "active number-card"
+                                  : "number-card"
                               }
                             >
                               <div
@@ -97,10 +84,10 @@ const NumbersGame = () => {
                 ))}
             </div>
           </div>
+          <NavigationBtn />
           <div className="tabs">
             <Tabs tabNumber={4} />
           </div>
-          <NavigationBtn />
         </div>
       )}
     </>

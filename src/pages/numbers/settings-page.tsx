@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react"
+import { ChangeEvent, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import "../../assets/styles/StartStyles.scss"
 import SelectStartTime from "../../components/start-game-select"
@@ -14,9 +14,8 @@ const SettingsPage = () => {
     setNavigation,
     autoSecond,
     setAutoSecond,
+    line,
   } = useHomeContext()
-
-  console.log(autoSecond, "auto")
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setCursorW(e.target.value)
@@ -31,7 +30,6 @@ const SettingsPage = () => {
   const handleNavigation = (e: ChangeEvent<HTMLSelectElement>) => {
     setNavigation(e.target.value)
   }
-  console.log(navigation)
 
   const handleAutoSecond = (e: ChangeEvent<HTMLInputElement>) => {
     setAutoSecond(+e.target.value)
@@ -40,6 +38,8 @@ const SettingsPage = () => {
   const handleNavigate = () => {
     navigate("/numbers/game")
   }
+
+
 
   return (
     <div className="settings">
@@ -54,12 +54,22 @@ const SettingsPage = () => {
           <div className="settings-form__wrapper">
             <div>
               <label>Kursor kengligi</label>
-              <input pattern="[0-9]*" onChange={handleChange} type="number" />
+              <input
+                pattern="[0-9]*"
+                value={cursorW}
+                onChange={handleChange}
+                type="text"
+              />
             </div>
-            
+
             <div>
               <label>Ajratuvchi chiziqlar</label>
-              <input pattern="[0-9]*" onChange={handleLine} type="number" />
+              <input
+                value={line ? line : ""}
+                pattern="[0-9]*"
+                onChange={handleLine}
+                type="text"
+              />
             </div>
           </div>
 
@@ -67,7 +77,10 @@ const SettingsPage = () => {
           <SelectStartTime time={5} />
 
           <label>Select navigation</label>
-          <select defaultValue={autoSecond} onChange={handleNavigation}>
+          <select
+            defaultValue={navigation === "auto" ? "auto" : "custom"}
+            onChange={handleNavigation}
+          >
             <option value="custom">Custom</option>
             <option value="auto">Auto</option>
           </select>

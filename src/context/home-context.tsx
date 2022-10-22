@@ -89,13 +89,13 @@ export const HomeContextProvider = ({ children }: { children: ReactNode }) => {
     if (navigation === "custom") {
       localStorage.removeItem("navigation")
     }
-  }, [cursorW, line, navigation, startTime])
-
-  useEffect(() => {
-    if (parseInt(cursorW!) === 3) {
-      setDynamic(189)
+    if (!cursorW) {
+      setCursorW("3")
     }
-  }, [setDynamic, dynamic, cursorW])
+    if (!line) {
+      setLine("3")
+    }
+  }, [cursorW, line, navigation, startTime])
 
   const value = {
     cursorW,

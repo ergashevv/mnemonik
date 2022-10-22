@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from "react"
+import { useCallback, useMemo, useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import LeftNumber from "../../components/left-numbers"
 import Tabs from "../../components/tabs"
@@ -7,19 +7,24 @@ import { useHomeContext } from "../../context/home-context"
 import InputCell from "./input-cell"
 import "./main.scss"
 import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
-
 const StartNumberGame = () => {
-  const { numbers, randomNumbers, setResult, tab, setTab } = useHomeContext()
+  const {
+    numbers,
+    randomNumbers,
+    cursorW,
+    setResult,
+    tab,
+    setTab,
+    setDynamic,
+    dynamic,
+  } = useHomeContext()
   const { timerForAnswer } = useNamesAndFacesContext()
-
   const [inputs, setInputs] = useState(Array(numbers.length).fill(""))
-
   const handleValue = useCallback((val: any, index: number | undefined) => {
     return setInputs((inputs) =>
       inputs.map((input, i) => (i === index ? val : input))
     )
   }, [])
-
   const handleShiftAdd = useCallback((e: any, index: number | undefined) => {
     setInputs((inputs) => {
       const start = inputs.slice(0, index)
@@ -27,7 +32,6 @@ const StartNumberGame = () => {
       return start.concat([""], end)
     })
   }, [])
-
   const handleShiftRemove = useCallback((e: any, index: number | undefined) => {
     if (index) {
       setInputs((inputs) => {
@@ -78,7 +82,7 @@ const StartNumberGame = () => {
   }
 
   return (
-    <div className="game">
+    <div className="start-game-page">
       <div
         style={{
           justifyContent: "space-between",
@@ -90,12 +94,16 @@ const StartNumberGame = () => {
           navigateTo={"/numbers/result"}
           finishTimeFunc={finishGame}
         />
-
         <button onClick={finishGame}>
           <Link to="/numbers/result">Finish</Link>
         </button>
       </div>
-      <div className="d-flex">
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
         <div
           style={{
             marginRight: "4px",
@@ -103,18 +111,17 @@ const StartNumberGame = () => {
         >
           <LeftNumber />
         </div>
-
         {Array(4)
           .fill(null)
           .map((_, index) => {
             const slicedInputs = inputsCells.slice(
-              190 * index,
-              190 * (index + 1)
+              dynamic * tab,
+              dynamic * (tab + 1)
             )
             return (
               <div key={index}>
                 {tab === index && (
-                  <div className="start-game">{slicedInputs}</div>
+                  <div className="inputs-groups">{slicedInputs}</div>
                 )}
               </div>
             )

@@ -1,0 +1,21 @@
+.tabs {
+  margin-top: 30px;
+  .tab {
+    display: flex;
+    justify-content: center;
+  }
+  button {
+    margin-right: 10px;
+    &:last-child {
+      margin-right: 0;
+    }
+    &.active {
+      background: #d69358;
+      color: white;
+    }
+    color: black;
+    border: 1px solid rgba(0, 0, 0, 0.192);
+    padding: 16px;
+    border-radius: 10px;
+  }
+}

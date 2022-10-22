@@ -1,8 +1,8 @@
 import { useEffect } from "react"
-import Next from "../../assets/images/next.png"
+import Next from "../../assets/images/arrow.svg"
 import { useHomeContext } from "../../context/home-context"
 import ResultNumbers from "./result-numbers"
-
+import "./main.scss"
 const NavigationBtn = () => {
   const {
     cursorW,
@@ -35,10 +35,6 @@ const NavigationBtn = () => {
     if (cursor < 0) {
       setTab(tab - 1)
       setCursor(dynamic - parsedCursorW)
-    }
-
-    if (tab === 3 && cursor > dynamic - Number(parsedCursorW)) {
-      setTab(0)
     }
   }, [navigation, tab, setTab, setCursor, dynamic, cursor, parsedCursorW])
 
@@ -77,21 +73,19 @@ const NavigationBtn = () => {
 
   const disableNextButton = cursor > numbers.length - parsedCursorW - 1
   return (
-    <>
+    <div className="navigation-buttons">
       <div className="navigation">
         <button disabled={disablePrevButton} onClick={handleNext}>
           <img className="next" src={Next} alt="next" />
         </button>
-
         <div className="numbers">
           <ResultNumbers />
         </div>
-
         <button disabled={disableNextButton} onClick={handlePrev}>
           <img className="prev" src={Next} alt="prev" />
         </button>
       </div>
-    </>
+    </div>
   )
 }
 

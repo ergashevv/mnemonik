@@ -1,196 +1,65 @@
-.numbers-game-page {
-  .game {
-    position: relative;
-    height: 100vh;
-    .header {
-      .num {
-        display: flex;
-
-        h2 {
-          margin: 0;
-          padding: 9px 0;
-        }
-        .sort-num {
-          &.active {
-            span {
-              padding: 10px 0;
-            }
-          }
-
-          span {
-            display: block;
-            font-size: 19px;
-            padding: 9px 0;
-          }
-        }
-
-        .tab-content {
-          margin: 3px 0 10px 0;
-        }
-        .tab-pane {
-          &.active {
-            display: flex !important;
-            flex-wrap: wrap !important;
-            height: 400px;
-            overflow-y: scroll;
-            &::-webkit-scrollbar {
-              width: 2px;
-            }
-            &::-webkit-scrollbar-track {
-              box-shadow: inset 0 0 5px grey;
-              border-radius: 10px;
-            }
-            s &::-webkit-scrollbar-thumb {
-              background: greenyellow;
-              border-radius: 10px;
-            }
-          }
-        }
-
-        .card-number {
-          text-align: center;
-          max-width: 50px;
-          padding: 6.8px 0;
-
-          &.active {
-            background-color: red;
-
-            p {
-              color: white;
-            }
-          }
-
-          p {
-            font-size: 14px;
-            margin: 0;
-          }
-        }
-      }
-    }
-
-    .numbers {
-      margin-top: 30px;
-      align-items: center;
-      display: flex;
-
-      h1 {
-        font-size: 40px;
-        text-align: center;
-      }
-    }
-
-    .navigation {
-      width: 100%;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .prev {
-      width: 90px;
-      height: 90px;
-    }
-
-    .next {
-      width: 90px;
-      height: 90px;
-      transform: rotate(180deg);
-    }
-  }
-
-  .start-game {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    width: 100%;
-    gap: 3px;
-    margin-right: 20px;
-    position: relative;
-    height: 100%;
-    input {
-      width: 100%;
-      border-radius: 0;
-      border: 1px solid #ced4da;
-      text-align: center;
-      // padding: 6px 5px;
-      height: 25px;
-      &:focus-visible {
-        box-shadow: none;
-        outline: none;
-      }
-    }
-
-    .show {
-      color: black !important;
-    }
-
-    p {
-      border: 1px solid #ced4da;
-      margin: 0;
-      width: 5px;
-      font-size: 6px;
-      text-align: center;
-      height: 5px;
-      padding: 4px;
-    }
-  }
-
+.numbers {
   .cards {
-    display: grid;
     width: 100%;
-
-    .card {
-      margin-bottom: 10px;
-
+    grid-template-columns: repeat(20, 1fr);
+    display: grid;
+    margin-left: 10px;
+    .number-card {
       &.active {
-        border-right: 1px solid red;
+        border-right: 1px solid #ffbf87;
       }
-    }
-  }
-
-  .tabs {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-    button {
-      width: 40px;
-      height: 40px;
-      border-radius: 5px;
-      background-color: white;
-      border: 1px solid #ced4da;
-      color: black;
-      margin-right: 20px;
-
-      &:last-child {
-        margin-right: 0;
-      }
-      &.active {
-        color: white;
-        background-color: blue;
-      }
-    }
-  }
-  .num-or {
-    display: block;
-    padding: 5px 0;
-  }
-
-  .result-card {
-    .num-or {
-      &.active {
-        padding: 16px 0;
-        margin-bottom: -1px;
-      }
-    }
-
-    .result-num-or {
-      .num-or {
-        // padding: 8px 0;
-
+      .card-number {
+        p {
+          font-style: normal;
+          font-weight: 500;
+          font-size: 16px;
+          line-height: 18px;
+          text-align: center;
+          color: #000000;
+        }
         &.active {
-          padding: 18px 0;
-          margin-bottom: -1px;
+          background: #ffbf87;
         }
       }
     }
+  }
+  .sort-numbers {
+    width: 6%;
+    margin: 0 5px;
+  }
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.game-header {
+  margin: 20px 0;
+  span {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 21px;
+    line-height: 25px;
+    color: #000000;
+  }
+  a {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: right;
+    color: #d69358;
+  }
+}
+
+.inputs-groups {
+  grid-template-columns: repeat(20, 1fr);
+  display: grid;
+  margin-left: 10px;
+  input {
+    background: #ffffff;
+    border: 1px solid #ededed;
+    border-radius: 2px;
+    width: 16px;
+    height: 21px;
   }
 }
