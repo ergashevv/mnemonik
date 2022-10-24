@@ -3,6 +3,7 @@ import {
   ReactNode,
   useContext,
   useEffect,
+  useMemo,
   useState,
 } from "react"
 import data from "../datas/words/WordsData"
@@ -16,7 +17,6 @@ type NumberSetter = (numbers: number | ((numbers: number) => number)) => void
 
 interface IContext {
   words: string[]
-  setWords: StringSetter
 
   wordsPerPage: number
   currentWords: string[]
@@ -45,15 +45,16 @@ const WordsContext = createContext<IContext>({} as IContext)
 export const WordsContextProvider = ({ children }: { children: ReactNode }) => {
   const { currentPage } = useNamesAndFacesContext()
 
-  const [words, setWords] = useState<string[]>(data)
   const [answers, setAnswers] = useState<string[]>(() => Array(200).fill(""))
   const [wordsPerPage] = useState(10)
   const [countDown, setCountDown] = useState<number>(5)
   const [minutesForRecall, setMinutesForRecall] = useState<number>(5)
   const [minutesForAnswer, setMinutesForAnswer] = useState<number>(5)
+
   const [cursorWidth, setCursorWidth] = useState<number>(() =>
     JSON.parse(localStorage.getItem("cursorWidth")!)
   )
+
   const [activeWords, setActiveWords] = useState<number>(0)
 
   useEffect(() => {
@@ -72,22 +73,22 @@ export const WordsContextProvider = ({ children }: { children: ReactNode }) => {
       ? indexOfLastWord - (wordsPerPage + 2)
       : indexOfLastWord - wordsPerPage
 
+  const words = useMemo(
+    () =>
+      data
+        .map((value) => ({ value, sort: Math.random() }))
+        .sort((a, b) => a.sort - b.sort)
+        .map(({ value }) => value)
+        .slice(0, 200),
+    []
+  )
+
   const currentWords = words?.slice(indexOfFirstWord, indexOfLastWord)
+
   const currentAnswers = answers?.slice(indexOfFirstWord, indexOfLastWord)
-
-  const shuffledWords = words
-    .map((value) => ({ value, sort: Math.random() }))
-    .sort((a, b) => a.sort - b.sort)
-    .map(({ value }) => value)
-    .slice(0, 200)
-
-  useEffect(() => {
-    setWords(shuffledWords)
-  }, [])
 
   const value = {
     words,
-    setWords,
     answers,
     setAnswers,
 
