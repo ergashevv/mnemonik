@@ -5,19 +5,11 @@ import Tabs from "../../components/tabs"
 import TimerComponent from "../../components/timer"
 import { useHomeContext } from "../../context/home-context"
 import InputCell from "./input-cell"
-import "./main.scss"
+import "./numbers-page.scss"
 import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
 const StartNumberGame = () => {
-  const {
-    numbers,
-    randomNumbers,
-    cursorW,
-    setResult,
-    tab,
-    setTab,
-    setDynamic,
-    dynamic,
-  } = useHomeContext()
+  const { numbers, randomNumbers, setResult, tab, setTab, dynamic } =
+    useHomeContext()
   const { timerForAnswer } = useNamesAndFacesContext()
   const [inputs, setInputs] = useState(Array(numbers.length).fill(""))
   const handleValue = useCallback((val: any, index: number | undefined) => {
@@ -82,35 +74,21 @@ const StartNumberGame = () => {
   }
 
   return (
-    <div className="start-game-page">
-      <div
-        style={{
-          justifyContent: "space-between",
-        }}
-        className="d-flex"
-      >
+    <div className="start-game-page container">
+      <div className="start-game-page-header">
         <TimerComponent
           time={timerForAnswer}
           navigateTo={"/numbers/result"}
           finishTimeFunc={finishGame}
         />
         <button onClick={finishGame}>
-          <Link to="/numbers/result">Finish</Link>
+          <Link className="finish-now-btn" to="/numbers/result">
+            Hoziroq tugatish
+          </Link>
         </button>
       </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-        }}
-      >
-        <div
-          style={{
-            marginRight: "4px",
-          }}
-        >
-          <LeftNumber />
-        </div>
+      <div className="start-game-group">
+        <LeftNumber />
         {Array(4)
           .fill(null)
           .map((_, index) => {
@@ -119,11 +97,11 @@ const StartNumberGame = () => {
               dynamic * (tab + 1)
             )
             return (
-              <div key={index}>
+              <>
                 {tab === index && (
                   <div className="inputs-groups">{slicedInputs}</div>
                 )}
-              </div>
+              </>
             )
           })}
       </div>

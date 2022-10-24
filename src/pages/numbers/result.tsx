@@ -25,48 +25,18 @@ const Result = () => {
   }, [dynum, randomNumbers, result, tab])
 
   return (
-    <>
-      <span
-        style={{
-          display: "block",
-          marginBottom: "6px",
-        }}
-      >
-        {" "}
-        Umumiy {randomNumbers.length}
-      </span>
-      <span
-        style={{
-          display: "block",
-          marginBottom: "6px",
-        }}
-      >
-        {" "}
-        To'g'ri javoblar {randomNumbers.length - count}
-      </span>
+    <div className="container">
+      <span>Umumiy {randomNumbers.length}</span>
+      <span> To'g'ri javoblar {randomNumbers.length - count}</span>
       <span> Xato javoblar {count}</span>
-      <div className="d-flex result-card">
-        <div
-          className={
-            Number(cursorW) >= 4 ? "sort-numbers active" : "sort-numbers"
-          }
-        >
-          <LeftNumber />
-        </div>
+      <div className="start-game-group">
+        <LeftNumber />
         {Array(4)
           .fill(null)
           .map((_, index) => (
             <div key={index}>
               {tab === index && (
-                <div
-                  style={{
-                    gridTemplateColumns:
-                      dynum == 189
-                        ? "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr"
-                        : "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr",
-                  }}
-                  className="start-game"
-                >
+                <div className="inputs-groups ">
                   {result
                     ?.slice(dynum * tab, dynum * (tab + 1))
                     .map((value: any, index) => (
@@ -85,6 +55,7 @@ const Result = () => {
                                   : "red",
                               fontWeight: "bold",
                             }}
+                            className="number-page-input"
                             value={value}
                             type="text"
                           />
@@ -97,6 +68,7 @@ const Result = () => {
                                   dynum * (tab + 1)
                                 )[index]
                               }
+                              className="number-page-input"
                               type="text"
                             />
                           )}
@@ -114,7 +86,7 @@ const Result = () => {
       <button onClick={() => setShow(!show)}>
         {show ? "user result" : "show result"}
       </button>
-    </>
+    </div>
   )
 }
 export default Result

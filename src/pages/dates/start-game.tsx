@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import TimerComponent from "../../components/timer"
 import { useDatedContext } from "../../context/date-context"
 import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
-import "./main.scss"
+import "./dates-page.scss"
 
 const DatesStartGame = () => {
   const { data, even, setUserDate } = useDatedContext()

@@ -1,20 +1,22 @@
 .numbers {
+  font-family: "Courier";
   .cards {
     width: 100%;
     grid-template-columns: repeat(20, 1fr);
     display: grid;
-    margin-left: 10px;
     .number-card {
       &.active {
         border-right: 1px solid #ffbf87;
       }
       .card-number {
         p {
+          font-family: "Courier";
           font-style: normal;
-          font-weight: 500;
+          font-weight: 600;
           font-size: 16px;
           line-height: 18px;
           text-align: center;
+
           color: #000000;
         }
         &.active {
@@ -25,7 +27,7 @@
   }
   .sort-numbers {
     width: 6%;
-    margin: 0 5px;
+    margin-right: 5px;
   }
 
   display: flex;
@@ -34,6 +36,7 @@
 
 .game-header {
   margin: 20px 0;
+
   span {
     font-style: normal;
     font-weight: 600;
@@ -50,16 +53,21 @@
     color: #d69358;
   }
 }
-
-.inputs-groups {
-  grid-template-columns: repeat(20, 1fr);
-  display: grid;
-  margin-left: 10px;
-  input {
-    background: #ffffff;
-    border: 1px solid #ededed;
-    border-radius: 2px;
-    width: 16px;
-    height: 21px;
+.game-header-inner {
+  margin-bottom: 45px;
+}
+.start-game-group {
+  display: flex;
+  margin-bottom: 45px;
+}
+.start-game-page {
+  .start-game-page-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0 30px 0;
+  }
+  .game-screen {
+    display: flex;
+    width: 100%;
   }
 }

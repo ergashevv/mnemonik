@@ -85,6 +85,7 @@ export default memo(function InputCell({
       {console.log(index)}
       <input
         maxLength={1}
+        className="number-page-input"
         type="number"
         value={value}
         min={1}

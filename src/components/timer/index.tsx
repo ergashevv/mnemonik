@@ -41,11 +41,18 @@ const TimerComponent = ({ time, navigateTo, finishTimeFunc }: ITimerProps) => {
 
   return (
     <>
-      <div>
-        <span>
-          {minutes}m : {seconds < 10 ? `${seconds}` : seconds}s{" "}
-        </span>
-      </div>
+      <span
+        style={{
+          fontFamily: "Work Sans",
+          fontStyle: "normal",
+          fontWeight: "600",
+          fontSize: "21px",
+          lineHeight: "25px",
+          color: "#000000",
+        }}
+      >
+        {minutes}:{seconds < 10 ? `${seconds}` : seconds}{" "}
+      </span>
     </>
   )
 }

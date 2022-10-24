@@ -17,7 +17,6 @@ export interface Card {
 export interface ICardsContext {
   line?: string
   cursor: number
-  cursorW?: string
   focus?: number
   setCursor: Function
   show?: string
@@ -29,16 +28,11 @@ export interface ICardsContext {
   data: Card[]
   setFocus: (focus: number) => void
   setRandomCard?: (randomCard: number[]) => void
-  setCursorW: (cursorW: string) => void
   setNavigation: (navigation: string) => void
 }
 const CardsContext = createContext<ICardsContext>({} as ICardsContext)
 
 export const CardsContextProvider = ({ children }: { children: ReactNode }) => {
-  const [cursorW, setCursorW] = useState<string>(() =>
-    JSON.parse(localStorage.getItem("cursorW")!)
-  )
-
   const [navigation, setNavigation] = useState(
     JSON.parse(localStorage.getItem("navigation")!)
   )
@@ -54,42 +48,28 @@ export const CardsContextProvider = ({ children }: { children: ReactNode }) => {
   const [inputs, setInputs] = useState(
     Array(data.length).fill({ image: CardImg })
   )
-
   const [focus, setFocus] = useState(0)
-
   const [randomCard, setRandomCard] = useState<Card[]>([])
-
   useEffect(() => {
-    if (cursorW) {
-      localStorage.setItem("cursorW", JSON.stringify(cursorW))
-    }
-
     if (navigation === "left") {
       localStorage.setItem("navigation", JSON.stringify(navigation))
     }
-
     if (navigation === "right") {
       localStorage.setItem("navigation", JSON.stringify(navigation))
     }
-
     if (show === "small") {
       localStorage.setItem("show", JSON.stringify(show))
     }
-
     if (show === "large") {
       localStorage.setItem("show", JSON.stringify(show))
     }
-  }, [cursorW, navigation, show])
-
+  }, [navigation, show])
   const shuffle = (arr: Card[]) => [...arr].sort(() => Math.random() - 0.5)
-
   useEffect(() => {
     setRandomCard(shuffle(data))
   }, [setRandomCard, data])
 
   const value = {
-    cursorW,
-    setCursorW,
     cursor,
     setCursor,
     data,

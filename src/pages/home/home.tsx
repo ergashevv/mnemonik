@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import "./main.scss"
+import "./home-page.scss"
 import Logo from "../../assets/images/logotype.png"
 import Hmaburger from "../../assets/images/menu.svg"
 import Numbers from "../../assets/images/numbers.svg"

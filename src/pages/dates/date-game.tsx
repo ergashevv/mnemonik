@@ -6,7 +6,7 @@ import TimerComponent from "../../components/timer"
 import { useDatedContext } from "../../context/date-context"
 import { useHomeContext } from "../../context/home-context"
 import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
-import "./main.scss"
+import "./dates-page.scss"
 
 const DatesGamePage = () => {
   const { data, even } = useDatedContext()

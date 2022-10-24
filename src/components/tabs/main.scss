@@ -1,5 +1,4 @@
 .tabs {
-  margin-top: 30px;
   .tab {
     display: flex;
     justify-content: center;
@@ -14,8 +13,8 @@
       color: white;
     }
     color: black;
-    border: 1px solid rgba(0, 0, 0, 0.192);
-    padding: 16px;
+    background-color: #fff;
+    padding: 13px 18px;
     border-radius: 10px;
   }
 }

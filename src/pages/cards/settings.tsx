@@ -4,10 +4,11 @@ import "../../assets/styles/StartStyles.scss"
 import SelectStartTime from "../../components/start-game-select"
 import { useCardsContext } from "../../context/cards-context"
 import ArrowLeft from "../../assets/images/icons/arrow-left.svg"
+import { useHomeContext } from "../../context/home-context"
 
 const Settings = () => {
-  const { setCursorW, setNavigation, navigation, cursorW, setShow, show } =
-    useCardsContext()
+  const { setNavigation, navigation, setShow, show } = useCardsContext()
+  const { cursorW, setCursorW } = useHomeContext()
 
   const navigate = useNavigate()
 
@@ -30,7 +31,6 @@ const Settings = () => {
   const handleBack = () => {
     navigate("/")
   }
-
 
   return (
     <div className="settings">

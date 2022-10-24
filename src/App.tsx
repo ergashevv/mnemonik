@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom"
 import "./assets/styles/ControlButtons.scss"
 import "./assets/styles/main.scss"
+import "./assets/styles/customize.scss"
 import "./assets/styles/StartStyles.scss"
 import CardsLayout from "./layouts/cards"
 import DatesLayout from "./layouts/dates"

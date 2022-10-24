@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Card, useCardsContext } from "../../context/cards-context"
-import "./main.scss"
+import "./cards-page.scss"
 
 const ResultCard = () => {
   const { inputs, randomCard } = useCardsContext()

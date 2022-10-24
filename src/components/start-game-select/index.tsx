@@ -21,9 +21,7 @@ const SelectStartTime = ({ time }: ITimeProps) => {
           defaultValue={time}
           onChange={(e: any) => setStartTime(e.target.value)}
         >
-          <option selected value="5">
-            5
-          </option>
+          <option value="5">5</option>
           <option value="10">10</option>
           <option value="30">30</option>
           <option value="60">60</option>

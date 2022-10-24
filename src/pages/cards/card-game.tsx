@@ -7,7 +7,7 @@ import TimerComponent from "../../components/timer"
 import { useCardsContext } from "../../context/cards-context"
 import { useHomeContext } from "../../context/home-context"
 import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
-import "./main.scss"
+import "./cards-page.scss"
 const CardGame = () => {
   const { startTime: starttime } = useHomeContext()
   const {
@@ -15,10 +15,11 @@ const CardGame = () => {
     cursor,
     randomCard,
     setCursor,
-    cursorW,
+
     navigation,
     show,
   } = useCardsContext()
+  const { cursorW } = useHomeContext()
 
   const { timerForRecall } = useNamesAndFacesContext()
 
@@ -58,7 +59,10 @@ const CardGame = () => {
               }}
               className="d-flex"
             >
-              <TimerComponent time={timerForRecall} navigateTo={"/cards/start"} />
+              <TimerComponent
+                time={timerForRecall}
+                navigateTo={"/cards/start"}
+              />
               <Link to="/cards/start">Start</Link>
             </div>
             <div className="show-card">

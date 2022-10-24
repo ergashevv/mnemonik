@@ -6,7 +6,7 @@ import StartGameModal from "../../components/start-game"
 import Tabs from "../../components/tabs"
 import TimerComponent from "../../components/timer"
 import { useHomeContext } from "../../context/home-context"
-import "./main.scss"
+import "./numbers-page.scss"
 
 const NumbersGame = () => {
   const {
@@ -41,7 +41,7 @@ const NumbersGame = () => {
             />
             <Link to="/numbers/start">Hoziroq tugatish</Link>
           </div>
-          <div className="header">
+          <div className="game-header-inner">
             <div className="numbers">
               <div
                 className={

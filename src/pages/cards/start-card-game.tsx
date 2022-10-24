@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import TimerComponent from "../../components/timer"
 import { Card, useCardsContext } from "../../context/cards-context"
 import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
-import "./main.scss"
+import "./cards-page.scss"
 
 const StartCard = () => {
   const { data, inputs, focus, setFocus, setInputs, show } = useCardsContext()

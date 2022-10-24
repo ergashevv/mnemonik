@@ -1,0 +1,33 @@
+.finish-now-btn {
+  font-family: "Work Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: right;
+  color: #d69358;
+}
+.navigate-home-page {
+  font-family: "Work Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: right;
+  color: #626262;
+}
+.number-page-input {
+  background: #ffffff;
+  border: 1px solid #ededed;
+  border-radius: 2px;
+  width: 100%;
+  max-width: 20px;
+  height: 19px;
+}
+
+.inputs-groups {
+  grid-template-columns: repeat(20, 1fr);
+  display: grid;
+  margin-left: 10px;
+  width: 100%;
+}
