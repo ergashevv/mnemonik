@@ -14,11 +14,12 @@ const blobToBase64 = (blob: Blob) =>
 
 const Start = () => {
   const [imagesLoading, setImagesLoading] = useState<boolean>(false)
+
   const {
     people,
     setPeople,
     setShuffledPeople,
-    setCurrentPage,
+    setCurrentPageFaces,
   } = useNamesAndFacesContext()
 
   const [imagesFetched, setImagesFetched] = useState<number>(0)
@@ -29,7 +30,7 @@ const Start = () => {
     setImagesLoading(true)
 
     const updatedPeople = await Promise.all(
-      people.map(async ({ img, ...person }) => {
+      people?.map(async ({ img, ...person }) => {
         const res = await fetch(img)
 
         const blob = await res.blob()
@@ -41,9 +42,10 @@ const Start = () => {
         return { ...person, img: url }
       })
     )
+    
 
     setShuffledPeople((shuffledPeople) =>
-      shuffledPeople.map((person) => {
+      shuffledPeople?.map((person) => {
         const { img } = updatedPeople.find(
           (updatedPerson) =>
             person.firstName === updatedPerson.firstName &&
@@ -57,8 +59,8 @@ const Start = () => {
     setPeople(updatedPeople)
 
     navigate("/names-and-faces/recall")
-    setCurrentPage(1)
-  }, [navigate, people, setCurrentPage, setPeople, setShuffledPeople])
+    setCurrentPageFaces(1)
+  }, [navigate, people, setCurrentPageFaces, setPeople, setShuffledPeople])
 
   const handleBack = () => {
     navigate("/")

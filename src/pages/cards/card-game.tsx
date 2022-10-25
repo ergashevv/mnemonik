@@ -6,10 +6,9 @@ import StartGameModal from "../../components/start-game"
 import TimerComponent from "../../components/timer"
 import { useCardsContext } from "../../context/cards-context"
 import { useHomeContext } from "../../context/home-context"
-import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
 import "./main.scss"
 const CardGame = () => {
-  const { startTime: starttime } = useHomeContext()
+  const { startTime: starttime, timerForRecall } = useHomeContext()
   const {
     data,
     cursor,
@@ -19,8 +18,6 @@ const CardGame = () => {
     navigation,
     show,
   } = useCardsContext()
-
-  const { timerForRecall } = useNamesAndFacesContext()
 
   const parsedCursorW = parseInt(cursorW!)
   const showCards = randomCard!.slice(cursor, cursor + parsedCursorW)

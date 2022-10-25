@@ -27,6 +27,10 @@ export interface IContext {
   setNavigation: Function
   setAutoSecond: Function
   setResult: Function
+  timerForRecall: number
+  setTimerForRecall: Function
+  timerForAnswer: number
+  setTimerForAnswer: Function
 }
 
 const HomeContext = createContext<IContext>({} as IContext)
@@ -45,6 +49,10 @@ export const HomeContextProvider = ({ children }: { children: ReactNode }) => {
     JSON.parse(localStorage.getItem("startTime")!)
   )
 
+  
+  const [timerForRecall, setTimerForRecall] = useState<number>(5)
+  const [timerForAnswer, setTimerForAnswer] = useState<number>(15)
+
   const [cursor, setCursor] = useState(0)
   const [result, setResult] = useState<string[]>()
   const [tab, setTab] = useState<number>(0)
@@ -53,7 +61,9 @@ export const HomeContextProvider = ({ children }: { children: ReactNode }) => {
 
   const [randomNumbers, setRandomNumbers] = useState<number[]>([])
   const [dynamic, setDynamic] = useState(200)
+  
   const shuffle = (arr: number[]) => [...arr].sort(() => Math.random() - 0.5)
+
   const [numbers, setNumbers] = useState<string[]>(() => {
     const numbers0to9 = Array(10)
       .fill(0)
@@ -116,6 +126,11 @@ export const HomeContextProvider = ({ children }: { children: ReactNode }) => {
     setAutoSecond,
     startTime,
     setStartTime,
+    
+    timerForRecall,
+    setTimerForRecall,
+    timerForAnswer,
+    setTimerForAnswer,
   }
 
   return <HomeContext.Provider value={value}>{children}</HomeContext.Provider>

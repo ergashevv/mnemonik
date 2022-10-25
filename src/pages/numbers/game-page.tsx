@@ -18,7 +18,9 @@ const NumbersGame = () => {
     dynamic,
     startTime,
     line,
+    timerForRecall,
   } = useHomeContext()
+  
   const finishGame = () => {
     setTab(0)
   }
@@ -36,7 +38,7 @@ const NumbersGame = () => {
           >
             <TimerComponent
               finishTimeFunc={finishGame}
-              time={5}
+              time={timerForRecall}
               navigateTo={"/numbers/start"}
             />
             <Link to="/numbers/start">Hoziroq tugatish</Link>

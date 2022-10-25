@@ -5,14 +5,11 @@ import StartGameModal from "../../components/start-game"
 import TimerComponent from "../../components/timer"
 import { useDatedContext } from "../../context/date-context"
 import { useHomeContext } from "../../context/home-context"
-import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
 import "./main.scss"
 
 const DatesGamePage = () => {
   const { data, even } = useDatedContext()
-  const { setCursor, cursor, startTime } = useHomeContext()
-
-  const { timerForRecall } = useNamesAndFacesContext()
+  const { setCursor, cursor, startTime, timerForRecall } = useHomeContext()
 
   const elementClick = (e: any) => {
     setCursor(e)

@@ -1,45 +1,48 @@
 import { useEffect, useRef, useState } from "react"
 import { ArrowLeft, ArrowRight, Rewind } from "react-feather"
 import { useNavigate } from "react-router-dom"
-import NextPage from "../../components/button-control-component/NextPage"
-import PrevPage from "../../components/button-control-component/PrevPage"
+import useFlashCardsNext from "../../hooks/useFlashCardsButton/useFlashCardsNext"
+import useFlashCardsPrev from "../../hooks/useFlashCardsButton/useFlashCardsPrev"
 import StartGameModal from "../../components/start-game"
 import { useFlashCardsContext } from "../../context/FlashCardsContext"
 import { useHomeContext } from "../../context/home-context"
-import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
 import "./FlashCards.scss"
 
 const FlashCardsRecall = () => {
-  const { flashCards, time, setTime } = useFlashCardsContext()
+  const {
+    flashCards,
+    time,
+    setTime,
+    currentFlashCard,
+    setCurrentFlashCard,
+  } = useFlashCardsContext()
 
   const { startTime } = useHomeContext()
 
-  const { currentPage, setCurrentPage } = useNamesAndFacesContext()
-
-  const { nextHandlersCards } = NextPage()
-  const { prevHandlersCards } = PrevPage()
+  const { flashCardsNextButton } = useFlashCardsNext()
+  const { flashCardsPrevButton } = useFlashCardsPrev()
 
   const [flipCards, setFlipCards] = useState(() => Array(100).fill(false))
   const navigate = useNavigate()
 
-  const interval = useRef<ReturnType<typeof setTimeout>>()
+  const interval = useRef<ReturnType<typeof setInterval>>()
 
   useEffect(() => {
     if (interval.current) clearInterval(interval.current)
 
-    interval.current = setTimeout(() => {
+    interval.current = setInterval(() => {
       setTime((numbers) =>
         numbers.map((number, index) =>
-          currentPage - 1 === index ? number + 0.01 : number
+          currentFlashCard - 1 === index ? number + 0.01 : number
         )
       )
     }, 10)
 
     return () => clearInterval(Number(interval.current))
-  }, [setTime, currentPage, time])
+  }, [setTime, currentFlashCard, time, startTime])
 
   const firstPage = () => {
-    setCurrentPage(1)
+    setCurrentFlashCard(1)
   }
 
   const handleNavigate = () => {
@@ -52,11 +55,11 @@ const FlashCardsRecall = () => {
         <StartGameModal time={startTime!} />
         <div
           className="flashCards-section"
-          style={{ display: Number(startTime )> 0 ? "none" : "block" }}
+          style={{ display: Number(startTime) > 0 ? "none" : "block" }}
         >
           <div className="flashCards-section__header">
             <h1 className="flashCards-section__header-timer">
-              {time[currentPage - 1].toFixed(2)} s
+              {time[currentFlashCard - 1].toFixed(2)} s
             </h1>
             <button
               onClick={handleNavigate}
@@ -69,7 +72,7 @@ const FlashCardsRecall = () => {
           <div className="flashCards-section__items">
             {flashCards?.map((flashCard, index) => {
               const { number, text } = flashCard
-              if (index === currentPage - 1) {
+              if (index === currentFlashCard - 1) {
                 return (
                   <article
                     key={index}
@@ -92,16 +95,16 @@ const FlashCardsRecall = () => {
             })}
           </div>
           <div className="indicator">
-            <span>{currentPage}</span>/<span>{flashCards?.length}</span>
+            <span>{currentFlashCard}</span>/<span>{flashCards?.length}</span>
           </div>
           <div className="control-buttons">
             <button onClick={firstPage} className="first-button">
               <Rewind size={32} />
             </button>
-            <button {...prevHandlersCards} className="prev-button">
+            <button {...flashCardsPrevButton} className="prev-button">
               <ArrowLeft size={32} />
             </button>
-            <button {...nextHandlersCards} className="next-button">
+            <button {...flashCardsNextButton} className="next-button">
               <ArrowRight size={32} />
             </button>
           </div>

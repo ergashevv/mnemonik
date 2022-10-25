@@ -1,16 +1,16 @@
 import { useNavigate } from "react-router-dom"
 import SelectStartTime from "../../components/start-game-select"
-import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
 import ArrowLeft from "../../assets/images/icons/arrow-left.svg"
+import { useFlashCardsContext } from "../../context/FlashCardsContext"
 
 const FlashCardsStart = () => {
-  const { setCurrentPage } = useNamesAndFacesContext()
+  const { setCurrentFlashCard } = useFlashCardsContext()
 
   const navigate = useNavigate()
 
   const handleNavigate = () => {
     navigate("/flash-cards/recall")
-    setCurrentPage(1)
+    setCurrentFlashCard(1)
   }
 
   const handleBack = () => {

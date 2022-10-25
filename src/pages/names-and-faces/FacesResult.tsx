@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { ArrowLeft, ArrowRight, Eye, Rewind } from "react-feather"
-import NextPage from "../../components/button-control-component/NextPage"
-import PrevPage from "../../components/button-control-component/PrevPage"
+import useFacesNext from "../../hooks/useFacesButton/useFacesNext"
+import useFacesPrev from "../../hooks/useFacesButton/useFacesPrev"
 import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
 import "./NF.scss"
 
@@ -9,13 +9,13 @@ const Result = () => {
   const {
     people,
     shuffledPeople,
-    currentPage,
-    setCurrentPage,
+    currentPageFaces,
+    setCurrentPageFaces,
     results,
   } = useNamesAndFacesContext()
 
-  const { prevHandlers } = PrevPage()
-  const { nextHandlers } = NextPage()
+  const { facesPrevButton } = useFacesPrev()
+  const { facesNextButton } = useFacesNext()
 
   const [visibleFirstNames, setVisibleFirstNames] = useState<boolean[]>(
     Array(results?.length).fill(false)
@@ -37,7 +37,7 @@ const Result = () => {
   )
 
   const firstPage = () => {
-    setCurrentPage(1)
+    setCurrentPageFaces(1)
   }
 
   return (
@@ -56,7 +56,7 @@ const Result = () => {
             {results?.map((result, index) => {
               const { img, firstName } = result
 
-              if (index === currentPage - 1) {
+              if (index === currentPageFaces - 1) {
                 return (
                   <article key={index}>
                     <img src={img} alt={firstName} />
@@ -158,16 +158,16 @@ const Result = () => {
             })}
           </div>
           <div className="indicator">
-            <span>{currentPage}</span>/<span>{people.length}</span>
+            <span>{currentPageFaces}</span>/<span>{people.length}</span>
           </div>
           <div className="control-buttons">
             <button onClick={firstPage} className="first-button">
               <Rewind size={32} />
             </button>
-            <button {...prevHandlers} className="prev-button">
+            <button {...facesPrevButton} className="prev-button">
               <ArrowLeft size={32} />
             </button>
-            <button {...nextHandlers} className="next-button">
+            <button {...facesNextButton} className="next-button">
               <ArrowRight size={32} />
             </button>
           </div>

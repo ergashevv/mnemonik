@@ -1,15 +1,10 @@
 import {
   createContext,
   ReactNode,
-  useContext,
-  useEffect,
+  useContext, useMemo,
   useState
 } from "react"
 import { flashCardsData } from "../datas/flash-cards/FlashCardsData"
-
-type FlashCardsSetter = (
-  flashCards: FlashCards[] | ((flashCards: FlashCards[]) => FlashCards[])
-) => void
 
 type NumberSetter = (numbers: number | ((numbers: number) => number)) => void
 
@@ -24,7 +19,6 @@ interface FlashCards {
 
 interface IContext {
   flashCards: FlashCards[]
-  setFlashCards: FlashCardsSetter
   currentFlashCard: number
   setCurrentFlashCard: NumberSetter
   countDown: number
@@ -40,23 +34,21 @@ export const FlashCardsContextProvider = ({
 }: {
   children: ReactNode
 }) => {
-  const [flashCards, setFlashCards] = useState<FlashCards[]>(flashCardsData)
   const [currentFlashCard, setCurrentFlashCard] = useState<number>(1)
   const [countDown, setCountDown] = useState<number>(5)
   const [time, setTime] = useState<number[]>(() => Array(100).fill(0))
 
-  let shuffled = flashCardsData
-    .map((value) => ({ value, sort: Math.random() }))
-    .sort((a, b) => a.sort - b.sort)
-    .map(({ value }) => value)
-
-  useEffect(() => {
-    setFlashCards(shuffled)
-  }, [])
+  const flashCards = useMemo(
+    () =>
+      flashCardsData
+        .map((value) => ({ value, sort: Math.random() }))
+        .sort((a, b) => a.sort - b.sort)
+        .map(({ value }) => value),
+    []
+  )
 
   const value = {
     flashCards,
-    setFlashCards,
     currentFlashCard,
     setCurrentFlashCard,
     countDown,
