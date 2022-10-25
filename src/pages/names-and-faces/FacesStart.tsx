@@ -18,6 +18,7 @@ const Start = () => {
   const {
     people,
     setPeople,
+    shuffledPeople,
     setShuffledPeople,
     setCurrentPageFaces,
   } = useNamesAndFacesContext()
@@ -29,8 +30,8 @@ const Start = () => {
   const handleNavigate = useCallback(async () => {
     setImagesLoading(true)
 
-    const updatedPeople = await Promise.all(
-      people?.map(async ({ img, ...person }) => {
+    const peopleWithUpdatedImages = await Promise.all(
+      shuffledPeople.map(async ({ img, ...person }) => {
         const res = await fetch(img)
 
         const blob = await res.blob()
@@ -42,11 +43,10 @@ const Start = () => {
         return { ...person, img: url }
       })
     )
-    
 
-    setShuffledPeople((shuffledPeople) =>
-      shuffledPeople?.map((person) => {
-        const { img } = updatedPeople.find(
+    setShuffledPeople((shuffledPeople) => {
+      return shuffledPeople.map((person) => {
+        const { img } = peopleWithUpdatedImages.find(
           (updatedPerson) =>
             person.firstName === updatedPerson.firstName &&
             person.lastName === updatedPerson.lastName
@@ -54,11 +54,12 @@ const Start = () => {
 
         return { ...person, img }
       })
-    )
+    })
 
-    setPeople(updatedPeople)
+    setPeople(peopleWithUpdatedImages)
 
     navigate("/names-and-faces/recall")
+
     setCurrentPageFaces(1)
   }, [navigate, people, setCurrentPageFaces, setPeople, setShuffledPeople])
 
