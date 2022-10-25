@@ -7,6 +7,7 @@ import StartGameModal from "../../components/start-game"
 import { useFlashCardsContext } from "../../context/FlashCardsContext"
 import { useHomeContext } from "../../context/home-context"
 import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
+import TimerFlashCards from "./flash-cards-timer"
 import "./FlashCards.scss"
 
 const FlashCardsRecall = () => {
@@ -22,22 +23,6 @@ const FlashCardsRecall = () => {
   const [flipCards, setFlipCards] = useState(() => Array(100).fill(false))
   const navigate = useNavigate()
 
-  const interval = useRef<ReturnType<typeof setTimeout>>()
-
-  useEffect(() => {
-    if (interval.current) clearInterval(interval.current)
-
-    interval.current = setTimeout(() => {
-      setTime((numbers) =>
-        numbers.map((number, index) =>
-          currentPage - 1 === index ? number + 0.01 : number
-        )
-      )
-    }, 10)
-
-    return () => clearInterval(Number(interval.current))
-  }, [setTime, currentPage, time])
-
   const firstPage = () => {
     setCurrentPage(1)
   }
@@ -52,12 +37,10 @@ const FlashCardsRecall = () => {
         <StartGameModal time={startTime!} />
         <div
           className="flashCards-section"
-          style={{ display: Number(startTime )> 0 ? "none" : "block" }}
+          style={{ display: Number(startTime) > 0 ? "none" : "block" }}
         >
           <div className="flashCards-section__header">
-            <h1 className="flashCards-section__header-timer">
-              {time[currentPage - 1].toFixed(2)} s
-            </h1>
+            <TimerFlashCards />
             <button
               onClick={handleNavigate}
               style={{ textDecoration: "none" }}

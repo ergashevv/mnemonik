@@ -23,10 +23,12 @@ const DatesGamePage = () => {
     window.scrollTo(0, 30)
   }
 
+  const stringStartTime = String(startTime)
+  const numberStartTime = Number(startTime)
   return (
     <>
-      {startTime ? (
-        <StartGameModal time={startTime} />
+      {numberStartTime > 0 ? (
+        <StartGameModal time={stringStartTime} />
       ) : (
         <>
           <div className="d-flex">

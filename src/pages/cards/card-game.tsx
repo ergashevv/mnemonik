@@ -10,16 +10,8 @@ import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
 import "./cards-page.scss"
 const CardGame = () => {
   const { startTime: starttime } = useHomeContext()
-  const {
-    data,
-    cursor,
-    randomCard,
-    setCursor,
-
-    navigation,
-    show,
-  } = useCardsContext()
-  const { cursorW } = useHomeContext()
+  const { data, randomCard, navigation, show } = useCardsContext()
+  const { cursorW, setCursor, cursor } = useHomeContext()
 
   const { timerForRecall } = useNamesAndFacesContext()
 

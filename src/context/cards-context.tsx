@@ -8,17 +8,13 @@ import {
 
 import CardImg from "../assets/images/empty.png"
 import { Cards } from "../datas/data-cards"
-
 export interface Card {
   image: string
   id: number
 }
-
 export interface ICardsContext {
   line?: string
-  cursor: number
   focus?: number
-  setCursor: Function
   show?: string
   navigation?: string
   randomCard?: Card[]
@@ -37,8 +33,6 @@ export const CardsContextProvider = ({ children }: { children: ReactNode }) => {
     JSON.parse(localStorage.getItem("navigation")!)
   )
 
-  const [cursor, setCursor] = useState(0)
-
   const [data, setData] = useState<Card[]>(Cards)
 
   const [show, setShow] = useState<string>(
@@ -48,6 +42,7 @@ export const CardsContextProvider = ({ children }: { children: ReactNode }) => {
   const [inputs, setInputs] = useState(
     Array(data.length).fill({ image: CardImg })
   )
+
   const [focus, setFocus] = useState(0)
   const [randomCard, setRandomCard] = useState<Card[]>([])
   useEffect(() => {
@@ -68,10 +63,9 @@ export const CardsContextProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     setRandomCard(shuffle(data))
   }, [setRandomCard, data])
+  console.log(randomCard)
 
   const value = {
-    cursor,
-    setCursor,
     data,
     setData,
     inputs,

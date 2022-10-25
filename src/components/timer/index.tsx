@@ -28,7 +28,6 @@ const TimerComponent = ({ time, navigateTo, finishTimeFunc }: ITimerProps) => {
           setSeconds(59)
         }
       }
-
       if (seconds > 0) {
         setSeconds(seconds - 1)
       }

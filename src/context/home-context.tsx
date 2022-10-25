@@ -49,8 +49,6 @@ export const HomeContextProvider = ({ children }: { children: ReactNode }) => {
   const [result, setResult] = useState<string[]>()
   const [tab, setTab] = useState<number>(0)
   const [autoSecond, setAutoSecond] = useState(1)
-  console.log(autoSecond)
-
   const [randomNumbers, setRandomNumbers] = useState<number[]>([])
   const [dynamic, setDynamic] = useState(200)
   const shuffle = (arr: number[]) => [...arr].sort(() => Math.random() - 0.5)
