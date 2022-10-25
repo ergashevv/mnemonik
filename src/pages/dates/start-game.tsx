@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom"
 import TimerComponent from "../../components/timer"
 import { useDatedContext } from "../../context/date-context"
+import { useHomeContext } from "../../context/home-context"
 import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
 import "./dates-page.scss"
 
 const DatesStartGame = () => {
   const { data, even, setUserDate } = useDatedContext()
 
-  const { timerForAnswer } = useNamesAndFacesContext()
+  const { timerForAnswer } = useHomeContext()
 
   const handleFocusOnNext = (e: any, index: number) => {
     if (e.target.value.length >= 4) {

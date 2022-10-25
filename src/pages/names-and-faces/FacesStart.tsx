@@ -14,11 +14,13 @@ const blobToBase64 = (blob: Blob) =>
 
 const Start = () => {
   const [imagesLoading, setImagesLoading] = useState<boolean>(false)
+
   const {
     people,
     setPeople,
+    shuffledPeople,
     setShuffledPeople,
-    setCurrentPage,
+    setCurrentPageFaces,
   } = useNamesAndFacesContext()
 
   const [imagesFetched, setImagesFetched] = useState<number>(0)
@@ -28,8 +30,8 @@ const Start = () => {
   const handleNavigate = useCallback(async () => {
     setImagesLoading(true)
 
-    const updatedPeople = await Promise.all(
-      people.map(async ({ img, ...person }) => {
+    const peopleWithUpdatedImages = await Promise.all(
+      shuffledPeople.map(async ({ img, ...person }) => {
         const res = await fetch(img)
 
         const blob = await res.blob()
@@ -42,9 +44,9 @@ const Start = () => {
       })
     )
 
-    setShuffledPeople((shuffledPeople) =>
-      shuffledPeople.map((person) => {
-        const { img } = updatedPeople.find(
+    setShuffledPeople((shuffledPeople) => {
+      return shuffledPeople.map((person) => {
+        const { img } = peopleWithUpdatedImages.find(
           (updatedPerson) =>
             person.firstName === updatedPerson.firstName &&
             person.lastName === updatedPerson.lastName
@@ -52,13 +54,14 @@ const Start = () => {
 
         return { ...person, img }
       })
-    )
+    })
 
-    setPeople(updatedPeople)
+    setPeople(peopleWithUpdatedImages)
 
     navigate("/names-and-faces/recall")
-    setCurrentPage(1)
-  }, [navigate, people, setCurrentPage, setPeople, setShuffledPeople])
+
+    setCurrentPageFaces(1)
+  }, [navigate, people, setCurrentPageFaces, setPeople, setShuffledPeople])
 
   const handleBack = () => {
     navigate("/")

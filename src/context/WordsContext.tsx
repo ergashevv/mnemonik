@@ -4,10 +4,9 @@ import {
   useContext,
   useEffect,
   useMemo,
-  useState,
+  useState
 } from "react"
 import data from "../datas/words/WordsData"
-import { useNamesAndFacesContext } from "./NamesAndFacesContext"
 
 type StringSetter = (
   strings: string[] | ((strings: string[]) => string[])
@@ -17,6 +16,9 @@ type NumberSetter = (numbers: number | ((numbers: number) => number)) => void
 
 interface IContext {
   words: string[]
+
+  currentPageWords: number
+  setCurrentPageWords: NumberSetter
 
   wordsPerPage: number
   currentWords: string[]
@@ -36,16 +38,15 @@ interface IContext {
 
   cursorWidth: number
   setCursorWidth: NumberSetter
-  activeWords: number
-  setActiveWords: NumberSetter
+  highlightedWords: number
+  setHighlightedWords: NumberSetter
 }
 
 const WordsContext = createContext<IContext>({} as IContext)
 
 export const WordsContextProvider = ({ children }: { children: ReactNode }) => {
-  const { currentPage } = useNamesAndFacesContext()
-
   const [answers, setAnswers] = useState<string[]>(() => Array(200).fill(""))
+  const [currentPageWords, setCurrentPageWords] = useState<number>(1)
   const [wordsPerPage] = useState(10)
   const [countDown, setCountDown] = useState<number>(5)
   const [minutesForRecall, setMinutesForRecall] = useState<number>(5)
@@ -55,7 +56,7 @@ export const WordsContextProvider = ({ children }: { children: ReactNode }) => {
     JSON.parse(localStorage.getItem("cursorWidth")!)
   )
 
-  const [activeWords, setActiveWords] = useState<number>(0)
+  const [highlightedWords, setHighlightedWords] = useState<number>(0)
 
   useEffect(() => {
     if (cursorWidth) {
@@ -65,8 +66,8 @@ export const WordsContextProvider = ({ children }: { children: ReactNode }) => {
 
   const indexOfLastWord =
     cursorWidth === 3 || cursorWidth === 4
-      ? currentPage * (wordsPerPage + 2)
-      : currentPage * wordsPerPage
+      ? currentPageWords * (wordsPerPage + 2)
+      : currentPageWords * wordsPerPage
 
   const indexOfFirstWord =
     cursorWidth === 3 || cursorWidth === 4
@@ -92,9 +93,13 @@ export const WordsContextProvider = ({ children }: { children: ReactNode }) => {
     answers,
     setAnswers,
 
+    currentPageWords,
+    setCurrentPageWords,
     wordsPerPage,
+
     currentWords,
     currentAnswers,
+
     indexOfFirstWord,
     indexOfLastWord,
 
@@ -107,8 +112,8 @@ export const WordsContextProvider = ({ children }: { children: ReactNode }) => {
     cursorWidth,
     setCursorWidth,
 
-    activeWords,
-    setActiveWords,
+    highlightedWords,
+    setHighlightedWords,
   }
 
   return <WordsContext.Provider value={value}>{children}</WordsContext.Provider>

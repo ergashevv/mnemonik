@@ -10,9 +10,7 @@ import "./dates-page.scss"
 
 const DatesGamePage = () => {
   const { data, even } = useDatedContext()
-  const { setCursor, cursor, startTime } = useHomeContext()
-
-  const { timerForRecall } = useNamesAndFacesContext()
+  const { setCursor, cursor, startTime, timerForRecall } = useHomeContext()
 
   const elementClick = (e: any) => {
     setCursor(e)

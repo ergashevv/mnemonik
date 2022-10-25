@@ -1,7 +1,7 @@
 import { ArrowLeft, ArrowRight, Rewind } from "react-feather"
 import { useNavigate } from "react-router"
-import NextPage from "../../components/button-control-component/NextPage"
-import PrevPage from "../../components/button-control-component/PrevPage"
+import useFacesNext from "../../hooks/useFacesButton/useFacesNext"
+import useFacesPrev from "../../hooks/useFacesButton/useFacesPrev"
 import StartGameModal from "../../components/start-game"
 import { useHomeContext } from "../../context/home-context"
 import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
@@ -9,22 +9,26 @@ import "./NF.scss"
 import TimerComponent from "../../components/timer"
 
 const Recall = () => {
-  const { people, currentPage, setCurrentPage, timerForRecall } =
-    useNamesAndFacesContext()
-  const { startTime } = useHomeContext()
+  const {
+    people,
+    currentPageFaces,
+    setCurrentPageFaces,
+  } = useNamesAndFacesContext()
+
+  const { startTime, timerForRecall } = useHomeContext()
 
   const navigate = useNavigate()
 
-  const { prevHandlers } = PrevPage()
-  const { nextHandlers } = NextPage()
+  const { facesPrevButton } = useFacesPrev()
+  const { facesNextButton } = useFacesNext()
 
   const firstPage = () => {
-    setCurrentPage(1)
+    setCurrentPageFaces(1)
   }
 
   const handleNavigate = () => {
     navigate("/names-and-faces/answers")
-    setCurrentPage(1)
+    setCurrentPageFaces(1)
   }
 
   return (
@@ -54,7 +58,7 @@ const Recall = () => {
           <div className="faces-section__cards">
             {people.map((person, index) => {
               const { img, firstName, lastName } = person
-              if (currentPage - 1 === index) {
+              if (currentPageFaces - 1 === index) {
                 return (
                   <article key={index}>
                     <img src={img} alt={firstName} />
@@ -68,16 +72,16 @@ const Recall = () => {
             })}
           </div>
           <div className="indicator">
-            <span>{currentPage}</span>/<span>{people.length}</span>
+            <span>{currentPageFaces}</span>/<span>{people.length}</span>
           </div>
           <div className="control-buttons">
             <button onClick={firstPage} className="first-button">
               <Rewind size={32} />
             </button>
-            <button {...prevHandlers} className="prev-button">
+            <button {...facesPrevButton} className="prev-button">
               <ArrowLeft size={32} />
             </button>
-            <button {...nextHandlers} className="next-button">
+            <button {...facesNextButton} className="next-button">
               <ArrowRight size={32} />
             </button>
           </div>

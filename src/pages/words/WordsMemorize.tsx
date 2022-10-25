@@ -1,12 +1,11 @@
 import { ArrowLeft, ArrowRight, Rewind } from "react-feather"
 import { useNavigate } from "react-router"
-import NextPage from "../../components/button-control-component/NextPage"
-import PrevPage from "../../components/button-control-component/PrevPage"
 import StartGameModal from "../../components/start-game"
 import TimerComponent from "../../components/timer"
 import { useHomeContext } from "../../context/home-context"
-import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
 import { useWordsContext } from "../../context/WordsContext"
+import useWordsNext from "../../hooks/useWordsButton/useWordsNext"
+import useWordsPrev from "../../hooks/useWordsButton/useWordsPrev"
 import "./Words.scss"
 
 const WordsRecall = () => {
@@ -15,28 +14,27 @@ const WordsRecall = () => {
     wordsPerPage,
     currentWords,
     cursorWidth,
-    activeWords,
-    setActiveWords,
+    highlightedWords,
+    setHighlightedWords,
+    currentPageWords,
+    setCurrentPageWords,
   } = useWordsContext()
 
-  const { startTime } = useHomeContext()
+  const { startTime, timerForRecall } = useHomeContext()
 
-  const { currentPage, setCurrentPage, timerForRecall } =
-    useNamesAndFacesContext()
-
-  const { prevHandlersWords } = PrevPage()
-  const { nextHandlersWords } = NextPage()
+  const { prevHighlightedButton } = useWordsPrev()
+  const { nextHighlightedButton } = useWordsNext()
 
   const navigate = useNavigate()
 
   const firstPage = () => {
-    setActiveWords(0)
-    setCurrentPage(1)
+    setHighlightedWords(0)
+    setCurrentPageWords(1)
   }
 
   const handleNavigate = () => {
     navigate("/words/answers")
-    setCurrentPage(1)
+    setCurrentPageWords(1)
   }
 
   return (
@@ -70,15 +68,16 @@ const WordsRecall = () => {
                 key={index}
                 style={{
                   backgroundColor:
-                    index >= activeWords && index < activeWords + cursorWidth
+                    index >= highlightedWords &&
+                    index < highlightedWords + cursorWidth
                       ? "red"
                       : "",
                 }}
               >
                 <div className="number">
                   {cursorWidth === 3 || cursorWidth === 4
-                    ? index + (currentPage - 1) * 12 + 1
-                    : index + (currentPage - 1) * 10 + 1}
+                    ? index + (currentPageWords - 1) * 12 + 1
+                    : index + (currentPageWords - 1) * 10 + 1}
                   .
                 </div>
                 <div className="word">{word}</div>
@@ -86,7 +85,7 @@ const WordsRecall = () => {
             ))}
           </div>
           <div className="indicator">
-            <span>{currentPage}</span>/
+            <span>{currentPageWords}</span>/
             <span>
               {cursorWidth === 3 || cursorWidth === 4
                 ? (words?.length / (wordsPerPage + 2)).toFixed()
@@ -97,13 +96,10 @@ const WordsRecall = () => {
             <button onClick={firstPage} className="first-button">
               <Rewind size={32} />
             </button>
-            <button {...prevHandlersWords} className="prev-button">
+            <button {...prevHighlightedButton} className="prev-button">
               <ArrowLeft size={32} />
             </button>
-            <button
-              {...nextHandlersWords}
-              className="next-button"
-            >
+            <button {...nextHighlightedButton} className="next-button">
               <ArrowRight size={32} />
             </button>
           </div>

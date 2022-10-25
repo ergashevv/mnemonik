@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router-dom"
-import Recall from "../pages/names-and-faces/Recall"
-import Answer from "../pages/names-and-faces/Answer"
-import Result from "../pages/names-and-faces/Result"
-import Start from "../pages/names-and-faces/Start"
+import Recall from "../pages/names-and-faces/FacesMemorize"
+import Answer from "../pages/names-and-faces/FacesAnswer"
+import Result from "../pages/names-and-faces/FacesResult"
+import Start from "../pages/names-and-faces/FacesStart"
 
 const NamesAndFaceLayout = () => {
   return (

@@ -2,13 +2,14 @@ import { useCallback } from "react"
 import { Link } from "react-router-dom"
 import TimerComponent from "../../components/timer"
 import { Card, useCardsContext } from "../../context/cards-context"
+import { useHomeContext } from "../../context/home-context"
 import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
 import "./cards-page.scss"
 
 const StartCard = () => {
   const { data, inputs, focus, setFocus, setInputs, show } = useCardsContext()
 
-  const { timerForAnswer } = useNamesAndFacesContext()
+  const { timerForAnswer } = useHomeContext()
 
   const handleRemove = useCallback(
     (_: any, index: number) => {

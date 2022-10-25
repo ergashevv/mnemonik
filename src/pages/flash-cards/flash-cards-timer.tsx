@@ -5,8 +5,8 @@ import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
 
 const TimerFlashCards = () => {
   const { startTime } = useHomeContext()
-  const { flashCards, time, setTime } = useFlashCardsContext()
-  const { currentPage, setCurrentPage } = useNamesAndFacesContext()
+  const { flashCards, time, setTime, currentFlashCard, setCurrentFlashCard } =
+    useFlashCardsContext()
 
   const timer = useRef<ReturnType<typeof setInterval>>()
 
@@ -15,7 +15,7 @@ const TimerFlashCards = () => {
       timer.current = setInterval(() => {
         setTime((numbers) =>
           numbers.map((number, index) =>
-            currentPage - 1 === index ? number + 0.01 : number
+          currentFlashCard - 1 === index ? number + 0.01 : number
           )
         )
       }, 10)
@@ -23,11 +23,11 @@ const TimerFlashCards = () => {
         clearInterval(timer.current)
       }
     }
-  }, [setTime, currentPage, time, startTime])
+  }, [setTime, currentFlashCard, time, startTime])
   return (
     <>
       <h1 className="flashCards-section__header-timer">
-        {time[currentPage - 1].toFixed(2)} s
+        {time[currentFlashCard - 1].toFixed(2)} s
       </h1>
     </>
   )

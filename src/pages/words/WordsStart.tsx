@@ -1,20 +1,24 @@
 import { ChangeEvent } from "react"
 import { useNavigate } from "react-router"
 import SelectStartTime from "../../components/start-game-select"
-import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
 import { useWordsContext } from "../../context/WordsContext"
 import ArrowLeft from "../../assets/images/icons/arrow-left.svg"
 import { useEffect } from "react"
 
 const WordsStart = () => {
-  const { setCurrentPage } = useNamesAndFacesContext()
-  const { setCursorWidth, cursorWidth } = useWordsContext()
+  const {
+    setCursorWidth,
+    cursorWidth,
+    setCurrentPageWords,
+    setHighlightedWords,
+  } = useWordsContext()
 
   const navigate = useNavigate()
 
   const handleNavigate = () => {
     navigate("/words/recall")
-    setCurrentPage(1)
+    setHighlightedWords(0)
+    setCurrentPageWords(1)
   }
 
   const handleSelect = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -46,9 +50,7 @@ const WordsStart = () => {
 
           <label>Select cursor numbers</label>
           <select defaultValue={cursorWidth} onChange={handleSelect}>
-            <option selected value="1">
-              1
-            </option>
+            <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>

@@ -6,11 +6,19 @@ import TimerComponent from "../../components/timer"
 import { useHomeContext } from "../../context/home-context"
 import InputCell from "./input-cell"
 import "./numbers-page.scss"
-import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
 const StartNumberGame = () => {
-  const { numbers, randomNumbers, setResult, tab, setTab, dynamic } =
-    useHomeContext()
-  const { timerForAnswer } = useNamesAndFacesContext()
+  const {
+    numbers,
+    randomNumbers,
+    cursorW,
+    setResult,
+    tab,
+    setTab,
+    setDynamic,
+    dynamic,
+    timerForAnswer,
+  } = useHomeContext()
+
   const [inputs, setInputs] = useState(Array(numbers.length).fill(""))
   const handleValue = useCallback((val: any, index: number | undefined) => {
     return setInputs((inputs) =>

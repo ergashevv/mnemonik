@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom"
 import WordsStart from "../pages/words/WordsStart"
 import WordsResult from "../pages/words/WordsResult"
 import WordsAnswer from "../pages/words/WordsAnswer"
-import WordsRecall from "../pages/words/WordsRecall"
+import WordsRecall from "../pages/words/WordsMemorize"
 
 const WordsLayout = () => {
   return (

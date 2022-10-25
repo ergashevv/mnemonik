@@ -1,26 +1,28 @@
 import { ChangeEvent } from "react"
 import { ArrowLeft, ArrowRight, Rewind } from "react-feather"
 import { useNavigate } from "react-router"
-import NextPage from "../../components/button-control-component/NextPage"
-import PrevPage from "../../components/button-control-component/PrevPage"
+import useFacesNext from "../../hooks/useFacesButton/useFacesNext"
+import useFacesPrev from "../../hooks/useFacesButton/useFacesPrev"
 import TimerComponent from "../../components/timer"
 import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
 import "./NF.scss"
+import { useHomeContext } from "../../context/home-context"
 
 const Answer = () => {
-  let {
+  const {
     shuffledPeople,
-    currentPage,
-    setCurrentPage,
+    currentPageFaces,
+    setCurrentPageFaces,
     firstNames,
     lastNames,
     setFirstNames,
     setLastNames,
-    timerForAnswer
   } = useNamesAndFacesContext()
 
-  const { nextHandlers } = NextPage()
-  const { prevHandlers } = PrevPage()
+  const { timerForAnswer } = useHomeContext()
+
+  const { facesNextButton } = useFacesNext()
+  const { facesPrevButton } = useFacesPrev()
 
   const navigate = useNavigate()
 
@@ -41,12 +43,12 @@ const Answer = () => {
   }
 
   const firstPage = () => {
-    setCurrentPage(1)
+    setCurrentPageFaces(1)
   }
 
   const handleNavigate = () => {
     navigate("/names-and-faces/results")
-    setCurrentPage(1)
+    setCurrentPageFaces(1)
   }
 
   return (
@@ -71,7 +73,7 @@ const Answer = () => {
           <div className="faces-section__cards">
             {shuffledPeople?.map((shuffledPerson, index) => {
               const { img, firstName } = shuffledPerson
-              if (index === currentPage - 1) {
+              if (index === currentPageFaces - 1) {
                 return (
                   <article key={index}>
                     <img src={img} alt={firstName} />
@@ -97,16 +99,17 @@ const Answer = () => {
             })}
           </div>
           <div className="indicator">
-            <span>{currentPage}</span>/<span>{shuffledPeople?.length}</span>
+            <span>{currentPageFaces}</span>/
+            <span>{shuffledPeople?.length}</span>
           </div>
           <div className="control-buttons">
             <button onClick={firstPage} className="first-button">
               <Rewind size={32} />
             </button>
-            <button {...prevHandlers} className="prev-button">
+            <button {...facesPrevButton} className="prev-button">
               <ArrowLeft size={32} />
             </button>
-            <button {...nextHandlers} className="next-button">
+            <button {...facesNextButton} className="next-button">
               <ArrowRight size={32} />
             </button>
           </div>

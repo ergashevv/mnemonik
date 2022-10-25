@@ -3,15 +3,11 @@ import React, {
   ReactNode,
   useContext,
   useEffect,
+  useMemo,
   useState,
 } from "react"
 import { peopleImages } from "../datas/faces/FacesData"
 import { firstName, lastName } from "../datas/names/NamesData"
-
-interface PersonWithGender {
-  gender: string
-  img: string
-}
 
 interface PersonWithFirstName {
   gender: string
@@ -47,171 +43,124 @@ type PersonSetter = (
 interface Types {
   people: Person[]
   setPeople: PersonSetter
+
   shuffledPeople: Person[]
   setShuffledPeople: PersonSetter
-  currentPage: number
-  setCurrentPage: NumberSetter
-  timerForRecall: number
-  setTimerForRecall: NumberSetter
-  timerForAnswer: number
-  setTimerForAnswer: NumberSetter
+
+  currentPageFaces: number
+  setCurrentPageFaces: NumberSetter
+
   firstNames: string[]
   setFirstNames: NameSetter
+
   lastNames: string[]
   setLastNames: NameSetter
+
   results: Person[]
 }
 
 const NamesAndFacesContext = createContext<Types>({} as Types)
+
+function shuffle(result: PersonWithAll[]) {
+  return result
+    .map((value) => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value)
+    .slice(0, 50)
+}
 
 export const NamesAndFacesContextProvider = ({
   children,
 }: {
   children: ReactNode
 }) => {
-  const [people, setPeople] = useState<Person[]>([])
-  const [shuffledPeople, setShuffledPeople] = useState<Person[]>([])
-  const [currentPage, setCurrentPage] = useState<number>(1) 
-  const [timerForRecall, setTimerForRecall] = useState<number>(5)
-  const [timerForAnswer, setTimerForAnswer] = useState<number>(15)
+  const [memorizationPeople, setMemorizationPeople] = useState<Person[]>(
+    () => []
+  )
+
+  const [recallPeople, setRecallPeople] = useState<Person[]>(() => [])
+
+  const [currentPageFaces, setCurrentPageFaces] = useState<number>(1)
 
   const [firstNames, setFirstNames] = useState<string[]>(() =>
     Array(50).fill("")
   )
+
   const [lastNames, setLastNames] = useState<string[]>(() => Array(50).fill(""))
 
-  const maleImages: PersonWithGender[] = []
-  const femaleImages: PersonWithGender[] = []
-  const randomMaleImages: PersonWithGender[] = []
-  const randomFemaleImages: PersonWithGender[] = []
-  const result: PersonWithAll[] = []
+  const allPeople: PersonWithAll[] = []
+
   const results: Person[] = []
-  let firstNameMale: PersonWithFirstName[] = []
-  let firstNameFemale: PersonWithFirstName[] = []
-  let lastNameMale: PersonWithLastName[] = []
-  let lastNameFemale: PersonWithLastName[] = []
 
-  for (let i = 0; i < peopleImages.length / 2; i++) {
-    maleImages.push(peopleImages[i])
-  }
+  let maleFirstNames: PersonWithFirstName[] = []
+  let maleLastNames: PersonWithLastName[] = []
 
-  for (let i = peopleImages.length / 2; i < peopleImages.length; i++) {
-    femaleImages.push(peopleImages[i])
-  }
+  let femaleFirstNames: PersonWithFirstName[] = []
+  let femaleLastNames: PersonWithLastName[] = []
 
-  for (let i = 0; i < maleImages.length; i++) {
-    randomMaleImages.push(
-      maleImages[Math.floor(Math.random() * maleImages.length)]
-    )
-  }
-
-  for (let i = 0; i < femaleImages.length; i++) {
-    randomFemaleImages.push(
-      femaleImages[Math.floor(Math.random() * femaleImages.length)]
-    )
-  }
-
-  let uniqueMaleImages = randomMaleImages.filter((el, index) => {
-    return randomMaleImages.indexOf(el) === index
-  })
-
-  let uniqueFemaleImages = randomFemaleImages.filter((el, index) => {
-    return randomFemaleImages.indexOf(el) === index
-  })
-
-  let uniqueLength = maleImages.length - uniqueMaleImages.length
-  let allUniqueImages: PersonWithGender[] = []
-
-  let filteredMaleImages = uniqueMaleImages.filter(
-    (x) => !uniqueFemaleImages.includes(x)
-  )
-  let filteredFemaleImages = uniqueFemaleImages.filter(
-    (x) => !uniqueMaleImages.includes(x)
-  )
-
-  if (uniqueMaleImages.length === randomMaleImages.length) {
-    allUniqueImages = [...uniqueMaleImages]
-  } else {
-    allUniqueImages = [
-      ...filteredMaleImages.concat(
-        filteredFemaleImages?.slice(0, uniqueLength)
-      ),
-    ]
-  }
-
-  for (let i = 0; i < allUniqueImages.length; i++) {
-    if (allUniqueImages[i].gender === "male") {
-      firstNameMale = firstName.filter((i) => i.gender === "male")
-      lastNameMale = lastName.filter((i) => i.gender === "male")
+  for (let i = 0; i < peopleImages.length; i++) {
+    if (peopleImages[i].gender === "male") {
+      maleFirstNames = firstName.filter((i) => i.gender === "male")
+      maleLastNames = lastName.filter((i) => i.gender === "male")
     } else {
-      firstNameFemale = firstName.filter((i) => i.gender === "female")
-      lastNameFemale = lastName.filter((i) => i.gender === "female")
+      femaleFirstNames = firstName.filter((i) => i.gender === "female")
+      femaleLastNames = lastName.filter((i) => i.gender === "female")
     }
 
     const randomIndexOfFirstNames = Math.floor(
-      Math.random() * (firstNameMale.length || firstNameFemale.length)
+      Math.random() * (maleFirstNames.length || femaleFirstNames.length)
     )
 
     const randomIndexOfLastNames = Math.floor(
-      Math.random() * (lastNameMale.length || lastNameFemale.length)
+      Math.random() * (maleLastNames.length || femaleLastNames.length)
     )
 
-    if (allUniqueImages[i].gender === "male") {
-      result.push({
+    if (peopleImages[i].gender === "male") {
+      allPeople.push({
         gender: "male",
-        img: allUniqueImages[i].img,
-        firstName: firstNameMale[randomIndexOfFirstNames].firstName,
-        lastName: lastNameMale[randomIndexOfLastNames].lastName,
+        img: peopleImages[i].img,
+        firstName: maleFirstNames[randomIndexOfFirstNames].firstName,
+        lastName: maleLastNames[randomIndexOfLastNames].lastName,
       })
     } else {
-      result.push({
+      allPeople.push({
         gender: "female",
-        img: allUniqueImages[i].img,
-        firstName: firstNameFemale[randomIndexOfFirstNames].firstName,
-        lastName: lastNameFemale[randomIndexOfLastNames].lastName,
+        img: peopleImages[i].img,
+        firstName: femaleFirstNames[randomIndexOfFirstNames].firstName,
+        lastName: femaleLastNames[randomIndexOfLastNames].lastName,
       })
     }
   }
 
-  let shuffled1 = result
-    .map((value) => ({ value, sort: Math.random() }))
-    .sort((a, b) => a.sort - b.sort)
-    .map(({ value }) => value)
+  const memorizationShuffle = shuffle(allPeople)
+  const recallShuffle = shuffle(allPeople)
 
-  let shuffled2 = result
-    .map((value) => ({ value, sort: Math.random() }))
-    .sort((a, b) => a.sort - b.sort)
-    .map(({ value }) => value)
-
-  for (let i = 0; i < shuffledPeople.length; i++) {
+  // used in answers section
+  for (let i = 0; i < recallPeople?.length; i++) {
     results.push({
-      img: shuffledPeople[i]?.img,
-      firstName: firstNames[i].trim(),
-      lastName: lastNames[i].trim(),
+      img: recallPeople[i]?.img,
+      firstName: firstNames[i]?.trim(),
+      lastName: lastNames[i]?.trim(),
     })
   }
 
   useEffect(() => {
-    setPeople(shuffled1)
-    setShuffledPeople(shuffled2)
+    setMemorizationPeople(memorizationShuffle)
+    setRecallPeople(recallShuffle)
   }, [])
 
   const value = {
-    people,
-    setPeople,
-    setShuffledPeople,
-    currentPage,
-    setCurrentPage,
+    people: memorizationPeople,
+    setPeople: setMemorizationPeople,
+    setShuffledPeople: setRecallPeople,
+    currentPageFaces,
+    setCurrentPageFaces,
     firstNames,
     setFirstNames,
     lastNames,
     setLastNames,
-    shuffledPeople,
+    shuffledPeople: recallPeople,
     results,
-    timerForRecall,
-    setTimerForRecall,
-    timerForAnswer,
-    setTimerForAnswer,
   }
 
   return (

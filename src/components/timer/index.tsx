@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router"
-import { useHomeContext } from "../../context/home-context"
 
 interface ITimerProps {
   time: number
@@ -40,18 +39,12 @@ const TimerComponent = ({ time, navigateTo, finishTimeFunc }: ITimerProps) => {
 
   return (
     <>
-      <span
-        style={{
-          fontFamily: "Work Sans",
-          fontStyle: "normal",
-          fontWeight: "600",
-          fontSize: "21px",
-          lineHeight: "25px",
-          color: "#000000",
-        }}
-      >
-        {minutes}:{seconds < 10 ? `${seconds}` : seconds}{" "}
-      </span>
+      <div>
+        <span>
+          {minutes < 10 ? `0${minutes}` : minutes}:
+          {seconds < 10 ? `0${seconds}` : seconds}
+        </span>
+      </div>
     </>
   )
 }
