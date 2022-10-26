@@ -40,11 +40,10 @@ const NavigationBtn = () => {
 
   useEffect(() => {
     if (navigation === "auto") {
-      const timer = setTimeout(() => {
+      const timer = setInterval(() => {
         setCursor(cursor + parsedCursorW)
-      }, (Number(autoSecond) / 2) * 1000)
-
-      return () => clearTimeout(timer)
+      }, (Number(autoSecond) / 10) * 1000)
+      return () => clearInterval(timer)
     }
     if (
       tab === 3 &&

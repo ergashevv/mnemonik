@@ -40,7 +40,7 @@ const TimerComponent = ({ time, navigateTo, finishTimeFunc }: ITimerProps) => {
   return (
     <>
       <div>
-        <span>
+        <span className="timer">
           {minutes < 10 ? `0${minutes}` : minutes}:
           {seconds < 10 ? `0${seconds}` : seconds}
         </span>

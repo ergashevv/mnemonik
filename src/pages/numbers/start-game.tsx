@@ -14,7 +14,6 @@ const StartNumberGame = () => {
     setResult,
     tab,
     setTab,
-    setDynamic,
     dynamic,
     timerForAnswer,
   } = useHomeContext()
@@ -83,7 +82,7 @@ const StartNumberGame = () => {
 
   return (
     <div className="start-game-page container">
-      <div className="start-game-page-header">
+      <div className="navbar-header">
         <TimerComponent
           time={timerForAnswer}
           navigateTo={"/numbers/result"}

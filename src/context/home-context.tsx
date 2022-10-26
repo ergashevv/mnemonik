@@ -49,7 +49,6 @@ export const HomeContextProvider = ({ children }: { children: ReactNode }) => {
     JSON.parse(localStorage.getItem("startTime")!)
   )
 
-  
   const [timerForRecall, setTimerForRecall] = useState<number>(5)
   const [timerForAnswer, setTimerForAnswer] = useState<number>(15)
 
@@ -59,7 +58,7 @@ export const HomeContextProvider = ({ children }: { children: ReactNode }) => {
   const [autoSecond, setAutoSecond] = useState(1)
   const [randomNumbers, setRandomNumbers] = useState<number[]>([])
   const [dynamic, setDynamic] = useState(200)
-  
+
   const shuffle = (arr: number[]) => [...arr].sort(() => Math.random() - 0.5)
 
   const [numbers, setNumbers] = useState<string[]>(() => {
@@ -94,12 +93,12 @@ export const HomeContextProvider = ({ children }: { children: ReactNode }) => {
       localStorage.removeItem("navigation")
     }
     if (!cursorW) {
-      setCursorW("3")
+      setCursorW("2")
     }
     if (!line) {
-      setLine("3")
+      setLine("2")
     }
-  }, [cursorW, line, navigation, startTime])
+  }, [navigation, startTime])
 
   const value = {
     cursorW,
@@ -124,7 +123,7 @@ export const HomeContextProvider = ({ children }: { children: ReactNode }) => {
     setAutoSecond,
     startTime,
     setStartTime,
-    
+
     timerForRecall,
     setTimerForRecall,
     timerForAnswer,

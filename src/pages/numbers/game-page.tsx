@@ -16,13 +16,20 @@ const NumbersGame = () => {
     randomNumbers,
     tab,
     dynamic,
+    setCursor,
     startTime,
     line,
     timerForRecall,
   } = useHomeContext()
-  
+
   const finishGame = () => {
     setTab(0)
+  }
+  const handleChangeCursor = (index: number) => {
+    setCursor(index)
+    if (index < cursor) {
+      setCursor(cursor - Number(cursorW))
+    }
   }
   return (
     <>
@@ -30,18 +37,15 @@ const NumbersGame = () => {
         <StartGameModal time={String(startTime)} />
       ) : (
         <div className="game container">
-          <div
-            style={{
-              justifyContent: "space-between",
-            }}
-            className="d-flex game-header"
-          >
+          <div className="navbar-header">
             <TimerComponent
               finishTimeFunc={finishGame}
               time={timerForRecall}
               navigateTo={"/numbers/start"}
             />
-            <Link to="/numbers/start">Hoziroq tugatish</Link>
+            <Link className="finish-now-btn" to="/numbers/start">
+              Hoziroq tugatish
+            </Link>
           </div>
           <div className="game-header-inner">
             <div className="numbers">
@@ -62,6 +66,7 @@ const NumbersGame = () => {
                           .slice(dynamic * tab, dynamic * (tab + 1))
                           .map((i, k) => (
                             <div
+                              onClick={() => handleChangeCursor(k)}
                               key={k}
                               className={
                                 (k + 1) % parseInt(line!) === 0

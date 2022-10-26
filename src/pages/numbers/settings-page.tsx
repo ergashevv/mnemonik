@@ -24,7 +24,7 @@ const SettingsPage = () => {
   const navigate = useNavigate()
 
   const handleLine = (e: ChangeEvent<HTMLInputElement>) => {
-    setLine(+e.target.value)
+    setLine(e.target.value)
   }
 
   const handleNavigation = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -34,6 +34,7 @@ const SettingsPage = () => {
   const handleAutoSecond = (e: ChangeEvent<HTMLInputElement>) => {
     setAutoSecond(+e.target.value)
   }
+  const auto = Number(autoSecond) / 10
 
   const handleNavigate = () => {
     navigate("/numbers/game")
@@ -42,6 +43,7 @@ const SettingsPage = () => {
   const handleBack = () => {
     navigate("/")
   }
+  console.log(auto)
 
   return (
     <div className="settings">
@@ -60,17 +62,17 @@ const SettingsPage = () => {
                 pattern="[0-9]*"
                 value={cursorW}
                 onChange={handleChange}
-                type="text"
+                type="number"
               />
             </div>
 
             <div>
               <label>Ajratuvchi chiziqlar</label>
               <input
-                value={line ? line : ""}
+                value={line}
                 pattern="[0-9]*"
                 onChange={handleLine}
-                type="text"
+                type="number"
               />
             </div>
           </div>
@@ -89,11 +91,11 @@ const SettingsPage = () => {
           {navigation === "auto" ? (
             <div>
               <label>Avtomatik o'tish vaqti</label>
-              <h3>Vaqt: {Number(autoSecond) / 2}s</h3>
+              <h3>Vaqt: {Number(autoSecond) / 10}s</h3>
               <input
                 value={autoSecond}
                 onChange={handleAutoSecond}
-                max={10}
+                max={50}
                 type="range"
               />
             </div>
