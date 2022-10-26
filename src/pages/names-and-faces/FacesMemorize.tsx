@@ -10,7 +10,7 @@ import TimerComponent from "../../components/timer"
 
 const Recall = () => {
   const {
-    people,
+    memorizationPeople,
     currentPageFaces,
     setCurrentPageFaces,
   } = useNamesAndFacesContext()
@@ -56,7 +56,7 @@ const Recall = () => {
             </button>
           </div>
           <div className="faces-section__cards">
-            {people.map((person, index) => {
+            {memorizationPeople.map((person, index) => {
               const { img, firstName, lastName } = person
               if (currentPageFaces - 1 === index) {
                 return (
@@ -72,7 +72,7 @@ const Recall = () => {
             })}
           </div>
           <div className="indicator">
-            <span>{currentPageFaces}</span>/<span>{people.length}</span>
+            <span>{currentPageFaces}</span>/<span>{memorizationPeople.length}</span>
           </div>
           <div className="control-buttons">
             <button onClick={firstPage} className="first-button">

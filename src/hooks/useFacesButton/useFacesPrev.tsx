@@ -3,7 +3,7 @@ import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
 
 const useFacesPrev = () => {
   const {
-    people,
+    memorizationPeople,
     setCurrentPageFaces,
   } = useNamesAndFacesContext()
 
@@ -15,11 +15,11 @@ const useFacesPrev = () => {
     setCurrentPageFaces((oldPage: number) => {
       let prevPage = oldPage - 1
       if (prevPage < 1) {
-        prevPage = people?.length
+        prevPage = memorizationPeople?.length
       }
       return prevPage
     })
-  }, [people?.length, setCurrentPageFaces])
+  }, [memorizationPeople?.length, setCurrentPageFaces])
 
   useEffect(() => {
     if (longPress) {

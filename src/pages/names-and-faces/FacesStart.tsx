@@ -16,10 +16,10 @@ const Start = () => {
   const [imagesLoading, setImagesLoading] = useState<boolean>(false)
 
   const {
-    people,
-    setPeople,
-    shuffledPeople,
-    setShuffledPeople,
+    memorizationPeople,
+    setMemorizationPeople,
+    recallPeople,
+    setRecallPeople,
     setCurrentPageFaces,
   } = useNamesAndFacesContext()
 
@@ -31,7 +31,7 @@ const Start = () => {
     setImagesLoading(true)
 
     const peopleWithUpdatedImages = await Promise.all(
-      shuffledPeople.map(async ({ img, ...person }) => {
+      recallPeople.map(async ({ img, ...person }) => {
         const res = await fetch(img)
 
         const blob = await res.blob()
@@ -44,7 +44,7 @@ const Start = () => {
       })
     )
 
-    setShuffledPeople((shuffledPeople) => {
+    setRecallPeople((shuffledPeople) => {
       return shuffledPeople.map((person) => {
         const { img } = peopleWithUpdatedImages.find(
           (updatedPerson) =>
@@ -56,12 +56,12 @@ const Start = () => {
       })
     })
 
-    setPeople(peopleWithUpdatedImages)
+    setMemorizationPeople(peopleWithUpdatedImages)
 
     navigate("/names-and-faces/recall")
 
     setCurrentPageFaces(1)
-  }, [navigate, people, setCurrentPageFaces, setPeople, setShuffledPeople])
+  }, [navigate, memorizationPeople, setCurrentPageFaces, setMemorizationPeople, setRecallPeople])
 
   const handleBack = () => {
     navigate("/")
@@ -86,7 +86,7 @@ const Start = () => {
             disabled={imagesLoading}
           >
             {imagesLoading
-              ? `Loading images (${imagesFetched} / ${people.length})`
+              ? `Loading images (${imagesFetched} / ${memorizationPeople.length})`
               : "Boshlash"}
           </button>
         </form>

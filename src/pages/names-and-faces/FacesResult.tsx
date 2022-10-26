@@ -7,8 +7,8 @@ import "./NF.scss"
 
 const Result = () => {
   const {
-    people,
-    shuffledPeople,
+    memorizationPeople,
+    recallPeople,
     currentPageFaces,
     setCurrentPageFaces,
     results,
@@ -28,12 +28,12 @@ const Result = () => {
   const correctFirstNames = results.filter(
     (el, index) =>
       el?.firstName?.toLowerCase() ===
-      shuffledPeople[index]?.firstName?.toLowerCase()
+      recallPeople[index]?.firstName?.toLowerCase()
   )
   const correctLastNames = results.filter(
     (el, index) =>
       el?.lastName?.toLowerCase() ===
-      shuffledPeople[index]?.lastName?.toLowerCase()
+      recallPeople[index]?.lastName?.toLowerCase()
   )
 
   const firstPage = () => {
@@ -46,7 +46,7 @@ const Result = () => {
         <section className="faces-section">
           <div className="faces-section__header">
             <p className="faces-section__header-title">
-              Umumiy: {results.length} ta
+              Umumiy: {2 * results.length} ta
               <br />
               To'g'ri topilganlar:{" "}
               {correctFirstNames.length + correctLastNames.length}ta <br />
@@ -74,7 +74,7 @@ const Result = () => {
                                 ? "#fff"
                                 : results[index]?.firstName.length > 0 &&
                                   results[index]?.firstName?.toLowerCase() !==
-                                    shuffledPeople[
+                                    recallPeople[
                                       index
                                     ]?.firstName?.toLowerCase()
                                 ? "rgba(255, 0, 0, .5)"
@@ -82,7 +82,7 @@ const Result = () => {
                           }}
                           value={
                             visibleFirstNames[index]
-                              ? shuffledPeople[index]?.firstName
+                              ? recallPeople[index]?.firstName
                               : results[index]?.firstName
                           }
                         />
@@ -118,7 +118,7 @@ const Result = () => {
                                 ? "#fff"
                                 : results[index]?.lastName.length > 0 &&
                                   results[index]?.lastName?.toLowerCase() !==
-                                    shuffledPeople[
+                                    recallPeople[
                                       index
                                     ]?.lastName?.toLowerCase()
                                 ? "rgba(255, 0, 0, .5)"
@@ -126,7 +126,7 @@ const Result = () => {
                           }}
                           value={
                             visibleLastNames[index]
-                              ? shuffledPeople[index]?.lastName
+                              ? recallPeople[index]?.lastName
                               : results[index]?.lastName
                           }
                         />
@@ -158,7 +158,7 @@ const Result = () => {
             })}
           </div>
           <div className="indicator">
-            <span>{currentPageFaces}</span>/<span>{people.length}</span>
+            <span>{currentPageFaces}</span>/<span>{memorizationPeople.length}</span>
           </div>
           <div className="control-buttons">
             <button onClick={firstPage} className="first-button">

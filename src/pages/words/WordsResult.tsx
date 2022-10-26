@@ -54,15 +54,17 @@ const WordsResult = () => {
                     : index + (currentPageWords - 1) * 10 + 1
                 }
               >
+                <div className="number">
+                  {cursorWidth === 3 || cursorWidth === 4
+                    ? index + (currentPageWords - 1) * 12 + 1
+                    : index + (currentPageWords - 1) * 10 + 1}
+                  .
+                </div>
                 <form>
                   <div style={{ position: "relative" }}>
                     <input
                       readOnly
                       type="text"
-                      placeholder={(cursorWidth === 3 || cursorWidth === 4
-                        ? index + (currentPageWords - 1) * 12 + 1
-                        : index + (currentPageWords - 1) * 10 + 1
-                      ).toString()}
                       style={{
                         backgroundColor:
                           answers[index + (currentPageWords - 1) * 10] === ""
@@ -71,10 +73,10 @@ const WordsResult = () => {
                                 .length > 0 &&
                               words[
                                 index + (currentPageWords - 1) * 10
-                              ]?.toLowerCase() !==
+                              ]?.toLowerCase().trim() !==
                                 answers[
                                   index + (currentPageWords - 1) * 10
-                                ]?.toLowerCase()
+                                ]?.toLowerCase().trim()
                             ? "rgba(255, 0, 0, .5)"
                             : "rgba(26, 161, 19, .5)",
                       }}

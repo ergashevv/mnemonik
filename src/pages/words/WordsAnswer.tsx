@@ -67,13 +67,15 @@ const WordsAnswer = () => {
                     : index + (currentPageWords - 1) * 10 + 1
                 }
               >
+                <div className="number">
+                  {cursorWidth === 3 || cursorWidth === 4
+                    ? index + (currentPageWords - 1) * 12 + 1
+                    : index + (currentPageWords - 1) * 10 + 1}
+                  .
+                </div>
                 <form>
                   <input
                     type="text"
-                    placeholder={(cursorWidth === 3 || cursorWidth === 4
-                      ? index + (currentPageWords - 1) * 12 + 1
-                      : index + (currentPageWords - 1) * 10 + 1
-                    ).toString()}
                     value={currentAnswers[index + (currentPageWords - 1) * 10]}
                     onChange={(e) =>
                       handleInputs(e, index + (currentPageWords - 1) * 10)

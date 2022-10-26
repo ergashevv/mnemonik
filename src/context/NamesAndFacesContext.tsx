@@ -41,11 +41,11 @@ type PersonSetter = (
 ) => void
 
 interface Types {
-  people: Person[]
-  setPeople: PersonSetter
+  memorizationPeople: Person[]
+  setMemorizationPeople: PersonSetter
 
-  shuffledPeople: Person[]
-  setShuffledPeople: PersonSetter
+  recallPeople: Person[]
+  setRecallPeople: PersonSetter
 
   currentPageFaces: number
   setCurrentPageFaces: NumberSetter
@@ -60,14 +60,6 @@ interface Types {
 }
 
 const NamesAndFacesContext = createContext<Types>({} as Types)
-
-function shuffle(result: PersonWithAll[]) {
-  return result
-    .map((value) => ({ value, sort: Math.random() }))
-    .sort((a, b) => a.sort - b.sort)
-    .map(({ value }) => value)
-    .slice(0, 50)
-}
 
 export const NamesAndFacesContextProvider = ({
   children,
@@ -98,8 +90,17 @@ export const NamesAndFacesContextProvider = ({
   let femaleFirstNames: PersonWithFirstName[] = []
   let femaleLastNames: PersonWithLastName[] = []
 
-  for (let i = 0; i < peopleImages.length; i++) {
-    if (peopleImages[i].gender === "male") {
+  const shuffledImages = useMemo(
+    () =>
+      peopleImages
+        .map((value) => ({ value, sort: Math.random() }))
+        .sort((a, b) => a.sort - b.sort)
+        .map(({ value }) => value),
+    []
+  )
+
+  for (let i = 0; i < shuffledImages.length; i++) {
+    if (shuffledImages[i].gender === "male") {
       maleFirstNames = firstName.filter((i) => i.gender === "male")
       maleLastNames = lastName.filter((i) => i.gender === "male")
     } else {
@@ -115,21 +116,29 @@ export const NamesAndFacesContextProvider = ({
       Math.random() * (maleLastNames.length || femaleLastNames.length)
     )
 
-    if (peopleImages[i].gender === "male") {
+    if (shuffledImages[i].gender === "male") {
       allPeople.push({
         gender: "male",
-        img: peopleImages[i].img,
+        img: shuffledImages[i].img,
         firstName: maleFirstNames[randomIndexOfFirstNames].firstName,
         lastName: maleLastNames[randomIndexOfLastNames].lastName,
       })
     } else {
       allPeople.push({
         gender: "female",
-        img: peopleImages[i].img,
+        img: shuffledImages[i].img,
         firstName: femaleFirstNames[randomIndexOfFirstNames].firstName,
         lastName: femaleLastNames[randomIndexOfLastNames].lastName,
       })
     }
+  }
+
+  function shuffle(result: PersonWithAll[]) {
+    return result
+      .map((value) => ({ value, sort: Math.random() }))
+      .sort((a, b) => a.sort - b.sort)
+      .map(({ value }) => value)
+      .slice(0, 50)
   }
 
   const memorizationShuffle = shuffle(allPeople)
@@ -150,16 +159,16 @@ export const NamesAndFacesContextProvider = ({
   }, [])
 
   const value = {
-    people: memorizationPeople,
-    setPeople: setMemorizationPeople,
-    setShuffledPeople: setRecallPeople,
+    memorizationPeople,
+    setMemorizationPeople,
+    recallPeople,
+    setRecallPeople,
     currentPageFaces,
     setCurrentPageFaces,
     firstNames,
     setFirstNames,
     lastNames,
     setLastNames,
-    shuffledPeople: recallPeople,
     results,
   }
 

@@ -10,7 +10,7 @@ import { useHomeContext } from "../../context/home-context"
 
 const Answer = () => {
   const {
-    shuffledPeople,
+    recallPeople,
     currentPageFaces,
     setCurrentPageFaces,
     firstNames,
@@ -71,7 +71,7 @@ const Answer = () => {
             </button>
           </div>
           <div className="faces-section__cards">
-            {shuffledPeople?.map((shuffledPerson, index) => {
+            {recallPeople?.map((shuffledPerson, index) => {
               const { img, firstName } = shuffledPerson
               if (index === currentPageFaces - 1) {
                 return (
@@ -100,7 +100,7 @@ const Answer = () => {
           </div>
           <div className="indicator">
             <span>{currentPageFaces}</span>/
-            <span>{shuffledPeople?.length}</span>
+            <span>{recallPeople?.length}</span>
           </div>
           <div className="control-buttons">
             <button onClick={firstPage} className="first-button">
