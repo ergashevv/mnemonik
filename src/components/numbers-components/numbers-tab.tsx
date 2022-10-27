@@ -17,8 +17,7 @@ const NumbersTab = ({ tab }: IProps) => {
     <>
       {slicedRandomNumbers.map((item, key) => {
         const isActive = key >= cursor && key < cursor + parseInt(cursorW!)
-
-        const className = classNames("card-number", {
+        const  className = classNames("card-number", {
           active: isActive,
         })
 

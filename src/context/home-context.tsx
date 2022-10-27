@@ -71,6 +71,7 @@ export const HomeContextProvider = ({ children }: { children: ReactNode }) => {
     return numbers760
   })
 
+  
   useEffect(() => {
     setRandomNumbers(shuffle(numbers.map((str) => Number(str))))
   }, [setRandomNumbers, numbers])

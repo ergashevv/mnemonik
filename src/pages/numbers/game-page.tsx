@@ -8,6 +8,15 @@ import TimerComponent from "../../components/timer"
 import { useHomeContext } from "../../context/home-context"
 import "./numbers-page.scss"
 
+function sliceIntoChunks<T>(arr: T[], chunkSize: number) {
+  const res = []
+  for (let i = 0; i < arr.length; i += chunkSize) {
+    const chunk = arr.slice(i, i + chunkSize)
+    res.push(chunk)
+  }
+  return res
+}
+
 const NumbersGame = () => {
   const {
     cursorW,
@@ -25,12 +34,20 @@ const NumbersGame = () => {
   const finishGame = () => {
     setTab(0)
   }
+
+  const indexes = sliceIntoChunks(
+    Array(760)
+      .fill(undefined)
+      .map((_, i) => i),
+    Number(cursorW)
+  )
+
   const handleChangeCursor = (index: number) => {
-    setCursor(index)
-    if (index < cursor) {
-      setCursor(cursor - Number(cursorW))
-    }
+    const resultIndex = indexes.findIndex((indexes) => indexes.includes(index))
+
+    setCursor(resultIndex * Number(cursorW))
   }
+
   return (
     <>
       {Number(startTime) > 0 ? (

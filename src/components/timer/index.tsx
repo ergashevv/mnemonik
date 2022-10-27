@@ -14,7 +14,7 @@ const TimerComponent = ({ time, navigateTo, finishTimeFunc }: ITimerProps) => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    const timeInterval = setInterval(() => {
+    const timeInterval = setInterval(() =>    { 
       if (seconds === 0) {
         if (minutes === 0) {
           navigate(navigateTo)
