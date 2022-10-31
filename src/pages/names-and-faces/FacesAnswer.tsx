@@ -1,12 +1,14 @@
-import { ChangeEvent } from "react"
-import { ArrowLeft, ArrowRight, Rewind } from "react-feather"
-import { useNavigate } from "react-router"
-import useFacesNext from "../../hooks/useFacesButton/useFacesNext"
-import useFacesPrev from "../../hooks/useFacesButton/useFacesPrev"
-import TimerComponent from "../../components/timer"
-import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
-import "./NF.scss"
-import { useHomeContext } from "../../context/home-context"
+import { ChangeEvent } from 'react'
+import { useNavigate } from 'react-router'
+import ArrowLeft from '../../assets/images/icons/arrow-left.svg'
+import ArrowRight from '../../assets/images/icons/arrow-right.svg'
+import ChevronsLeft from '../../assets/images/icons/chevrons-left.svg'
+import TimerComponent from '../../components/timer'
+import { useFacesContext } from '../../context/FacesContext'
+import { useHomeContext } from '../../context/home-context'
+import useFacesNext from '../../hooks/useFacesButton/useFacesNext'
+import useFacesPrev from '../../hooks/useFacesButton/useFacesPrev'
+import './NF.scss'
 
 const Answer = () => {
   const {
@@ -17,7 +19,7 @@ const Answer = () => {
     lastNames,
     setFirstNames,
     setLastNames,
-  } = useNamesAndFacesContext()
+  } = useFacesContext()
 
   const { timerForAnswer } = useHomeContext()
 
@@ -47,30 +49,25 @@ const Answer = () => {
   }
 
   const handleNavigate = () => {
-    navigate("/names-and-faces/results")
+    navigate('/names-and-faces/results')
     setCurrentPageFaces(1)
   }
 
   return (
-    <div className="faces">
-      <div className="container">
-        <div className="faces-section">
-          <div className="faces-section__header">
-            <TimerComponent
-              time={timerForAnswer}
-              navigateTo={"/names-and-faces/results"}
-            />
-
-            <p className="faces-section__header-title">Answer</p>
+    <div className='faces'>
+      <div className='container'>
+        <div className='faces-section'>
+          <div className='faces-section__header'>
+            <TimerComponent time={timerForAnswer} navigateTo={'/names-and-faces/results'} />
             <button
               onClick={handleNavigate}
-              style={{ textDecoration: "none" }}
-              className="faces-section__header-finish"
+              style={{ textDecoration: 'none' }}
+              className='faces-section__header-finish'
             >
-              Finish
+              Hoziroq tugatish
             </button>
           </div>
-          <div className="faces-section__cards">
+          <div className='faces-section__cards'>
             {recallPeople?.map((shuffledPerson, index) => {
               const { img, firstName } = shuffledPerson
               if (index === currentPageFaces - 1) {
@@ -79,14 +76,14 @@ const Answer = () => {
                     <img src={img} alt={firstName} />
                     <form>
                       <input
-                        type="text"
-                        placeholder="Ism"
+                        type='text'
+                        placeholder='Ism'
                         value={firstNames[index]}
                         onChange={(e) => handleFirstName(e, index)}
                       />
                       <input
-                        type="text"
-                        placeholder="Familiya"
+                        type='text'
+                        placeholder='Familiya'
                         value={lastNames[index]}
                         onChange={(e) => handleLastName(e, index)}
                       />
@@ -98,19 +95,18 @@ const Answer = () => {
               }
             })}
           </div>
-          <div className="indicator">
-            <span>{currentPageFaces}</span>/
-            <span>{recallPeople?.length}</span>
+          <div className='indicator'>
+            <span>{currentPageFaces}</span>/<span>{recallPeople?.length}</span>
           </div>
-          <div className="control-buttons">
-            <button onClick={firstPage} className="first-button">
-              <Rewind size={32} />
+          <div className='control-buttons'>
+            <button {...facesPrevButton} className='prev-button'>
+              <img src={ArrowLeft} alt='ArrowLeft' />
             </button>
-            <button {...facesPrevButton} className="prev-button">
-              <ArrowLeft size={32} />
+            <button onClick={firstPage} className='first-button'>
+              <img src={ChevronsLeft} alt='First Page' />
             </button>
-            <button {...facesNextButton} className="next-button">
-              <ArrowRight size={32} />
+            <button {...facesNextButton} className='next-button'>
+              <img src={ArrowRight} alt='ArrowRight' />
             </button>
           </div>
         </div>

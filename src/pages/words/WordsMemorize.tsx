@@ -1,12 +1,12 @@
-import { ArrowLeft, ArrowRight, Rewind } from "react-feather"
-import { useNavigate } from "react-router"
-import StartGameModal from "../../components/start-game"
-import TimerComponent from "../../components/timer"
-import { useHomeContext } from "../../context/home-context"
-import { useWordsContext } from "../../context/WordsContext"
-import useWordsNext from "../../hooks/useWordsButton/useWordsNext"
-import useWordsPrev from "../../hooks/useWordsButton/useWordsPrev"
-import "./Words.scss"
+import { ArrowLeft, ArrowRight, Rewind } from 'react-feather'
+import { useNavigate } from 'react-router'
+import StartGameModal from '../../components/start-game'
+import TimerComponent from '../../components/timer'
+import { useHomeContext } from '../../context/home-context'
+import { useWordsContext } from '../../context/WordsContext'
+import useWordsNext from '../../hooks/useWordsButton/useWordsNext'
+import useWordsPrev from '../../hooks/useWordsButton/useWordsPrev'
+import './Words.scss'
 
 const WordsRecall = () => {
   const {
@@ -17,7 +17,7 @@ const WordsRecall = () => {
     highlightedWords,
     setHighlightedWords,
     currentPageWords,
-    setCurrentPageWords,
+    setCurrentPageWords
   } = useWordsContext()
 
   const { startTime, timerForRecall } = useHomeContext()
@@ -33,7 +33,7 @@ const WordsRecall = () => {
   }
 
   const handleNavigate = () => {
-    navigate("/words/answers")
+    navigate('/words/answers')
     setCurrentPageWords(1)
   }
 
@@ -43,7 +43,7 @@ const WordsRecall = () => {
         <StartGameModal time={startTime!} />
         <div
           className="words-section"
-          style={{ display: Number(startTime) > 0 ? "none" : "flex" }}
+          style={{ display: Number(startTime) > 0 ? 'none' : 'flex' }}
         >
           <div className="words-section__header">
             {Number(startTime) === 0 && (
@@ -55,7 +55,7 @@ const WordsRecall = () => {
             <p className="words-section__header-title">Recall</p>
             <button
               onClick={handleNavigate}
-              style={{ textDecoration: "none" }}
+              style={{ textDecoration: 'none' }}
               className="words-section__header-finish"
             >
               Finish
@@ -70,8 +70,8 @@ const WordsRecall = () => {
                   backgroundColor:
                     index >= highlightedWords &&
                     index < highlightedWords + cursorWidth
-                      ? "red"
-                      : "",
+                      ? 'red'
+                      : ''
                 }}
               >
                 <div className="number">

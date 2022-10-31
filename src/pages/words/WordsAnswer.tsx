@@ -1,12 +1,12 @@
-import { ChangeEvent } from "react"
-import { ArrowLeft, ArrowRight, Rewind } from "react-feather"
-import { useNavigate } from "react-router-dom"
-import TimerComponent from "../../components/timer"
-import { useHomeContext } from "../../context/home-context"
-import { useWordsContext } from "../../context/WordsContext"
-import useWordsNext from "../../hooks/useWordsButton/useWordsNext"
-import useWordsPrev from "../../hooks/useWordsButton/useWordsPrev"
-import "./Words.scss"
+import { ChangeEvent } from 'react'
+import { ArrowLeft, ArrowRight, Rewind } from 'react-feather'
+import { useNavigate } from 'react-router-dom'
+import TimerComponent from '../../components/timer'
+import { useHomeContext } from '../../context/home-context'
+import { useWordsContext } from '../../context/WordsContext'
+import useWordsNext from '../../hooks/useWordsButton/useWordsNext'
+import useWordsPrev from '../../hooks/useWordsButton/useWordsPrev'
+import './Words.scss'
 
 const WordsAnswer = () => {
   const {
@@ -16,7 +16,7 @@ const WordsAnswer = () => {
     setAnswers,
     cursorWidth,
     currentPageWords,
-    setCurrentPageWords,
+    setCurrentPageWords
   } = useWordsContext()
 
   const { timerForAnswer } = useHomeContext()
@@ -39,7 +39,7 @@ const WordsAnswer = () => {
   }
 
   const handleNavigate = () => {
-    navigate("/words/results")
+    navigate('/words/results')
     setCurrentPageWords(1)
   }
 
@@ -51,7 +51,7 @@ const WordsAnswer = () => {
           <p className="words-section__header-title">Answer</p>
           <button
             onClick={handleNavigate}
-            style={{ textDecoration: "none" }}
+            style={{ textDecoration: 'none' }}
             className="words-section__header-finish"
           >
             Finish

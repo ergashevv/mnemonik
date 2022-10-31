@@ -1,5 +1,5 @@
-import { useHomeContext } from "../../context/home-context"
-import "./main.scss"
+import { useHomeContext } from '../../context/home-context'
+import './main.scss'
 interface ITabsProps {
   tabNumber: number
 }
@@ -16,7 +16,7 @@ const Tabs = ({ tabNumber }: ITabsProps) => {
         {Array(tabNumber)
           .fill(null)
           .map((_, index) => {
-            const className = tab === index ? "active" : undefined
+            const className = tab === index ? 'active' : undefined
             const handleClick = () => resetCursor(index)
             return (
               <button className={className} onClick={handleClick} key={index}>

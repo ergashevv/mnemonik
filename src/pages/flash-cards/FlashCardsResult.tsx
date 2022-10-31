@@ -1,8 +1,7 @@
-import { useFlashCardsContext } from "../../context/FlashCardsContext"
-import "./FlashCards.scss"
+import { useFlashCardsContext } from '../../context/FlashCardsContext'
+import './FlashCards.scss'
 
 const FlashCardsResult = () => {
-
   const { time, flashCards } = useFlashCardsContext()
 
   return (

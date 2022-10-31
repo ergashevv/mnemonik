@@ -1,5 +1,5 @@
-import React, { memo, useCallback, useEffect } from "react"
-import { useHomeContext } from "../../context/home-context"
+import React, { memo, useCallback } from 'react'
+// import { useHomeContext } from '../../context/home-context'
 interface InputCellProps extends React.HTMLAttributes<HTMLInputElement> {
   index?: number
 
@@ -23,7 +23,7 @@ interface InputCellProps extends React.HTMLAttributes<HTMLInputElement> {
   onUnHover?: (e: any, index: number | undefined) => void
 }
 
-export default memo(function InputCell({
+export default memo(function InputCell ({
   index,
   success = false,
   failure = false,
@@ -38,7 +38,7 @@ export default memo(function InputCell({
   onUnHover,
   ...props
 }: InputCellProps) {
-  const { dynamic, setTab, tab, randomNumbers } = useHomeContext()
+  // const { dynamic, setTab, tab, randomNumbers } = useHomeContext()
   const handleKeyUp = useCallback(
     (e: any) => {
       if (/^[0-9]$/.test(e.key)) {
@@ -46,24 +46,24 @@ export default memo(function InputCell({
         focusOnNext?.(e)
       }
 
-      if (e.key === "Backspace") {
-        onValue?.("", index)
+      if (e.key === 'Backspace') {
+        onValue?.('', index)
         focusOnPrev?.(e)
       }
 
-      if (e.key === "ArrowRight") {
+      if (e.key === 'ArrowRight') {
         focusOnNext?.(e)
       }
 
-      if (e.key === "ArrowLeft") {
+      if (e.key === 'ArrowLeft') {
         focusOnPrev?.(e)
       }
 
-      if (e.key === "+" || e.key === "=") {
+      if (e.key === '+' || e.key === '=') {
         onShiftAdd?.(e, index)
       }
 
-      if (e.key === "-") {
+      if (e.key === '-') {
         onShiftRemove?.(e, index)
       }
     },

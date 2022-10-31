@@ -1,8 +1,8 @@
-import { useEffect } from "react"
-import Next from "../../assets/images/arrow.svg"
-import { useHomeContext } from "../../context/home-context"
-import ResultNumbers from "./result-numbers"
-import "./main.scss"
+import { useEffect } from 'react'
+import Next from '../../assets/images/arrow.svg'
+import { useHomeContext } from '../../context/home-context'
+import ResultNumbers from './result-numbers'
+import './main.scss'
 const NavigationBtn = () => {
   const {
     cursorW,
@@ -13,7 +13,7 @@ const NavigationBtn = () => {
     setTab,
     setCursor,
     navigation,
-    autoSecond,
+    autoSecond
   } = useHomeContext()
 
   const parsedCursorW = parseInt(cursorW!)
@@ -39,7 +39,7 @@ const NavigationBtn = () => {
   }, [navigation, tab, setTab, setCursor, dynamic, cursor, parsedCursorW])
 
   useEffect(() => {
-    if (navigation === "auto") {
+    if (navigation === 'auto') {
       const timer = setInterval(() => {
         setCursor(cursor + parsedCursorW)
       }, (Number(autoSecond) / 10) * 1000)
@@ -65,7 +65,7 @@ const NavigationBtn = () => {
     tab,
     numbers,
     dynamic,
-    setTab,
+    setTab
   ])
 
   const disablePrevButton = tab === 0 && cursor < parsedCursorW

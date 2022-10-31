@@ -1,10 +1,10 @@
-import { ChangeEvent } from "react"
-import { useNavigate } from "react-router-dom"
-import "../../assets/styles/StartStyles.scss"
-import SelectStartTime from "../../components/start-game-select"
-import { useCardsContext } from "../../context/cards-context"
-import ArrowLeft from "../../assets/images/icons/arrow-left.svg"
-import { useHomeContext } from "../../context/home-context"
+import { ChangeEvent } from 'react'
+import { useNavigate } from 'react-router-dom'
+import '../../assets/styles/StartStyles.scss'
+import SelectStartTime from '../../components/start-game-select'
+import { useCardsContext } from '../../context/cards-context'
+import BackIcon from '../../assets/images/icons/back-icon.svg'
+import { useHomeContext } from '../../context/home-context'
 
 const Settings = () => {
   const { setNavigation, navigation, setShow, show } = useCardsContext()
@@ -25,11 +25,11 @@ const Settings = () => {
   }
 
   const handleNavigate = () => {
-    navigate("/cards/game")
+    navigate('/cards/game')
   }
 
   const handleBack = () => {
-    navigate("/")
+    navigate('/')
   }
 
   return (
@@ -37,7 +37,7 @@ const Settings = () => {
       <div className="container">
         <div className="settings-header">
           <div className="settings-header__back">
-            <img src={ArrowLeft} alt="Back" onClick={handleBack} />
+            <img src={BackIcon} alt="Back" onClick={handleBack} />
           </div>
           <div className="settings-header__title">Playing Cards</div>
         </div>
@@ -46,7 +46,7 @@ const Settings = () => {
           <SelectStartTime time={5} />
 
           <label>Select cards</label>
-          <select onChange={handleCursorW} defaultValue={cursorW ? cursorW : 3}>
+          <select onChange={handleCursorW} defaultValue={cursorW ?? 3}>  {/* || ni o'rniga ?? yozdim */}
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>

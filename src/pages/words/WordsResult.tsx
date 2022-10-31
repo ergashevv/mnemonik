@@ -1,10 +1,9 @@
-import { useState } from "react"
-import { ArrowLeft, ArrowRight, Eye, Rewind } from "react-feather"
-import useWordsNext from "../../hooks/useWordsButton/useWordsNext"
-import useWordsPrev from "../../hooks/useWordsButton/useWordsPrev"
-import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
-import { useWordsContext } from "../../context/WordsContext"
-import "./Words.scss"
+import { useState } from 'react'
+import { ArrowLeft, ArrowRight, Eye, Rewind } from 'react-feather'
+import useWordsNext from '../../hooks/useWordsButton/useWordsNext'
+import useWordsPrev from '../../hooks/useWordsButton/useWordsPrev'
+import { useWordsContext } from '../../context/WordsContext'
+import './Words.scss'
 
 const WordsResult = () => {
   const {
@@ -14,7 +13,7 @@ const WordsResult = () => {
     answers,
     cursorWidth,
     currentPageWords,
-    setCurrentPageWords,
+    setCurrentPageWords
   } = useWordsContext()
 
   const { wordsPrevButton } = useWordsPrev()
@@ -61,24 +60,24 @@ const WordsResult = () => {
                   .
                 </div>
                 <form>
-                  <div style={{ position: "relative" }}>
+                  <div style={{ position: 'relative' }}>
                     <input
                       readOnly
                       type="text"
                       style={{
                         backgroundColor:
-                          answers[index + (currentPageWords - 1) * 10] === ""
-                            ? "#fff"
+                          answers[index + (currentPageWords - 1) * 10] === ''
+                            ? '#fff'
                             : answers[index + (currentPageWords - 1) * 10]
-                                .length > 0 &&
-                              words[
-                                index + (currentPageWords - 1) * 10
-                              ]?.toLowerCase().trim() !==
-                                answers[
-                                  index + (currentPageWords - 1) * 10
-                                ]?.toLowerCase().trim()
-                            ? "rgba(255, 0, 0, .5)"
-                            : "rgba(26, 161, 19, .5)",
+                              .length > 0 &&
+                              words[index + (currentPageWords - 1) * 10]
+                                ?.toLowerCase()
+                                .trim() !==
+                                answers[index + (currentPageWords - 1) * 10]
+                                  ?.toLowerCase()
+                                  .trim()
+                              ? 'rgba(255, 0, 0, .5)'
+                              : 'rgba(26, 161, 19, .5)'
                       }}
                       value={
                         visibleInputs[index + (currentPageWords - 1) * 10]
@@ -91,13 +90,13 @@ const WordsResult = () => {
                       style={{
                         backgroundColor:
                           visibleInputs[index + (currentPageWords - 1) * 10] &&
-                          "black",
+                          'black',
                         color:
                           visibleInputs[index + (currentPageWords - 1) * 10] &&
-                          "white",
+                          'white',
                         padding:
                           visibleInputs[index + (currentPageWords - 1) * 10] &&
-                          ".1rem",
+                          '.1rem'
                       }}
                       onClick={() => {
                         setVisibleInputs((inputs) =>

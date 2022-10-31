@@ -1,114 +1,114 @@
-import { Link } from "react-router-dom"
-import "./home-page.scss"
-import Logo from "../../assets/images/logotype.png"
-import Hmaburger from "../../assets/images/menu.svg"
-import Numbers from "../../assets/images/numbers.svg"
-import Cards from "../../assets/images/card.svg"
-import Face from "../../assets/images/face.svg"
-import Dates from "../../assets/images/dates.svg"
-import Words from "../../assets/images/translate.svg"
-import Flash from "../../assets/images/flash.svg"
-import TimerImg from "../../assets/images/timer.png"
-import HomeCategoryCard from "../../components/home-components/home-card"
-import HomeBanner from "../../components/home-components/Banner"
-import Bgi from "../../assets/images/Banner.png"
-import Mnemonics from "../../components/mnemonics"
-import Behzodakaimg from "../../assets/images/behzodaka.png"
-import ProductCard from "../../components/product-card"
-import ContactUsTelegram from "../../components/contact-us-telegram"
-import BlackWhiteLogo from "../../assets/images/bgw.svg"
+import { Link } from 'react-router-dom'
+import './home-page.scss'
+import Logo from '../../assets/images/logotype.png'
+import Hmaburger from '../../assets/images/menu.svg'
+import Numbers from '../../assets/images/numbers.svg'
+import Cards from '../../assets/images/card.svg'
+import Face from '../../assets/images/face.svg'
+import Dates from '../../assets/images/dates.svg'
+import Words from '../../assets/images/translate.svg'
+import Flash from '../../assets/images/flash.svg'
+import TimerImg from '../../assets/images/timer.png'
+import HomeCategoryCard from '../../components/home-components/home-card'
+import HomeBanner from '../../components/home-components/Banner'
+import Bgi from '../../assets/images/Banner.png'
+import Mnemonics from '../../components/mnemonics'
+import Behzodakaimg from '../../assets/images/behzodaka.png'
+import ProductCard from '../../components/product-card'
+import ContactUsTelegram from '../../components/contact-us-telegram'
+import BlackWhiteLogo from '../../assets/images/bgw.svg'
 const HomePage = () => {
   const CardsData = [
     {
       img: Numbers,
-      link: "/numbers/settings",
-      text: "Raqamlar",
+      link: '/numbers/settings',
+      text: 'Raqamlar'
     },
     {
       img: Cards,
-      link: "/cards/settings",
-      text: "Playing Cards",
+      link: '/cards/settings',
+      text: 'Playing Cards'
     },
     {
       img: Face,
-      link: "/names-and-faces/settings",
-      text: "Yuzlar",
+      link: '/names-and-faces/settings',
+      text: 'Yuzlar'
     },
     {
       img: Dates,
-      link: "/dates/settings",
-      text: "Sanalar",
+      link: '/dates/settings',
+      text: 'Sanalar'
     },
     {
       img: Words,
-      link: "/words/settings",
-      text: "So’zlar",
+      link: '/words/settings',
+      text: 'So’zlar'
     },
     {
       img: Flash,
-      link: "/flash-cards/settings",
-      text: "Flash Cards",
-    },
+      link: '/flash-cards/settings',
+      text: 'Flash Cards'
+    }
   ]
 
   const mnemonics = [
     {
       img: Behzodakaimg,
-      link: "https://t.me/bekzod_memory",
-      name: "MegaMind",
-      score: 1827,
+      link: 'https://t.me/bekzod_memory',
+      name: 'MegaMind',
+      score: 1827
     },
     {
       img: Behzodakaimg,
-      link: "https://t.me/bekzod_memory",
-      name: "MegaMind",
-      score: 1827,
+      link: 'https://t.me/bekzod_memory',
+      name: 'MegaMind',
+      score: 1827
     },
     {
       img: Behzodakaimg,
-      link: "https://t.me/bekzod_memory",
-      name: "MegaMind",
-      score: 1830,
-    },
+      link: 'https://t.me/bekzod_memory',
+      name: 'MegaMind',
+      score: 1830
+    }
   ]
 
   const products = [
     {
       img: TimerImg,
-      title: "LED Pomodoro Taymer",
-      cost: "199.000",
+      title: 'LED Pomodoro Taymer',
+      cost: '199.000'
     },
     {
       img: TimerImg,
-      title: "LED Pomodoro Taymer",
-      cost: "199.000",
+      title: 'LED Pomodoro Taymer',
+      cost: '199.000'
     },
     {
       img: TimerImg,
-      title: "LED Pomodoro Taymer",
-      cost: "199.000",
+      title: 'LED Pomodoro Taymer',
+      cost: '199.000'
     },
     {
       img: TimerImg,
-      title: "LED Pomodoro Taymer",
-      cost: "199.000",
+      title: 'LED Pomodoro Taymer',
+      cost: '199.000'
     },
     {
       img: TimerImg,
-      title: "LED Pomodoro Taymer",
-      cost: "199.000",
+      title: 'LED Pomodoro Taymer',
+      cost: '199.000'
     },
     {
       img: TimerImg,
-      title: "LED Pomodoro Taymer",
-      cost: "199.000",
-    },
+      title: 'LED Pomodoro Taymer',
+      cost: '199.000'
+    }
   ]
 
   const Banner = {
     text: "Chet tili so'zlari va imtihon javoblarini 10 barobar tezroq eslab qolish usuli",
-    link: "/",
-    backgrounImg: Bgi,
+    link: '/',
+    backgrounImg: Bgi
   }
   const largest: any = mnemonics.reduce(
     (prev, curr) => (prev.score > curr.score ? prev : curr),

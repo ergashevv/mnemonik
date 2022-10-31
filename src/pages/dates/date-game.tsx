@@ -1,12 +1,11 @@
-import classNames from "classnames"
-import { Link } from "react-router-dom"
-import NavigationBtnImg from "../../assets/images/next.png"
-import StartGameModal from "../../components/start-game"
-import TimerComponent from "../../components/timer"
-import { useDatedContext } from "../../context/date-context"
-import { useHomeContext } from "../../context/home-context"
-import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
-import "./dates-page.scss"
+import classNames from 'classnames'
+import { Link } from 'react-router-dom'
+import NavigationBtnImg from '../../assets/images/next.png'
+import StartGameModal from '../../components/start-game'
+import TimerComponent from '../../components/timer'
+import { useDatedContext } from '../../context/date-context'
+import { useHomeContext } from '../../context/home-context'
+import './dates-page.scss'
 
 const DatesGamePage = () => {
   const { data, even } = useDatedContext()
@@ -25,12 +24,14 @@ const DatesGamePage = () => {
   const numberStartTime = Number(startTime)
   return (
     <>
-      {numberStartTime > 0 ? (
+      {numberStartTime > 0
+        ? (
         <StartGameModal time={stringStartTime} />
-      ) : (
+          )
+        : (
         <>
           <div className="d-flex">
-            <TimerComponent time={timerForRecall} navigateTo={"/dates/start"} />
+            <TimerComponent time={timerForRecall} navigateTo={'/dates/start'} />
             <Link to="/dates/start">Start</Link>
           </div>
           <div className="date-game container load-anim">
@@ -39,8 +40,8 @@ const DatesGamePage = () => {
                 <div
                   id="card"
                   onClick={() => elementClick(key)}
-                  className={classNames("card", {
-                    active: key === cursor,
+                  className={classNames('card', {
+                    active: key === cursor
                   })}
                   key={key}
                 >
@@ -51,13 +52,14 @@ const DatesGamePage = () => {
             <div className="events">
               {even?.map((el: string, k: any) => (
                 <div
-                  id={"div"}
+                  id={'div'}
                   onClick={() => elementClick(k)}
-                  className={classNames("card", {
-                    active: k === cursor,
+                  className={classNames('card', {
+                    active: k === cursor
                   })}
+                  key={k}
                 >
-                  <span key={k}>{el}</span>
+                  <span>{el}</span>
                 </div>
               ))}
             </div>
@@ -79,7 +81,7 @@ const DatesGamePage = () => {
             </button>
           </div>
         </>
-      )}
+          )}
     </>
   )
 }

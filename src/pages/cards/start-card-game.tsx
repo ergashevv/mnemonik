@@ -1,10 +1,9 @@
-import { useCallback } from "react"
-import { Link } from "react-router-dom"
-import TimerComponent from "../../components/timer"
-import { Card, useCardsContext } from "../../context/cards-context"
-import { useHomeContext } from "../../context/home-context"
-import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
-import "./cards-page.scss"
+import { useCallback } from 'react'
+import { Link } from 'react-router-dom'
+import TimerComponent from '../../components/timer'
+import { Card, useCardsContext } from '../../context/cards-context'
+import { useHomeContext } from '../../context/home-context'
+import './cards-page.scss'
 
 const StartCard = () => {
   const { data, inputs, focus, setFocus, setInputs, show } = useCardsContext()
@@ -32,11 +31,11 @@ const StartCard = () => {
       <div className="empty-cards">
         <div
           style={{
-            justifyContent: "space-between",
+            justifyContent: 'space-between'
           }}
           className="d-flex"
         >
-          <TimerComponent time={timerForAnswer} navigateTo={"/cards/result"} />
+          <TimerComponent time={timerForAnswer} navigateTo={'/cards/result'} />
           <Link to="/cards/result">Result</Link>
         </div>
         <div className="empty">
@@ -44,11 +43,11 @@ const StartCard = () => {
             <div
               key={index}
               onClick={() => handleRemove(img, index)}
-              className={focus === index ? "empty-card active" : "empty-card"}
+              className={focus === index ? 'empty-card active' : 'empty-card'}
             >
               <img
                 style={{
-                  marginRight: show === "small" ? "-80px" : "-30px",
+                  marginRight: show === 'small' ? '-80px' : '-30px'
                 }}
                 width="50px"
                 src={img.image}
@@ -62,11 +61,11 @@ const StartCard = () => {
             <div
               key={key}
               onClick={() => handleAdd(item, key)}
-              className={"empty-card"}
+              className={'empty-card'}
             >
               <img
                 style={{
-                  marginRight: show === "small" ? "-80px" : "-30px",
+                  marginRight: show === 'small' ? '-80px' : '-30px'
                 }}
                 src={item.image}
                 alt=""

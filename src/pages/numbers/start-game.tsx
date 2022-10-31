@@ -1,11 +1,11 @@
-import { useCallback, useMemo, useState, useEffect } from "react"
-import { Link } from "react-router-dom"
-import LeftNumber from "../../components/left-numbers"
-import Tabs from "../../components/tabs"
-import TimerComponent from "../../components/timer"
-import { useHomeContext } from "../../context/home-context"
-import InputCell from "./input-cell"
-import "./numbers-page.scss"
+import { useCallback, useMemo, useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import LeftNumber from '../../components/left-numbers'
+import Tabs from '../../components/tabs'
+import TimerComponent from '../../components/timer'
+import { useHomeContext } from '../../context/home-context'
+import InputCell from './input-cell'
+import './numbers-page.scss'
 const StartNumberGame = () => {
   const {
     numbers,
@@ -15,10 +15,10 @@ const StartNumberGame = () => {
     tab,
     setTab,
     dynamic,
-    timerForAnswer,
+    timerForAnswer
   } = useHomeContext()
 
-  const [inputs, setInputs] = useState(Array(numbers.length).fill(""))
+  const [inputs, setInputs] = useState(Array(numbers.length).fill(''))
   const handleValue = useCallback((val: any, index: number | undefined) => {
     return setInputs((inputs) =>
       inputs.map((input, i) => (i === index ? val : input))
@@ -28,7 +28,7 @@ const StartNumberGame = () => {
     setInputs((inputs) => {
       const start = inputs.slice(0, index)
       const end = inputs.slice(index)
-      return start.concat([""], end)
+      return start.concat([''], end)
     })
   }, [])
   const handleShiftRemove = useCallback((e: any, index: number | undefined) => {
@@ -72,7 +72,7 @@ const StartNumberGame = () => {
       handleShiftRemove,
       handleValue,
       inputs,
-      randomNumbers,
+      randomNumbers
     ]
   )
   const finishGame = () => {
@@ -85,7 +85,7 @@ const StartNumberGame = () => {
       <div className="navbar-header">
         <TimerComponent
           time={timerForAnswer}
-          navigateTo={"/numbers/result"}
+          navigateTo={'/numbers/result'}
           finishTimeFunc={finishGame}
         />
         <button onClick={finishGame}>

@@ -1,11 +1,8 @@
-import { useCallback, useEffect, useRef, useState } from "react"
-import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { useFacesContext } from '../../context/FacesContext'
 
 const useFacesNext = () => {
-  const {
-    memorizationPeople,
-    setCurrentPageFaces,
-  } = useNamesAndFacesContext()
+  const { memorizationPeople, setCurrentPageFaces } = useFacesContext()
 
   const [longPress, setLongPress] = useState(false)
 
@@ -40,8 +37,8 @@ const useFacesNext = () => {
       onMouseUp: () => setLongPress(false),
       onMouseLeave: () => setLongPress(false),
       onTouchStart: () => setLongPress(true),
-      onTouchEnd: () => setLongPress(false),
-    },
+      onTouchEnd: () => setLongPress(false)
+    }
   }
 }
 

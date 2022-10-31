@@ -1,4 +1,4 @@
-import { useHomeContext } from "../../context/home-context"
+import { useHomeContext } from '../../context/home-context'
 
 const ResultNumbers = () => {
   const {
@@ -6,7 +6,7 @@ const ResultNumbers = () => {
     cursor,
     tab,
     dynamic,
-    randomNumbers,
+    randomNumbers
   } = useHomeContext()
 
   const newNumbers = randomNumbers

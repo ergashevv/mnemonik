@@ -3,8 +3,8 @@ import {
   ReactNode,
   useContext, useMemo,
   useState
-} from "react"
-import { flashCardsData } from "../datas/flash-cards/FlashCardsData"
+} from 'react'
+import { flashCardsData } from '../datas/flash-cards/FlashCardsData'
 
 type NumberSetter = (numbers: number | ((numbers: number) => number)) => void
 
@@ -30,7 +30,7 @@ interface IContext {
 const FlashCardsContext = createContext<IContext>({} as IContext)
 
 export const FlashCardsContextProvider = ({
-  children,
+  children
 }: {
   children: ReactNode
 }) => {
@@ -54,7 +54,7 @@ export const FlashCardsContextProvider = ({
     countDown,
     setCountDown,
     time,
-    setTime,
+    setTime
   }
 
   return (

@@ -1,22 +1,21 @@
-import { ChangeEvent } from "react"
-import { useNavigate } from "react-router"
-import SelectStartTime from "../../components/start-game-select"
-import { useWordsContext } from "../../context/WordsContext"
-import ArrowLeft from "../../assets/images/icons/arrow-left.svg"
-import { useEffect } from "react"
+import { ChangeEvent, useEffect } from 'react'
+import { useNavigate } from 'react-router'
+import SelectStartTime from '../../components/start-game-select'
+import { useWordsContext } from '../../context/WordsContext'
+import BackIcon from '../../assets/images/icons/back-icon.svg'
 
 const WordsStart = () => {
   const {
     setCursorWidth,
     cursorWidth,
     setCurrentPageWords,
-    setHighlightedWords,
+    setHighlightedWords
   } = useWordsContext()
 
   const navigate = useNavigate()
 
   const handleNavigate = () => {
-    navigate("/words/recall")
+    navigate('/words/recall')
     setHighlightedWords(0)
     setCurrentPageWords(1)
   }
@@ -26,7 +25,7 @@ const WordsStart = () => {
   }
 
   const handleBack = () => {
-    navigate("/")
+    navigate('/')
   }
 
   useEffect(() => {
@@ -40,7 +39,7 @@ const WordsStart = () => {
       <div className="container">
         <div className="settings-header">
           <div className="settings-header__back">
-            <img src={ArrowLeft} alt="Back" onClick={handleBack} />
+            <img src={BackIcon} alt="Back" onClick={handleBack} />
           </div>
           <div className="settings-header__title">So'zlar</div>
         </div>

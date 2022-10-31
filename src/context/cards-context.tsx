@@ -3,11 +3,11 @@ import {
   ReactNode,
   useContext,
   useEffect,
-  useState,
-} from "react"
+  useState
+} from 'react'
 
-import CardImg from "../assets/images/empty.png"
-import { Cards } from "../datas/data-cards"
+import CardImg from '../assets/images/empty.png'
+import { Cards } from '../datas/data-cards'
 export interface Card {
   image: string
   id: number
@@ -30,13 +30,13 @@ const CardsContext = createContext<ICardsContext>({} as ICardsContext)
 
 export const CardsContextProvider = ({ children }: { children: ReactNode }) => {
   const [navigation, setNavigation] = useState(
-    JSON.parse(localStorage.getItem("navigation")!)
+    JSON.parse(localStorage.getItem('navigation')!)
   )
 
   const [data, setData] = useState<Card[]>(Cards)
 
   const [show, setShow] = useState<string>(
-    JSON.parse(localStorage.getItem("show")!)
+    JSON.parse(localStorage.getItem('show')!)
   )
 
   const [inputs, setInputs] = useState(
@@ -46,17 +46,17 @@ export const CardsContextProvider = ({ children }: { children: ReactNode }) => {
   const [focus, setFocus] = useState(0)
   const [randomCard, setRandomCard] = useState<Card[]>([])
   useEffect(() => {
-    if (navigation === "left") {
-      localStorage.setItem("navigation", JSON.stringify(navigation))
+    if (navigation === 'left') {
+      localStorage.setItem('navigation', JSON.stringify(navigation))
     }
-    if (navigation === "right") {
-      localStorage.setItem("navigation", JSON.stringify(navigation))
+    if (navigation === 'right') {
+      localStorage.setItem('navigation', JSON.stringify(navigation))
     }
-    if (show === "small") {
-      localStorage.setItem("show", JSON.stringify(show))
+    if (show === 'small') {
+      localStorage.setItem('show', JSON.stringify(show))
     }
-    if (show === "large") {
-      localStorage.setItem("show", JSON.stringify(show))
+    if (show === 'large') {
+      localStorage.setItem('show', JSON.stringify(show))
     }
   }, [navigation, show])
   const shuffle = (arr: Card[]) => [...arr].sort(() => Math.random() - 0.5)
@@ -77,7 +77,7 @@ export const CardsContextProvider = ({ children }: { children: ReactNode }) => {
     randomCard,
     setRandomcard: setRandomCard,
     show,
-    setShow,
+    setShow
   }
   return <CardsContext.Provider value={value}>{children}</CardsContext.Provider>
 }
