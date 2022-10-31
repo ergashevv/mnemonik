@@ -9,12 +9,15 @@ const ResultCard = () => {
   return (
     <>
       {
-        <div className="empty">
+        <div className="result-cards">
           {inputs?.map((item: Card, index: number) => (
             <div
               onClick={() => setShow(!show)}
               style={{
-                background: item.id !== randomCard![index].id ? "red" : "black",
+                borderRadius: "7px",
+                boxShadow: `0px 0px 10px 1px #007, 1px 1px ${
+                  item.id !== randomCard![index].id ? "#fff" : "#007"
+                } inset`,
               }}
               key={index}
               className={"empty-card"}

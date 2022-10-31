@@ -28,7 +28,7 @@ const StartCard = () => {
   )
 
   return (
-    <div>
+    <div className="container start-playing-cards">
       <div className="empty-cards">
         <div
           style={{
@@ -37,7 +37,9 @@ const StartCard = () => {
           className="d-flex"
         >
           <TimerComponent time={timerForAnswer} navigateTo={"/cards/result"} />
-          <Link to="/cards/result">Result</Link>
+          <Link className="finish-now-btn" to="/cards/result">
+            Hoziroq tugatish
+          </Link>
         </div>
         <div className="empty">
           {inputs?.map((img, index) => (

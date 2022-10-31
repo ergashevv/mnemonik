@@ -1,20 +1,21 @@
 import classNames from "classnames"
 import { useEffect } from "react"
 import { Link } from "react-router-dom"
-import NavigationBtn from "../../assets/images/next.png"
+import NavigationBtn from "../../assets/images/arrow.svg"
 import StartGameModal from "../../components/start-game"
 import TimerComponent from "../../components/timer"
 import { useCardsContext } from "../../context/cards-context"
 import { useHomeContext } from "../../context/home-context"
 import "./cards-page.scss"
 const CardGame = () => {
-  const { startTime: starttime,cursor,setCursor,cursorW, timerForRecall } = useHomeContext()
   const {
-    data,
-    randomCard,
-    navigation,
-    show,
-  } = useCardsContext()
+    startTime: starttime,
+    cursor,
+    setCursor,
+    cursorW,
+    timerForRecall,
+  } = useHomeContext()
+  const { data, randomCard, navigation, show } = useCardsContext()
 
   const parsedCursorW = parseInt(cursorW!)
   const showCards = randomCard!.slice(cursor, cursor + parsedCursorW)
@@ -45,18 +46,15 @@ const CardGame = () => {
         <StartGameModal time={starttime!} />
       ) : (
         <>
-          <div className="container">
-            <div
-              style={{
-                justifyContent: "space-between",
-              }}
-              className="d-flex"
-            >
+          <div className="container playing-cards">
+            <div className="card-timer">
               <TimerComponent
                 time={timerForRecall}
                 navigateTo={"/cards/start"}
               />
-              <Link to="/cards/start">Start</Link>
+              <Link className="finish-now-btn" to="/cards/start">
+                Hoziroq tugatish
+              </Link>
             </div>
             <div className="show-card">
               {showCards.map((i, k) => (
@@ -66,18 +64,12 @@ const CardGame = () => {
             <div className="numbers-of">
               {navigation === "right" ? (
                 <>
-                  <h1
-                    style={{
-                      color: "black",
-                    }}
-                  >
-                    {data.length}
-                  </h1>
-                  <h1>/{data.length - cursor}</h1>
+                  <h2>{data.length - cursor}</h2>
+                  <h1> /{data.length}</h1>
                 </>
               ) : (
                 <>
-                  <h1>{cursor + parsedCursorW}</h1>
+                  <h2>{cursor + parsedCursorW}</h2>
                   <h1>/ {data.length}</h1>
                 </>
               )}
@@ -85,7 +77,7 @@ const CardGame = () => {
             <div className="cards">
               {randomCard!.map((item, key) => (
                 <div
-                  className={classNames("card", {
+                  className={classNames("playing-card", {
                     active: key >= cursor && key < cursor + parsedCursorW,
                   })}
                   key={key}
@@ -119,7 +111,12 @@ const CardGame = () => {
                 }
                 onClick={nextNavigate}
               >
-                <img width="100px" src={NavigationBtn} alt="next" />
+                <img
+                  className="right-navigation"
+                  width="100px"
+                  src={NavigationBtn}
+                  alt="next"
+                />
               </button>
             </div>
           </div>
