@@ -1,4 +1,4 @@
-import "./main.scss"
+import './main.scss'
 interface IMnemonics {
   img: any
   name: string

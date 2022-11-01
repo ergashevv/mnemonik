@@ -1,17 +1,35 @@
 {
-  "env": {
-    "browser": true,
-    "es2021": true
-  },
-  "extends": ["plugin:react/recommended", "standard-with-typescript"],
-  "overrides": [],
-  "parserOptions": {
-    "project": ["tsconfig.json"],
-    "ecmaVersion": "latest",
-    "sourceType": "module"
-  },
-  "plugins": ["react"],
-  "rules": {
-    "no-console": "warn"
-  }
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "standard-with-typescript"
+    ],
+    "overrides": [],
+    "parserOptions": {
+        "project": ["./tsconfig.json"],
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "@typescript-eslint/eslint-plugin", "react"
+    ],
+    "rules": {
+        "@typescript-eslint/quotes": "off",
+        "@typescript-eslint/consistent-type-assertions": "off",
+        "@typescript-eslint/comma-dangle": "off",
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/space-before-function-paren": "off",
+        "react/react-in-jsx-scope": "off",
+        "@typescript-eslint/no-non-null-assertion": "off",
+        "@typescript-eslint/no-misused-promises": "off",
+        "react/no-unescaped-entities": "off",
+        "@typescript-eslint/strict-boolean-expressions": "off",
+        "@typescript-eslint/indent": "off",
+        "eqeqeq": "off",
+        "no-trailing-spaces": "off",
+        "prefer-const": "off"
+    }
 }

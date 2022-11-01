@@ -1,7 +1,7 @@
-import { useNavigate } from "react-router-dom"
-import SelectStartTime from "../../components/start-game-select"
-import ArrowLeft from "../../assets/images/icons/arrow-left.svg"
-import { useFlashCardsContext } from "../../context/FlashCardsContext"
+import { useNavigate } from 'react-router-dom'
+import SelectStartTime from '../../components/start-game-select'
+import BackIcon from '../../assets/images/icons/back-icon.svg'
+import { useFlashCardsContext } from '../../context/FlashCardsContext'
 
 const FlashCardsStart = () => {
   const { setCurrentFlashCard } = useFlashCardsContext()
@@ -9,12 +9,12 @@ const FlashCardsStart = () => {
   const navigate = useNavigate()
 
   const handleNavigate = () => {
-    navigate("/flash-cards/recall")
+    navigate('/flash-cards/recall')
     setCurrentFlashCard(1)
   }
 
   const handleBack = () => {
-    navigate("/")
+    navigate('/')
   }
 
   return (
@@ -22,7 +22,7 @@ const FlashCardsStart = () => {
       <div className="container">
         <div className="settings-header">
           <div className="settings-header__back">
-            <img src={ArrowLeft} alt="Back" onClick={handleBack} />
+            <img src={BackIcon} alt="Back" onClick={handleBack} />
           </div>
           <div className="settings-header__title">Flash Cards</div>
         </div>

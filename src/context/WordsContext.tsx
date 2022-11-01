@@ -5,8 +5,8 @@ import {
   useEffect,
   useMemo,
   useState
-} from "react"
-import data from "../datas/words/WordsData"
+} from 'react'
+import data from '../datas/words/WordsData'
 
 type StringSetter = (
   strings: string[] | ((strings: string[]) => string[])
@@ -44,8 +44,12 @@ interface IContext {
 
 const WordsContext = createContext<IContext>({} as IContext)
 
-export const WordsContextProvider = ({ children }: { children: ReactNode }) => {
-  const [answers, setAnswers] = useState<string[]>(() => Array(200).fill(""))
+export const WordsContextProvider = ({
+  children
+}: {
+  children: ReactNode
+}): JSX.Element => {
+  const [answers, setAnswers] = useState<string[]>(() => Array(200).fill(''))
   const [currentPageWords, setCurrentPageWords] = useState<number>(1)
   const [wordsPerPage] = useState(10)
   const [countDown, setCountDown] = useState<number>(5)
@@ -53,14 +57,14 @@ export const WordsContextProvider = ({ children }: { children: ReactNode }) => {
   const [minutesForAnswer, setMinutesForAnswer] = useState<number>(5)
 
   const [cursorWidth, setCursorWidth] = useState<number>(() =>
-    JSON.parse(localStorage.getItem("cursorWidth")!)
+    JSON.parse(localStorage.getItem('cursorWidth')!)
   )
 
   const [highlightedWords, setHighlightedWords] = useState<number>(0)
 
   useEffect(() => {
     if (cursorWidth) {
-      localStorage.setItem("cursorWidth", JSON.stringify(cursorWidth))
+      localStorage.setItem('cursorWidth', JSON.stringify(cursorWidth))
     }
   }, [cursorWidth])
 
@@ -113,7 +117,7 @@ export const WordsContextProvider = ({ children }: { children: ReactNode }) => {
     setCursorWidth,
 
     highlightedWords,
-    setHighlightedWords,
+    setHighlightedWords
   }
 
   return <WordsContext.Provider value={value}>{children}</WordsContext.Provider>

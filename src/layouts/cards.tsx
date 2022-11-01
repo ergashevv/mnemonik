@@ -1,8 +1,8 @@
-import CardGame from "../pages/cards/card-game"
-import ResultCard from "../pages/cards/result-card"
-import Settings from "../pages/cards/settings"
-import StartCard from "../pages/cards/start-card-game"
-import { Route, Routes } from "react-router-dom"
+import CardGame from '../pages/cards/card-game'
+import ResultCard from '../pages/cards/result-card'
+import Settings from '../pages/cards/settings'
+import StartCard from '../pages/cards/start-card-game'
+import { Route, Routes } from 'react-router-dom'
 
 const CardsLayout = () => {
   return (

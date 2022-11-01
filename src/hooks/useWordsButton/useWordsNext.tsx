@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useRef, useState } from "react"
-import { useWordsContext } from "../../context/WordsContext"
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { useWordsContext } from '../../context/WordsContext'
 
 const useWordsNext = () => {
   const {
@@ -11,7 +11,6 @@ const useWordsNext = () => {
     setHighlightedWords,
     setCurrentPageWords
   } = useWordsContext()
-
 
   const [longPressHighlighted, setLongPressHighlighted] = useState(false)
   const [longPress, setLongPress] = useState(false)
@@ -50,7 +49,7 @@ const useWordsNext = () => {
     setHighlightedWords,
     setCurrentPageWords,
     words.length,
-    wordsPerPage,
+    wordsPerPage
   ])
 
   useEffect(() => {
@@ -100,7 +99,7 @@ const useWordsNext = () => {
       onMouseUp: () => setLongPressHighlighted(false),
       onMouseLeave: () => setLongPressHighlighted(false),
       onTouchStart: () => setLongPressHighlighted(true),
-      onTouchEnd: () => setLongPressHighlighted(false),
+      onTouchEnd: () => setLongPressHighlighted(false)
     },
 
     wordsNextButton: {
@@ -109,8 +108,8 @@ const useWordsNext = () => {
       onMouseUp: () => setLongPress(false),
       onMouseLeave: () => setLongPress(false),
       onTouchStart: () => setLongPress(true),
-      onTouchEnd: () => setLongPress(false),
-    },
+      onTouchEnd: () => setLongPress(false)
+    }
   }
 }
 

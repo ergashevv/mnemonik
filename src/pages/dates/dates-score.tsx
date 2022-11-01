@@ -1,4 +1,4 @@
-import { useDatedContext } from "../../context/date-context"
+import { useDatedContext } from '../../context/date-context'
 const DatesScore = () => {
   const { data, even, userDate } = useDatedContext()
 
@@ -12,7 +12,7 @@ const DatesScore = () => {
               <input
                 key={key}
                 style={{
-                  color: value !== data[key] ? "red" : "green",
+                  color: value !== data[key] ? 'red' : 'green'
                 }}
                 readOnly
                 value={userDate[key]}

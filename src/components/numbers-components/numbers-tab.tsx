@@ -1,5 +1,5 @@
-import classNames from "classnames"
-import { IContext, useHomeContext } from "../../context/home-context"
+import classNames from 'classnames'
+import { IContext, useHomeContext } from '../../context/home-context'
 
 interface IProps {
   tab: IContext
@@ -17,8 +17,9 @@ const NumbersTab = ({ tab }: IProps) => {
     <>
       {slicedRandomNumbers.map((item, key) => {
         const isActive = key >= cursor && key < cursor + parseInt(cursorW!)
-        const  className = classNames("card-number", {
-          active: isActive,
+
+        const className = classNames('card-number', {
+          active: isActive
         })
 
         return (

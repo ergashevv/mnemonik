@@ -1,9 +1,12 @@
-import { useState } from "react"
-import { ArrowLeft, ArrowRight, Eye, Rewind } from "react-feather"
-import useFacesNext from "../../hooks/useFacesButton/useFacesNext"
-import useFacesPrev from "../../hooks/useFacesButton/useFacesPrev"
-import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
-import "./NF.scss"
+import { useState } from 'react'
+import { Eye } from 'react-feather'
+import ArrowLeft from '../../assets/images/icons/arrow-left.svg'
+import ArrowRight from '../../assets/images/icons/arrow-right.svg'
+import ChevronsLeft from '../../assets/images/icons/chevrons-left.svg'
+import { useFacesContext } from '../../context/FacesContext'
+import useFacesNext from '../../hooks/useFacesButton/useFacesNext'
+import useFacesPrev from '../../hooks/useFacesButton/useFacesPrev'
+import './NF.scss'
 
 const Result = () => {
   const {
@@ -12,7 +15,7 @@ const Result = () => {
     currentPageFaces,
     setCurrentPageFaces,
     results,
-  } = useNamesAndFacesContext()
+  } = useFacesContext()
 
   const { facesPrevButton } = useFacesPrev()
   const { facesNextButton } = useFacesNext()
@@ -26,14 +29,10 @@ const Result = () => {
   )
 
   const correctFirstNames = results.filter(
-    (el, index) =>
-      el?.firstName?.toLowerCase() ===
-      recallPeople[index]?.firstName?.toLowerCase()
+    (el, index) => el?.firstName?.toLowerCase() === recallPeople[index]?.firstName?.toLowerCase()
   )
   const correctLastNames = results.filter(
-    (el, index) =>
-      el?.lastName?.toLowerCase() ===
-      recallPeople[index]?.lastName?.toLowerCase()
+    (el, index) => el?.lastName?.toLowerCase() === recallPeople[index]?.lastName?.toLowerCase()
   )
 
   const firstPage = () => {
@@ -41,18 +40,17 @@ const Result = () => {
   }
 
   return (
-    <div className="faces">
-      <div className="container">
-        <section className="faces-section">
-          <div className="faces-section__header">
-            <p className="faces-section__header-title">
+    <div className='faces'>
+      <div className='container'>
+        <section className='faces-section'>
+          <div className='faces-section__header'>
+            <p className='faces-section__header-title'>
               Umumiy: {2 * results.length} ta
               <br />
-              To'g'ri topilganlar:{" "}
-              {correctFirstNames.length + correctLastNames.length}ta <br />
+              To'g'ri topilganlar: {correctFirstNames.length + correctLastNames.length}ta <br />
             </p>
           </div>
-          <div className="faces-section__cards">
+          <div className='faces-section__cards'>
             {results?.map((result, index) => {
               const { img, firstName } = result
 
@@ -61,24 +59,18 @@ const Result = () => {
                   <article key={index}>
                     <img src={img} alt={firstName} />
                     <form>
-                      <div
-                        style={{
-                          position: "relative",
-                        }}
-                      >
+                      <div className='input-wrapper'>
                         <input
                           readOnly
                           style={{
                             backgroundColor:
-                              results[index]?.firstName === ""
-                                ? "#fff"
+                              results[index]?.firstName === ''
+                                ? '#fff'
                                 : results[index]?.firstName.length > 0 &&
                                   results[index]?.firstName?.toLowerCase() !==
-                                    recallPeople[
-                                      index
-                                    ]?.firstName?.toLowerCase()
-                                ? "rgba(255, 0, 0, .5)"
-                                : "rgba(26, 161, 19, .5)",
+                                    recallPeople[index]?.firstName?.toLowerCase()
+                                ? 'rgba(255, 0, 0, .5)'
+                                : 'rgba(26, 161, 19, .5)',
                           }}
                           value={
                             visibleFirstNames[index]
@@ -87,42 +79,32 @@ const Result = () => {
                           }
                         />
                         <Eye
-                          className="faces-section__form-preview"
+                          className='faces-section__form-preview'
                           style={{
-                            backgroundColor: visibleFirstNames[index]
-                              ? "black"
-                              : "",
-                            color: visibleFirstNames[index] ? "white" : "",
+                            backgroundColor: visibleFirstNames[index] ? 'black' : '',
+                            color: visibleFirstNames[index] ? 'white' : '',
                           }}
                           onClick={() => {
                             setVisibleFirstNames((firstNames) =>
                               firstNames?.map((firstName, firstNameIndex) =>
-                                index === firstNameIndex
-                                  ? !visibleFirstNames[index]
-                                  : firstName
+                                index === firstNameIndex ? !visibleFirstNames[index] : firstName
                               )
                             )
                           }}
                         />
                       </div>
-                      <div
-                        style={{
-                          position: "relative",
-                        }}
-                      >
+                      <div className='input-wrapper'>
                         <input
                           readOnly
                           style={{
                             backgroundColor:
-                              results[index]?.lastName === ""
-                                ? "#fff"
+                              results[index]?.lastName === ''
+                                ? '#fff'
                                 : results[index]?.lastName.length > 0 &&
                                   results[index]?.lastName?.toLowerCase() !==
-                                    recallPeople[
-                                      index
-                                    ]?.lastName?.toLowerCase()
-                                ? "rgba(255, 0, 0, .5)"
-                                : "rgba(26, 161, 19, .5)",
+                                    recallPeople[index]?.lastName?.toLowerCase()
+                                ? 'rgba(255, 0, 0, .5)'
+                                : 'rgba(26, 161, 19, .5)',
                           }}
                           value={
                             visibleLastNames[index]
@@ -131,19 +113,15 @@ const Result = () => {
                           }
                         />
                         <Eye
-                          className="faces-section__form-preview"
+                          className='faces-section__form-preview'
                           style={{
-                            backgroundColor: visibleLastNames[index]
-                              ? "black"
-                              : "",
-                            color: visibleLastNames[index] ? "white" : "",
+                            backgroundColor: visibleLastNames[index] ? 'black' : '',
+                            color: visibleLastNames[index] ? 'white' : '',
                           }}
                           onClick={() => {
                             setVisibleLastNames((lastNames) =>
                               lastNames?.map((lastName, lastNameIndex) =>
-                                index === lastNameIndex
-                                  ? !visibleLastNames[index]
-                                  : lastName
+                                index === lastNameIndex ? !visibleLastNames[index] : lastName
                               )
                             )
                           }}
@@ -157,18 +135,18 @@ const Result = () => {
               }
             })}
           </div>
-          <div className="indicator">
+          <div className='indicator'>
             <span>{currentPageFaces}</span>/<span>{memorizationPeople.length}</span>
           </div>
-          <div className="control-buttons">
-            <button onClick={firstPage} className="first-button">
-              <Rewind size={32} />
+          <div className='control-buttons'>
+            <button {...facesPrevButton} className='prev-button'>
+              <img src={ArrowLeft} alt='ArrowLeft' />
             </button>
-            <button {...facesPrevButton} className="prev-button">
-              <ArrowLeft size={32} />
+            <button onClick={firstPage} className='first-button'>
+              <img src={ChevronsLeft} alt='First Page' />
             </button>
-            <button {...facesNextButton} className="next-button">
-              <ArrowRight size={32} />
+            <button {...facesNextButton} className='next-button'>
+              <img src={ArrowRight} alt='ArrowRight' />
             </button>
           </div>
         </section>

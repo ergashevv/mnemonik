@@ -1,17 +1,17 @@
-import { useNavigate } from "react-router-dom"
-import "../../assets/styles/StartStyles.scss"
-import SelectStartTime from "../../components/start-game-select"
-import ArrowLeft from "../../assets/images/icons/arrow-left.svg"
+import { useNavigate } from 'react-router-dom'
+import '../../assets/styles/StartStyles.scss'
+import SelectStartTime from '../../components/start-game-select'
+import BackIcon from '../../assets/images/icons/back-icon.svg'
 
 const DatesSettings = () => {
   const navigate = useNavigate()
 
   const handleNavigate = () => {
-    navigate("/dates/game")
+    navigate('/dates/game')
   }
 
   const handleBack = () => {
-    navigate("/")
+    navigate('/')
   }
 
   return (
@@ -19,7 +19,7 @@ const DatesSettings = () => {
       <div className="container">
         <div className="settings-header">
           <div className="settings-header__back">
-            <img src={ArrowLeft} alt="Back" onClick={handleBack} />
+            <img src={BackIcon} alt="Back" onClick={handleBack} />
           </div>
           <div className="settings-header__title">Sanalar</div>
         </div>

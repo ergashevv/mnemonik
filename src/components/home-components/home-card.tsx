@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom"
-import "./main.scss"
+import { Link } from 'react-router-dom'
+import './main.scss'
 interface IHomeCard {
   img: any
   link: string

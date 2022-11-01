@@ -1,19 +1,17 @@
-import { ArrowLeft, ArrowRight, Rewind } from "react-feather"
-import { useNavigate } from "react-router"
-import useFacesNext from "../../hooks/useFacesButton/useFacesNext"
-import useFacesPrev from "../../hooks/useFacesButton/useFacesPrev"
-import StartGameModal from "../../components/start-game"
-import { useHomeContext } from "../../context/home-context"
-import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
-import "./NF.scss"
-import TimerComponent from "../../components/timer"
+import { useNavigate } from 'react-router'
+import useFacesNext from '../../hooks/useFacesButton/useFacesNext'
+import useFacesPrev from '../../hooks/useFacesButton/useFacesPrev'
+import StartGameModal from '../../components/start-game'
+import { useHomeContext } from '../../context/home-context'
+import { useFacesContext } from '../../context/FacesContext'
+import './NF.scss'
+import TimerComponent from '../../components/timer'
+import ArrowLeft from '../../assets/images/icons/arrow-left.svg'
+import ArrowRight from '../../assets/images/icons/arrow-right.svg'
+import ChevronsLeft from '../../assets/images/icons/chevrons-left.svg'
 
 const Recall = () => {
-  const {
-    memorizationPeople,
-    currentPageFaces,
-    setCurrentPageFaces,
-  } = useNamesAndFacesContext()
+  const { memorizationPeople, currentPageFaces, setCurrentPageFaces } = useFacesContext()
 
   const { startTime, timerForRecall } = useHomeContext()
 
@@ -27,35 +25,28 @@ const Recall = () => {
   }
 
   const handleNavigate = () => {
-    navigate("/names-and-faces/answers")
+    navigate('/names-and-faces/answers')
     setCurrentPageFaces(1)
   }
 
   return (
-    <div className="faces">
-      <div className="container">
+    <div className='faces'>
+      <div className='container'>
         <StartGameModal time={startTime!} />
-        <div
-          style={{ display: Number(startTime) > 0 ? "none" : "flex" }}
-          className="faces-section"
-        >
-          <div className="faces-section__header">
+        <div style={{ display: Number(startTime) > 0 ? 'none' : 'flex' }} className='faces-section'>
+          <div className='faces-section__header'>
             {Number(startTime) === 0 && (
-              <TimerComponent
-                time={timerForRecall}
-                navigateTo={"/names-and-faces/answers"}
-              />
+              <TimerComponent time={timerForRecall} navigateTo={'/names-and-faces/answers'} />
             )}
-            <p className="faces-section__header-title">Recall</p>
             <button
               onClick={handleNavigate}
-              style={{ textDecoration: "none" }}
-              className="faces-section__header-finish"
+              style={{ textDecoration: 'none' }}
+              className='faces-section__header-finish'
             >
-              Finish
+              Hoziroq tugatish
             </button>
           </div>
-          <div className="faces-section__cards">
+          <div className='faces-section__cards'>
             {memorizationPeople.map((person, index) => {
               const { img, firstName, lastName } = person
               if (currentPageFaces - 1 === index) {
@@ -71,18 +62,18 @@ const Recall = () => {
               }
             })}
           </div>
-          <div className="indicator">
+          <div className='indicator'>
             <span>{currentPageFaces}</span>/<span>{memorizationPeople.length}</span>
           </div>
-          <div className="control-buttons">
-            <button onClick={firstPage} className="first-button">
-              <Rewind size={32} />
+          <div className='control-buttons'>
+            <button {...facesPrevButton} className='prev-button'>
+              <img src={ArrowLeft} alt='ArrowLeft' />
             </button>
-            <button {...facesPrevButton} className="prev-button">
-              <ArrowLeft size={32} />
+            <button onClick={firstPage} className='first-button'>
+              <img src={ChevronsLeft} alt='First Page' />
             </button>
-            <button {...facesNextButton} className="next-button">
-              <ArrowRight size={32} />
+            <button {...facesNextButton} className='next-button'>
+              <img src={ArrowRight} alt='ArrowRight' />
             </button>
           </div>
         </div>

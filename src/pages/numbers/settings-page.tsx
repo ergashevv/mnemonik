@@ -1,9 +1,9 @@
-import { ChangeEvent } from "react"
-import { useNavigate } from "react-router-dom"
-import "../../assets/styles/StartStyles.scss"
-import SelectStartTime from "../../components/start-game-select"
-import { useHomeContext } from "../../context/home-context"
-import ArrowLeft from "../../assets/images/icons/arrow-left.svg"
+import { ChangeEvent } from 'react'
+import { useNavigate } from 'react-router-dom'
+import '../../assets/styles/StartStyles.scss'
+import SelectStartTime from '../../components/start-game-select'
+import { useHomeContext } from '../../context/home-context'
+import BackIcon from '../../assets/images/icons/back-icon.svg'
 
 const SettingsPage = () => {
   const {
@@ -14,7 +14,7 @@ const SettingsPage = () => {
     setNavigation,
     autoSecond,
     setAutoSecond,
-    line,
+    line
   } = useHomeContext()
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -37,11 +37,11 @@ const SettingsPage = () => {
   const auto = Number(autoSecond) / 10
 
   const handleNavigate = () => {
-    navigate("/numbers/game")
+    navigate('/numbers/game')
   }
 
   const handleBack = () => {
-    navigate("/")
+    navigate('/')
   }
   console.log(auto)
 
@@ -50,7 +50,7 @@ const SettingsPage = () => {
       <div className="container">
         <div className="settings-header">
           <div className="settings-header__back">
-            <img src={ArrowLeft} alt="Back" onClick={handleBack} />
+            <img src={BackIcon} alt="Back" onClick={handleBack} />
           </div>
           <div className="settings-header__title">Raqamlar</div>
         </div>
@@ -82,13 +82,14 @@ const SettingsPage = () => {
 
           <label>Select navigation</label>
           <select
-            defaultValue={navigation === "auto" ? "auto" : "custom"}
+            defaultValue={navigation === 'auto' ? 'auto' : 'custom'}
             onChange={handleNavigation}
           >
             <option value="custom">Custom</option>
             <option value="auto">Auto</option>
           </select>
-          {navigation === "auto" ? (
+          {navigation === 'auto'
+            ? (
             <div>
               <label>Avtomatik o'tish vaqti</label>
               <h3>Vaqt: {Number(autoSecond) / 10}s</h3>
@@ -99,7 +100,8 @@ const SettingsPage = () => {
                 type="range"
               />
             </div>
-          ) : null}
+              )
+            : null}
           <button onClick={handleNavigate} disabled={parseInt(cursorW!) < 1}>
             Boshlash
           </button>

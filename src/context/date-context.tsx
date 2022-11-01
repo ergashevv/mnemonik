@@ -3,9 +3,9 @@ import React, {
   createContext,
   useEffect,
   useState,
-  ReactNode,
-} from "react"
-import { DatasDate, Events } from "../datas/data-dates"
+  ReactNode
+} from 'react'
+import { DatasDate, Events } from '../datas/data-dates'
 
 export interface IDatesContext {
   line?: string
@@ -24,7 +24,7 @@ export const DatesContextProvider = ({ children }: { children: ReactNode }) => {
   const [data, setData] = useState<string[]>(DatasDate)
   const [even, setEven] = useState<string[]>(Events)
   const [userDate, setUserDate] = useState<string[]>(
-    Array(data.length).fill("")
+    Array(data.length).fill('')
   )
   const [show, setShow] = useState<boolean>(false)
   const shuffle = (arr: string[]) => [...arr].sort(() => Math.random() - 0.5)
@@ -42,7 +42,7 @@ export const DatesContextProvider = ({ children }: { children: ReactNode }) => {
     even,
     setEven,
     show,
-    setShow,
+    setShow
   }
 
   return <DatesContext.Provider value={value}>{children}</DatesContext.Provider>

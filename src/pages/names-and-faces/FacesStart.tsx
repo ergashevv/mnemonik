@@ -1,11 +1,11 @@
-import { useCallback, useState } from "react"
-import { useNavigate } from "react-router-dom"
-import SelectStartTime from "../../components/start-game-select"
-import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
-import ArrowLeft from "../../assets/images/icons/arrow-left.svg"
+import { useCallback, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import SelectStartTime from '../../components/start-game-select'
+import { useFacesContext } from '../../context/FacesContext'
+import BackIcon from '../../assets/images/icons/back-icon.svg'
 
-const blobToBase64 = (blob: Blob) =>
-  new Promise((resolve, reject) => {
+const blobToBase64 = async (blob: Blob) =>
+  await new Promise((resolve, reject) => {
     const reader = new FileReader()
     reader.readAsDataURL(blob)
     reader.onload = () => resolve(reader.result)
@@ -20,8 +20,8 @@ const Start = () => {
     setMemorizationPeople,
     recallPeople,
     setRecallPeople,
-    setCurrentPageFaces,
-  } = useNamesAndFacesContext()
+    setCurrentPageFaces
+  } = useFacesContext()
 
   const [imagesFetched, setImagesFetched] = useState<number>(0)
 
@@ -58,13 +58,19 @@ const Start = () => {
 
     setMemorizationPeople(peopleWithUpdatedImages)
 
-    navigate("/names-and-faces/recall")
+    navigate('/names-and-faces/recall')
 
     setCurrentPageFaces(1)
-  }, [navigate, memorizationPeople, setCurrentPageFaces, setMemorizationPeople, setRecallPeople])
+  }, [
+    navigate,
+    memorizationPeople,
+    setCurrentPageFaces,
+    setMemorizationPeople,
+    setRecallPeople
+  ])
 
   const handleBack = () => {
-    navigate("/")
+    navigate('/')
   }
 
   return (
@@ -72,7 +78,7 @@ const Start = () => {
       <div className="container">
         <div className="settings-header">
           <div className="settings-header__back">
-            <img src={ArrowLeft} alt="Back" onClick={handleBack} />
+            <img src={BackIcon} alt="Back" onClick={handleBack} />
           </div>
           <div className="settings-header__title">Playing Cards</div>
         </div>
@@ -87,7 +93,7 @@ const Start = () => {
           >
             {imagesLoading
               ? `Loading images (${imagesFetched} / ${memorizationPeople.length})`
-              : "Boshlash"}
+              : 'Boshlash'}
           </button>
         </form>
       </div>

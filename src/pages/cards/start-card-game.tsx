@@ -1,15 +1,15 @@
-import { useCallback } from "react"
-import { Link } from "react-router-dom"
-import TimerComponent from "../../components/timer"
-import { Card, useCardsContext } from "../../context/cards-context"
-import { useHomeContext } from "../../context/home-context"
-import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
-import "./cards-page.scss"
+import { useCallback, useState } from 'react'
+import { Link } from 'react-router-dom'
+import TimerComponent from '../../components/timer'
+import { Card, useCardsContext } from '../../context/cards-context'
+import { useHomeContext } from '../../context/home-context'
+import './cards-page.scss'
 
 const StartCard = () => {
   const { data, inputs, focus, setFocus, setInputs, show } = useCardsContext()
 
   const { timerForAnswer } = useHomeContext()
+  const [focusCard, setFocusCard] = useState<number>(0)
 
   const handleRemove = useCallback(
     (_: any, index: number) => {
@@ -17,6 +17,9 @@ const StartCard = () => {
     },
     [setFocus]
   )
+  const handleActive = (key: number) => {
+    setFocusCard(key)
+  }
 
   const handleAdd = useCallback(
     (val: Card[], _: any) => {
@@ -32,7 +35,7 @@ const StartCard = () => {
       <div className="empty-cards">
         <div
           style={{
-            justifyContent: "space-between",
+            justifyContent: 'space-between'
           }}
           className="d-flex"
         >
@@ -46,11 +49,11 @@ const StartCard = () => {
             <div
               key={index}
               onClick={() => handleRemove(img, index)}
-              className={focus === index ? "empty-card active" : "empty-card"}
+              className={focus === index ? 'empty-card active' : 'empty-card'}
             >
               <img
                 style={{
-                  marginRight: show === "small" ? "-80px" : "-30px",
+                  marginRight: show === 'small' ? '-80px' : '-30px'
                 }}
                 width="50px"
                 src={img.image}
@@ -64,11 +67,14 @@ const StartCard = () => {
             <div
               key={key}
               onClick={() => handleAdd(item, key)}
-              className={"empty-card"}
+              className={'empty-card'}
             >
               <img
+              onClick={() => handleActive(key)}
+              className={focusCard === key ? 'card-img active' : 'card-img'}
+
                 style={{
-                  marginRight: show === "small" ? "-80px" : "-30px",
+                  marginRight: show === 'small' ? '-80px' : '-30px'
                 }}
                 src={item.image}
                 alt=""

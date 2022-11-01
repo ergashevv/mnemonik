@@ -1,5 +1,5 @@
-import { useHomeContext } from "../../context/home-context"
-import { useEffect } from "react"
+import { useHomeContext } from '../../context/home-context'
+import { useEffect } from 'react'
 
 interface ITimeProps {
   time: number
@@ -10,7 +10,7 @@ const SelectStartTime = ({ time }: ITimeProps) => {
 
   useEffect(() => {
     if (time) {
-      setStartTime("5")
+      setStartTime('5')
     }
   }, [setStartTime, time])
 

@@ -1,7 +1,7 @@
-import { useMemo, useState } from "react"
-import LeftNumber from "../../components/left-numbers"
-import Tabs from "../../components/tabs"
-import { useHomeContext } from "../../context/home-context"
+import { useMemo, useState } from 'react'
+import LeftNumber from '../../components/left-numbers'
+import Tabs from '../../components/tabs'
+import { useHomeContext } from '../../context/home-context'
 
 const Result = () => {
   const [show, setShow] = useState(false)
@@ -9,16 +9,14 @@ const Result = () => {
   const {
     result,
     tab,
-    cursorW,
     randomNumbers,
-    dynamic: dynum,
+    dynamic: dynum
   } = useHomeContext()
 
   const count = useMemo(() => {
     let count = 0
     result?.forEach((item: any, k: any) => {
-      if (item !== randomNumbers.slice(dynum * tab, dynum * (tab + 1))[k])
-        count++
+      if (item !== randomNumbers.slice(dynum * tab, dynum * (tab + 1))[k]) { count++ }
     })
 
     return count
@@ -51,9 +49,9 @@ const Result = () => {
                                   dynum * tab,
                                   dynum * (tab + 1)
                                 )[index]
-                                  ? "green"
-                                  : "red",
-                              fontWeight: "bold",
+                                  ? 'green'
+                                  : 'red',
+                              fontWeight: 'bold'
                             }}
                             className="number-page-input"
                             value={value}
@@ -84,7 +82,7 @@ const Result = () => {
         <Tabs tabNumber={4} />
       </div>
       <button onClick={() => setShow(!show)}>
-        {show ? "user result" : "show result"}
+        {show ? 'user result' : 'show result'}
       </button>
     </div>
   )

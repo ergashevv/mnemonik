@@ -1,12 +1,12 @@
-import { useEffect, useRef, useState } from "react"
-import { ArrowLeft, ArrowRight, Rewind } from "react-feather"
-import { useNavigate } from "react-router-dom"
-import useFlashCardsNext from "../../hooks/useFlashCardsButton/useFlashCardsNext"
-import useFlashCardsPrev from "../../hooks/useFlashCardsButton/useFlashCardsPrev"
-import StartGameModal from "../../components/start-game"
-import { useFlashCardsContext } from "../../context/FlashCardsContext"
-import { useHomeContext } from "../../context/home-context"
-import "./FlashCards.scss"
+import { useEffect, useRef, useState } from 'react'
+import { ArrowLeft, ArrowRight, Rewind } from 'react-feather'
+import { useNavigate } from 'react-router-dom'
+import useFlashCardsNext from '../../hooks/useFlashCardsButton/useFlashCardsNext'
+import useFlashCardsPrev from '../../hooks/useFlashCardsButton/useFlashCardsPrev'
+import StartGameModal from '../../components/start-game'
+import { useFlashCardsContext } from '../../context/FlashCardsContext'
+import { useHomeContext } from '../../context/home-context'
+import './FlashCards.scss'
 
 const FlashCardsRecall = () => {
   const {
@@ -14,7 +14,7 @@ const FlashCardsRecall = () => {
     time,
     setTime,
     currentFlashCard,
-    setCurrentFlashCard,
+    setCurrentFlashCard
   } = useFlashCardsContext()
 
   const { startTime } = useHomeContext()
@@ -28,7 +28,7 @@ const FlashCardsRecall = () => {
   const interval = useRef<ReturnType<typeof setInterval>>()
 
   useEffect(() => {
-    if (interval.current) clearInterval(interval.current)
+    if (interval.current != null) clearInterval(interval.current)
 
     interval.current = setInterval(() => {
       setTime((numbers) =>
@@ -46,7 +46,7 @@ const FlashCardsRecall = () => {
   }
 
   const handleNavigate = () => {
-    navigate("/flash-cards/results")
+    navigate('/flash-cards/results')
   }
 
   return (
@@ -55,7 +55,7 @@ const FlashCardsRecall = () => {
         <StartGameModal time={startTime!} />
         <div
           className="flashCards-section"
-          style={{ display: Number(startTime) > 0 ? "none" : "block" }}
+          style={{ display: Number(startTime) > 0 ? 'none' : 'block' }}
         >
           <div className="flashCards-section__header">
             <h1 className="flashCards-section__header-timer">
@@ -63,7 +63,7 @@ const FlashCardsRecall = () => {
             </h1>
             <button
               onClick={handleNavigate}
-              style={{ textDecoration: "none" }}
+              style={{ textDecoration: 'none' }}
               className="flashCards-section__header-finish"
             >
               Finish
@@ -76,7 +76,7 @@ const FlashCardsRecall = () => {
                 return (
                   <article
                     key={index}
-                    style={{ transform: flipCards[index] && "rotateY(180deg)" }}
+                    style={{ transform: flipCards[index] && 'rotateY(180deg)' }}
                     onClick={() =>
                       setFlipCards((cards) =>
                         cards.map((card, cardIndex) =>

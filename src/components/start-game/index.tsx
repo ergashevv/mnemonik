@@ -1,6 +1,6 @@
-import { useEffect } from "react"
-import { useHomeContext } from "../../context/home-context"
-import "./main.scss"
+import { useEffect } from 'react'
+import { useHomeContext } from '../../context/home-context'
+import './main.scss'
 
 export interface TimeProps {
   time: string
@@ -26,16 +26,16 @@ const StartGameModal = ({ time }: TimeProps) => {
   return (
     <div
       style={{
-        display: numberStartTime < 1 ? "none" : "block",
+        display: numberStartTime < 1 ? 'none' : 'block'
       }}
-      className={"start-timer"}
+      className={'start-timer'}
     >
       {Array(numberStartTime)
         .fill(null!)
         .map((_, index: number) => (
           <h1
             key={index}
-            className={`time ${index + 1 === numberStartTime ? "active" : ""}`}
+            className={`time ${index + 1 === numberStartTime ? 'active' : ''}`}
           >
             {numberStartTime === index + 1 && numberStartTime}
           </h1>

@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useRef, useState } from "react"
-import { useWordsContext } from "../../context/WordsContext"
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { useWordsContext } from '../../context/WordsContext'
 
 const useWordsPrev = () => {
   const {
@@ -9,7 +9,7 @@ const useWordsPrev = () => {
     cursorWidth,
     highlightedWords,
     setHighlightedWords,
-    setCurrentPageWords,
+    setCurrentPageWords
   } = useWordsContext()
 
   const [longPressHighlighted, setLongPressHighlighted] = useState(false)
@@ -56,7 +56,7 @@ const useWordsPrev = () => {
     setHighlightedWords,
     setCurrentPageWords,
     words.length,
-    wordsPerPage,
+    wordsPerPage
   ])
 
   useEffect(() => {
@@ -71,7 +71,7 @@ const useWordsPrev = () => {
     }
   }, [longPressHighlighted, prevHighlightedWords])
 
-  ////////////////////////////////////////////////////////////////////////////////////////
+  /// /////////////////////////////////////////////////////////////////////////////////////
 
   const prevPageWords = useCallback(() => {
     setCurrentPageWords((oldPage) => {
@@ -110,7 +110,7 @@ const useWordsPrev = () => {
       onMouseUp: () => setLongPressHighlighted(false),
       onMouseLeave: () => setLongPressHighlighted(false),
       onTouchStart: () => setLongPressHighlighted(true),
-      onTouchEnd: () => setLongPressHighlighted(false),
+      onTouchEnd: () => setLongPressHighlighted(false)
     },
 
     wordsPrevButton: {
@@ -119,8 +119,8 @@ const useWordsPrev = () => {
       onMouseUp: () => setLongPress(false),
       onMouseLeave: () => setLongPress(false),
       onTouchStart: () => setLongPress(true),
-      onTouchEnd: () => setLongPress(false),
-    },
+      onTouchEnd: () => setLongPress(false)
+    }
   }
 }
 

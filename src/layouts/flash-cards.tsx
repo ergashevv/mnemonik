@@ -1,7 +1,7 @@
-import { Route, Routes } from "react-router-dom"
-import FlashCardsStart from "../pages/flash-cards/FlashCardsStart"
-import FlashCardsResult from "../pages/flash-cards/FlashCardsResult"
-import FlashCardsRecall from "../pages/flash-cards/FlashCardsRecall"
+import { Route, Routes } from 'react-router-dom'
+import FlashCardsStart from '../pages/flash-cards/FlashCardsStart'
+import FlashCardsResult from '../pages/flash-cards/FlashCardsResult'
+import FlashCardsRecall from '../pages/flash-cards/FlashCardsRecall'
 
 const FlashCardLayout = () => {
   return (

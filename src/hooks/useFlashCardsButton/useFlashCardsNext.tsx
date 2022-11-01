@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useRef, useState } from "react"
-import { useFlashCardsContext } from "../../context/FlashCardsContext"
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { useFlashCardsContext } from '../../context/FlashCardsContext'
 
 const useFlashCardsNext = () => {
   const { flashCards, setCurrentFlashCard } = useFlashCardsContext()
@@ -37,8 +37,8 @@ const useFlashCardsNext = () => {
       onMouseUp: () => setLongPress(false),
       onMouseLeave: () => setLongPress(false),
       onTouchStart: () => setLongPress(true),
-      onTouchEnd: () => setLongPress(false),
-    },
+      onTouchEnd: () => setLongPress(false)
+    }
   }
 }
 

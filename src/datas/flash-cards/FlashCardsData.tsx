@@ -1,404 +1,404 @@
 const flashCardsData = [
   {
     number: '00',
-    text: 'ZIZI',
+    text: 'ZIZI'
   },
   {
     number: '01',
-    text: 'ZayTun',
+    text: 'ZayTun'
   },
   {
     number: '02',
-    text: 'ZaNjir',
+    text: 'ZaNjir'
   },
   {
     number: '03',
-    text: 'ZoMbi',
+    text: 'ZoMbi'
   },
   {
     number: '04',
-    text: 'ZaR',
+    text: 'ZaR'
   },
   {
     number: '05',
-    text: 'ZuLuk',
+    text: 'ZuLuk'
   },
   {
     number: '06',
-    text: 'ZeBra',
+    text: 'ZeBra'
   },
   {
     number: '07',
-    text: 'ZiraK',
+    text: 'ZiraK'
   },
   {
     number: '08',
-    text: 'ZeFir',
+    text: 'ZeFir'
   },
   {
     number: '09',
-    text: 'ZajiGalka',
+    text: 'ZajiGalka'
   },
   {
     number: '10',
-    text: 'TaroZi',
+    text: 'TaroZi'
   },
   {
     number: '11',
-    text: "To'Ti",
+    text: "To'Ti"
   },
   {
     number: '12',
-    text: 'TaNka',
+    text: 'TaNka'
   },
   {
     number: '13',
-    text: 'ToMat',
+    text: 'ToMat'
   },
   {
     number: '14',
-    text: 'TRaktor',
+    text: 'TRaktor'
   },
   {
     number: '15',
-    text: 'TiLla',
+    text: 'TiLla'
   },
   {
     number: '16',
-    text: 'TaBuretka',
+    text: 'TaBuretka'
   },
   {
     number: '17',
-    text: 'TiKan',
+    text: 'TiKan'
   },
   {
     number: '18',
-    text: 'TuFli',
+    text: 'TuFli'
   },
   {
     number: '19',
-    text: 'TuGmacha',
+    text: 'TuGmacha'
   },
   {
     number: '20',
-    text: 'NayZa',
+    text: 'NayZa'
   },
   {
     number: '21',
-    text: 'NouTbuk',
+    text: 'NouTbuk'
   },
   {
     number: '22',
-    text: 'NoN',
+    text: 'NoN'
   },
   {
     number: '23',
-    text: 'NeMo',
+    text: 'NeMo'
   },
   {
     number: '24',
-    text: 'NaRvon',
+    text: 'NaRvon'
   },
   {
     number: '26',
-    text: 'NiLufar guli',
+    text: 'NiLufar guli'
   },
   {
     number: '26',
-    text: 'NoBel',
+    text: 'NoBel'
   },
   {
     number: '27',
-    text: 'NoK',
+    text: 'NoK'
   },
   {
     number: '28',
-    text: 'NeFt',
+    text: 'NeFt'
   },
   {
     number: '29',
-    text: 'NeGr',
+    text: 'NeGr'
   },
   {
     number: '30',
-    text: 'MuZ',
+    text: 'MuZ'
   },
   {
     number: '31',
-    text: 'MoTor',
+    text: 'MoTor'
   },
   {
     number: '32',
-    text: 'MuNchoq',
+    text: 'MuNchoq'
   },
   {
     number: '33',
-    text: 'MuMiya',
+    text: 'MuMiya'
   },
   {
     number: '34',
-    text: 'MaRker',
+    text: 'MaRker'
   },
   {
     number: '35',
-    text: 'MoL',
+    text: 'MoL'
   },
   {
     number: '36',
-    text: 'MoBil telefon',
+    text: 'MoBil telefon'
   },
   {
     number: '37',
-    text: 'MaKaron',
+    text: 'MaKaron'
   },
   {
     number: '38',
-    text: 'MikroFon',
+    text: 'MikroFon'
   },
   {
     number: '39',
-    text: 'MaGnit',
+    text: 'MaGnit'
   },
   {
     number: '40',
-    text: 'ReZinka',
+    text: 'ReZinka'
   },
   {
     number: '41',
-    text: 'RaTsiya',
+    text: 'RaTsiya'
   },
   {
     number: '42',
-    text: 'RaNda',
+    text: 'RaNda'
   },
   {
     number: '43',
-    text: 'Ro’Mol',
+    text: 'Ro’Mol'
   },
   {
     number: '44',
-    text: 'aRRa',
+    text: 'aRRa'
   },
   {
     number: '45',
-    text: 'RuL',
+    text: 'RuL'
   },
   {
     number: '46',
-    text: 'RoBot',
+    text: 'RoBot'
   },
   {
     number: '47',
-    text: 'RaKeta',
+    text: 'RaKeta'
   },
   {
     number: '48',
-    text: 'RaFaello',
+    text: 'RaFaello'
   },
   {
     number: '49',
-    text: 'RoGatka',
+    text: 'RoGatka'
   },
   {
     number: '50',
-    text: 'LaZer',
+    text: 'LaZer'
   },
   {
     number: '51',
-    text: 'LaTta',
+    text: 'LaTta'
   },
   {
     number: '52',
-    text: 'LeNta',
+    text: 'LeNta'
   },
   {
     number: '53',
-    text: 'LiMon',
+    text: 'LiMon'
   },
   {
     number: '54',
-    text: 'LoR',
+    text: 'LoR'
   },
   {
     number: 55,
-    text: 'LoLa',
+    text: 'LoLa'
   },
   {
     number: '56',
-    text: 'LaB',
+    text: 'LaB'
   },
   {
     number: '57',
-    text: 'LaK',
+    text: 'LaK'
   },
   {
     number: '58',
-    text: 'LiFt',
+    text: 'LiFt'
   },
   {
     number: '59',
-    text: 'LaGan',
+    text: 'LaGan'
   },
   {
     number: '60',
-    text: 'BiZon',
+    text: 'BiZon'
   },
   {
     number: '61',
-    text: 'BuTilka',
+    text: 'BuTilka'
   },
   {
     number: '62',
-    text: 'BaNan',
+    text: 'BaNan'
   },
   {
     number: '63',
-    text: "Bo'Mba",
+    text: "Bo'Mba"
   },
   {
     number: '64',
-    text: 'BaRaban',
+    text: 'BaRaban'
   },
   {
     number: '65',
-    text: 'BoLta',
+    text: 'BoLta'
   },
   {
     number: '66',
-    text: 'BoBo',
+    text: 'BoBo'
   },
   {
     number: '67',
-    text: 'BoKal',
+    text: 'BoKal'
   },
   {
     number: '68',
-    text: 'BuFer',
+    text: 'BuFer'
   },
   {
     number: '69',
-    text: 'BeGemot',
+    text: 'BeGemot'
   },
   {
     number: '70',
-    text: 'Ko’Z',
+    text: 'Ko’Z'
   },
   {
     number: '71',
-    text: 'KiTob',
+    text: 'KiTob'
   },
   {
     number: '72',
-    text: 'KoNfet',
+    text: 'KoNfet'
   },
   {
     number: '73',
-    text: 'KaMon',
+    text: 'KaMon'
   },
   {
     number: '74',
-    text: 'KaRtoshka',
+    text: 'KaRtoshka'
   },
   {
     number: '75',
-    text: 'KoLa',
+    text: 'KoLa'
   },
   {
     number: '76',
-    text: 'KaBob',
+    text: 'KaBob'
   },
   {
     number: '77',
-    text: 'KaKtus',
+    text: 'KaKtus'
   },
   {
     number: '78',
-    text: 'KoFe',
+    text: 'KoFe'
   },
   {
     number: '79',
-    text: 'KenGuru',
+    text: 'KenGuru'
   },
   {
     number: '80',
-    text: 'FiZik (Eynshteyn)',
+    text: 'FiZik (Eynshteyn)'
   },
   {
     number: '81',
-    text: 'FuTbolka',
+    text: 'FuTbolka'
   },
   {
     number: '82',
-    text: 'FeN',
+    text: 'FeN'
   },
   {
     number: '83',
-    text: 'FM radio',
+    text: 'FM radio'
   },
   {
     number: '84',
-    text: 'FaRtuk',
+    text: 'FaRtuk'
   },
   {
     number: '85',
-    text: 'FiL',
+    text: 'FiL'
   },
   {
     number: '86',
-    text: 'FBr xodimi',
+    text: 'FBr xodimi'
   },
   {
     number: '87',
-    text: 'FoKus shlyapasi',
+    text: 'FoKus shlyapasi'
   },
   {
     number: '88',
-    text: 'FiFa kubogi',
+    text: 'FiFa kubogi'
   },
   {
     number: '89',
-    text: 'FalGa',
+    text: 'FalGa'
   },
   {
     number: '90',
-    text: 'GaZ',
+    text: 'GaZ'
   },
   {
     number: '91',
-    text: 'GiTler',
+    text: 'GiTler'
   },
   {
     number: '92',
-    text: 'GNom',
+    text: 'GNom'
   },
   {
     number: '93',
-    text: 'GuMma',
+    text: 'GuMma'
   },
   {
     number: '94',
-    text: 'GitaRa',
+    text: 'GitaRa'
   },
   {
     number: '95',
-    text: 'GaLstuk',
+    text: 'GaLstuk'
   },
   {
     number: '96',
-    text: 'GoBlin',
+    text: 'GoBlin'
   },
   {
     number: '97',
-    text: 'GulKaram',
+    text: 'GulKaram'
   },
   {
     number: '98',
-    text: 'GraFin',
+    text: 'GraFin'
   },
   {
     number: '99',
-    text: 'GuGurt',
-  },
+    text: 'GuGurt'
+  }
 ]
 
-export { flashCardsData}
+export { flashCardsData }

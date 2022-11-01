@@ -1,9 +1,8 @@
-import { Link } from "react-router-dom"
-import TimerComponent from "../../components/timer"
-import { useDatedContext } from "../../context/date-context"
-import { useHomeContext } from "../../context/home-context"
-import { useNamesAndFacesContext } from "../../context/NamesAndFacesContext"
-import "./dates-page.scss"
+import { Link } from 'react-router-dom'
+import TimerComponent from '../../components/timer'
+import { useDatedContext } from '../../context/date-context'
+import { useHomeContext } from '../../context/home-context'
+import './dates-page.scss'
 
 const DatesStartGame = () => {
   const { data, even, setUserDate } = useDatedContext()
@@ -23,7 +22,7 @@ const DatesStartGame = () => {
 
   const removeHandler = (e: any) => {
     if (e.target.value.length === 0) {
-      if (e.key === "Backspace") {
+      if (e.key === 'Backspace') {
         const prevInput = e.currentTarget?.previousSibling
         prevInput?.focus()
       }
@@ -34,10 +33,10 @@ const DatesStartGame = () => {
       <div
         className="d-flex"
         style={{
-          justifyContent: "space-between",
+          justifyContent: 'space-between'
         }}
       >
-        <TimerComponent time={timerForAnswer} navigateTo={"/dates/result"} />
+        <TimerComponent time={timerForAnswer} navigateTo={'/dates/result'} />
         <Link to="/dates/result">Finish</Link>
       </div>
       <div className="start-date-game">

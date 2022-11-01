@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom"
-import "./main.scss"
+import { Link } from 'react-router-dom'
+import './main.scss'
 interface IHomeCard {
-  backgrounImg: any
+  backgrounImg: string
   link: string
   text: string
 }
@@ -9,7 +9,7 @@ const HomeBanner = ({ backgrounImg, link, text }: IHomeCard) => {
   return (
     <div
       style={{
-        backgroundImage: `url(${backgrounImg})`,
+        backgroundImage: `url(${backgrounImg})`
       }}
       className="banner"
     >

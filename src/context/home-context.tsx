@@ -3,8 +3,8 @@ import {
   ReactNode,
   useContext,
   useEffect,
-  useState,
-} from "react"
+  useState
+} from 'react'
 
 export interface IContext {
   numbers: string[]
@@ -37,16 +37,16 @@ const HomeContext = createContext<IContext>({} as IContext)
 
 export const HomeContextProvider = ({ children }: { children: ReactNode }) => {
   const [cursorW, setCursorW] = useState<string>(() =>
-    JSON.parse(localStorage.getItem("cursorW")!)
+    JSON.parse(localStorage.getItem('cursorW')!)
   )
   const [line, setLine] = useState<string>(() =>
-    JSON.parse(localStorage.getItem("line")!)
+    JSON.parse(localStorage.getItem('line')!)
   )
   const [navigation, setNavigation] = useState<string>(() =>
-    JSON.parse(localStorage.getItem("navigation")!)
+    JSON.parse(localStorage.getItem('navigation')!)
   )
   const [startTime, setStartTime] = useState<string>(() =>
-    JSON.parse(localStorage.getItem("startTime")!)
+    JSON.parse(localStorage.getItem('startTime')!)
   )
 
   const [timerForRecall, setTimerForRecall] = useState<number>(5)
@@ -71,33 +71,32 @@ export const HomeContextProvider = ({ children }: { children: ReactNode }) => {
     return numbers760
   })
 
-  
   useEffect(() => {
     setRandomNumbers(shuffle(numbers.map((str) => Number(str))))
   }, [setRandomNumbers, numbers])
 
   useEffect(() => {
     if (cursorW) {
-      localStorage.setItem("cursorW", JSON.stringify(cursorW))
+      localStorage.setItem('cursorW', JSON.stringify(cursorW))
     }
 
     if (line) {
-      localStorage.setItem("line", JSON.stringify(line))
+      localStorage.setItem('line', JSON.stringify(line))
     }
     if (startTime) {
-      localStorage.setItem("startTime", JSON.stringify(startTime))
+      localStorage.setItem('startTime', JSON.stringify(startTime))
     }
-    if (navigation === "auto") {
-      localStorage.setItem("navigation", JSON.stringify(navigation))
+    if (navigation === 'auto') {
+      localStorage.setItem('navigation', JSON.stringify(navigation))
     }
-    if (navigation === "custom") {
-      localStorage.removeItem("navigation")
+    if (navigation === 'custom') {
+      localStorage.removeItem('navigation')
     }
     if (!cursorW) {
-      setCursorW("2")
+      setCursorW('2')
     }
     if (!line) {
-      setLine("2")
+      setLine('2')
     }
   }, [navigation, startTime])
 
@@ -128,7 +127,7 @@ export const HomeContextProvider = ({ children }: { children: ReactNode }) => {
     timerForRecall,
     setTimerForRecall,
     timerForAnswer,
-    setTimerForAnswer,
+    setTimerForAnswer
   }
 
   return <HomeContext.Provider value={value}>{children}</HomeContext.Provider>

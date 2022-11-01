@@ -1,807 +1,809 @@
-export const firstName = [
+import { PersonWithFirstName, PersonWithLastName } from '../../context/FacesContext'
+
+export const firstNameData = [
   {
     gender: 'male',
-    firstName: 'Diyorbek',
+    firstName: 'Diyorbek'
   },
   {
     gender: 'male',
-    firstName: 'Ibrohimjon',
+    firstName: 'Ibrohimjon'
   },
   {
     gender: 'male',
-    firstName: 'Shahzod',
+    firstName: 'Shahzod'
   },
   {
     gender: 'male',
-    firstName: 'Abdulloh',
+    firstName: 'Abdulloh'
   },
   {
     gender: 'male',
-    firstName: 'Olimjon',
+    firstName: 'Olimjon'
   },
   {
     gender: 'male',
-    firstName: "Ulug'bek",
+    firstName: "Ulug'bek"
   },
   {
     gender: 'male',
-    firstName: 'Husan',
+    firstName: 'Husan'
   },
   {
     gender: 'male',
-    firstName: 'Tojiboy',
+    firstName: 'Tojiboy'
   },
   {
     gender: 'male',
-    firstName: 'Nurbek',
+    firstName: 'Nurbek'
   },
   {
     gender: 'male',
-    firstName: 'Shuxrat',
+    firstName: 'Shuxrat'
   },
   {
     gender: 'male',
-    firstName: 'Behruzjon',
+    firstName: 'Behruzjon'
   },
   {
     gender: 'male',
-    firstName: 'Farhod',
+    firstName: 'Farhod'
   },
   {
     gender: 'male',
-    firstName: 'Orzumurod',
+    firstName: 'Orzumurod'
   },
   {
     gender: 'male',
-    firstName: 'Shoxruh',
+    firstName: 'Shoxruh'
   },
   {
     gender: 'male',
-    firstName: 'Javlonbek',
+    firstName: 'Javlonbek'
   },
   {
     gender: 'male',
-    firstName: 'Saidmuhammad',
+    firstName: 'Saidmuhammad'
   },
   {
     gender: 'male',
-    firstName: 'Bahtiyor',
+    firstName: 'Bahtiyor'
   },
   {
     gender: 'male',
-    firstName: 'Temur',
+    firstName: 'Temur'
   },
   {
     gender: 'male',
-    firstName: 'Shahzod',
+    firstName: 'Shahzod'
   },
   {
     gender: 'male',
-    firstName: "Yerpo'lat",
+    firstName: "Yerpo'lat"
   },
   {
     gender: 'male',
-    firstName: "Ma'ruf",
+    firstName: "Ma'ruf"
   },
   {
     gender: 'male',
-    firstName: 'Otabek',
+    firstName: 'Otabek'
   },
   {
     gender: 'male',
-    firstName: 'Fazliddin',
+    firstName: 'Fazliddin'
   },
   {
     gender: 'male',
-    firstName: 'Nizomiddin',
+    firstName: 'Nizomiddin'
   },
   {
     gender: 'male',
-    firstName: 'Nozim',
+    firstName: 'Nozim'
   },
   {
     gender: 'male',
-    firstName: 'Mirkomil',
+    firstName: 'Mirkomil'
   },
   {
     gender: 'male',
-    firstName: 'Fuzayl',
+    firstName: 'Fuzayl'
   },
   {
     gender: 'male',
-    firstName: 'Farrux',
+    firstName: 'Farrux'
   },
   {
     gender: 'male',
-    firstName: 'Elyor',
+    firstName: 'Elyor'
   },
   {
     gender: 'male',
-    firstName: 'Sherali',
+    firstName: 'Sherali'
   },
   {
     gender: 'male',
-    firstName: 'Jorabek',
+    firstName: 'Jorabek'
   },
   {
     gender: 'male',
-    firstName: 'Nosir',
+    firstName: 'Nosir'
   },
   {
     gender: 'male',
-    firstName: 'Bekzod',
+    firstName: 'Bekzod'
   },
   {
     gender: 'male',
-    firstName: 'Islombek',
+    firstName: 'Islombek'
   },
   {
     gender: 'male',
-    firstName: 'Usmon',
+    firstName: 'Usmon'
   },
   {
     gender: 'male',
-    firstName: 'Hasan',
+    firstName: 'Hasan'
   },
   {
     gender: 'male',
-    firstName: 'Bekmurod',
+    firstName: 'Bekmurod'
   },
   {
     gender: 'male',
-    firstName: 'Nodirbek',
+    firstName: 'Nodirbek'
   },
   {
     gender: 'male',
-    firstName: 'Akmal',
+    firstName: 'Akmal'
   },
   {
     gender: 'male',
-    firstName: 'Bobur',
+    firstName: 'Bobur'
   },
   {
     gender: 'male',
-    firstName: 'Ahror',
+    firstName: 'Ahror'
   },
   {
     gender: 'male',
-    firstName: 'Qahramon',
+    firstName: 'Qahramon'
   },
   {
     gender: 'male',
-    firstName: 'Sherzod',
+    firstName: 'Sherzod'
   },
   {
     gender: 'male',
-    firstName: 'Ahmadjon',
+    firstName: 'Ahmadjon'
   },
   {
     gender: 'male',
-    firstName: 'Salimbek',
+    firstName: 'Salimbek'
   },
   {
     gender: 'male',
-    firstName: 'Muso',
+    firstName: 'Muso'
   },
   {
     gender: 'male',
-    firstName: 'Asadbek',
+    firstName: 'Asadbek'
   },
   {
     gender: 'male',
-    firstName: "Azizxo'ja",
+    firstName: "Azizxo'ja"
   },
   {
     gender: 'male',
-    firstName: 'Soyibjon',
+    firstName: 'Soyibjon'
   },
   {
     gender: 'male',
-    firstName: 'Oybek',
+    firstName: 'Oybek'
   },
 
   {
     gender: 'female',
-    firstName: 'Zinnura',
+    firstName: 'Zinnura'
   },
   {
     gender: 'female',
-    firstName: 'Gulmira',
+    firstName: 'Gulmira'
   },
   {
     gender: 'female',
-    firstName: 'Shahzoda',
+    firstName: 'Shahzoda'
   },
   {
     gender: 'female',
-    firstName: 'Vazira',
+    firstName: 'Vazira'
   },
   {
     gender: 'female',
-    firstName: 'Qimmatoy',
+    firstName: 'Qimmatoy'
   },
   {
     gender: 'female',
-    firstName: 'Nozima',
+    firstName: 'Nozima'
   },
   {
     gender: 'female',
-    firstName: 'Sabina',
+    firstName: 'Sabina'
   },
   {
     gender: 'female',
-    firstName: 'Zubayda',
+    firstName: 'Zubayda'
   },
   {
     gender: 'female',
-    firstName: 'Nafisa',
+    firstName: 'Nafisa'
   },
   {
     gender: 'female',
-    firstName: 'Diyora',
+    firstName: 'Diyora'
   },
   {
     gender: 'female',
-    firstName: 'Durdona',
+    firstName: 'Durdona'
   },
   {
     gender: 'female',
-    firstName: 'Mohira',
+    firstName: 'Mohira'
   },
   {
     gender: 'female',
-    firstName: 'Shahnoza',
+    firstName: 'Shahnoza'
   },
   {
     gender: 'female',
-    firstName: 'Matluba',
+    firstName: 'Matluba'
   },
   {
     gender: 'female',
-    firstName: 'Shoira',
+    firstName: 'Shoira'
   },
   {
     gender: 'female',
-    firstName: 'Mavluda',
+    firstName: 'Mavluda'
   },
   {
     gender: 'female',
-    firstName: 'Malika',
+    firstName: 'Malika'
   },
   {
     gender: 'female',
-    firstName: 'Maftuna',
+    firstName: 'Maftuna'
   },
   {
     gender: 'female',
-    firstName: 'Dilshoda',
+    firstName: 'Dilshoda'
   },
   {
     gender: 'female',
-    firstName: 'Muazzam',
+    firstName: 'Muazzam'
   },
   {
     gender: 'female',
-    firstName: 'Nilufar',
+    firstName: 'Nilufar'
   },
   {
     gender: 'female',
-    firstName: 'Jasmina',
+    firstName: 'Jasmina'
   },
   {
     gender: 'female',
-    firstName: 'Shahrina',
+    firstName: 'Shahrina'
   },
   {
     gender: 'female',
-    firstName: 'Xonzoda',
+    firstName: 'Xonzoda'
   },
   {
     gender: 'female',
-    firstName: 'Muqaddas',
+    firstName: 'Muqaddas'
   },
   {
     gender: 'female',
-    firstName: 'Xolida',
+    firstName: 'Xolida'
   },
   {
     gender: 'female',
-    firstName: 'Muhabbat',
+    firstName: 'Muhabbat'
   },
   {
     gender: 'female',
-    firstName: 'Oydin',
+    firstName: 'Oydin'
   },
   {
     gender: 'female',
-    firstName: 'Mubina',
+    firstName: 'Mubina'
   },
   {
     gender: 'female',
-    firstName: 'Muslima',
+    firstName: 'Muslima'
   },
   {
     gender: 'female',
-    firstName: 'Madina',
+    firstName: 'Madina'
   },
   {
     gender: 'female',
-    firstName: 'Sarvinoz',
+    firstName: 'Sarvinoz'
   },
   {
     gender: 'female',
-    firstName: 'Mohinur',
+    firstName: 'Mohinur'
   },
   {
     gender: 'female',
-    firstName: 'Farida',
+    firstName: 'Farida'
   },
   {
     gender: 'female',
-    firstName: 'Gulchehra',
+    firstName: 'Gulchehra'
   },
   {
     gender: 'female',
-    firstName: 'Shirin',
+    firstName: 'Shirin'
   },
   {
     gender: 'female',
-    firstName: 'Asal',
+    firstName: 'Asal'
   },
   {
     gender: 'female',
-    firstName: "Ra'no",
+    firstName: "Ra'no"
   },
   {
     gender: 'female',
-    firstName: 'Shahlo',
+    firstName: 'Shahlo'
   },
   {
     gender: 'female',
-    firstName: 'Xonzoda',
+    firstName: 'Xonzoda'
   },
   {
     gender: 'female',
-    firstName: 'Anora',
+    firstName: 'Anora'
   },
   {
     gender: 'female',
-    firstName: 'Adiba',
+    firstName: 'Adiba'
   },
   {
     gender: 'female',
-    firstName: 'Mahmuda',
+    firstName: 'Mahmuda'
   },
   {
     gender: 'female',
-    firstName: 'Shahrizoda',
+    firstName: 'Shahrizoda'
   },
   {
     gender: 'female',
-    firstName: "O'g'iloy",
+    firstName: "O'g'iloy"
   },
   {
     gender: 'female',
-    firstName: 'Iroda',
+    firstName: 'Iroda'
   },
   {
     gender: 'female',
-    firstName: 'Halima',
+    firstName: 'Halima'
   },
   {
     gender: 'female',
-    firstName: "Go'zal",
+    firstName: "Go'zal"
   },
   {
     gender: 'female',
-    firstName: 'Zumrad',
+    firstName: 'Zumrad'
   },
   {
     gender: 'female',
-    firstName: 'Kumush',
-  },
-]
+    firstName: 'Kumush'
+  }
+] as PersonWithFirstName[]
 
-export const lastName = [
+export const lastNameData = [
   {
     gender: 'male',
-    lastName: 'Rashidov',
+    lastName: 'Rashidov'
   },
   {
     gender: 'male',
-    lastName: 'Rahmatillayev',
+    lastName: 'Rahmatillayev'
   },
   {
     gender: 'male',
-    lastName: 'Usmonaliyev',
+    lastName: 'Usmonaliyev'
   },
   {
     gender: 'male',
-    lastName: 'Rahmatov',
+    lastName: 'Rahmatov'
   },
   {
     gender: 'male',
-    lastName: 'Shodiyev',
+    lastName: 'Shodiyev'
   },
   {
     gender: 'male',
-    lastName: "Po'latov",
+    lastName: "Po'latov"
   },
   {
     gender: 'male',
-    lastName: "Yo'ldoshev",
+    lastName: "Yo'ldoshev"
   },
   {
     gender: 'male',
-    lastName: 'Vayisov',
+    lastName: 'Vayisov'
   },
   {
     gender: 'male',
-    lastName: 'Egamnazarov',
+    lastName: 'Egamnazarov'
   },
   {
     gender: 'male',
-    lastName: 'Halqnazarov',
+    lastName: 'Halqnazarov'
   },
   {
     gender: 'male',
-    lastName: 'Karimov',
+    lastName: 'Karimov'
   },
   {
     gender: 'male',
-    lastName: 'Ixlasov',
+    lastName: 'Ixlasov'
   },
   {
     gender: 'male',
-    lastName: 'Sultanov',
+    lastName: 'Sultanov'
   },
   {
     gender: 'male',
-    lastName: 'Husanov',
+    lastName: 'Husanov'
   },
   {
     gender: 'male',
-    lastName: 'Qodirov',
+    lastName: 'Qodirov'
   },
   {
     gender: 'male',
-    lastName: 'Ibroximov',
+    lastName: 'Ibroximov'
   },
   {
     gender: 'male',
-    lastName: 'Radjabov',
+    lastName: 'Radjabov'
   },
   {
     gender: 'male',
-    lastName: 'Juralov',
+    lastName: 'Juralov'
   },
   {
     gender: 'male',
-    lastName: 'Hushvaqtov',
+    lastName: 'Hushvaqtov'
   },
   {
     gender: 'male',
-    lastName: 'Komilov',
+    lastName: 'Komilov'
   },
   {
     gender: 'male',
-    lastName: 'Nazarov',
+    lastName: 'Nazarov'
   },
   {
     gender: 'male',
-    lastName: 'Nizamov',
+    lastName: 'Nizamov'
   },
   {
     gender: 'male',
-    lastName: 'Abdurashidov',
+    lastName: 'Abdurashidov'
   },
   {
     gender: 'male',
-    lastName: 'Yunusov',
+    lastName: 'Yunusov'
   },
   {
     gender: 'male',
-    lastName: 'Mavlonov',
+    lastName: 'Mavlonov'
   },
   {
     gender: 'male',
-    lastName: 'Matkarimov',
+    lastName: 'Matkarimov'
   },
   {
     gender: 'male',
-    lastName: 'Abdurahmonov',
+    lastName: 'Abdurahmonov'
   },
   {
     gender: 'male',
-    lastName: "G'aniyev",
+    lastName: "G'aniyev"
   },
   {
     gender: 'male',
-    lastName: 'Begmatov',
+    lastName: 'Begmatov'
   },
   {
     gender: 'male',
-    lastName: 'Saidakromov',
+    lastName: 'Saidakromov'
   },
   {
     gender: 'male',
-    lastName: 'Valijonov',
+    lastName: 'Valijonov'
   },
   {
     gender: 'male',
-    lastName: 'Najmiddinov',
+    lastName: 'Najmiddinov'
   },
   {
     gender: 'male',
-    lastName: 'Umarov',
+    lastName: 'Umarov'
   },
   {
     gender: 'male',
-    lastName: 'Mirahmedov',
+    lastName: 'Mirahmedov'
   },
   {
     gender: 'male',
-    lastName: 'Ishbayev',
+    lastName: 'Ishbayev'
   },
   {
     gender: 'male',
-    lastName: "To'xtabayev",
+    lastName: "To'xtabayev"
   },
   {
     gender: 'male',
-    lastName: 'Mahkamov',
+    lastName: 'Mahkamov'
   },
   {
     gender: 'male',
-    lastName: 'Sadullayev',
+    lastName: 'Sadullayev'
   },
   {
     gender: 'male',
-    lastName: 'Akmalov',
+    lastName: 'Akmalov'
   },
   {
     gender: 'male',
-    lastName: 'Qurbonov',
+    lastName: 'Qurbonov'
   },
   {
     gender: 'male',
-    lastName: 'Ahmedov',
+    lastName: 'Ahmedov'
   },
   {
     gender: 'male',
-    lastName: 'Kamolov',
+    lastName: 'Kamolov'
   },
   {
     gender: 'male',
-    lastName: 'Sherzodov',
+    lastName: 'Sherzodov'
   },
   {
     gender: 'male',
-    lastName: 'Ganiyev',
+    lastName: 'Ganiyev'
   },
   {
     gender: 'male',
-    lastName: 'Fayziyev',
+    lastName: 'Fayziyev'
   },
   {
     gender: 'male',
-    lastName: 'Odilov',
+    lastName: 'Odilov'
   },
   {
     gender: 'male',
-    lastName: 'Madaminov',
+    lastName: 'Madaminov'
   },
   {
     gender: 'male',
-    lastName: 'Obidov',
+    lastName: 'Obidov'
   },
   {
     gender: 'male',
-    lastName: 'Ziyodov',
+    lastName: 'Ziyodov'
   },
   {
     gender: 'male',
-    lastName: 'Hukumboyev',
+    lastName: 'Hukumboyev'
   },
 
   {
     gender: 'female',
-    lastName: 'Saidrahmonova',
+    lastName: 'Saidrahmonova'
   },
   {
     gender: 'female',
-    lastName: 'Boyxonova',
+    lastName: 'Boyxonova'
   },
   {
     gender: 'female',
-    lastName: 'Xamidova',
+    lastName: 'Xamidova'
   },
   {
     gender: 'female',
-    lastName: "To'laganova",
+    lastName: "To'laganova"
   },
   {
     gender: 'female',
-    lastName: 'Karimova',
+    lastName: 'Karimova'
   },
   {
     gender: 'female',
-    lastName: 'Mannopova',
+    lastName: 'Mannopova'
   },
   {
     gender: 'female',
-    lastName: 'Shodiyeva',
+    lastName: 'Shodiyeva'
   },
   {
     gender: 'female',
-    lastName: 'Nizomiddinova',
+    lastName: 'Nizomiddinova'
   },
   {
     gender: 'female',
-    lastName: 'Ziyodullayeva',
+    lastName: 'Ziyodullayeva'
   },
   {
     gender: 'female',
-    lastName: 'Qurbonova',
+    lastName: 'Qurbonova'
   },
   {
     gender: 'female',
-    lastName: "Qo'chqorova",
+    lastName: "Qo'chqorova"
   },
   {
     gender: 'female',
-    lastName: 'Jurayeva',
+    lastName: 'Jurayeva'
   },
   {
     gender: 'female',
-    lastName: 'Shuhratova',
+    lastName: 'Shuhratova'
   },
   {
     gender: 'female',
-    lastName: 'Nazarova',
+    lastName: 'Nazarova'
   },
   {
     gender: 'female',
-    lastName: 'Murodilova',
+    lastName: 'Murodilova'
   },
   {
     gender: 'female',
-    lastName: 'Ismoilova',
+    lastName: 'Ismoilova'
   },
   {
     gender: 'female',
-    lastName: 'Qodirova',
+    lastName: 'Qodirova'
   },
   {
     gender: 'female',
-    lastName: 'Anvarova',
+    lastName: 'Anvarova'
   },
   {
     gender: 'female',
-    lastName: 'Abduxoliqova',
+    lastName: 'Abduxoliqova'
   },
   {
     gender: 'female',
-    lastName: 'Nurmatova',
+    lastName: 'Nurmatova'
   },
   {
     gender: 'female',
-    lastName: 'Olimova',
+    lastName: 'Olimova'
   },
   {
     gender: 'female',
-    lastName: 'Matkarimova',
+    lastName: 'Matkarimova'
   },
   {
     gender: 'female',
-    lastName: 'Siddiqova',
+    lastName: 'Siddiqova'
   },
   {
     gender: 'female',
-    lastName: 'Fayzullayeva',
+    lastName: 'Fayzullayeva'
   },
   {
     gender: 'female',
-    lastName: 'Turdiyeva',
+    lastName: 'Turdiyeva'
   },
   {
     gender: 'female',
-    lastName: 'Ahmedova',
+    lastName: 'Ahmedova'
   },
   {
     gender: 'female',
-    lastName: 'Obidova',
+    lastName: 'Obidova'
   },
   {
     gender: 'female',
-    lastName: 'Yusupova',
+    lastName: 'Yusupova'
   },
   {
     gender: 'female',
-    lastName: 'Mansurova',
+    lastName: 'Mansurova'
   },
   {
     gender: 'female',
-    lastName: 'Mashrabova',
+    lastName: 'Mashrabova'
   },
   {
     gender: 'female',
-    lastName: 'Xoliqova',
+    lastName: 'Xoliqova'
   },
   {
     gender: 'female',
-    lastName: "To'rayeva",
+    lastName: "To'rayeva"
   },
   {
     gender: 'female',
-    lastName: 'Abdullayeva',
+    lastName: 'Abdullayeva'
   },
   {
     gender: 'female',
-    lastName: 'Yunusova',
+    lastName: 'Yunusova'
   },
   {
     gender: 'female',
-    lastName: 'Ergasheva',
+    lastName: 'Ergasheva'
   },
   {
     gender: 'female',
-    lastName: 'Umarova',
+    lastName: 'Umarova'
   },
   {
     gender: 'female',
-    lastName: 'Xudayqulova',
+    lastName: 'Xudayqulova'
   },
   {
     gender: 'female',
-    lastName: 'Abdukarimova',
+    lastName: 'Abdukarimova'
   },
   {
     gender: 'female',
-    lastName: 'Rustamova',
+    lastName: 'Rustamova'
   },
   {
     gender: 'female',
-    lastName: 'Komiljonova',
+    lastName: 'Komiljonova'
   },
   {
     gender: 'female',
-    lastName: 'Abduhalilova',
+    lastName: 'Abduhalilova'
   },
   {
     gender: 'female',
-    lastName: 'Irxanova',
+    lastName: 'Irxanova'
   },
   {
     gender: 'female',
-    lastName: 'Shokirova',
+    lastName: 'Shokirova'
   },
   {
     gender: 'female',
-    lastName: 'Turgunova',
+    lastName: 'Turgunova'
   },
   {
     gender: 'female',
-    lastName: 'Xolmanova',
+    lastName: 'Xolmanova'
   },
   {
     gender: 'female',
-    lastName: 'Rahimova',
+    lastName: 'Rahimova'
   },
   {
     gender: 'female',
-    lastName: 'Xaydarova',
+    lastName: 'Xaydarova'
   },
   {
     gender: 'female',
-    lastName: 'Sodiqova',
+    lastName: 'Sodiqova'
   },
   {
     gender: 'female',
-    lastName: "G'ulomova",
+    lastName: "G'ulomova"
   },
   {
     gender: 'female',
-    lastName: 'Nuriddinova',
-  },
-]
+    lastName: 'Nuriddinova'
+  }
+] as PersonWithLastName[]
