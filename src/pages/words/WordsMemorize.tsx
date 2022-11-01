@@ -1,5 +1,7 @@
-import { ArrowLeft, ArrowRight, Rewind } from 'react-feather'
 import { useNavigate } from 'react-router'
+import ArrowLeft from '../../assets/images/icons/arrow-left.svg'
+import ArrowRight from '../../assets/images/icons/arrow-right.svg'
+import ChevronsLeft from '../../assets/images/icons/chevrons-left.svg'
 import StartGameModal from '../../components/start-game'
 import TimerComponent from '../../components/timer'
 import { useHomeContext } from '../../context/home-context'
@@ -17,7 +19,7 @@ const WordsRecall = () => {
     highlightedWords,
     setHighlightedWords,
     currentPageWords,
-    setCurrentPageWords
+    setCurrentPageWords,
   } = useWordsContext()
 
   const { startTime, timerForRecall } = useHomeContext()
@@ -38,74 +40,73 @@ const WordsRecall = () => {
   }
 
   return (
-    <div className="words">
-      <div className="container">
-        <StartGameModal time={startTime!} />
-        <div
-          className="words-section"
-          style={{ display: Number(startTime) > 0 ? 'none' : 'flex' }}
-        >
-          <div className="words-section__header">
-            {Number(startTime) === 0 && (
-              <TimerComponent
-                time={timerForRecall}
-                navigateTo="/words/answers"
-              />
-            )}
-            <p className="words-section__header-title">Recall</p>
-            <button
-              onClick={handleNavigate}
-              style={{ textDecoration: 'none' }}
-              className="words-section__header-finish"
-            >
-              Finish
-            </button>
-          </div>
-
-          <div className="words-section__cards">
-            {currentWords?.map((word, index) => (
-              <article
-                key={index}
-                style={{
-                  backgroundColor:
-                    index >= highlightedWords &&
-                    index < highlightedWords + cursorWidth
-                      ? 'red'
-                      : ''
-                }}
-              >
-                <div className="number">
-                  {cursorWidth === 3 || cursorWidth === 4
-                    ? index + (currentPageWords - 1) * 12 + 1
-                    : index + (currentPageWords - 1) * 10 + 1}
-                  .
+    <>
+      {Number(startTime) > 0 ? (
+        <StartGameModal time={String(startTime)} />
+      ) : (
+        <div className='words'>
+          <div className='container'>
+            <StartGameModal time={startTime!} />
+            <div className='words-section'>
+              <div className='words-section__header'>
+                {Number(startTime) === 0 && (
+                  <TimerComponent time={timerForRecall} navigateTo='/words/answers' />
+                )}
+                <button
+                  onClick={handleNavigate}
+                  style={{ textDecoration: 'none' }}
+                  className='words-section__header-finish'
+                >
+                  Hoziroq tugatish
+                </button>
+              </div>
+              <div className='container-wrapper'>
+                <div className='words-section__cards'>
+                  {currentWords?.map((word, index) => (
+                    <article
+                      key={index}
+                      style={{
+                        backgroundColor:
+                          index >= highlightedWords && index < highlightedWords + cursorWidth
+                            ? '#d69358'
+                            : '',
+                      }}
+                    >
+                      <div className='number'>
+                        {cursorWidth === 3 || cursorWidth === 4
+                          ? index + (currentPageWords - 1) * 12 + 1
+                          : index + (currentPageWords - 1) * 10 + 1}
+                        .
+                      </div>
+                      <div className='word'>{word}</div>
+                    </article>
+                  ))}
                 </div>
-                <div className="word">{word}</div>
-              </article>
-            ))}
-          </div>
-          <div className="indicator">
-            <span>{currentPageWords}</span>/
-            <span>
-              {cursorWidth === 3 || cursorWidth === 4
-                ? (words?.length / (wordsPerPage + 2)).toFixed()
-                : words?.length / wordsPerPage}
-            </span>
-          </div>
-          <div className="control-buttons">
-            <button onClick={firstPage} className="first-button">
-              <Rewind size={32} />
-            </button>
-            <button {...prevHighlightedButton} className="prev-button">
-              <ArrowLeft size={32} />
-            </button>
-            <button {...nextHighlightedButton} className="next-button">
-              <ArrowRight size={32} />
-            </button>
+                <div className='indicator'>
+                  <span>{currentPageWords}</span>/
+                  <span>
+                    {cursorWidth === 3 || cursorWidth === 4
+                      ? (words?.length / (wordsPerPage + 2)).toFixed()
+                      : words?.length / wordsPerPage}
+                  </span>
+                </div>
+              </div>
+              <div className='control-buttons'>
+                <button {...prevHighlightedButton} className='prev-button'>
+                  <img src={ArrowLeft} alt='ArrowLeft' />
+                </button>
+                <button onClick={firstPage} className='first-button'>
+                  <img src={ChevronsLeft} alt='First Page' />
+                </button>
+                <button {...nextHighlightedButton} className='next-button'>
+                  <img src={ArrowRight} alt='ArrowRight' />
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   )
 }
 

@@ -50,93 +50,95 @@ const Result = () => {
               To'g'ri topilganlar: {correctFirstNames.length + correctLastNames.length}ta <br />
             </p>
           </div>
-          <div className='faces-section__cards'>
-            {results?.map((result, index) => {
-              const { img, firstName } = result
+          <div className='container-wrapper'>
+            <div className='faces-section__cards'>
+              {results?.map((result, index) => {
+                const { img, firstName } = result
 
-              if (index === currentPageFaces - 1) {
-                return (
-                  <article key={index}>
-                    <img src={img} alt={firstName} />
-                    <form>
-                      <div className='input-wrapper'>
-                        <input
-                          readOnly
-                          style={{
-                            backgroundColor:
-                              results[index]?.firstName === ''
-                                ? '#fff'
-                                : results[index]?.firstName.length > 0 &&
-                                  results[index]?.firstName?.toLowerCase() !==
-                                    recallPeople[index]?.firstName?.toLowerCase()
-                                ? 'rgba(255, 0, 0, .5)'
-                                : 'rgba(26, 161, 19, .5)',
-                          }}
-                          value={
-                            visibleFirstNames[index]
-                              ? recallPeople[index]?.firstName
-                              : results[index]?.firstName
-                          }
-                        />
-                        <Eye
-                          className='faces-section__form-preview'
-                          style={{
-                            backgroundColor: visibleFirstNames[index] ? 'black' : '',
-                            color: visibleFirstNames[index] ? 'white' : '',
-                          }}
-                          onClick={() => {
-                            setVisibleFirstNames((firstNames) =>
-                              firstNames?.map((firstName, firstNameIndex) =>
-                                index === firstNameIndex ? !visibleFirstNames[index] : firstName
+                if (index === currentPageFaces - 1) {
+                  return (
+                    <article key={index}>
+                      <img src={img} alt={firstName} />
+                      <form>
+                        <div className='input-wrapper'>
+                          <input
+                            readOnly
+                            style={{
+                              backgroundColor:
+                                results[index]?.firstName === ''
+                                  ? '#fff'
+                                  : results[index]?.firstName.length > 0 &&
+                                    results[index]?.firstName?.toLowerCase() !==
+                                      recallPeople[index]?.firstName?.toLowerCase()
+                                  ? 'rgba(255, 0, 0, .5)'
+                                  : 'rgba(26, 161, 19, .5)',
+                            }}
+                            value={
+                              visibleFirstNames[index]
+                                ? recallPeople[index]?.firstName
+                                : results[index]?.firstName
+                            }
+                          />
+                          <Eye
+                            className='faces-section__form-preview'
+                            style={{
+                              backgroundColor: visibleFirstNames[index] ? 'black' : '',
+                              color: visibleFirstNames[index] ? 'white' : '',
+                            }}
+                            onClick={() => {
+                              setVisibleFirstNames((firstNames) =>
+                                firstNames?.map((firstName, firstNameIndex) =>
+                                  index === firstNameIndex ? !visibleFirstNames[index] : firstName
+                                )
                               )
-                            )
-                          }}
-                        />
-                      </div>
-                      <div className='input-wrapper'>
-                        <input
-                          readOnly
-                          style={{
-                            backgroundColor:
-                              results[index]?.lastName === ''
-                                ? '#fff'
-                                : results[index]?.lastName.length > 0 &&
-                                  results[index]?.lastName?.toLowerCase() !==
-                                    recallPeople[index]?.lastName?.toLowerCase()
-                                ? 'rgba(255, 0, 0, .5)'
-                                : 'rgba(26, 161, 19, .5)',
-                          }}
-                          value={
-                            visibleLastNames[index]
-                              ? recallPeople[index]?.lastName
-                              : results[index]?.lastName
-                          }
-                        />
-                        <Eye
-                          className='faces-section__form-preview'
-                          style={{
-                            backgroundColor: visibleLastNames[index] ? 'black' : '',
-                            color: visibleLastNames[index] ? 'white' : '',
-                          }}
-                          onClick={() => {
-                            setVisibleLastNames((lastNames) =>
-                              lastNames?.map((lastName, lastNameIndex) =>
-                                index === lastNameIndex ? !visibleLastNames[index] : lastName
+                            }}
+                          />
+                        </div>
+                        <div className='input-wrapper'>
+                          <input
+                            readOnly
+                            style={{
+                              backgroundColor:
+                                results[index]?.lastName === ''
+                                  ? '#fff'
+                                  : results[index]?.lastName.length > 0 &&
+                                    results[index]?.lastName?.toLowerCase() !==
+                                      recallPeople[index]?.lastName?.toLowerCase()
+                                  ? 'rgba(255, 0, 0, .5)'
+                                  : 'rgba(26, 161, 19, .5)',
+                            }}
+                            value={
+                              visibleLastNames[index]
+                                ? recallPeople[index]?.lastName
+                                : results[index]?.lastName
+                            }
+                          />
+                          <Eye
+                            className='faces-section__form-preview'
+                            style={{
+                              backgroundColor: visibleLastNames[index] ? 'black' : '',
+                              color: visibleLastNames[index] ? 'white' : '',
+                            }}
+                            onClick={() => {
+                              setVisibleLastNames((lastNames) =>
+                                lastNames?.map((lastName, lastNameIndex) =>
+                                  index === lastNameIndex ? !visibleLastNames[index] : lastName
+                                )
                               )
-                            )
-                          }}
-                        />
-                      </div>
-                    </form>
-                  </article>
-                )
-              } else {
-                return null
-              }
-            })}
-          </div>
-          <div className='indicator'>
-            <span>{currentPageFaces}</span>/<span>{memorizationPeople.length}</span>
+                            }}
+                          />
+                        </div>
+                      </form>
+                    </article>
+                  )
+                } else {
+                  return null
+                }
+              })}
+            </div>
+            <div className='indicator'>
+              <span>{currentPageFaces}</span>/<span>{memorizationPeople.length}</span>
+            </div>
           </div>
           <div className='control-buttons'>
             <button {...facesPrevButton} className='prev-button'>

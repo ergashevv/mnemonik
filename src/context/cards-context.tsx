@@ -63,7 +63,6 @@ export const CardsContextProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     setRandomCard(shuffle(data))
   }, [setRandomCard, data])
-  console.log(randomCard)
 
   const value = {
     data,

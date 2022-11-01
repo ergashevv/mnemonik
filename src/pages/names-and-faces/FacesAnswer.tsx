@@ -67,37 +67,40 @@ const Answer = () => {
               Hoziroq tugatish
             </button>
           </div>
-          <div className='faces-section__cards'>
-            {recallPeople?.map((shuffledPerson, index) => {
-              const { img, firstName } = shuffledPerson
-              if (index === currentPageFaces - 1) {
-                return (
-                  <article key={index}>
-                    <img src={img} alt={firstName} />
-                    <form>
-                      <input
-                        type='text'
-                        placeholder='Ism'
-                        value={firstNames[index]}
-                        onChange={(e) => handleFirstName(e, index)}
-                      />
-                      <input
-                        type='text'
-                        placeholder='Familiya'
-                        value={lastNames[index]}
-                        onChange={(e) => handleLastName(e, index)}
-                      />
-                    </form>
-                  </article>
-                )
-              } else {
-                return null
-              }
-            })}
+          <div className='container-wrapper'>
+            <div className='faces-section__cards'>
+              {recallPeople?.map((shuffledPerson, index) => {
+                const { img, firstName } = shuffledPerson
+                if (index === currentPageFaces - 1) {
+                  return (
+                    <article key={index}>
+                      <img src={img} alt={firstName} />
+                      <form>
+                        <input
+                          type='text'
+                          placeholder='Ism'
+                          value={firstNames[index]}
+                          onChange={(e) => handleFirstName(e, index)}
+                        />
+                        <input
+                          type='text'
+                          placeholder='Familiya'
+                          value={lastNames[index]}
+                          onChange={(e) => handleLastName(e, index)}
+                        />
+                      </form>
+                    </article>
+                  )
+                } else {
+                  return null
+                }
+              })}
+            </div>
+            <div className='indicator'>
+              <span>{currentPageFaces}</span>/<span>{recallPeople?.length}</span>
+            </div>
           </div>
-          <div className='indicator'>
-            <span>{currentPageFaces}</span>/<span>{recallPeople?.length}</span>
-          </div>
+
           <div className='control-buttons'>
             <button {...facesPrevButton} className='prev-button'>
               <img src={ArrowLeft} alt='ArrowLeft' />

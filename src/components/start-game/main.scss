@@ -1,6 +1,7 @@
 .start-timer {
   position: relative;
   height: 100vh;
+  z-index: 10;
 
   .time {
     font-size: 15rem;

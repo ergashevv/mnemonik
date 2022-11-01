@@ -14,7 +14,7 @@ const SettingsPage = () => {
     setNavigation,
     autoSecond,
     setAutoSecond,
-    line
+    line,
   } = useHomeContext()
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -34,7 +34,6 @@ const SettingsPage = () => {
   const handleAutoSecond = (e: ChangeEvent<HTMLInputElement>) => {
     setAutoSecond(+e.target.value)
   }
-  const auto = Number(autoSecond) / 10
 
   const handleNavigate = () => {
     navigate('/numbers/game')
@@ -43,37 +42,26 @@ const SettingsPage = () => {
   const handleBack = () => {
     navigate('/')
   }
-  console.log(auto)
 
   return (
-    <div className="settings">
-      <div className="container">
-        <div className="settings-header">
-          <div className="settings-header__back">
-            <img src={BackIcon} alt="Back" onClick={handleBack} />
+    <div className='settings'>
+      <div className='container'>
+        <div className='settings-header'>
+          <div className='settings-header__back'>
+            <img src={BackIcon} alt='Back' onClick={handleBack} />
           </div>
-          <div className="settings-header__title">Raqamlar</div>
+          <div className='settings-header__title'>Raqamlar</div>
         </div>
-        <form className="settings-form">
-          <div className="settings-form__wrapper">
+        <form className='settings-form'>
+          <div className='settings-form__wrapper'>
             <div>
               <label>Kursor kengligi</label>
-              <input
-                pattern="[0-9]*"
-                value={cursorW}
-                onChange={handleChange}
-                type="number"
-              />
+              <input pattern='[0-9]*' value={cursorW} onChange={handleChange} type='number' />
             </div>
 
             <div>
               <label>Ajratuvchi chiziqlar</label>
-              <input
-                value={line}
-                pattern="[0-9]*"
-                onChange={handleLine}
-                type="number"
-              />
+              <input value={line} pattern='[0-9]*' onChange={handleLine} type='number' />
             </div>
           </div>
 
@@ -85,23 +73,16 @@ const SettingsPage = () => {
             defaultValue={navigation === 'auto' ? 'auto' : 'custom'}
             onChange={handleNavigation}
           >
-            <option value="custom">Custom</option>
-            <option value="auto">Auto</option>
+            <option value='custom'>Custom</option>
+            <option value='auto'>Auto</option>
           </select>
-          {navigation === 'auto'
-            ? (
+          {navigation === 'auto' ? (
             <div>
               <label>Avtomatik o'tish vaqti</label>
               <h3>Vaqt: {Number(autoSecond) / 10}s</h3>
-              <input
-                value={autoSecond}
-                onChange={handleAutoSecond}
-                max={50}
-                type="range"
-              />
+              <input value={autoSecond} onChange={handleAutoSecond} max={50} type='range' />
             </div>
-              )
-            : null}
+          ) : null}
           <button onClick={handleNavigate} disabled={parseInt(cursorW!) < 1}>
             Boshlash
           </button>

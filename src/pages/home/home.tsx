@@ -114,15 +114,6 @@ const HomePage = () => {
     (prev, curr) => (prev.score > curr.score ? prev : curr),
     { score: 0 }
   )
-  const largestIndex = mnemonics.findIndex(
-    ({ score }) => largest.score === score
-  )
-
-  const previousSecondElementOfTheArray = mnemonics.splice(largestIndex, 1)
-
-  console.log(mnemonics) // [1, 3, 4]
-
-  console.log(previousSecondElementOfTheArray) // [2]
 
   return (
     <>

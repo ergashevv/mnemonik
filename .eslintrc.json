@@ -29,6 +29,8 @@
         "react/no-unescaped-entities": "off",
         "@typescript-eslint/strict-boolean-expressions": "off",
         "@typescript-eslint/indent": "off",
-        "eqeqeq": "off"
+        "eqeqeq": "off",
+        "multiline-ternary": "off",
+        "no-trailing-spaces": "off"
     }
 }
