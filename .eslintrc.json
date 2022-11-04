@@ -30,6 +30,13 @@
         "@typescript-eslint/indent": "off",
         "eqeqeq": "off",
         "no-trailing-spaces": "off",
-        "prefer-const": "off"
+        "prefer-const": "off",
+        "eol-last": "off",
+        "react/prop-types": "off",
+        "react/jsx-key": "off",
+        "indent": "off",
+        "quotes": "off",
+        "no-undef": "off",
+        "multiline-ternary": "off"
     }
 }

@@ -15,6 +15,6 @@
     "incremental": true,
     "isolatedModules": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/dates/create-date.jsx"],
   "exclude": ["node_modules"]
 }

@@ -26,6 +26,7 @@ const StartCard = () => {
       setInputs((inputs: Card[]) =>
         inputs.map((input: any, i: number) => (i === focus ? val : input))
       )
+      setFocus(Number(focus) + 1)
     },
     [focus, setInputs]
   )

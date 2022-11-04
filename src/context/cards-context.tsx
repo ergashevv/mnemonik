@@ -22,6 +22,7 @@ export interface ICardsContext {
   inputs: Card[]
   setInputs: Function
   data: Card[]
+  setData: Function
   setFocus: (focus: number) => void
   setRandomCard?: (randomCard: number[]) => void
   setNavigation: (navigation: string) => void

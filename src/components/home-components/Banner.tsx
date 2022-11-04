@@ -9,7 +9,7 @@ const HomeBanner = ({ backgrounImg, link, text }: IHomeCard) => {
   return (
     <div
       style={{
-        backgroundImage: `url(${backgrounImg})`
+        backgroundImage: `url(${backgrounImg})` 
       }}
       className="banner"
     >

@@ -2,9 +2,12 @@ import { useNavigate } from 'react-router-dom'
 import '../../assets/styles/StartStyles.scss'
 import SelectStartTime from '../../components/start-game-select'
 import BackIcon from '../../assets/images/icons/back-icon.svg'
-
+import { useState } from 'react'
 const DatesSettings = () => {
   const navigate = useNavigate()
+  const [userDate, setUserDate] = useState<any>([])
+  const [inputData, setInputData] = useState<any>('')
+  const [create, setCreate] = useState(false)
 
   const handleNavigate = () => {
     navigate('/dates/game')
@@ -12,6 +15,17 @@ const DatesSettings = () => {
 
   const handleBack = () => {
     navigate('/')
+  }
+  console.log(userDate)
+
+  const submitHandler = (e: any) => {
+    e.preventDefault()
+    setUserDate([...userDate, inputData])
+    setInputData('')
+  }
+  const handleDelete = (key: any) => {
+    setUserDate((userDate: any) => [...userDate].splice(key, 1))
+    console.log(userDate, 'data')
   }
 
   return (
@@ -28,6 +42,24 @@ const DatesSettings = () => {
           <SelectStartTime time={5} />
           <button onClick={handleNavigate}>Start</button>
         </form>
+        {
+          userDate?.map((item: any, key: number) => (
+            <div style={{
+              display: "flex"
+            }}>
+              <p>{item}</p>
+              <button onClick={() => handleDelete(key)}>DELETE</button>
+            </div>
+          ))
+        }
+        {
+          create &&
+          <form onSubmit={(e) => submitHandler(e)}>
+            <input value={inputData} onChange={(e) => setInputData(e.target.value)} placeholder='write something' type="text" />
+            <button type='submit'>done</button>
+          </form>
+        }
+        <button onClick={() => setCreate(true)}>Create</button>
       </div>
     </div>
   )

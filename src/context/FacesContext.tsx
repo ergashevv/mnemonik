@@ -130,8 +130,6 @@ export const FacesContextProvider = ({
     }
   }
 
-  console.log(allPeople)
-
   const memorizationShuffle = shuffle(allPeople)
   const recallShuffle = shuffle(allPeople)
 
