@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { ChangeEvent, useCallback, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import SelectStartTime from '../../components/start-game-select'
 import { useFacesContext } from '../../context/FacesContext'
@@ -20,7 +20,11 @@ const Start = () => {
     setMemorizationPeople,
     recallPeople,
     setRecallPeople,
-    setCurrentPageFaces
+    setCurrentPageFaces,
+    autoSecondFaces,
+    setAutoSecondFaces,
+    navigationFaces,
+    setNavigationFaces
   } = useFacesContext()
 
   const [imagesFetched, setImagesFetched] = useState<number>(0)
@@ -73,6 +77,14 @@ const Start = () => {
     navigate('/')
   }
 
+  const handleNavigation = (e: ChangeEvent<HTMLSelectElement>) => {
+    setNavigationFaces(e.target.value)
+  }
+
+  const handleAutoSecond = (e: ChangeEvent<HTMLInputElement>) => {
+    setAutoSecondFaces(+e.target.value)
+  }
+
   return (
     <div className="settings">
       <div className="container">
@@ -80,12 +92,26 @@ const Start = () => {
           <div className="settings-header__back">
             <img src={BackIcon} alt="Back" onClick={handleBack} />
           </div>
-          <div className="settings-header__title">Playing Cards</div>
+          <div className="settings-header__title">Yuzlar</div>
         </div>
         <form className="settings-form">
-          <label>Tayyorgarlik vaqti</label>
           <SelectStartTime time={5} />
 
+          <label>Select navigation</label>
+          <select
+            defaultValue={navigationFaces === 'auto' ? 'auto' : 'custom'}
+            onChange={handleNavigation}
+          >
+            <option value='custom'>Custom</option>
+            <option value='auto'>Auto</option>
+          </select>
+          {navigationFaces === 'auto' ? (
+            <div>
+              <label>Avtomatik o'tish vaqti</label>
+              <h3>Vaqt: {Number(autoSecondFaces) / 10}s</h3>
+              <input value={autoSecondFaces} onChange={handleAutoSecond} max={50} type='range' />
+            </div>
+          ) : null}
           <button
             type="submit"
             onClick={handleNavigate}

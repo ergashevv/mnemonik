@@ -24,7 +24,6 @@ const DatesSettings = () => {
           <div className="settings-header__title">Sanalar</div>
         </div>
         <form className="settings-form">
-          <label>Select memorization time</label>
           <SelectStartTime time={5} />
           <button onClick={handleNavigate}>Start</button>
         </form>

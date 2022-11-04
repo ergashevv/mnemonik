@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import './main.scss'
 interface IHomeCard {
-  backgrounImg: any
+  backgrounImg: string
   link: string
   text: string
 }

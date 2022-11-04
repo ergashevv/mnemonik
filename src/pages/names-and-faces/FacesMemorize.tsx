@@ -11,7 +11,12 @@ import ArrowRight from '../../assets/images/icons/arrow-right.svg'
 import ChevronsLeft from '../../assets/images/icons/chevrons-left.svg'
 
 const Recall = () => {
-  const { memorizationPeople, currentPageFaces, setCurrentPageFaces } = useFacesContext()
+  const {
+    memorizationPeople,
+    currentPageFaces,
+    setCurrentPageFaces,
+    navigationFaces,
+  } = useFacesContext()
 
   const { startTime, timerForRecall } = useHomeContext()
 
@@ -72,13 +77,25 @@ const Recall = () => {
                 </div>
               </div>
               <div className='control-buttons'>
-                <button {...facesPrevButton} className='prev-button'>
+                <button
+                  style={{ pointerEvents: navigationFaces === 'auto' ? 'none' : 'all' }}
+                  {...facesPrevButton}
+                  className='prev-button'
+                >
                   <img src={ArrowLeft} alt='ArrowLeft' />
                 </button>
-                <button onClick={firstPage} className='first-button'>
+                <button
+                  style={{ pointerEvents: navigationFaces === 'auto' ? 'none' : 'all' }}
+                  onClick={firstPage}
+                  className='first-button'
+                >
                   <img src={ChevronsLeft} alt='First Page' />
                 </button>
-                <button {...facesNextButton} className='next-button'>
+                <button
+                  style={{ pointerEvents: navigationFaces === 'auto' ? 'none' : 'all' }}
+                  {...facesNextButton}
+                  className='next-button'
+                >
                   <img src={ArrowRight} alt='ArrowRight' />
                 </button>
               </div>

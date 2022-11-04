@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState, useEffect } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import LeftNumber from '../../components/left-numbers'
 import Tabs from '../../components/tabs'
@@ -10,7 +10,6 @@ const StartNumberGame = () => {
   const {
     numbers,
     randomNumbers,
-    cursorW,
     setResult,
     tab,
     setTab,

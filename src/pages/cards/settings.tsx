@@ -42,7 +42,6 @@ const Settings = () => {
           <div className="settings-header__title">Playing Cards</div>
         </div>
         <form className="settings-form">
-          <label>Tayyorgarlik vaqti</label>
           <SelectStartTime time={5} />
 
           <label>Select cards</label>

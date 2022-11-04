@@ -37,13 +37,29 @@
     &-form {
         display: flex;
         flex-direction: column;
-        margin-top: 63px;
+        margin: 63px 0;
+
+        &__inner {
+            // display: flex;
+            // align-items: center;
+            // justify-content: center;
+            // gap: 1rem;
+            border-top: 2px dashed #dedede;
+
+            margin: 20px 0;
+            h2 {
+                margin-top: 20px;
+                font-size: 40px;
+                text-align: center;
+            }
+        }
 
         &__wrapper {
             display: flex;
             gap: 10px;
             align-items: center;
         }
+
 
         label {
             font-style: normal;

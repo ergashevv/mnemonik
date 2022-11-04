@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { useHomeContext } from '../../context/home-context'
 import { useWordsContext } from '../../context/WordsContext'
 
 const useWordsNext = () => {
@@ -9,21 +10,56 @@ const useWordsNext = () => {
     cursorWidth,
     highlightedWords,
     setHighlightedWords,
-    setCurrentPageWords
+    setCurrentPageWords,
+    navigationWords,
+    autoSecondWords,
   } = useWordsContext()
+
+  const { startTime } = useHomeContext()
 
   const [longPressHighlighted, setLongPressHighlighted] = useState(false)
   const [longPress, setLongPress] = useState(false)
 
-  const intervalIdHighlighted = useRef<null | ReturnType<typeof setInterval>>(
-    null
-  )
+  const intervalIdHighlighted = useRef<null | ReturnType<typeof setInterval>>(null)
   const intervalId = useRef<null | ReturnType<typeof setInterval>>(null)
 
   const nextHighlightedWords = useCallback(() => {
     setHighlightedWords((oldActiveWords) => oldActiveWords + cursorWidth)
+  }, [
+    highlightedWords,
+    currentWords.length,
+    cursorWidth,
+    setHighlightedWords,
+    setCurrentPageWords,
+    words.length,
+    wordsPerPage,
+  ])
 
-    if (highlightedWords + cursorWidth >= currentWords.length) {
+  useEffect(() => {
+    if (longPressHighlighted) {
+      intervalIdHighlighted.current = setInterval(nextHighlightedWords, 150)
+    } else {
+      clearInterval(Number(intervalIdHighlighted.current))
+    }
+
+    if (
+      navigationWords === 'auto' &&
+      window.location.pathname === '/words/recall' &&
+      Number(startTime) < 1
+    ) {
+      const timer = setInterval(() => {
+        setHighlightedWords(highlightedWords + cursorWidth)
+      }, (Number(autoSecondWords) / 10) * 1000)
+      return () => clearInterval(timer)
+    }
+
+    return () => {
+      clearInterval(Number(intervalIdHighlighted.current))
+    }
+  }, [longPressHighlighted, nextHighlightedWords, startTime])
+
+  useEffect(() => {
+    if (highlightedWords + cursorWidth > currentWords.length) {
       setCurrentPageWords((oldPage) => {
         let nextPage = oldPage + 1
 
@@ -42,27 +78,7 @@ const useWordsNext = () => {
 
       setHighlightedWords(0)
     }
-  }, [
-    highlightedWords,
-    currentWords.length,
-    cursorWidth,
-    setHighlightedWords,
-    setCurrentPageWords,
-    words.length,
-    wordsPerPage
-  ])
-
-  useEffect(() => {
-    if (longPressHighlighted) {
-      intervalIdHighlighted.current = setInterval(nextHighlightedWords, 150)
-    } else {
-      clearInterval(Number(intervalIdHighlighted.current))
-    }
-
-    return () => {
-      clearInterval(Number(intervalIdHighlighted.current))
-    }
-  }, [longPressHighlighted, nextHighlightedWords])
+  }, [nextHighlightedWords])
 
   const nextPageWords = useCallback(() => {
     setCurrentPageWords((oldPage: number) => {
@@ -99,7 +115,7 @@ const useWordsNext = () => {
       onMouseUp: () => setLongPressHighlighted(false),
       onMouseLeave: () => setLongPressHighlighted(false),
       onTouchStart: () => setLongPressHighlighted(true),
-      onTouchEnd: () => setLongPressHighlighted(false)
+      onTouchEnd: () => setLongPressHighlighted(false),
     },
 
     wordsNextButton: {
@@ -108,8 +124,8 @@ const useWordsNext = () => {
       onMouseUp: () => setLongPress(false),
       onMouseLeave: () => setLongPress(false),
       onTouchStart: () => setLongPress(true),
-      onTouchEnd: () => setLongPress(false)
-    }
+      onTouchEnd: () => setLongPress(false),
+    },
   }
 }
 

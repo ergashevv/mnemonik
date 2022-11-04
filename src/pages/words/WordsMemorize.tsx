@@ -20,6 +20,7 @@ const WordsRecall = () => {
     setHighlightedWords,
     currentPageWords,
     setCurrentPageWords,
+    navigationWords,
   } = useWordsContext()
 
   const { startTime, timerForRecall } = useHomeContext()
@@ -92,13 +93,25 @@ const WordsRecall = () => {
                 </div>
               </div>
               <div className='control-buttons'>
-                <button {...prevHighlightedButton} className='prev-button'>
+                <button
+                  style={{ pointerEvents: navigationWords === 'auto' ? 'none' : 'all' }}
+                  {...prevHighlightedButton}
+                  className='prev-button'
+                >
                   <img src={ArrowLeft} alt='ArrowLeft' />
                 </button>
-                <button onClick={firstPage} className='first-button'>
+                <button
+                  style={{ pointerEvents: navigationWords === 'auto' ? 'none' : 'all' }}
+                  onClick={firstPage}
+                  className='first-button'
+                >
                   <img src={ChevronsLeft} alt='First Page' />
                 </button>
-                <button {...nextHighlightedButton} className='next-button'>
+                <button
+                  style={{ pointerEvents: navigationWords === 'auto' ? 'none' : 'all' }}
+                  {...nextHighlightedButton}
+                  className='next-button'
+                >
                   <img src={ArrowRight} alt='ArrowRight' />
                 </button>
               </div>

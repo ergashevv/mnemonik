@@ -39,7 +39,7 @@
             height: 420px;
             margin: 0 auto;
             perspective: 1000px;
-            // margin-top: 76px;
+            margin-top: 76px;
 
             article {
                 position: relative;
@@ -72,6 +72,10 @@
 
             .front-face {
                 transform: rotateY(180deg);
+            }
+
+            .back-face {
+                font-size: 100px;
             }
         }
     }

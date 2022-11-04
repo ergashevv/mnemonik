@@ -1,8 +1,16 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useFacesContext } from '../../context/FacesContext'
+import { useHomeContext } from '../../context/home-context'
 
 const useFacesNext = () => {
-  const { memorizationPeople, setCurrentPageFaces } = useFacesContext()
+  const {
+    memorizationPeople,
+    setCurrentPageFaces,
+    autoSecondFaces,
+    navigationFaces,
+  } = useFacesContext()
+
+  const { startTime } = useHomeContext()
 
   const [longPress, setLongPress] = useState(false)
 
@@ -25,10 +33,34 @@ const useFacesNext = () => {
       clearInterval(Number(intervalId.current))
     }
 
+    if (
+      navigationFaces === 'auto' &&
+      window.location.pathname === '/names-and-faces/recall' &&
+      Number(startTime) < 1
+    ) {
+      const timer = setInterval(() => {
+        setCurrentPageFaces((oldPage: number) => {
+          let nextPage = oldPage + 1
+          if (nextPage > memorizationPeople?.length) {
+            nextPage = 1
+          }
+          return nextPage
+        })
+      }, (Number(autoSecondFaces) / 10) * 1000)
+      return () => clearInterval(timer)
+    }
+
     return () => {
       clearInterval(Number(intervalId.current))
     }
-  }, [nextPageFaces, longPress])
+  }, [
+    nextPageFaces,
+    longPress,
+    memorizationPeople?.length,
+    setCurrentPageFaces,
+    autoSecondFaces,
+    startTime,
+  ])
 
   return {
     facesNextButton: {
@@ -37,8 +69,8 @@ const useFacesNext = () => {
       onMouseUp: () => setLongPress(false),
       onMouseLeave: () => setLongPress(false),
       onTouchStart: () => setLongPress(true),
-      onTouchEnd: () => setLongPress(false)
-    }
+      onTouchEnd: () => setLongPress(false),
+    },
   }
 }
 

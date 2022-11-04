@@ -65,7 +65,6 @@ const SettingsPage = () => {
             </div>
           </div>
 
-          <label>Tayyorgarlik vaqti</label>
           <SelectStartTime time={5} />
 
           <label>Select navigation</label>

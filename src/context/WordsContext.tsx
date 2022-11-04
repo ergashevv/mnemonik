@@ -40,6 +40,11 @@ interface IContext {
   setCursorWidth: NumberSetter
   highlightedWords: number
   setHighlightedWords: NumberSetter
+
+  autoSecondWords: number
+  setAutoSecondWords: NumberSetter
+  navigationWords: string
+  setNavigationWords: Function
 }
 
 const WordsContext = createContext<IContext>({} as IContext)
@@ -55,6 +60,11 @@ export const WordsContextProvider = ({
   const [countDown, setCountDown] = useState<number>(5)
   const [minutesForRecall, setMinutesForRecall] = useState<number>(5)
   const [minutesForAnswer, setMinutesForAnswer] = useState<number>(5)
+  const [autoSecondWords, setAutoSecondWords] = useState(1)
+
+  const [navigationWords, setNavigationWords] = useState<string>(() =>
+    JSON.parse(localStorage.getItem('navigationWords')!)
+  )
 
   const [cursorWidth, setCursorWidth] = useState<number>(() =>
     JSON.parse(localStorage.getItem('cursorWidth')!)
@@ -66,7 +76,13 @@ export const WordsContextProvider = ({
     if (cursorWidth) {
       localStorage.setItem('cursorWidth', JSON.stringify(cursorWidth))
     }
-  }, [cursorWidth])
+    if (navigationWords === 'auto') {
+      localStorage.setItem('navigationWords', JSON.stringify(navigationWords))
+    }
+    if (navigationWords === 'custom') {
+      localStorage.removeItem('navigationWords')
+    }
+  }, [cursorWidth, navigationWords])
 
   const indexOfLastWord =
     cursorWidth === 3 || cursorWidth === 4
@@ -117,7 +133,12 @@ export const WordsContextProvider = ({
     setCursorWidth,
 
     highlightedWords,
-    setHighlightedWords
+    setHighlightedWords,
+
+    navigationWords,
+    setNavigationWords,
+    autoSecondWords,
+    setAutoSecondWords
   }
 
   return <WordsContext.Provider value={value}>{children}</WordsContext.Provider>

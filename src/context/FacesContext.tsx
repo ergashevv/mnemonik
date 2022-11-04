@@ -51,23 +51,37 @@ interface Types {
   setLastNames: NameSetter
 
   results: Person[]
+
+  autoSecondFaces: number
+  setAutoSecondFaces: NumberSetter
+  navigationFaces: string
+  setNavigationFaces: Function
 }
 
 const FacesContext = createContext<Types>({} as Types)
 
 export const FacesContextProvider = ({ children }: { children: ReactNode }): JSX.Element => {
   const [memorizationPeople, setMemorizationPeople] = useState<Person[]>([])
-
   const [recallPeople, setRecallPeople] = useState<Person[]>([])
-
   const [currentPageFaces, setCurrentPageFaces] = useState<number>(1)
-
   const [firstNames, setFirstNames] = useState<string[]>(() => Array(50).fill(''))
-
   const [lastNames, setLastNames] = useState<string[]>(() => Array(50).fill(''))
+  const [autoSecondFaces, setAutoSecondFaces] = useState(1)
+
+  const [navigationFaces, setNavigationFaces] = useState<string>(() =>
+    JSON.parse(localStorage.getItem('navigationFaces')!)
+  )
+
+  useEffect(() => {
+    if (navigationFaces === 'auto') {
+      localStorage.setItem('navigationFaces', JSON.stringify(navigationFaces))
+    }
+    if (navigationFaces === 'custom') {
+      localStorage.removeItem('navigationFaces')
+    }
+  }, [navigationFaces])
 
   const allPeople: PersonWithAll[] = []
-
   const results: Person[] = []
 
   let maleFirstNames: PersonWithFirstName[] = []
@@ -145,6 +159,11 @@ export const FacesContextProvider = ({ children }: { children: ReactNode }): JSX
     lastNames,
     setLastNames,
     results,
+
+    autoSecondFaces,
+    setAutoSecondFaces,
+    navigationFaces,
+    setNavigationFaces
   }
 
   return <FacesContext.Provider value={value}>{children}</FacesContext.Provider>

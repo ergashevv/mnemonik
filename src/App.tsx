@@ -11,17 +11,17 @@ import NumberLayout from './layouts/numbers'
 import WordsLayout from './layouts/words'
 import HomePage from './pages/home/home'
 
-function App () {
+function App() {
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/cards/*" element={<CardsLayout />} />
-      <Route path="/dates/*" element={<DatesLayout />} />
-      <Route path="/numbers/*" element={<NumberLayout />} />
+      <Route path='/' element={<HomePage />} />
+      <Route path='/cards/*' element={<CardsLayout />} />
+      <Route path='/dates/*' element={<DatesLayout />} />
+      <Route path='/numbers/*' element={<NumberLayout />} />
 
-      <Route path="/names-and-faces/*" element={<NamesAndFaceLayout />} />
-      <Route path="/words/*" element={<WordsLayout />} />
-      <Route path="/flash-cards/*" element={<FlashCardLayout />} />
+      <Route path='/names-and-faces/*' element={<NamesAndFaceLayout />} />
+      <Route path='/words/*' element={<WordsLayout />} />
+      <Route path='/flash-cards/*' element={<FlashCardLayout />} />
     </Routes>
   )
 }
