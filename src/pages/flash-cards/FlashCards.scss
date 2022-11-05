@@ -1,27 +1,36 @@
+:root {
+    --primary-color: #d69358;
+    --border-radius: 10px;
+}
+
 .flashCards {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    // min-height: 100vh;
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
 
     &-section {
 
         &__header {
+            margin-top: 22px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 2rem;
 
             &-timer {
-                font-size: 2rem;
+                font-style: normal;
+                font-weight: 600;
+                font-size: 21px;
+                line-height: 25px;
             }
 
             &-finish {
-                font-size: 1.2rem;
-                color: #fff;
-                background-color: var(--primary-color);
-                padding: .6rem .8rem;
-                border-radius: var(--border-radius);
+                font-style: normal;
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 19px;
+                text-align: right;
+                color: var(--primary-color);
             }
         }
 
@@ -30,7 +39,7 @@
             height: 420px;
             margin: 0 auto;
             perspective: 1000px;
-
+            margin-top: 76px;
 
             article {
                 position: relative;
@@ -63,6 +72,10 @@
 
             .front-face {
                 transform: rotateY(180deg);
+            }
+
+            .back-face {
+                font-size: 100px;
             }
         }
     }

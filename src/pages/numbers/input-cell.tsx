@@ -1,5 +1,4 @@
 import React, { memo, useCallback } from 'react'
-// import { useHomeContext } from '../../context/home-context'
 interface InputCellProps extends React.HTMLAttributes<HTMLInputElement> {
   index?: number
 
@@ -23,7 +22,7 @@ interface InputCellProps extends React.HTMLAttributes<HTMLInputElement> {
   onUnHover?: (e: any, index: number | undefined) => void
 }
 
-export default memo(function InputCell ({
+export default memo(function InputCell({
   index,
   success = false,
   failure = false,
@@ -70,26 +69,19 @@ export default memo(function InputCell ({
     [onValue, index, focusOnNext, focusOnPrev, onShiftAdd, onShiftRemove]
   )
 
-  const handleMouseOver = useCallback(
-    (e: any) => onHover?.(e, index),
-    [index, onHover]
-  )
+  const handleMouseOver = useCallback((e: any) => onHover?.(e, index), [index, onHover])
 
-  const handleMouseLeave = useCallback(
-    (e: any) => onUnHover?.(e, index),
-    [index, onUnHover]
-  )
+  const handleMouseLeave = useCallback((e: any) => onUnHover?.(e, index), [index, onUnHover])
 
   return (
     <>
-      {console.log(index)}
       <input
         maxLength={1}
-        className="number-page-input"
-        type="number"
+        className='number-page-input'
+        type='number'
         value={value}
         min={1}
-        pattern="[0-9]*"
+        pattern='[0-9]*'
         onKeyUp={handleKeyUp}
         onMouseOver={handleMouseOver}
         onMouseLeave={handleMouseLeave}

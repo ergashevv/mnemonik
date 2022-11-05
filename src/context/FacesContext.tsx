@@ -1,15 +1,9 @@
-import React, {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useState,
-} from "react"
+import React, { createContext, ReactNode, useContext, useEffect, useState } from 'react'
 
-import { imagesData } from "../datas/faces/FacesData"
-import { firstNameData, lastNameData } from "../datas/names/NamesData"
+import { imagesData } from '../datas/faces/FacesData'
+import { firstNameData, lastNameData } from '../datas/names/NamesData'
 
-type Gender = "male" | "female"
+type Gender = 'male' | 'female'
 
 export interface PersonWithFirstName {
   gender: Gender
@@ -38,9 +32,7 @@ type NameSetter = (names: string[] | ((names: string[]) => string[])) => void
 
 type NumberSetter = (numbers: number | ((numbers: number) => number)) => void
 
-type PersonSetter = (
-  person: Person[] | ((person: Person[]) => Person[])
-) => void
+type PersonSetter = (person: Person[] | ((person: Person[]) => Person[])) => void
 
 interface Types {
   memorizationPeople: Person[]
@@ -59,29 +51,37 @@ interface Types {
   setLastNames: NameSetter
 
   results: Person[]
+
+  autoSecondFaces: number
+  setAutoSecondFaces: NumberSetter
+  navigationFaces: string
+  setNavigationFaces: Function
 }
 
 const FacesContext = createContext<Types>({} as Types)
 
-export const FacesContextProvider = ({
-  children,
-}: {
-  children: ReactNode
-}): JSX.Element => {
+export const FacesContextProvider = ({ children }: { children: ReactNode }): JSX.Element => {
   const [memorizationPeople, setMemorizationPeople] = useState<Person[]>([])
-
   const [recallPeople, setRecallPeople] = useState<Person[]>([])
-
   const [currentPageFaces, setCurrentPageFaces] = useState<number>(1)
+  const [firstNames, setFirstNames] = useState<string[]>(() => Array(50).fill(''))
+  const [lastNames, setLastNames] = useState<string[]>(() => Array(50).fill(''))
+  const [autoSecondFaces, setAutoSecondFaces] = useState(1)
 
-  const [firstNames, setFirstNames] = useState<string[]>(() =>
-    Array(50).fill("")
+  const [navigationFaces, setNavigationFaces] = useState<string>(() =>
+    JSON.parse(localStorage.getItem('navigationFaces')!)
   )
 
-  const [lastNames, setLastNames] = useState<string[]>(() => Array(50).fill(""))
+  useEffect(() => {
+    if (navigationFaces === 'auto') {
+      localStorage.setItem('navigationFaces', JSON.stringify(navigationFaces))
+    }
+    if (navigationFaces === 'custom') {
+      localStorage.removeItem('navigationFaces')
+    }
+  }, [navigationFaces])
 
   const allPeople: PersonWithAll[] = []
-
   const results: Person[] = []
 
   let maleFirstNames: PersonWithFirstName[] = []
@@ -97,12 +97,12 @@ export const FacesContextProvider = ({
   const shuffledImages = shuffle(imagesData).slice(0, 50)
 
   for (let i = 0; i < shuffledImages.length; i++) {
-    if (shuffledImages[i].gender === "male") {
-      maleFirstNames = firstNameData.filter((i) => i.gender === "male")
-      maleLastNames = lastNameData.filter((i) => i.gender === "male")
+    if (shuffledImages[i].gender === 'male') {
+      maleFirstNames = firstNameData.filter((i) => i.gender === 'male')
+      maleLastNames = lastNameData.filter((i) => i.gender === 'male')
     } else {
-      femaleFirstNames = firstNameData.filter((i) => i.gender === "female")
-      femaleLastNames = lastNameData.filter((i) => i.gender === "female")
+      femaleFirstNames = firstNameData.filter((i) => i.gender === 'female')
+      femaleLastNames = lastNameData.filter((i) => i.gender === 'female')
     }
 
     const randomIndexOfFirstNames = Math.floor(
@@ -113,16 +113,16 @@ export const FacesContextProvider = ({
       Math.random() * (maleLastNames.length | femaleLastNames.length)
     )
 
-    if (shuffledImages[i].gender === "male") {
+    if (shuffledImages[i].gender === 'male') {
       allPeople.push({
-        gender: "male",
+        gender: 'male',
         img: shuffledImages[i]?.img,
         firstName: maleFirstNames[randomIndexOfFirstNames]?.firstName,
         lastName: maleLastNames[randomIndexOfLastNames]?.lastName,
       })
     } else {
       allPeople.push({
-        gender: "female",
+        gender: 'female',
         img: shuffledImages[i]?.img,
         firstName: femaleFirstNames[randomIndexOfFirstNames]?.firstName,
         lastName: femaleLastNames[randomIndexOfLastNames]?.lastName,
@@ -159,6 +159,11 @@ export const FacesContextProvider = ({
     lastNames,
     setLastNames,
     results,
+
+    autoSecondFaces,
+    setAutoSecondFaces,
+    navigationFaces,
+    setNavigationFaces
   }
 
   return <FacesContext.Provider value={value}>{children}</FacesContext.Provider>

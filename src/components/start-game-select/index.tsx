@@ -17,6 +17,7 @@ const SelectStartTime = ({ time }: ITimeProps) => {
   return (
     <>
       <div className="select-start">
+        <label htmlFor="">Tayyorgarlik vaqti</label>
         <select
           defaultValue={time}
           onChange={(e: any) => setStartTime(e.target.value)}

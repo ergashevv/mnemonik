@@ -1,17 +1,28 @@
 .start-timer {
   position: relative;
   height: 100vh;
+  z-index: 10;
 
   .time {
-    font-size: 15rem;
+    font-size: 8rem;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
 
     &.active {
-      font-size: 12rem;
+      font-size: 10rem;
       transition: all linear 0.3s;
     }
   }
+
+  .timer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    transform: translate(-50%, -50%) rotate(-90deg);
+  }
+
 }

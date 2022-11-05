@@ -12,6 +12,7 @@
     // justify-content: center;
 
     &-section {
+        display: flex;
         flex-direction: column;
 
         &__header {
@@ -77,8 +78,8 @@
             .input-wrapper {
                 position: relative;
             }
-            
-            
+
+
             input {
                 padding: .5rem 1rem;
                 width: 100%;
@@ -92,6 +93,10 @@
                 &:focus {
                     outline: none;
                 }
+            }
+
+            .active-input {
+                background-color: rgba(26, 161, 19, .5);
             }
         }
 
