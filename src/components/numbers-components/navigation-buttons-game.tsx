@@ -14,7 +14,8 @@ const NavigationBtn = () => {
     setTab,
     setCursor,
     navigation,
-    autoSecond
+    autoSecond,
+    startTime
   } = useHomeContext()
 
   const parsedCursorW = parseInt(cursorW!)
@@ -40,7 +41,7 @@ const NavigationBtn = () => {
   }, [navigation, tab, setTab, setCursor, dynamic, cursor, parsedCursorW])
 
   useEffect(() => {
-    if (navigation === 'auto') {
+    if (navigation === 'auto' && Number(startTime) <= 0) {
       const timer = setInterval(() => {
         setCursor(cursor + parsedCursorW)
       }, (Number(autoSecond) / 10) * 1000)
@@ -49,9 +50,9 @@ const NavigationBtn = () => {
     if (
       tab === 3 &&
       cursor >
-        Number(numbers.slice(dynamic * tab, dynamic * (tab + 1)).length) -
-          Number(cursorW) +
-          1
+      Number(numbers.slice(dynamic * tab, dynamic * (tab + 1)).length) -
+      Number(cursorW) +
+      1
     ) {
       setTab(0)
       setCursor(0)

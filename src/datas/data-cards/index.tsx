@@ -34,8 +34,8 @@ import Chillik8 from '../../assets/images/ch8.png'
 import Chillik9 from '../../assets/images/ch9.png'
 import Chillik10 from '../../assets/images/ch10.png'
 import Chillik11 from '../../assets/images/ch11.png'
-import Chillik12 from '../../assets/images/ch12.png'
-import Chillik13 from '../../assets/images/ch13.png'
+// import Chillik12 from '../../assets/images/ch12.png'
+// import Chillik13 from '../../assets/images/ch13.png'
 
 const Cards = [
   {
@@ -182,13 +182,13 @@ const Cards = [
     image: Chillik11,
     id: 35
   },
-  {
-    image: Chillik12,
-    id: 36
-  },
-  {
-    image: Chillik13,
-    id: 37
-  },
+  // {
+  //   image: Chillik12,
+  //   id: 36
+  // },
+  // {
+  //   image: Chillik13,
+  //   id: 37
+  // },
 ]
 export { Cards }

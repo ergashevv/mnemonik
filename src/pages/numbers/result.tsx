@@ -1,4 +1,5 @@
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
+import LeftNumber from '../../components/left-numbers'
 // import LeftNumber from '../../components/left-numbers'
 import Tabs from '../../components/tabs'
 import { useHomeContext } from '../../context/home-context'
@@ -8,24 +9,24 @@ const Result = () => {
 
   const { result, tab, randomNumbers, dynamic: dynum } = useHomeContext()
 
-  const count = useMemo(() => {
-    let count = 0
-    result?.forEach((item: any, k: any) => {
-      if (item !== randomNumbers.slice(dynum * tab, dynum * (tab + 1))[k]) {
-        count++
-      }
-    })
-    
-    return count
-  }, [dynum, randomNumbers, result, tab])
+  // const count = useMemo(() => {
+  //   let count = 0
+  //   result?.forEach((item: any, k: any) => {
+  //     if (item !== randomNumbers.slice(dynum * tab, dynum * (tab + 1))[k]) {
+  //       count++
+  //     }
+  //   })
+
+  //   return count
+  // }, [dynum, randomNumbers, result, tab])
 
   return (
     <div className='container'>
-      <span>Umumiy {randomNumbers.length}</span>
+      {/* <span>Umumiy {randomNumbers.length}</span>
       <span> To'g'ri javoblar {randomNumbers.length - count}</span>
-      <span> Xato javoblar {count}</span>
+      <span> Xato javoblar {count}</span> */}
       <div className='start-game-group'>
-        {/* <LeftNumber /> */}
+        <LeftNumber />
         {Array(4)
           .fill(null)
           .map((_, index) => (

@@ -10,15 +10,12 @@ import { useHomeContext } from '../../context/home-context'
 import './cards-page.scss'
 const CardGame = () => {
   const { startTime: starttime, cursor, setCursor, cursorW, timerForRecall } = useHomeContext()
-  const {
-    data,
-    randomCard,
-    navigation,
-    show
-  } = useCardsContext()
+  const { data, randomCard, navigation, show } = useCardsContext()
 
   const parsedCursorW = parseInt(cursorW!)
+  // if(cursor)
   const showCards = randomCard!.slice(cursor, cursor + parsedCursorW)
+
   useEffect(() => {
     if (navigation === 'right') {
       setCursor(data.length - parsedCursorW)
@@ -42,90 +39,75 @@ const CardGame = () => {
   }
   return (
     <>
-      {Number(starttime) >= 1
-        ? (
+      {Number(starttime) >= 1 ? (
         <StartGameModal time={starttime!} />
-          )
-        : (
+      ) : (
         <>
-          <div className="container playing-cards">
-            <div className="card-timer">
-              <TimerComponent
-                time={timerForRecall}
-                navigateTo={'/cards/start'}
-              />
-              <Link className="finish-now-btn" to="/cards/start">
+          <div className='container playing-cards'>
+            <div className='card-timer'>
+              <TimerComponent time={timerForRecall} navigateTo={'/cards/start'} />
+              <Link className='finish-now-btn' to='/cards/start'>
                 Hoziroq tugatish
               </Link>
             </div>
-            <div className="show-card">
+            <div className='show-card'>
               {showCards.map((i, k) => (
-                <img key={k} src={i.image} alt="" />
+                <img key={k} src={i.image} alt='' />
               ))}
             </div>
-            <div className="numbers-of">
-              {navigation === 'right'
-                ? (
+            <div className='numbers-of'>
+              {navigation === 'right' ? (
                 <>
                   <h2>{data.length - cursor}</h2>
                   <h1> /{data.length}</h1>
                 </>
-                  )
-                : (
+              ) : (
                 <>
                   <h2>{cursor + parsedCursorW}</h2>
                   <h1>/ {data.length}</h1>
                 </>
-                  )}
+              )}
             </div>
-            <div className="cards">
+            <div className='cards'>
               {randomCard!.map((item, key) => (
                 <div
-                  className={classNames("playing-card", {
+                  className={classNames('playing-card', {
                     active: key >= cursor && key < cursor + parsedCursorW,
                   })}
                   key={key}
                 >
                   <img
                     style={{
-                      marginRight: show === 'small' ? '-60px' : '-30px'
+                      marginRight: show === 'small' ? '-60px' : '-30px',
+                      // display: 'none',
                     }}
                     src={item.image}
-                    alt=""
+                    alt=''
                   />
                 </div>
               ))}
             </div>
-            <div className="d-flex btn-navigation">
+            <div className='d-flex btn-navigation'>
               <button
                 disabled={
-                  navigation === 'right'
-                    ? cursor >= data.length - parsedCursorW
-                    : cursor <= 0
+                  navigation === 'right' ? cursor >= data.length - parsedCursorW : cursor <= 0
                 }
                 onClick={prevNavigate}
               >
-                <img width="100px" src={Prev} alt="" />
+                <img width='100px' src={Prev} alt='' />
               </button>
               <button
                 disabled={
-                  navigation === 'right'
-                    ? cursor <= 0
-                    : cursor >= data.length - parsedCursorW
+                  navigation === 'right' ? cursor <= 0 : cursor >= data.length - parsedCursorW
                 }
                 onClick={nextNavigate}
               >
-                <img
-                  className="right-navigation"
-                  width="100px"
-                  src={Next}
-                  alt="next"
-                />
+                <img className='right-navigation' width='100px' src={Next} alt='next' />
               </button>
             </div>
           </div>
         </>
-          )}
+      )}
     </>
   )
 }

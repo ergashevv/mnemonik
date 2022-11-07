@@ -33,36 +33,38 @@ const Settings = () => {
   }
 
   return (
-    <div className="settings">
-      <div className="container">
-        <div className="settings-header">
-          <div className="settings-header__back">
-            <img src={BackIcon} alt="Back" onClick={handleBack} />
+    <div className='settings'>
+      <div className='container'>
+        <div className='settings-header'>
+          <div className='settings-header__back'>
+            <img src={BackIcon} alt='Back' onClick={handleBack} />
           </div>
-          <div className="settings-header__title">Playing Cards</div>
+          <div className='settings-header__title'>Playing Cards</div>
         </div>
-        <form className="settings-form">
-          <label>Tayyorgarlik vaqti</label>
+        <form className='settings-form'>
+          {/* <label>Tayyorgarlik vaqti</label> */}
           <SelectStartTime time={5} />
 
           <label>Select cards</label>
-          <select onChange={handleCursorW} defaultValue={cursorW ?? "2"}>  {/* || ni o'rniga ?? yozdim */}
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
+          <select onChange={handleCursorW} defaultValue={cursorW ?? '2'}>
+            {' '}
+            {/* || ni o'rniga ?? yozdim */}
+            <option value='1'>1</option>
+            <option value='2'>2</option>
+            <option value='3'>3</option>
+            <option value='4'>4</option>
           </select>
 
           <label>Select navigation</label>
           <select defaultValue={navigation} onChange={handleNavigation}>
-            <option value="left">Left to right</option>
-            <option value="right">Right to left</option>
+            <option value='left'>Left to right</option>
+            <option value='right'>Right to left</option>
           </select>
 
           <label>Show cards</label>
           <select defaultValue={show} onChange={handleShow}>
-            <option value="small">Small</option>
-            <option value="large">Large</option>
+            <option value='small'>Small</option>
+            <option value='large'>Large</option>
           </select>
 
           <button onClick={handleNavigate}>Start</button>

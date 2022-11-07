@@ -48,7 +48,7 @@ const HomePage = () => {
       img: Flash,
       link: '/flash-cards/settings',
       text: 'Flash Cards'
-    }
+    } 
   ]
 
   const mnemonics = [

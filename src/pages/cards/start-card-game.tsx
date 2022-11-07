@@ -32,20 +32,20 @@ const StartCard = () => {
   )
 
   return (
-    <div className="container start-playing-cards">
-      <div className="empty-cards">
+    <div className='container start-playing-cards'>
+      <div className='empty-cards'>
         <div
           style={{
-            justifyContent: 'space-between'
+            justifyContent: 'space-between',
           }}
-          className="d-flex"
+          className='d-flex'
         >
-          <TimerComponent time={timerForAnswer} navigateTo={"/cards/result"} />
-          <Link className="finish-now-btn" to="/cards/result">
+          <TimerComponent time={timerForAnswer} navigateTo={'/cards/result'} />
+          <Link className='finish-now-btn' to='/cards/result'>
             Hoziroq tugatish
           </Link>
         </div>
-        <div className="empty">
+        <div className='empty'>
           {inputs?.map((img, index) => (
             <div
               key={index}
@@ -54,31 +54,27 @@ const StartCard = () => {
             >
               <img
                 style={{
-                  marginRight: show === 'small' ? '-80px' : '-30px'
+                  marginRight: show === 'small' ? '-80px' : '-30px',
                 }}
-                width="50px"
+                className={img.id === inputs[index].id ? 'active' : ''}
+                width='50px'
                 src={img.image}
-                alt=""
+                alt=''
               />
             </div>
           ))}
         </div>
-        <div className="cards-start-game">
+        <div className='cards-start-game'>
           {data.map((item: any, key) => (
-            <div
-              key={key}
-              onClick={() => handleAdd(item, key)}
-              className={'empty-card'}
-            >
+            <div key={key} onClick={() => handleAdd(item, key)} className={'empty-card'}>
               <img
-              onClick={() => handleActive(key)}
-              className={focusCard === key ? 'card-img active' : 'card-img'}
-
+                onClick={() => handleActive(key)}
+                className={focusCard === key ? 'card-img active' : 'card-img'}
                 style={{
-                  marginRight: show === 'small' ? '-80px' : '-30px'
+                  marginRight: show === 'small' ? '-80px' : '-30px',
                 }}
                 src={item.image}
-                alt=""
+                alt=''
               />
             </div>
           ))}
