@@ -1,21 +1,30 @@
-import React from 'react'
+import React, { ChangeEvent } from 'react'
 import BackIcon from '../../assets/images/icons/back-icon.svg'
 import { useNavigate } from 'react-router'
-import { flashCardsData } from '../../datas/flash-cards/FlashCardsData'
 import { useFlashCardsContext } from '../../context/FlashCardsContext'
 
 const SettingsMajor = () => {
-  const { setCurrentFlashCard } = useFlashCardsContext()
+  const { major, setMajor } = useFlashCardsContext()
 
   const navigate = useNavigate()
 
-  const handleNavigate = () => {
-    navigate('/flash-cards/recall')
-    setCurrentFlashCard(1)
+  const handleBack = () => {
+    navigate('/flash-cards/settings/systems')
   }
 
-  const handleBack = () => {
-    navigate('/flash-cards/settings')
+  const handleText = (e: ChangeEvent<HTMLInputElement>, index: number) => {
+    setMajor((text) =>
+      text.map((oldValue, currentIndex) => (currentIndex === index ? e.target.value : oldValue))
+    )
+  }
+
+  const handleStorage = (e: any) => {
+    e.preventDefault()
+    localStorage.setItem('major', JSON.stringify(major))
+    alert('Muvaffaqqiyatli yaratildi!')
+    setTimeout(() => {
+      navigate(`/flash-cards/settings/main`)
+    }, 1000)
   }
 
   return (
@@ -27,23 +36,25 @@ const SettingsMajor = () => {
           </div>
           <div className='settings-header__title'>Major</div>
         </div>
-        <form className='settings-form'>
-          {flashCardsData.map((data, index) => {
-            const { number } = data
-
-            return (
+        <form className='settings-form' onSubmit={handleStorage}>
+          {Array(100)
+            .fill('null')
+            .map((_, index) => (
               <div key={index} className='settings-form__inner'>
-                <h2>{number}</h2>
+                <h2>{index < 10 ? `0${index}` : index}</h2>
                 <div>
-                  <label htmlFor='obraz'>Obraz</label>
-                  <input type='text' id='obraz' />
+                  <label htmlFor='major'>Obraz</label>
+                  <input
+                    type='major'
+                    id='major'
+                    name='major'
+                    value={major[index].trim()}
+                    onChange={(e) => handleText(e, index)}
+                  />
                 </div>
               </div>
-            )
-          })}
-          <button onClick={handleNavigate} className='fixed-button'>
-            Boshlash
-          </button>
+            ))}
+          <button className='fixed-button'>Yaratish</button>
         </form>
       </div>
     </div>

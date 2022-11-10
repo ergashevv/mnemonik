@@ -10,15 +10,16 @@ import useFlashCardsNext from '../../hooks/useFlashCardsButton/useFlashCardsNext
 import useFlashCardsPrev from '../../hooks/useFlashCardsButton/useFlashCardsPrev'
 import './FlashCards.scss'
 
-const FlashCardsRecall = () => {
+const PaoMemorize = () => {
   const {
-    flashCards,
     time,
     setTime,
     currentFlashCard,
     setCurrentFlashCard,
     navigationFlashCards,
   } = useFlashCardsContext()
+
+  const [pao] = useState(JSON.parse(localStorage.getItem('pao')!))
 
   const { startTime } = useHomeContext()
 
@@ -75,8 +76,8 @@ const FlashCardsRecall = () => {
               ) : null}
               <div className='container-wrapper__card'>
                 <div className='flashCards-section__items'>
-                  {flashCards?.map((flashCard, index) => {
-                    const { number, text } = flashCard
+                  {pao?.map((el: any, index: number) => {
+                    const { person, object, action } = el
                     if (index === currentFlashCard - 1) {
                       return (
                         <article
@@ -90,8 +91,14 @@ const FlashCardsRecall = () => {
                             )
                           }
                         >
-                          <div className='front-face'>{text}</div>
-                          <div className='back-face'>{number}</div>
+                          <div className='front-face'>
+                            {person}
+                            <br />
+                            {action}
+                            <br />
+                            {object}
+                          </div>
+                          <div className='back-face'>{index < 10 ? `0${index}` : index}</div>
                         </article>
                       )
                     } else {
@@ -100,7 +107,7 @@ const FlashCardsRecall = () => {
                   })}
                 </div>
                 <div className='indicator'>
-                  <span>{currentFlashCard}</span>/<span>{flashCards?.length}</span>
+                  <span>{currentFlashCard}</span>/<span>{pao?.length}</span>
                 </div>
               </div>
               <div className='control-buttons'>
@@ -134,4 +141,4 @@ const FlashCardsRecall = () => {
   )
 }
 
-export default FlashCardsRecall
+export default PaoMemorize

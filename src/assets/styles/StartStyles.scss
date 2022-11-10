@@ -5,7 +5,7 @@
     --border-radius: 10px;
 }
 
-    
+
 .settings {
     // min-height: 100vh;
     // display: flex;
@@ -47,6 +47,7 @@
             border-top: 2px dashed #dedede;
 
             margin: 20px 0;
+
             h2 {
                 margin-top: 20px;
                 font-size: 40px;
@@ -93,19 +94,27 @@
         //     appearance: none;
         // }
 
-        button {
-            width: 100%;
-            background-color: var(--primary-color);
-            color: #fff;
-            padding: 20px;
-            font-style: normal;
-            font-weight: 600;
-            font-size: 16px;
-            line-height: 19px;
-            letter-spacing: -0.307763px;
-            color: #FFFFFF;
-            border-radius: var(--border-radius);
-            margin: 0 auto;
-        }
+    }
+
+    .settings-buttons {
+        margin-top: 63px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    button {
+        width: 100%;
+        background-color: var(--primary-color);
+        color: #fff;
+        padding: 20px;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 19px;
+        letter-spacing: -0.307763px;
+        color: #FFFFFF;
+        border-radius: var(--border-radius);
+        margin: 0 auto;
     }
 }

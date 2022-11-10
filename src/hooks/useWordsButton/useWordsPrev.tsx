@@ -23,7 +23,7 @@ const useWordsPrev = () => {
   useEffect(() => {
     if (highlightedWords < 0) {
       if (currentWords.length === 8) {
-        setHighlightedWords(currentWords.length - cursorWidth + 1)
+        setHighlightedWords(currentWords.length - cursorWidth + 1) 
       } else {
         setHighlightedWords(currentWords.length - cursorWidth)
       }
