@@ -11,7 +11,7 @@ const FlashCardsStart = () => {
     setNavigationFlashCards,
     setAutoSecondFlashCards,
   } = useFlashCardsContext()
-  
+
   const [value, setValue] = useState<string>(() => JSON.parse(localStorage.getItem('value')!))
 
   useEffect(() => {
@@ -64,7 +64,7 @@ const FlashCardsStart = () => {
             <option value='poa'>POA</option>
           </select>
 
-          <label>Select navigation</label>
+          <label>Ko'rsatkichni tanlash</label>
           <select
             defaultValue={navigationFlashCards === 'auto' ? 'auto' : 'custom'}
             onChange={handleNavigation}

@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Next from '../../assets/images/icons/arrow-right.svg'
 import Prev from '../../assets/images/icons/arrow-left.svg'
 import StartGameModal from '../../components/start-game'
@@ -10,12 +10,12 @@ import { useHomeContext } from '../../context/home-context'
 import './cards-page.scss'
 const CardGame = () => {
   const { startTime: starttime, cursor, setCursor, cursorW, timerForRecall } = useHomeContext()
-  const { data, randomCard, navigation, show } = useCardsContext()
+  const { data, randomCard, navigation } = useCardsContext()
 
   const parsedCursorW = parseInt(cursorW!)
   // if(cursor)
   const showCards = randomCard!.slice(cursor, cursor + parsedCursorW)
-
+  const navigate = useNavigate()
   useEffect(() => {
     if (navigation === 'right') {
       setCursor(data.length - parsedCursorW)
@@ -26,8 +26,14 @@ const CardGame = () => {
   const nextNavigate = () => {
     if (navigation === 'right') {
       setCursor(cursor - parsedCursorW)
+      if (cursor === 0) {
+        navigate('/cards/start')
+      }
     } else {
       setCursor(cursor + parsedCursorW)
+      if (cursor + parsedCursorW + 1 >= randomCard?.length! + 1) {
+        navigate('/cards/start')
+      }
     }
   }
   const prevNavigate = () => {
@@ -37,6 +43,8 @@ const CardGame = () => {
       setCursor(cursor - parsedCursorW)
     }
   }
+  console.log(cursor)
+
   return (
     <>
       {Number(starttime) >= 1 ? (
@@ -77,10 +85,10 @@ const CardGame = () => {
                   key={key}
                 >
                   <img
-                    style={{
-                      marginRight: show === 'small' ? '-60px' : '-30px',
-                      // display: 'none',
-                    }}
+                    // style={{
+                    //   marginRight: show === 'small' ? '-60px' : '-30px',
+                    //   // display: 'none',
+                    // }}
                     src={item.image}
                     alt=''
                   />
@@ -94,11 +102,11 @@ const CardGame = () => {
                 }
                 onClick={prevNavigate}
               >
-                <img width='100px' src={Prev} alt='' />
+                <img width='101px' src={Prev} alt='' />
               </button>
               <button
                 disabled={
-                  navigation === 'right' ? cursor <= 0 : cursor >= data.length - parsedCursorW
+                  navigation === 'right' ? cursor === -1 : cursor >= data.length - parsedCursorW + 1
                 }
                 onClick={nextNavigate}
               >

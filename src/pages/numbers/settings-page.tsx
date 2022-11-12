@@ -67,7 +67,7 @@ const SettingsPage = () => {
 
           <SelectStartTime time={5} />
 
-          <label>Select navigation</label>
+          <label>Ko'rsatkichni tanlash</label>
           <select
             defaultValue={navigation === 'auto' ? 'auto' : 'custom'}
             onChange={handleNavigation}

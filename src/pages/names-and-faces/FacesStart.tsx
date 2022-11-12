@@ -24,7 +24,7 @@ const Start = () => {
     autoSecondFaces,
     setAutoSecondFaces,
     navigationFaces,
-    setNavigationFaces
+    setNavigationFaces,
   } = useFacesContext()
 
   const [imagesFetched, setImagesFetched] = useState<number>(0)
@@ -65,13 +65,7 @@ const Start = () => {
     navigate('/names-and-faces/recall')
 
     setCurrentPageFaces(1)
-  }, [
-    navigate,
-    memorizationPeople,
-    setCurrentPageFaces,
-    setMemorizationPeople,
-    setRecallPeople
-  ])
+  }, [navigate, memorizationPeople, setCurrentPageFaces, setMemorizationPeople, setRecallPeople])
 
   const handleBack = () => {
     navigate('/')
@@ -86,18 +80,18 @@ const Start = () => {
   }
 
   return (
-    <div className="settings">
-      <div className="container">
-        <div className="settings-header">
-          <div className="settings-header__back">
-            <img src={BackIcon} alt="Back" onClick={handleBack} />
+    <div className='settings'>
+      <div className='container'>
+        <div className='settings-header'>
+          <div className='settings-header__back'>
+            <img src={BackIcon} alt='Back' onClick={handleBack} />
           </div>
-          <div className="settings-header__title">Yuzlar</div>
+          <div className='settings-header__title'>Yuzlar</div>
         </div>
-        <form className="settings-form">
+        <form className='settings-form'>
           <SelectStartTime time={5} />
 
-          <label>Select navigation</label>
+          <label>Ko'rsatkichni tanlash</label>
           <select
             defaultValue={navigationFaces === 'auto' ? 'auto' : 'custom'}
             onChange={handleNavigation}
@@ -112,11 +106,7 @@ const Start = () => {
               <input value={autoSecondFaces} onChange={handleAutoSecond} max={50} type='range' />
             </div>
           ) : null}
-          <button
-            type="submit"
-            onClick={handleNavigate}
-            disabled={imagesLoading}
-          >
+          <button type='submit' onClick={handleNavigate} disabled={imagesLoading}>
             {imagesLoading
               ? `Loading images (${imagesFetched} / ${memorizationPeople.length})`
               : 'Boshlash'}

@@ -55,19 +55,19 @@ const Settings = () => {
             <option value='4'>4</option>
           </select>
 
-          <label>Select navigation</label>
+          <label>Ko'rsatkichni tanlash</label>
           <select defaultValue={navigation} onChange={handleNavigation}>
-            <option value='left'>Left to right</option>
-            <option value='right'>Right to left</option>
+            <option value='left'>Chapdan o'ngga</option>
+            <option value='right'>O'ngdan chapga</option>
           </select>
 
-          <label>Show cards</label>
+          <label>Kartalarning ko'rinishi</label>
           <select defaultValue={show} onChange={handleShow}>
-            <option value='small'>Small</option>
-            <option value='large'>Large</option>
+            <option value='small'>Kichkina</option>
+            <option value='large'>Uzun</option>
           </select>
 
-          <button onClick={handleNavigate}>Start</button>
+          <button onClick={handleNavigate}>Boshlash</button>
         </form>
       </div>
     </div>

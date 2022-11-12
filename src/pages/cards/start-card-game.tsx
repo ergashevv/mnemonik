@@ -54,7 +54,7 @@ const StartCard = () => {
             >
               <img
                 style={{
-                  marginRight: show === 'small' ? '-80px' : '-30px',
+                  marginRight: show === 'small' ? '-80px' : '-50px',
                 }}
                 className={img.id === inputs[index].id ? 'active' : ''}
                 width='50px'
@@ -64,6 +64,9 @@ const StartCard = () => {
             </div>
           ))}
         </div>
+        <div>
+          <button>Space right</button>
+        </div>
         <div className='cards-start-game'>
           {data.map((item: any, key) => (
             <div key={key} onClick={() => handleAdd(item, key)} className={'empty-card'}>
@@ -71,7 +74,7 @@ const StartCard = () => {
                 onClick={() => handleActive(key)}
                 className={focusCard === key ? 'card-img active' : 'card-img'}
                 style={{
-                  marginRight: show === 'small' ? '-80px' : '-30px',
+                  marginRight: show === 'small' ? '-80px' : '-50px',
                 }}
                 src={item.image}
                 alt=''

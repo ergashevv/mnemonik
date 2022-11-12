@@ -15,7 +15,7 @@ const NavigationBtn = () => {
     setCursor,
     navigation,
     autoSecond,
-    startTime
+    startTime,
   } = useHomeContext()
 
   const parsedCursorW = parseInt(cursorW!)
@@ -50,9 +50,7 @@ const NavigationBtn = () => {
     if (
       tab === 3 &&
       cursor >
-      Number(numbers.slice(dynamic * tab, dynamic * (tab + 1)).length) -
-      Number(cursorW) +
-      1
+        Number(numbers.slice(dynamic * tab, dynamic * (tab + 1)).length) - Number(cursorW) + 1
     ) {
       setTab(0)
       setCursor(0)
@@ -67,23 +65,23 @@ const NavigationBtn = () => {
     tab,
     numbers,
     dynamic,
-    setTab
+    setTab,
   ])
 
   const disablePrevButton = tab === 0 && cursor < parsedCursorW
 
   const disableNextButton = cursor > numbers.length - parsedCursorW - 1
   return (
-    <div className="navigation-buttons">
-      <div className="navigation">
+    <div className='navigation-buttons'>
+      <div className='navigation'>
         <button disabled={disablePrevButton} onClick={handleNext}>
-          <img className="next" src={Prev} alt="next" />
+          <img className='next' src={Prev} alt='next' />
         </button>
-        <div className="numbers">
+        <div className='numbers'>
           <ResultNumbers />
         </div>
         <button disabled={disableNextButton} onClick={handlePrev}>
-          <img className="prev" src={Next} alt="prev" />
+          <img className='prev' src={Next} alt='prev' />
         </button>
       </div>
     </div>

@@ -28,7 +28,7 @@ const NumbersGame = () => {
     setCursor,
     startTime,
     line,
-    timerForRecall
+    timerForRecall,
   } = useHomeContext()
 
   const finishGame = () => {
@@ -50,29 +50,23 @@ const NumbersGame = () => {
 
   return (
     <>
-      {Number(startTime) > 0
-        ? (
+      {Number(startTime) > 0 ? (
         <StartGameModal time={String(startTime)} />
-          )
-        : (
-        <div className="game container">
-          <div className="navbar-header">
+      ) : (
+        <div className='game container'>
+          <div className='navbar-header'>
             <TimerComponent
               finishTimeFunc={finishGame}
               time={timerForRecall}
               navigateTo={'/numbers/start'}
             />
-            <Link className="finish-now-btn" to="/numbers/start">
+            <Link onClick={() => setTab(0)} className='finish-now-btn' to='/numbers/start'>
               Hoziroq tugatish
             </Link>
           </div>
-          <div className="game-header-inner">
-            <div className="numbers">
-              <div
-                className={
-                  Number(cursorW) >= 4 ? 'sort-numbers active' : 'sort-numbers'
-                }
-              >
+          <div className='game-header-inner'>
+            <div className='numbers'>
+              <div className={Number(cursorW) >= 4 ? 'sort-numbers active' : 'sort-numbers'}>
                 <LeftNumber />
               </div>
               {Array(4)
@@ -81,29 +75,23 @@ const NumbersGame = () => {
                   <>
                     {tab === index && (
                       <div className={'cards'}>
-                        {randomNumbers
-                          .slice(dynamic * tab, dynamic * (tab + 1))
-                          .map((i, k) => (
+                        {randomNumbers.slice(dynamic * tab, dynamic * (tab + 1)).map((i, k) => (
+                          <div
+                            onClick={() => handleChangeCursor(k)}
+                            key={k}
+                            className={
+                              (k + 1) % parseInt(line!) === 0 ? 'active number-card' : 'number-card'
+                            }
+                          >
                             <div
-                              onClick={() => handleChangeCursor(k)}
-                              key={k}
-                              className={
-                                (k + 1) % parseInt(line!) === 0
-                                  ? 'active number-card'
-                                  : 'number-card'
-                              }
+                              className={classNames('card-number', {
+                                active: k >= cursor && k < cursor + parseInt(cursorW!),
+                              })}
                             >
-                              <div
-                                className={classNames('card-number', {
-                                  active:
-                                    k >= cursor &&
-                                    k < cursor + parseInt(cursorW!)
-                                })}
-                              >
-                                <p>{i}</p>
-                              </div>
+                              <p>{i}</p>
                             </div>
-                          ))}
+                          </div>
+                        ))}
                       </div>
                     )}
                   </>
@@ -111,11 +99,11 @@ const NumbersGame = () => {
             </div>
           </div>
           <NavigationBtn />
-          <div className="tabs">
+          <div className='tabs'>
             <Tabs tabNumber={4} />
           </div>
         </div>
-          )}
+      )}
     </>
   )
 }

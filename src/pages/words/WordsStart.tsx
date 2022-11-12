@@ -13,7 +13,7 @@ const WordsStart = () => {
     navigationWords,
     autoSecondWords,
     setNavigationWords,
-    setAutoSecondWords
+    setAutoSecondWords,
   } = useWordsContext()
 
   const navigate = useNavigate()
@@ -67,7 +67,7 @@ const WordsStart = () => {
             <option value='5'>5</option>
           </select>
 
-          <label>Select navigation</label>
+          <label>Ko'rsatkichni tanlash</label>
           <select
             defaultValue={navigationWords === 'auto' ? 'auto' : 'custom'}
             onChange={handleNavigation}

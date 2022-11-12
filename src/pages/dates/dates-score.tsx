@@ -4,23 +4,23 @@ const DatesScore = () => {
 
   return (
     <>
-      <h4>Your score</h4>
-      <div className="start-date-game">
-        <div className="inputs">
-          <div className="inp">
+      <h4>Sizning natijangiz !</h4>
+      <div className='start-date-game'>
+        <div className='inputs'>
+          <div className='inp'>
             {userDate.map((value, key) => (
               <input
                 key={key}
                 style={{
-                  color: value !== data[key] ? 'red' : 'green'
+                  color: value !== data[key] ? 'red' : 'green',
                 }}
                 readOnly
                 value={userDate[key]}
-                type="text"
+                type='text'
               />
             ))}
           </div>
-          <div className="text">
+          <div className='text'>
             {even.map((item, key) => (
               <p key={key}>{item}</p>
             ))}
