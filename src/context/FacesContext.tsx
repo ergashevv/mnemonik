@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode, useContext, useEffect, useState } from 'react'
+import React, { createContext, ReactNode, useContext, useEffect, useMemo, useState } from 'react'
 
 import { imagesData } from '../datas/faces/FacesData'
 import { firstNameData, lastNameData } from '../datas/names/NamesData'
@@ -91,10 +91,13 @@ export const FacesContextProvider = ({ children }: { children: ReactNode }): JSX
   let femaleLastNames: PersonWithLastName[] = []
 
   function shuffle<T>(result: T[]): T[] {
-    return result.sort(() => Math.random() - 0.5)
+    return result
+      .map((value) => ({ value, sort: Math.random() }))
+      .sort((a: any, b: any) => a.sort - b.sort)
+      .map(({ value }) => value)
   }
 
-  const shuffledImages = shuffle(imagesData).slice(0, 50)
+  const shuffledImages = useMemo(() => shuffle(imagesData).slice(0, 50), [])
 
   for (let i = 0; i < shuffledImages.length; i++) {
     if (shuffledImages[i].gender === 'male') {
@@ -130,8 +133,8 @@ export const FacesContextProvider = ({ children }: { children: ReactNode }): JSX
     }
   }
 
-  const memorizationShuffle = shuffle(allPeople)
-  const recallShuffle = shuffle(allPeople)
+  const memorizationShuffle = useMemo(() => shuffle(allPeople), [])
+  const recallShuffle = useMemo(() => shuffle(allPeople), [])
 
   // used in answers section
   for (let i = 0; i < recallPeople?.length; i++) {
@@ -163,7 +166,7 @@ export const FacesContextProvider = ({ children }: { children: ReactNode }): JSX
     autoSecondFaces,
     setAutoSecondFaces,
     navigationFaces,
-    setNavigationFaces
+    setNavigationFaces,
   }
 
   return <FacesContext.Provider value={value}>{children}</FacesContext.Provider>

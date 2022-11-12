@@ -16,7 +16,6 @@ const DatesSettings = () => {
   const handleBack = () => {
     navigate('/')
   }
-  console.log(userDate)
 
   const submitHandler = (e: any) => {
     e.preventDefault()
@@ -25,7 +24,6 @@ const DatesSettings = () => {
   }
   const handleDelete = (key: any) => {
     setUserDate((userDate: any) => [...userDate].splice(key, 1))
-    console.log(userDate, 'data')
   }
 
   return (

@@ -41,6 +41,7 @@
         "no-multiple-empty-lines": "off",
         "@typescript-eslint/no-non-null-asserted-optional-chain": "off",
         "@typescript-eslint/restrict-template-expressions": "off",
-        "@typescript-eslint/no-unused-expressions": "off"
+        "@typescript-eslint/no-unused-expressions": "off",
+        "@typescript-eslint/restrict-plus-operands": "off"
     }
 }

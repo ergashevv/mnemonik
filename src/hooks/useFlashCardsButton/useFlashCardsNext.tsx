@@ -3,11 +3,13 @@ import { useFlashCardsContext } from '../../context/FlashCardsContext'
 import { useHomeContext } from '../../context/home-context'
 
 const useFlashCardsNext = () => {
+  // const [major] = useState(JSON.parse(localStorage.getItem('major')!))
+
   const {
-    flashCards,
     setCurrentFlashCard,
     navigationFlashCards,
     autoSecondFlashCards,
+    major,
   } = useFlashCardsContext()
   const { startTime } = useHomeContext()
 
@@ -18,12 +20,12 @@ const useFlashCardsNext = () => {
   const nextPageFlashCards = useCallback(() => {
     setCurrentFlashCard((oldPage: number) => {
       let nextPage = oldPage + 1
-      if (nextPage > flashCards?.length) {
+      if (nextPage > major?.length) {
         nextPage = 1
       }
       return nextPage
     })
-  }, [flashCards?.length, setCurrentFlashCard])
+  }, [major?.length, setCurrentFlashCard])
 
   useEffect(() => {
     if (longPress) {
@@ -34,13 +36,16 @@ const useFlashCardsNext = () => {
 
     if (
       navigationFlashCards === 'auto' &&
-      window.location.pathname === '/flash-cards/recall' &&
+      (window.location.pathname === '/flash-cards/major/memorization' ||
+        window.location.pathname === '/flash-cards/millennium/memorization' ||
+        window.location.pathname === '/flash-cards/poa/memorization' ||
+        window.location.pathname === '/flash-cards/pao/memorization') &&
       Number(startTime) < 1
     ) {
       const timer = setInterval(() => {
         setCurrentFlashCard((oldPage: number) => {
           let nextPage = oldPage + 1
-          if (nextPage > flashCards?.length) {
+          if (nextPage > major?.length) {
             nextPage = 1
           }
           return nextPage
@@ -52,7 +57,7 @@ const useFlashCardsNext = () => {
     return () => {
       clearInterval(Number(intervalId.current))
     }
-  }, [nextPageFlashCards, longPress, autoSecondFlashCards, flashCards.length, startTime])
+  }, [nextPageFlashCards, longPress, autoSecondFlashCards, major.length, startTime])
 
   return {
     flashCardsNextButton: {

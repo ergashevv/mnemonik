@@ -2,7 +2,9 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { useFlashCardsContext } from '../../context/FlashCardsContext'
 
 const useFlashCardsNext = () => {
-  const { flashCards, setCurrentFlashCard } = useFlashCardsContext()
+  // const [major] = useState(JSON.parse(localStorage.getItem('major')!))
+
+  const { setCurrentFlashCard, major } = useFlashCardsContext()
 
   const [longPress, setLongPress] = useState(false)
 
@@ -12,11 +14,11 @@ const useFlashCardsNext = () => {
     setCurrentFlashCard((oldPage: number) => {
       let prevPage = oldPage - 1
       if (prevPage < 1) {
-        prevPage = flashCards?.length
+        prevPage = major?.length
       }
       return prevPage
     })
-  }, [flashCards?.length, setCurrentFlashCard])
+  }, [major?.length, setCurrentFlashCard])
 
   useEffect(() => {
     if (longPress) {
@@ -37,8 +39,8 @@ const useFlashCardsNext = () => {
       onMouseUp: () => setLongPress(false),
       onMouseLeave: () => setLongPress(false),
       onTouchStart: () => setLongPress(true),
-      onTouchEnd: () => setLongPress(false)
-    }
+      onTouchEnd: () => setLongPress(false),
+    },
   }
 }
 

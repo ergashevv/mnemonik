@@ -100,7 +100,7 @@ export const WordsContextProvider = ({
         .map((value) => ({ value, sort: Math.random() }))
         .sort((a, b) => a.sort - b.sort)
         .map(({ value }) => value)
-        .slice(0, 200),
+        .slice(0, 150),
     []
   )
 

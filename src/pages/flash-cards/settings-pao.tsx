@@ -3,22 +3,22 @@ import { useNavigate } from 'react-router'
 import BackIcon from '../../assets/images/icons/back-icon.svg'
 import { useFlashCardsContext } from '../../context/FlashCardsContext'
 import { flashCardsData } from '../../datas/flash-cards/FlashCardsData'
-export interface POA {
-  poaNumber: number
+export interface AllPAO {
+  paoNumber: number
   person: string
   object: string
   action: string
 }
 
-const SettingsPOA = () => {
+const SettingsPAO = () => {
   const {
-    poaPerson,
-    setPoaPerson,
-    poaObject,
-    setPoaObject,
-    poaAction,
-    setPoaAction,
-    poaNumbers,
+    paoPerson,
+    setPaoPerson,
+    paoObject,
+    setPaoObject,
+    paoAction,
+    setPaoAction,
+    paoNumbers,
   } = useFlashCardsContext()
 
   const navigate = useNavigate()
@@ -28,7 +28,7 @@ const SettingsPOA = () => {
   }
 
   const handlePerson = (e: ChangeEvent<HTMLInputElement>, index: number) => {
-    setPoaPerson((poaPerson) =>
+    setPaoPerson((poaPerson) =>
       poaPerson.map((oldValue, currentIndex) =>
         currentIndex === index ? e.target.value : oldValue
       )
@@ -36,7 +36,7 @@ const SettingsPOA = () => {
   }
 
   const handleObject = (e: ChangeEvent<HTMLInputElement>, index: number) => {
-    setPoaObject((poaObject) =>
+    setPaoObject((poaObject) =>
       poaObject.map((oldValue, currentIndex) =>
         currentIndex === index ? e.target.value : oldValue
       )
@@ -44,27 +44,27 @@ const SettingsPOA = () => {
   }
 
   const handleAction = (e: ChangeEvent<HTMLInputElement>, index: number) => {
-    setPoaAction((poaAction) =>
+    setPaoAction((poaAction) =>
       poaAction.map((oldValue, currentIndex) =>
         currentIndex === index ? e.target.value : oldValue
       )
     )
   }
 
-  const poa: POA[] = []
+  const pao: AllPAO[] = []
 
-  for (let i = 0; i < poaNumbers.length; i++) {
-    poa.push({
-      poaNumber: poaNumbers[i],
-      person: poaPerson[i],
-      object: poaObject[i],
-      action: poaAction[i],
+  for (let i = 0; i < paoNumbers.length; i++) {
+    pao.push({
+      paoNumber: paoNumbers[i],
+      person: paoPerson[i],
+      object: paoObject[i],
+      action: paoAction[i],
     })
   }
 
   const handleStorage = (e: any) => {
     e.preventDefault()
-    localStorage.setItem('poa', JSON.stringify(poa))
+    localStorage.setItem('pao', JSON.stringify(pao))
     alert('Muvaffaqqiyatli yaratildi!')
     setTimeout(() => {
       navigate(`/flash-cards/settings/main`)
@@ -78,7 +78,7 @@ const SettingsPOA = () => {
           <div className='settings-header__back'>
             <img src={BackIcon} alt='Back' onClick={handleBack} />
           </div>
-          <div className='settings-header__title'>POA</div>
+          <div className='settings-header__title'>PAO</div>
         </div>
         <form className='settings-form' onSubmit={handleStorage}>
           {flashCardsData.map((data, index) => {
@@ -93,18 +93,8 @@ const SettingsPOA = () => {
                     type='text'
                     id='person'
                     name='person'
-                    value={poaPerson[index]}
+                    value={paoPerson[index]}
                     onChange={(e) => handlePerson(e, index)}
-                  />
-                </div>
-                <div>
-                  <label htmlFor='object'>Object</label>
-                  <input
-                    type='text'
-                    id='object'
-                    name='object'
-                    value={poaObject[index]}
-                    onChange={(e) => handleObject(e, index)}
                   />
                 </div>
                 <div>
@@ -113,8 +103,18 @@ const SettingsPOA = () => {
                     type='text'
                     id='action'
                     name='action'
-                    value={poaAction[index]}
+                    value={paoAction[index]}
                     onChange={(e) => handleAction(e, index)}
+                  />
+                </div>
+                <div>
+                  <label htmlFor='object'>Object</label>
+                  <input
+                    type='text'
+                    id='object'
+                    name='object'
+                    value={paoObject[index]}
+                    onChange={(e) => handleObject(e, index)}
                   />
                 </div>
               </div>
@@ -127,4 +127,4 @@ const SettingsPOA = () => {
   )
 }
 
-export default SettingsPOA
+export default SettingsPAO
