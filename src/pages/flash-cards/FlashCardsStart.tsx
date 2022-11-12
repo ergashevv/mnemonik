@@ -26,7 +26,7 @@ const FlashCardsStart = () => {
           <div className='settings-header__title'>Flash Cards</div>
         </div>
         <div className='settings-buttons'>
-          <button onClick={handleNavigateGame}>Tezlik</button>
+          <button onClick={handleNavigateGame}>O'yin</button>
           <button onClick={handleNavigate}>Tizim yaratish</button>
         </div>
       </div>

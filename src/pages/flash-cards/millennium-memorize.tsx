@@ -12,14 +12,13 @@ import './FlashCards.scss'
 
 const MillenniumMemorize = () => {
   const {
-    time,
-    setTime,
+    timeMillennium,
+    setTimeMillennium,
     currentFlashCard,
     setCurrentFlashCard,
     navigationFlashCards,
+    shuffledMillennium
   } = useFlashCardsContext()
-
-  const [millennium] = useState(JSON.parse(localStorage.getItem('millennium')!))
 
   const { startTime } = useHomeContext()
 
@@ -37,20 +36,20 @@ const MillenniumMemorize = () => {
     if (interval.current != null) clearInterval(interval.current)
 
     interval.current = setInterval(() => {
-      setTime((numbers) =>
+      setTimeMillennium((numbers) =>
         numbers.map((number, index) => (currentFlashCard - 1 === index ? number + 0.01 : number))
       )
     }, 10)
 
     return () => clearInterval(Number(interval.current))
-  }, [setTime, currentFlashCard, time, startTime])
+  }, [setTimeMillennium, currentFlashCard, timeMillennium, startTime])
 
   const firstPage = () => {
     setCurrentFlashCard(1)
   }
 
   const handleNavigate = () => {
-    navigate('/flash-cards/results')
+    navigate('/flash-cards/millennium/results')
   }
 
   return (
@@ -65,7 +64,7 @@ const MillenniumMemorize = () => {
               {navigationFlashCards !== 'auto' ? (
                 <div className='flashCards-section__header'>
                   <h1 className='flashCards-section__header-timer'>
-                    {time[currentFlashCard - 1].toFixed(2)} s
+                    {timeMillennium[currentFlashCard - 1].toFixed(2)} s
                   </h1>
                   <button
                     onClick={handleNavigate}
@@ -78,42 +77,42 @@ const MillenniumMemorize = () => {
               ) : null}
               <div className='container-wrapper__card'>
                 <div className='flashCards-section__items'>
-                  {millennium
-                    .slice(Number(hundredNumbers), Number(hundredNumbers) + 100)
-                    .map((el: string, index: number) => {
-                      if (index === currentFlashCard - 1) {
-                        return (
-                          <article
-                            key={index}
-                            style={{ transform: flipCards[index] && 'rotateY(180deg)' }}
-                            onClick={() =>
-                              setFlipCards((cards) =>
-                                cards.map((card, cardIndex) =>
-                                  index === cardIndex ? !flipCards[index] : card
-                                )
+                  {shuffledMillennium.map((el: any, index: number) => {
+                    const { millenniumNumber, millenniumObraz } = el
+                    if (index === currentFlashCard - 1) {
+                      return (
+                        <article
+                          key={index + Number(hundredNumbers)}
+                          style={{ transform: flipCards[index] && 'rotateY(180deg)' }}
+                          onClick={() =>
+                            setFlipCards((cards) =>
+                              cards.map((card, cardIndex) =>
+                                index === cardIndex ? !flipCards[index] : card
                               )
-                            }
-                          >
-                            <div className='front-face'>{el}</div>
-                            <div className='back-face'>
-                              {index + Number(hundredNumbers) < 10
-                                ? `00${index}`
-                                : index + Number(hundredNumbers) >= 10 &&
-                                  index + Number(hundredNumbers) < 100
-                                ? `0${index}`
-                                : index + Number(hundredNumbers)}
-                            </div>
-                          </article>
-                        )
-                      } else {
-                        return null
-                      }
-                    })}
+                            )
+                          }
+                        >
+                          <div className='front-face'>{millenniumObraz}</div>
+                          <div className='back-face'>
+                            {millenniumNumber < 10
+                              ? `00${millenniumNumber}`
+                              : millenniumNumber >= 10 && millenniumNumber < 100
+                              ? `0${millenniumNumber}`
+                              : millenniumNumber}
+                          </div>
+                        </article>
+                      )
+                    } else {
+                      return null
+                    }
+                  })}
                 </div>
                 <div className='indicator'>
                   <span>{currentFlashCard}</span>/
                   <span>
-                    {millennium?.slice(Number(hundredNumbers), Number(hundredNumbers) + 100).length}
+                    {
+                      shuffledMillennium?.length
+                    }
                   </span>
                 </div>
               </div>

@@ -1,10 +1,15 @@
-import React, { ChangeEvent } from 'react'
-import BackIcon from '../../assets/images/icons/back-icon.svg'
+import { ChangeEvent } from 'react'
 import { useNavigate } from 'react-router'
+import BackIcon from '../../assets/images/icons/back-icon.svg'
 import { useFlashCardsContext } from '../../context/FlashCardsContext'
 
+export interface AllMajor {
+  majorNumber: number
+  majorObraz: string
+}
+
 const SettingsMajor = () => {
-  const { major, setMajor } = useFlashCardsContext()
+  const { major, setMajor, majorNumbers } = useFlashCardsContext()
 
   const navigate = useNavigate()
 
@@ -18,9 +23,18 @@ const SettingsMajor = () => {
     )
   }
 
+  const allMajor: AllMajor[] = []
+
+  for (let i = 0; i < major.length; i++) {
+    allMajor.push({
+      majorNumber: majorNumbers[i],
+      majorObraz: major[i],
+    })
+  }
+
   const handleStorage = (e: any) => {
     e.preventDefault()
-    localStorage.setItem('major', JSON.stringify(major))
+    localStorage.setItem('allMajor', JSON.stringify(allMajor))
     alert('Muvaffaqqiyatli yaratildi!')
     setTimeout(() => {
       navigate(`/flash-cards/settings/main`)
@@ -30,6 +44,9 @@ const SettingsMajor = () => {
   return (
     <div className='settings'>
       <div className='container'>
+        {/* <div className='down'>
+          <img src={BackIcon} alt='down' />
+        </div> */}
         <div className='settings-header'>
           <div className='settings-header__back'>
             <img src={BackIcon} alt='Back' onClick={handleBack} />

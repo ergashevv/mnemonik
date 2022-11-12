@@ -12,6 +12,9 @@ import MajorMemorize from '../pages/flash-cards/major-memorize'
 import MillenniumMemorize from '../pages/flash-cards/millennium-memorize'
 import PoaMemorize from '../pages/flash-cards/poa-memorize'
 import PaoMemorize from '../pages/flash-cards/pao-memorize'
+import PoaResult from '../pages/flash-cards/poa-result'
+import PaoResult from '../pages/flash-cards/pao-result'
+import MillenniumResult from '../pages/flash-cards/millennium-result'
 
 const FlashCardLayout = () => {
   return (
@@ -21,10 +24,16 @@ const FlashCardLayout = () => {
         <Route path='/millennium/memorization' element={<MillenniumMemorize />} />
         <Route path='/poa/memorization' element={<PoaMemorize />} />
         <Route path='/pao/memorization' element={<PaoMemorize />} />
-        <Route path='/results' element={<MajorResult />} />
+
+        <Route path='/major/results' element={<MajorResult />} />
+        <Route path='/millennium/results' element={<MillenniumResult />} />
+        <Route path='/poa/results' element={<PoaResult />} />
+        <Route path='/pao/results' element={<PaoResult />} />
+
         <Route path='/settings' element={<FlashCardsStart />} />
         <Route path='/settings/main' element={<SettingsMain />} />
         <Route path='/settings/systems' element={<SettingsSystem />} />
+
         <Route path='/settings/systems/major' element={<SettingsMajor />} />
         <Route path='/settings/systems/millennium' element={<SettingsMillennium />} />
         <Route

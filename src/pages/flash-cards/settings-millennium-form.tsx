@@ -2,9 +2,13 @@ import { ChangeEvent } from 'react'
 import { useNavigate } from 'react-router'
 import BackIcon from '../../assets/images/icons/back-icon.svg'
 import { useFlashCardsContext } from '../../context/FlashCardsContext'
+export interface AllMillennium {
+  millenniumNumber: number
+  millenniumObraz: string
+}
 
 const SettingsMillenniumHundreds = () => {
-  const { millennium, setMillennium } = useFlashCardsContext()
+  const { millennium, setMillennium, millenniumNumbers } = useFlashCardsContext()
 
   const navigate = useNavigate()
 
@@ -16,16 +20,23 @@ const SettingsMillenniumHundreds = () => {
   const handleText = (e: ChangeEvent<HTMLInputElement>, index: number) => {
     setMillennium((text) =>
       text.map((oldValue, currentIndex) =>
-        currentIndex === index + Number(hundredNumbers)
-          ? e.target.value
-          : oldValue
+        currentIndex === index + Number(hundredNumbers) ? e.target.value : oldValue
       )
     )
   }
 
+  const allMillennium: AllMillennium[] = []
+
+  for (let i = 0; i < millennium.length; i++) {
+    allMillennium.push({
+      millenniumNumber: millenniumNumbers[i],
+      millenniumObraz: millennium[i],
+    })
+  }
+
   const handleStorage = (e: any) => {
     e.preventDefault()
-    localStorage.setItem('millennium', JSON.stringify(millennium))
+    localStorage.setItem('allMillennium', JSON.stringify(allMillennium))
     alert('Muvaffaqqiyatli yaratildi!')
     setTimeout(() => {
       navigate('/flash-cards/settings/main')

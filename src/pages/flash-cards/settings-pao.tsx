@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router'
 import BackIcon from '../../assets/images/icons/back-icon.svg'
 import { useFlashCardsContext } from '../../context/FlashCardsContext'
 import { flashCardsData } from '../../datas/flash-cards/FlashCardsData'
-
-interface PAO {
+export interface AllPAO {
+  paoNumber: number
   person: string
   object: string
   action: string
@@ -18,6 +18,7 @@ const SettingsPAO = () => {
     setPaoObject,
     paoAction,
     setPaoAction,
+    paoNumbers,
   } = useFlashCardsContext()
 
   const navigate = useNavigate()
@@ -50,10 +51,11 @@ const SettingsPAO = () => {
     )
   }
 
-  const pao: PAO[] = []
+  const pao: AllPAO[] = []
 
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < paoNumbers.length; i++) {
     pao.push({
+      paoNumber: paoNumbers[i],
       person: paoPerson[i],
       object: paoObject[i],
       action: paoAction[i],

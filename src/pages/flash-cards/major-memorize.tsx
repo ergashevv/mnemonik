@@ -12,14 +12,13 @@ import './FlashCards.scss'
 
 const MajorMemorize = () => {
   const {
-    time,
-    setTime,
+    timeMajor,
+    setTimeMajor,
     currentFlashCard,
     setCurrentFlashCard,
     navigationFlashCards,
+    shuffledMajor
   } = useFlashCardsContext()
-
-  const [major] = useState(JSON.parse(localStorage.getItem('major')!))
 
   const { startTime } = useHomeContext()
 
@@ -35,20 +34,20 @@ const MajorMemorize = () => {
     if (interval.current != null) clearInterval(interval.current)
 
     interval.current = setInterval(() => {
-      setTime((numbers) =>
+      setTimeMajor((numbers) =>
         numbers.map((number, index) => (currentFlashCard - 1 === index ? number + 0.01 : number))
       )
     }, 10)
 
     return () => clearInterval(Number(interval.current))
-  }, [setTime, currentFlashCard, time, startTime])
+  }, [setTimeMajor, currentFlashCard, timeMajor, startTime])
 
   const firstPage = () => {
     setCurrentFlashCard(1)
   }
 
   const handleNavigate = () => {
-    navigate('/flash-cards/results')
+    navigate('/flash-cards/major/results')
   }
 
   return (
@@ -63,7 +62,7 @@ const MajorMemorize = () => {
               {navigationFlashCards !== 'auto' ? (
                 <div className='flashCards-section__header'>
                   <h1 className='flashCards-section__header-timer'>
-                    {time[currentFlashCard - 1].toFixed(2)} s
+                    {timeMajor[currentFlashCard - 1].toFixed(2)} s
                   </h1>
                   <button
                     onClick={handleNavigate}
@@ -76,7 +75,9 @@ const MajorMemorize = () => {
               ) : null}
               <div className='container-wrapper__card'>
                 <div className='flashCards-section__items'>
-                  {major?.map((el: string, index: number) => {
+                  {shuffledMajor?.map((el: any, index: number) => {
+                    const { majorNumber, majorObraz } = el
+
                     if (index === currentFlashCard - 1) {
                       return (
                         <article
@@ -90,8 +91,10 @@ const MajorMemorize = () => {
                             )
                           }
                         >
-                          <div className='front-face'>{el}</div>
-                          <div className='back-face'>{index < 10 ? `0${index}` : index}</div>
+                          <div className='front-face'>{majorObraz}</div>
+                          <div className='back-face'>
+                            {majorNumber < 10 ? `0${majorNumber}` : majorNumber}
+                          </div>
                         </article>
                       )
                     } else {
@@ -100,7 +103,7 @@ const MajorMemorize = () => {
                   })}
                 </div>
                 <div className='indicator'>
-                  <span>{currentFlashCard}</span>/<span>{major?.length}</span>
+                  <span>{currentFlashCard}</span>/<span>{shuffledMajor?.length}</span>
                 </div>
               </div>
               <div className='control-buttons'>

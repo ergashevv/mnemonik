@@ -1,23 +1,21 @@
 import { useFlashCardsContext } from '../../context/FlashCardsContext'
 import './FlashCards.scss'
 
-const MajorResult = () => {
-  const { timeMajor, shuffledMajor } = useFlashCardsContext()
+const PaoResult = () => {
+  const { timePao, shuffledPao } = useFlashCardsContext()
 
   return (
     <div className='flashCards'>
       <div className='container'>
         <div className='flashCards-result'>
           <div className='flashCards-result__card-numbers'>
-            {shuffledMajor.map((el: any, index: number) => {
-              const { majorNumber } = el
-              return (
-                <div key={index}>{majorNumber < 10 ? `0${majorNumber}` : majorNumber}- card</div>
-              )
+            {shuffledPao.map((el: any, index: number) => {
+              const { paoNumber } = el
+              return <div key={index}>{paoNumber < 10 ? `0${paoNumber}` : paoNumber}- card</div>
             })}
           </div>
           <div className='flashCards-result__card-time'>
-            {timeMajor.map((time, index) => {
+            {timePao.map((time, index) => {
               return <div key={index}>{time.toFixed(2)} s time spent</div>
             })}
           </div>
@@ -27,4 +25,4 @@ const MajorResult = () => {
   )
 }
 
-export default MajorResult
+export default PaoResult

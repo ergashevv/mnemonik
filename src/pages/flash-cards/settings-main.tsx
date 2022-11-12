@@ -14,10 +14,11 @@ const SettingsMain = () => {
     setFlashCardSections,
     hundreds,
     setHundreds,
+    setCurrentFlashCard,
   } = useFlashCardsContext()
 
-  const [major] = useState(JSON.parse(localStorage.getItem('major')!))
-  const [millennium] = useState(JSON.parse(localStorage.getItem('millennium')!))
+  const [allMajor] = useState(JSON.parse(localStorage.getItem('allMajor')!))
+  const [allMillennium] = useState(JSON.parse(localStorage.getItem('allMillennium')!))
   const [poa] = useState(JSON.parse(localStorage.getItem('poa')!))
   const [pao] = useState(JSON.parse(localStorage.getItem('pao')!))
 
@@ -39,15 +40,20 @@ const SettingsMain = () => {
     e.preventDefault()
 
     if (
-      (major && flashCardSections === 'major') ||
-      (millennium && flashCardSections === 'millennium') ||
+      (allMajor && flashCardSections === 'major') ||
+      (allMillennium && flashCardSections === 'millennium') ||
       (poa && flashCardSections === 'poa') ||
       (pao && flashCardSections === 'pao')
     ) {
       navigate(`/flash-cards/${flashCardSections}/memorization`)
     } else {
       alert('Iltimos obraz yarating!')
+      setTimeout(() => {
+        navigate(`/flash-cards/settings/systems/${flashCardSections}`)
+      }, 1000)
     }
+
+    setCurrentFlashCard(1)
   }
 
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {

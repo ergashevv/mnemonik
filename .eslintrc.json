@@ -37,6 +37,8 @@
         "indent": "off",
         "quotes": "off",
         "no-undef": "off",
-        "multiline-ternary": "off"
+        "multiline-ternary": "off",
+        "@typescript-eslint/restrict-template-expressions": "off",
+        "@typescript-eslint/restrict-plus-operands": "off"
     }
 }

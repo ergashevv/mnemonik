@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router'
 import BackIcon from '../../assets/images/icons/back-icon.svg'
 import { useFlashCardsContext } from '../../context/FlashCardsContext'
 import { flashCardsData } from '../../datas/flash-cards/FlashCardsData'
-
-interface POA {
+export interface POA {
+  poaNumber: number
   person: string
   object: string
   action: string
@@ -18,6 +18,7 @@ const SettingsPOA = () => {
     setPoaObject,
     poaAction,
     setPoaAction,
+    poaNumbers,
   } = useFlashCardsContext()
 
   const navigate = useNavigate()
@@ -52,8 +53,9 @@ const SettingsPOA = () => {
 
   const poa: POA[] = []
 
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < poaNumbers.length; i++) {
     poa.push({
+      poaNumber: poaNumbers[i],
       person: poaPerson[i],
       object: poaObject[i],
       action: poaAction[i],

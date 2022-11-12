@@ -71,7 +71,13 @@
             }
 
             .front-face {
+                display: flex;
+                justify-content: space-evenly;
                 transform: rotateY(180deg);
+
+                div {
+                    text-align: left;
+                }
             }
 
             .back-face {

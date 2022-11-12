@@ -12,14 +12,13 @@ import './FlashCards.scss'
 
 const PoaMemorize = () => {
   const {
-    time,
-    setTime,
+    timePoa,
+    setTimePoa,
     currentFlashCard,
     setCurrentFlashCard,
     navigationFlashCards,
+    shuffledPoa
   } = useFlashCardsContext()
-
-  const [poa] = useState(JSON.parse(localStorage.getItem('poa')!))
 
   const { startTime } = useHomeContext()
 
@@ -35,20 +34,20 @@ const PoaMemorize = () => {
     if (interval.current != null) clearInterval(interval.current)
 
     interval.current = setInterval(() => {
-      setTime((numbers) =>
+      setTimePoa((numbers) =>
         numbers.map((number, index) => (currentFlashCard - 1 === index ? number + 0.01 : number))
       )
     }, 10)
 
     return () => clearInterval(Number(interval.current))
-  }, [setTime, currentFlashCard, time, startTime])
+  }, [setTimePoa, currentFlashCard, timePoa, startTime])
 
   const firstPage = () => {
     setCurrentFlashCard(1)
   }
 
   const handleNavigate = () => {
-    navigate('/flash-cards/results')
+    navigate('/flash-cards/poa/results')
   }
 
   return (
@@ -63,7 +62,7 @@ const PoaMemorize = () => {
               {navigationFlashCards !== 'auto' ? (
                 <div className='flashCards-section__header'>
                   <h1 className='flashCards-section__header-timer'>
-                    {time[currentFlashCard - 1].toFixed(2)} s
+                    {timePoa[currentFlashCard - 1].toFixed(2)} s
                   </h1>
                   <button
                     onClick={handleNavigate}
@@ -76,8 +75,8 @@ const PoaMemorize = () => {
               ) : null}
               <div className='container-wrapper__card'>
                 <div className='flashCards-section__items'>
-                  {poa?.map((el: any, index: number) => {
-                    const { person, object, action } = el
+                  {shuffledPoa?.map((el: any, index: number) => {
+                    const { person, object, action, poaNumber } = el
                     if (index === currentFlashCard - 1) {
                       return (
                         <article
@@ -92,11 +91,20 @@ const PoaMemorize = () => {
                           }
                         >
                           <div className='front-face'>
-                            {person}<br />
-                            {object}<br />
-                            {action}
+                            <div>
+                              P. <br /> O. <br /> A.
+                            </div>
+                            <div>
+                              {person}
+                              <br />
+                              {object}
+                              <br />
+                              {action}
+                            </div>
                           </div>
-                          <div className='back-face'>{index < 10 ? `0${index}` : index}</div>
+                          <div className='back-face'>
+                            {poaNumber < 10 ? `0${poaNumber}` : poaNumber}
+                          </div>
                         </article>
                       )
                     } else {
@@ -105,7 +113,7 @@ const PoaMemorize = () => {
                   })}
                 </div>
                 <div className='indicator'>
-                  <span>{currentFlashCard}</span>/<span>{poa?.length}</span>
+                  <span>{currentFlashCard}</span>/<span>{shuffledPoa?.length}</span>
                 </div>
               </div>
               <div className='control-buttons'>
