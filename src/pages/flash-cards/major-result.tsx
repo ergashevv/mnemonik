@@ -12,13 +12,13 @@ const MajorResult = () => {
             {shuffledMajor.map((el: any, index: number) => {
               const { majorNumber } = el
               return (
-                <div key={index}>{majorNumber < 10 ? `0${majorNumber}` : majorNumber}- card</div>
+                <div key={index}>{majorNumber < 10 ? `0${majorNumber}` : majorNumber} - card</div>
               )
             })}
           </div>
           <div className='flashCards-result__card-time'>
             {timeMajor.map((time, index) => {
-              return <div key={index}>{time.toFixed(2)} s time spent</div>
+              return <div key={index}>{time.toFixed(2)} s</div>
             })}
           </div>
         </div>

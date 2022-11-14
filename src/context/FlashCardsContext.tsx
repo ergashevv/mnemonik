@@ -120,30 +120,32 @@ export const FlashCardsContextProvider = ({ children }: { children: ReactNode })
   const [hundreds, setHundreds] = useState<string>(() =>
     JSON.parse(localStorage.getItem('hundreds')!)
   )
-  const [allMajor] = useState(JSON.parse(localStorage.getItem('allMajor')!))
-  const [allMillennium] = useState(JSON.parse(localStorage.getItem('allMillennium')!))
-  const [pao] = useState(JSON.parse(localStorage.getItem('pao')!))
-  const [poa] = useState(JSON.parse(localStorage.getItem('poa')!))
+  const [allMajor] = useState<string[]>(() => JSON.parse(localStorage.getItem('allMajor')!))
+  const [allMillennium] = useState<string[]>(() => JSON.parse(localStorage.getItem('allMillennium')!))
+  const [pao] = useState<string[]>(() => JSON.parse(localStorage.getItem('pao')!))
+  const [poa] = useState<string[]>(() => JSON.parse(localStorage.getItem('poa')!))
 
-  console.log(allMillennium, 'allMillennium')
+  // console.log(allMillennium, 'allMillennium')
 
-  let slicedMillennium: [] = []
-
-  if (allMillennium !== null) {
-    slicedMillennium = allMillennium.slice(Number(hundredNumbers), Number(hundredNumbers) + 100)
-  }
+  useEffect(() => {
+    if (allMillennium !== null) {
+      allMillennium.slice(Number(hundredNumbers), Number(hundredNumbers) + 100)
+    }
+  }, [])
 
   function shuffle<T>(result: T[]): T[] {
     return result
-      .map((value) => ({ value, sort: Math.random() }))
+      ?.map((value) => ({ value, sort: Math.random() }))
       .sort((a: any, b: any) => a.sort - b.sort)
       .map(({ value }) => value)
   }
 
-  const shuffledMajor = useMemo(() => shuffle(allMajor), [])
-  const shuffledMillennium = useMemo(() => shuffle(slicedMillennium), [])
-  const shuffledPao = useMemo(() => shuffle(pao), [])
-  const shuffledPoa = useMemo(() => shuffle(poa), [])
+  const shuffledMajor: string[] = useMemo(() => shuffle(allMajor), [])
+  const shuffledMillennium: string[] = useMemo(() => shuffle(allMillennium), [])
+  const shuffledPao: string[] = useMemo(() => shuffle(pao), [])
+  const shuffledPoa: string[] = useMemo(() => shuffle(poa), [])
+
+  // console.log(shuffledMillennium, 'sksjjlkds')
 
   useEffect(() => {
     if (!hundreds) {

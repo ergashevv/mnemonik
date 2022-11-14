@@ -9,9 +9,36 @@ const useFlashCardsNext = () => {
     setCurrentFlashCard,
     navigationFlashCards,
     autoSecondFlashCards,
-    major,
+    // major,
+    shuffledMajor,
+    shuffledMillennium,
+    shuffledPao,
+    shuffledPoa,
   } = useFlashCardsContext()
   const { startTime } = useHomeContext()
+
+  const [value] = useState(() => JSON.parse(localStorage.getItem('value')!))
+  const variableArray: any = []
+
+  // console.log(value, 'value')
+  // console.log(shuffledMillennium, 'shuffled')
+
+  useEffect(() => {
+    if (value === 'millennium') {
+      variableArray.push(...shuffledMillennium)
+    }
+    if (value === 'major') {
+      variableArray.push(...shuffledMajor)
+    }
+    if (value === 'poa') {
+      variableArray.push(...shuffledPoa)
+    }
+    if (value === 'pao') {
+      variableArray.push(...shuffledPao)
+    }
+  }, [variableArray])
+
+  console.log(variableArray, 'varArr')
 
   const [longPress, setLongPress] = useState(false)
 
@@ -20,12 +47,12 @@ const useFlashCardsNext = () => {
   const nextPageFlashCards = useCallback(() => {
     setCurrentFlashCard((oldPage: number) => {
       let nextPage = oldPage + 1
-      if (nextPage > major?.length) {
+      if (nextPage > variableArray?.length) {
         nextPage = 1
       }
       return nextPage
     })
-  }, [major?.length, setCurrentFlashCard])
+  }, [variableArray?.length, setCurrentFlashCard])
 
   useEffect(() => {
     if (longPress) {
@@ -45,7 +72,7 @@ const useFlashCardsNext = () => {
       const timer = setInterval(() => {
         setCurrentFlashCard((oldPage: number) => {
           let nextPage = oldPage + 1
-          if (nextPage > major?.length) {
+          if (nextPage > variableArray?.length) {
             nextPage = 1
           }
           return nextPage
@@ -57,7 +84,7 @@ const useFlashCardsNext = () => {
     return () => {
       clearInterval(Number(intervalId.current))
     }
-  }, [nextPageFlashCards, longPress, autoSecondFlashCards, major.length, startTime])
+  }, [nextPageFlashCards, longPress, autoSecondFlashCards, variableArray.length, startTime])
 
   return {
     flashCardsNextButton: {

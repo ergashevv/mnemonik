@@ -34,9 +34,17 @@ const SettingsMillenniumHundreds = () => {
     })
   }
 
+  const removedEmptyMillenniumObjects = allMillennium.filter((el) => {
+    if (Object.keys(el.millenniumObraz).length !== 0) {
+      return true
+    }
+
+    return false
+  })
+
   const handleStorage = (e: any) => {
     e.preventDefault()
-    localStorage.setItem('allMillennium', JSON.stringify(allMillennium))
+    localStorage.setItem('allMillennium', JSON.stringify(removedEmptyMillenniumObjects))
     alert('Muvaffaqqiyatli yaratildi!')
     setTimeout(() => {
       navigate('/flash-cards/settings/main')

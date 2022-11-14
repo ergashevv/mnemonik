@@ -32,9 +32,17 @@ const SettingsMajor = () => {
     })
   }
 
+  const removedEmptyMajorObjects = allMajor.filter((el) => {
+    if (Object.keys(el.majorObraz).length !== 0) {
+      return true
+    }
+
+    return false
+  })
+
   const handleStorage = (e: any) => {
     e.preventDefault()
-    localStorage.setItem('allMajor', JSON.stringify(allMajor))
+    localStorage.setItem('allMajor', JSON.stringify(removedEmptyMajorObjects))
     alert('Muvaffaqqiyatli yaratildi!')
     setTimeout(() => {
       navigate(`/flash-cards/settings/main`)
@@ -65,7 +73,7 @@ const SettingsMajor = () => {
                     type='major'
                     id='major'
                     name='major'
-                    value={major[index].trim()}
+                    value={major[index]}
                     onChange={(e) => handleText(e, index)}
                   />
                 </div>

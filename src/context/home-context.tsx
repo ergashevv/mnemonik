@@ -1,10 +1,4 @@
-import {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useState
-} from 'react'
+import { createContext, ReactNode, useContext, useEffect, useState } from 'react'
 
 export interface IContext {
   numbers: string[]
@@ -36,12 +30,8 @@ export interface IContext {
 const HomeContext = createContext<IContext>({} as IContext)
 
 export const HomeContextProvider = ({ children }: { children: ReactNode }) => {
-  const [cursorW, setCursorW] = useState<string>(() =>
-    JSON.parse(localStorage.getItem('cursorW')!)
-  )
-  const [line, setLine] = useState<string>(() =>
-    JSON.parse(localStorage.getItem('line')!)
-  )
+  const [cursorW, setCursorW] = useState<string>(() => JSON.parse(localStorage.getItem('cursorW')!))
+  const [line, setLine] = useState<string>(() => JSON.parse(localStorage.getItem('line')!))
   const [navigation, setNavigation] = useState<string>(() =>
     JSON.parse(localStorage.getItem('navigation')!)
   )
@@ -127,7 +117,7 @@ export const HomeContextProvider = ({ children }: { children: ReactNode }) => {
     timerForRecall,
     setTimerForRecall,
     timerForAnswer,
-    setTimerForAnswer
+    setTimerForAnswer,
   }
 
   return <HomeContext.Provider value={value}>{children}</HomeContext.Provider>

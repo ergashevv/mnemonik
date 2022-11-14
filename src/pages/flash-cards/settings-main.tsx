@@ -36,8 +36,8 @@ const SettingsMain = () => {
     setAutoSecondFlashCards(+e.target.value)
   }
 
-  const handleNavigate = (e: any) => {
-    e.preventDefault()
+  const handleNavigate = () => {
+    // e.preventDefault()
 
     if (
       (allMajor && flashCardSections === 'major') ||
@@ -48,11 +48,10 @@ const SettingsMain = () => {
       navigate(`/flash-cards/${flashCardSections}/memorization`)
     } else {
       alert('Iltimos obraz yarating!')
-      setTimeout(() => {
-        navigate(`/flash-cards/settings/systems/${flashCardSections}`)
-      }, 1000)
+      navigate(`/flash-cards/settings/systems/${flashCardSections}`)
     }
 
+    window.location.reload()
     setCurrentFlashCard(1)
   }
 
