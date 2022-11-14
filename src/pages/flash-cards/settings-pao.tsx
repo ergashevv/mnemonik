@@ -62,13 +62,27 @@ const SettingsPAO = () => {
     })
   }
 
+  const removedEmptyPaoObjects = pao.filter((el) => {
+    if (
+      Object.keys(el.action).length !== 0 &&
+      Object.keys(el.object).length !== 0 &&
+      Object.keys(el.person).length !== 0
+    ) {
+      return true
+    }
+
+    return false
+  })
+
   const handleStorage = (e: any) => {
     e.preventDefault()
-    localStorage.setItem('pao', JSON.stringify(pao))
-    alert('Muvaffaqqiyatli yaratildi!')
-    setTimeout(() => {
+    localStorage.setItem('pao', JSON.stringify(removedEmptyPaoObjects))
+    if (removedEmptyPaoObjects.length === 0) {
+      alert('Qayta yarating')
+    } else {
+      alert('Muvaffaqqiyatli yaratildi!')
       navigate(`/flash-cards/settings/main`)
-    }, 1000)
+    }
   }
 
   return (

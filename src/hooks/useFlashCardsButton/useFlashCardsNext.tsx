@@ -9,7 +9,6 @@ const useFlashCardsNext = () => {
     setCurrentFlashCard,
     navigationFlashCards,
     autoSecondFlashCards,
-    // major,
     shuffledMajor,
     shuffledMillennium,
     shuffledPao,
@@ -20,25 +19,18 @@ const useFlashCardsNext = () => {
   const [value] = useState(() => JSON.parse(localStorage.getItem('value')!))
   const variableArray: any = []
 
-  // console.log(value, 'value')
-  // console.log(shuffledMillennium, 'shuffled')
-
-  useEffect(() => {
-    if (value === 'millennium') {
-      variableArray.push(...shuffledMillennium)
-    }
-    if (value === 'major') {
-      variableArray.push(...shuffledMajor)
-    }
-    if (value === 'poa') {
-      variableArray.push(...shuffledPoa)
-    }
-    if (value === 'pao') {
-      variableArray.push(...shuffledPao)
-    }
-  }, [variableArray])
-
-  console.log(variableArray, 'varArr')
+  if (value === 'millennium') {
+    variableArray.push(...shuffledMillennium)
+  }
+  if (value === 'major') {
+    variableArray.push(...shuffledMajor)
+  }
+  if (value === 'poa') {
+    variableArray.push(...shuffledPoa)
+  }
+  if (value === 'pao') {
+    variableArray.push(...shuffledPao)
+  }
 
   const [longPress, setLongPress] = useState(false)
 

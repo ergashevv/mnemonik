@@ -43,10 +43,12 @@ const SettingsMajor = () => {
   const handleStorage = (e: any) => {
     e.preventDefault()
     localStorage.setItem('allMajor', JSON.stringify(removedEmptyMajorObjects))
-    alert('Muvaffaqqiyatli yaratildi!')
-    setTimeout(() => {
+    if (removedEmptyMajorObjects.length === 0) {
+      alert('Qayta yarating')
+    } else {
+      alert('Muvaffaqqiyatli yaratildi!')
       navigate(`/flash-cards/settings/main`)
-    }, 1000)
+    }
   }
 
   return (

@@ -4,7 +4,29 @@ import { useFlashCardsContext } from '../../context/FlashCardsContext'
 const useFlashCardsNext = () => {
   // const [major] = useState(JSON.parse(localStorage.getItem('major')!))
 
-  const { setCurrentFlashCard, major } = useFlashCardsContext()
+  const {
+    setCurrentFlashCard,
+    shuffledPao,
+    shuffledPoa,
+    shuffledMajor,
+    shuffledMillennium,
+  } = useFlashCardsContext()
+
+  const [value] = useState(() => JSON.parse(localStorage.getItem('value')!))
+  const variableArray: any = []
+
+  if (value === 'millennium') {
+    variableArray.push(...shuffledMillennium)
+  }
+  if (value === 'major') {
+    variableArray.push(...shuffledMajor)
+  }
+  if (value === 'poa') {
+    variableArray.push(...shuffledPoa)
+  }
+  if (value === 'pao') {
+    variableArray.push(...shuffledPao)
+  }
 
   const [longPress, setLongPress] = useState(false)
 
@@ -14,11 +36,11 @@ const useFlashCardsNext = () => {
     setCurrentFlashCard((oldPage: number) => {
       let prevPage = oldPage - 1
       if (prevPage < 1) {
-        prevPage = major?.length
+        prevPage = variableArray?.length
       }
       return prevPage
     })
-  }, [major?.length, setCurrentFlashCard])
+  }, [variableArray?.length, setCurrentFlashCard])
 
   useEffect(() => {
     if (longPress) {

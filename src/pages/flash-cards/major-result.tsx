@@ -4,6 +4,10 @@ import './FlashCards.scss'
 const MajorResult = () => {
   const { timeMajor, shuffledMajor } = useFlashCardsContext()
 
+  const slicedTime = timeMajor.slice(0, shuffledMajor.length)
+
+  console.log(slicedTime, 'slicedTime')
+
   return (
     <div className='flashCards'>
       <div className='container'>
@@ -17,7 +21,7 @@ const MajorResult = () => {
             })}
           </div>
           <div className='flashCards-result__card-time'>
-            {timeMajor.map((time, index) => {
+            {slicedTime.map((time, index) => {
               return <div key={index}>{time.toFixed(2)} s</div>
             })}
           </div>

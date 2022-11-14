@@ -41,7 +41,7 @@ const MillenniumMemorize = () => {
       )
     }, 10)
     return () => clearInterval(Number(interval.current))
-  }, [])
+  }, [currentFlashCard, setTimeMillennium, interval])
 
   const firstPage = () => {
     setCurrentFlashCard(1)

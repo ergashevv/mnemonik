@@ -62,13 +62,23 @@ const SettingsPOA = () => {
     })
   }
 
+  const removedEmptyPoaObjects = poa.filter((el) => {
+    if (Object.keys(el.action).length !== 0 && Object.keys(el.object).length !== 0 && Object.keys(el.person).length !== 0) {
+      return true
+    }
+
+    return false
+  })
+
   const handleStorage = (e: any) => {
     e.preventDefault()
-    localStorage.setItem('poa', JSON.stringify(poa))
-    alert('Muvaffaqqiyatli yaratildi!')
-    setTimeout(() => {
+    localStorage.setItem('poa', JSON.stringify(removedEmptyPoaObjects))
+    if (removedEmptyPoaObjects.length === 0) {
+      alert('Qayta yarating')
+    } else {
+      alert('Muvaffaqqiyatli yaratildi!')
       navigate(`/flash-cards/settings/main`)
-    }, 1000)
+    }
   }
 
   return (

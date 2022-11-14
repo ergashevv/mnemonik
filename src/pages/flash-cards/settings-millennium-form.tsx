@@ -45,10 +45,12 @@ const SettingsMillenniumHundreds = () => {
   const handleStorage = (e: any) => {
     e.preventDefault()
     localStorage.setItem('allMillennium', JSON.stringify(removedEmptyMillenniumObjects))
-    alert('Muvaffaqqiyatli yaratildi!')
-    setTimeout(() => {
-      navigate('/flash-cards/settings/main')
-    }, 1000)
+    if (removedEmptyMillenniumObjects.length === 0) {
+      alert('Qayta yarating')
+    } else {
+      alert('Muvaffaqqiyatli yaratildi!')
+      navigate(`/flash-cards/settings/main`)
+    }
   }
 
   return (
