@@ -5,6 +5,11 @@ type StringSetter = (strings: string | ((strings: string) => string)) => void
 
 type NumberArraySetter = (numberArrays: number[] | ((numberArrays: number[]) => number[])) => void
 type StringArraySetter = (strings: string[] | ((strings: string[]) => string[])) => void
+
+interface IMajor {
+  majorNumber: number
+  majorObraz: string
+}
 interface IContext {
   currentFlashCard: number
   setCurrentFlashCard: NumberSetter
@@ -36,10 +41,6 @@ interface IContext {
   poaAction: string[]
   setPoaAction: StringArraySetter
 
-  majorNumbers: number[]
-  setMajorNumbers: NumberArraySetter
-  millenniumNumbers: number[]
-  setMillenniumNumbers: NumberArraySetter
   poaNumbers: number[]
   setPoaNumbers: NumberArraySetter
   paoNumbers: number[]
@@ -57,9 +58,7 @@ interface IContext {
   hundreds: string
   setHundreds: StringSetter
 
-  hundredNumbers: string
-
-  shuffledMajor: any
+  shuffledMajor: IMajor[]
   shuffledMillennium: any
   shuffledPao: any
   shuffledPoa: any
@@ -68,21 +67,8 @@ interface IContext {
 const FlashCardsContext = createContext<IContext>({} as IContext)
 
 export const FlashCardsContextProvider = ({ children }: { children: ReactNode }) => {
-  const hundredNumbers = JSON.parse(localStorage.getItem('hundreds')!)
-
   const [major, setMajor] = useState<string[]>(() => Array(100).fill(''))
-  const [majorNumbers, setMajorNumbers] = useState<number[]>(() =>
-    Array(100)
-      .fill(null)
-      .map((_, index) => index)
-  )
-
   const [millennium, setMillennium] = useState<string[]>(() => Array(1000).fill(''))
-  const [millenniumNumbers, setMillenniumNumbers] = useState<number[]>(() =>
-    Array(1000)
-      .fill(null)
-      .map((_, index) => index)
-  )
 
   const [poaPerson, setPoaPerson] = useState<string[]>(() => Array(100).fill(''))
   const [poaObject, setPoaObject] = useState<string[]>(() => Array(100).fill(''))
@@ -108,7 +94,9 @@ export const FlashCardsContextProvider = ({ children }: { children: ReactNode })
   const [timeMillennium, setTimeMillennium] = useState<number[]>(() => Array(100).fill(0))
   const [timePoa, setTimePoa] = useState<number[]>(() => Array(100).fill(0))
   const [timePao, setTimePao] = useState<number[]>(() => Array(100).fill(0))
-  const [autoSecondFlashCards, setAutoSecondFlashCards] = useState<number>(1)
+  const [autoSecondFlashCards, setAutoSecondFlashCards] = useState<number>(() =>
+    JSON.parse(localStorage.getItem('autoSecondFlashCards')!)
+  )
 
   const [navigationFlashCards, setNavigationFlashCards] = useState<string>(() =>
     JSON.parse(localStorage.getItem('navigationFlashCards')!)
@@ -120,16 +108,18 @@ export const FlashCardsContextProvider = ({ children }: { children: ReactNode })
   const [hundreds, setHundreds] = useState<string>(() =>
     JSON.parse(localStorage.getItem('hundreds')!)
   )
-  const [allMajor] = useState<string[]>(() => JSON.parse(localStorage.getItem('allMajor')!))
-  const [allMillennium] = useState<string[]>(() => JSON.parse(localStorage.getItem('allMillennium')!))
+
+  const [allMajor] = useState<IMajor[]>(() => JSON.parse(localStorage.getItem('allMajor')!))
+
+  const [allMillennium] = useState<string[]>(() =>
+    JSON.parse(localStorage.getItem('allMillennium')!)
+  )
   const [pao] = useState<string[]>(() => JSON.parse(localStorage.getItem('pao')!))
   const [poa] = useState<string[]>(() => JSON.parse(localStorage.getItem('poa')!))
 
-  // console.log(allMillennium, 'allMillennium')
-
   useEffect(() => {
     if (allMillennium !== null) {
-      allMillennium.slice(Number(hundredNumbers), Number(hundredNumbers) + 100)
+      allMillennium.slice(Number(hundreds), Number(hundreds) + 100)
     }
   }, [])
 
@@ -140,27 +130,29 @@ export const FlashCardsContextProvider = ({ children }: { children: ReactNode })
       .map(({ value }) => value)
   }
 
-  const shuffledMajor: string[] = useMemo(() => shuffle(allMajor), [])
-  const shuffledMillennium: string[] = useMemo(() => shuffle(allMillennium), [])
-  const shuffledPao: string[] = useMemo(() => shuffle(pao), [])
-  const shuffledPoa: string[] = useMemo(() => shuffle(poa), [])
+  // console.log(allMajor, 'allMajor')
 
-  // console.log(shuffledMillennium, 'sksjjlkds')
+  const shuffledMajor: any = useMemo(() => shuffle(allMajor), [])
+  const shuffledMillennium: any = useMemo(() => shuffle(allMillennium), [])
+  const shuffledPao: any = useMemo(() => shuffle(pao), [])
+  const shuffledPoa: any = useMemo(() => shuffle(poa), [])
+
+  // console.log(shuffledMajor, 'shuffledMajor')
 
   useEffect(() => {
-    if (!hundreds) {
+    if (hundreds.length === 0) {
       setHundreds('0')
     }
-    if (hundreds) {
+    if (hundreds.length > 0) {
       localStorage.setItem('hundreds', JSON.stringify(hundreds))
     }
   }, [hundreds])
 
   useEffect(() => {
-    if (!flashCardSections) {
+    if (flashCardSections.length === 0) {
       setFlashCardSections('major')
     }
-    if (flashCardSections) {
+    if (flashCardSections.length > 0) {
       localStorage.setItem('value', JSON.stringify(flashCardSections))
     }
   }, [flashCardSections])
@@ -173,6 +165,14 @@ export const FlashCardsContextProvider = ({ children }: { children: ReactNode })
       localStorage.removeItem('navigationFlashCards')
     }
   }, [navigationFlashCards])
+
+  useEffect(() => {
+    if (autoSecondFlashCards >= 0) {
+      localStorage.setItem('autoSecondFlashCards', JSON.stringify(autoSecondFlashCards))
+    } else {
+      localStorage.removeItem('autoSecondFlashCards')
+    }
+  })
 
   const value = {
     currentFlashCard,
@@ -189,10 +189,6 @@ export const FlashCardsContextProvider = ({ children }: { children: ReactNode })
     timePao,
     setTimePao,
 
-    majorNumbers,
-    setMajorNumbers,
-    millenniumNumbers,
-    setMillenniumNumbers,
     poaNumbers,
     setPoaNumbers,
     paoNumbers,
@@ -225,7 +221,6 @@ export const FlashCardsContextProvider = ({ children }: { children: ReactNode })
 
     hundreds,
     setHundreds,
-    hundredNumbers,
 
     shuffledMajor,
     shuffledMillennium,

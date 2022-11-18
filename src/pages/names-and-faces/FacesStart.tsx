@@ -63,7 +63,6 @@ const Start = () => {
     setMemorizationPeople(peopleWithUpdatedImages)
 
     navigate('/names-and-faces/recall')
-    window.location.reload()
     setCurrentPageFaces(1)
   }, [navigate, memorizationPeople, setCurrentPageFaces, setMemorizationPeople, setRecallPeople])
 

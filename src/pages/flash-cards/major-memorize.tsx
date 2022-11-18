@@ -20,6 +20,8 @@ const MajorMemorize = () => {
     shuffledMajor,
   } = useFlashCardsContext()
 
+  // console.log(shuffledMajor, 'shuffledMajor')
+
   const { startTime } = useHomeContext()
 
   const { flashCardsNextButton } = useFlashCardsNext()

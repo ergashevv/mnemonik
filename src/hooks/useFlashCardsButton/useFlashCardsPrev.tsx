@@ -2,8 +2,6 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { useFlashCardsContext } from '../../context/FlashCardsContext'
 
 const useFlashCardsNext = () => {
-  // const [major] = useState(JSON.parse(localStorage.getItem('major')!))
-
   const {
     setCurrentFlashCard,
     shuffledPao,
@@ -36,7 +34,7 @@ const useFlashCardsNext = () => {
     setCurrentFlashCard((oldPage: number) => {
       let prevPage = oldPage - 1
       if (prevPage < 1) {
-        prevPage = variableArray?.length
+        prevPage = 1
       }
       return prevPage
     })

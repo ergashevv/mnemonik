@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router'
 import BackIcon from '../../assets/images/icons/back-icon.svg'
 import { useFlashCardsContext } from '../../context/FlashCardsContext'
 import { flashCardsData } from '../../datas/flash-cards/FlashCardsData'
+import useScroll from '../../hooks/useScroll/useScroll'
 export interface AllPAO {
   paoNumber: number
   person: string
@@ -20,6 +21,8 @@ const SettingsPAO = () => {
     setPaoAction,
     paoNumbers,
   } = useFlashCardsContext()
+
+  const { scrollDown } = useScroll()
 
   const navigate = useNavigate()
 
@@ -88,6 +91,9 @@ const SettingsPAO = () => {
   return (
     <div className='settings'>
       <div className='container'>
+        <div className='down'>
+          <img src={BackIcon} alt='down' {...scrollDown} />
+        </div>
         <div className='settings-header'>
           <div className='settings-header__back'>
             <img src={BackIcon} alt='Back' onClick={handleBack} />

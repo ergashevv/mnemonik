@@ -3,8 +3,6 @@ import { useFlashCardsContext } from '../../context/FlashCardsContext'
 import { useHomeContext } from '../../context/home-context'
 
 const useFlashCardsNext = () => {
-  // const [major] = useState(JSON.parse(localStorage.getItem('major')!))
-
   const {
     setCurrentFlashCard,
     navigationFlashCards,
@@ -40,7 +38,7 @@ const useFlashCardsNext = () => {
     setCurrentFlashCard((oldPage: number) => {
       let nextPage = oldPage + 1
       if (nextPage > variableArray?.length) {
-        nextPage = 1
+        nextPage = variableArray.length
       }
       return nextPage
     })
@@ -65,7 +63,7 @@ const useFlashCardsNext = () => {
         setCurrentFlashCard((oldPage: number) => {
           let nextPage = oldPage + 1
           if (nextPage > variableArray?.length) {
-            nextPage = 1
+            nextPage = variableArray?.length
           }
           return nextPage
         })

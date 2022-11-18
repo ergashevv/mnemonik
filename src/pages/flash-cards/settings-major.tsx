@@ -2,14 +2,16 @@ import { ChangeEvent } from 'react'
 import { useNavigate } from 'react-router'
 import BackIcon from '../../assets/images/icons/back-icon.svg'
 import { useFlashCardsContext } from '../../context/FlashCardsContext'
-
-export interface AllMajor {
+import useScroll from '../../hooks/useScroll/useScroll'
+export interface IMajor {
   majorNumber: number
   majorObraz: string
 }
 
 const SettingsMajor = () => {
-  const { major, setMajor, majorNumbers } = useFlashCardsContext()
+  const { major, setMajor } = useFlashCardsContext()
+
+  const { scrollDown } = useScroll()
 
   const navigate = useNavigate()
 
@@ -23,17 +25,18 @@ const SettingsMajor = () => {
     )
   }
 
-  const allMajor: AllMajor[] = []
+  // console.log(major)
+  const allMajor: IMajor[] = []
 
-  for (let i = 0; i < major.length; i++) {
+  major.forEach((el: string, i: number) =>
     allMajor.push({
-      majorNumber: majorNumbers[i],
-      majorObraz: major[i],
+      majorNumber: i,
+      majorObraz: el,
     })
-  }
+  )
 
-  const removedEmptyMajorObjects = allMajor.filter((el) => {
-    if (Object.keys(el.majorObraz).length !== 0) {
+  const removedEmptyObjects = allMajor.filter((el) => {
+    if (Object.keys(el.majorObraz).length) {
       return true
     }
 
@@ -42,8 +45,8 @@ const SettingsMajor = () => {
 
   const handleStorage = (e: any) => {
     e.preventDefault()
-    localStorage.setItem('allMajor', JSON.stringify(removedEmptyMajorObjects))
-    if (removedEmptyMajorObjects.length === 0) {
+    localStorage.setItem('allMajor', JSON.stringify(removedEmptyObjects))
+    if (removedEmptyObjects.length === 0) {
       alert('Qayta yarating')
     } else {
       alert('Muvaffaqqiyatli yaratildi!')
@@ -54,9 +57,9 @@ const SettingsMajor = () => {
   return (
     <div className='settings'>
       <div className='container'>
-        {/* <div className='down'>
-          <img src={BackIcon} alt='down' />
-        </div> */}
+        <div className='down'>
+          <img src={BackIcon} alt='down' {...scrollDown} />
+        </div>
         <div className='settings-header'>
           <div className='settings-header__back'>
             <img src={BackIcon} alt='Back' onClick={handleBack} />

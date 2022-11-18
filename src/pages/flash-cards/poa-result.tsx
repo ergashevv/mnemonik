@@ -3,6 +3,7 @@ import './FlashCards.scss'
 
 const PoaResult = () => {
   const { timePoa, shuffledPoa } = useFlashCardsContext()
+  const slicedTime = timePoa.slice(0, shuffledPoa.length)
 
   return (
     <div className='flashCards'>
@@ -15,7 +16,7 @@ const PoaResult = () => {
             })}
           </div>
           <div className='flashCards-result__card-time'>
-            {timePoa.map((time, index) => {
+            {slicedTime.map((time, index) => {
               return <div key={index}>{time.toFixed(2)} s</div>
             })}
           </div>

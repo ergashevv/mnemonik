@@ -36,14 +36,18 @@ const SettingsMain = () => {
     setAutoSecondFlashCards(+e.target.value)
   }
 
-  const handleNavigate = () => {
-    // e.preventDefault()
+  console.log(allMillennium[0].id, 'allMillennium')
+  console.log(+hundreds, 'hundreds')
 
+  const handleNavigate = (e: any) => {
+    e.preventDefault()
     if (
-      (allMajor && flashCardSections === 'major') ||
-      (allMillennium && flashCardSections === 'millennium') ||
-      (poa && flashCardSections === 'poa') ||
-      (pao && flashCardSections === 'pao')
+      (Boolean(allMajor) && flashCardSections === 'major') ||
+      (Boolean(allMillennium) &&
+        allMillennium[0].id === +hundreds &&
+        flashCardSections === 'millennium') ||
+      (Boolean(poa) && flashCardSections === 'poa') ||
+      (Boolean(pao) && flashCardSections === 'pao')
     ) {
       navigate(`/flash-cards/${flashCardSections}/memorization`)
     } else {
@@ -72,7 +76,7 @@ const SettingsMain = () => {
           </div>
           <div className='settings-header__title'>Flash Cards</div>
         </div>
-        <form className='settings-form'>
+        <form className='settings-form' onSubmit={handleNavigate}>
           <SelectStartTime time={5} />
           <label>Tizim tanlash</label>
           <select
@@ -130,7 +134,7 @@ const SettingsMain = () => {
               />
             </div>
           ) : null}
-          <button onClick={handleNavigate}>Boshlash</button>
+          <button>Boshlash</button>
         </form>
       </div>
     </div>

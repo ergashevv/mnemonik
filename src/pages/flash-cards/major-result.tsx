@@ -6,14 +6,12 @@ const MajorResult = () => {
 
   const slicedTime = timeMajor.slice(0, shuffledMajor.length)
 
-  console.log(slicedTime, 'slicedTime')
-
   return (
     <div className='flashCards'>
       <div className='container'>
         <div className='flashCards-result'>
           <div className='flashCards-result__card-numbers'>
-            {shuffledMajor.map((el: any, index: number) => {
+            {shuffledMajor?.map((el: any, index: number) => {
               const { majorNumber } = el
               return (
                 <div key={index}>{majorNumber < 10 ? `0${majorNumber}` : majorNumber} - card</div>

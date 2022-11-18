@@ -55,7 +55,7 @@ const WordsStart = () => {
           </div>
           <div className='settings-header__title'>So'zlar</div>
         </div>
-        <form className='settings-form'>
+        <form className='settings-form' onSubmit={handleNavigate}>
           <SelectStartTime time={5} />
 
           <label>Select cursor numbers</label>
@@ -82,7 +82,7 @@ const WordsStart = () => {
               <input value={autoSecondWords} onChange={handleAutoSecond} max={50} type='range' />
             </div>
           ) : null}
-          <button onClick={handleNavigate}>Boshlash</button>
+          <button>Boshlash</button>
         </form>
       </div>
     </div>

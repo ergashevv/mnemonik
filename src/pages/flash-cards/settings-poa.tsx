@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router'
 import BackIcon from '../../assets/images/icons/back-icon.svg'
 import { useFlashCardsContext } from '../../context/FlashCardsContext'
 import { flashCardsData } from '../../datas/flash-cards/FlashCardsData'
+import useScroll from '../../hooks/useScroll/useScroll'
 export interface POA {
   poaNumber: number
   person: string
@@ -20,6 +21,8 @@ const SettingsPOA = () => {
     setPoaAction,
     poaNumbers,
   } = useFlashCardsContext()
+
+  const { scrollDown } = useScroll()
 
   const navigate = useNavigate()
 
@@ -63,7 +66,11 @@ const SettingsPOA = () => {
   }
 
   const removedEmptyPoaObjects = poa.filter((el) => {
-    if (Object.keys(el.action).length !== 0 && Object.keys(el.object).length !== 0 && Object.keys(el.person).length !== 0) {
+    if (
+      Object.keys(el.action).length !== 0 &&
+      Object.keys(el.object).length !== 0 &&
+      Object.keys(el.person).length !== 0
+    ) {
       return true
     }
 
@@ -84,6 +91,9 @@ const SettingsPOA = () => {
   return (
     <div className='settings'>
       <div className='container'>
+        <div className='down'>
+          <img src={BackIcon} alt='down' {...scrollDown} />
+        </div>
         <div className='settings-header'>
           <div className='settings-header__back'>
             <img src={BackIcon} alt='Back' onClick={handleBack} />

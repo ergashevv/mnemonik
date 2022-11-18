@@ -6,6 +6,7 @@ import {
   useMemo,
   useState
 } from 'react'
+
 import data from '../datas/words/WordsData'
 
 type StringSetter = (
