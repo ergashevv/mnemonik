@@ -134,8 +134,7 @@ export const FlashCardsContextProvider = ({ children }: { children: ReactNode })
   }
 
   function shuffle<T>(result: T[]): T[] {
-    return result
-      .map((value) => ({ value, sort: Math.random() }))
+    return result?.map((value) => ({ value, sort: Math.random() }))
       .sort((a: any, b: any) => a.sort - b.sort)
       .map(({ value }) => value)
   }

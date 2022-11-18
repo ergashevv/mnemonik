@@ -91,8 +91,7 @@ export const FacesContextProvider = ({ children }: { children: ReactNode }): JSX
   let femaleLastNames: PersonWithLastName[] = []
 
   function shuffle<T>(result: T[]): T[] {
-    return result
-      .map((value) => ({ value, sort: Math.random() }))
+    return result?.map((value) => ({ value, sort: Math.random() }))
       .sort((a: any, b: any) => a.sort - b.sort)
       .map(({ value }) => value)
   }

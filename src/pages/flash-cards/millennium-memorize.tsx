@@ -17,7 +17,7 @@ const MillenniumMemorize = () => {
     currentFlashCard,
     setCurrentFlashCard,
     navigationFlashCards,
-    shuffledMillennium
+    shuffledMillennium,
   } = useFlashCardsContext()
 
   const { startTime } = useHomeContext()
@@ -49,6 +49,7 @@ const MillenniumMemorize = () => {
   }
 
   const handleNavigate = () => {
+    location.reload()
     navigate('/flash-cards/millennium/results')
   }
 
@@ -108,12 +109,7 @@ const MillenniumMemorize = () => {
                   })}
                 </div>
                 <div className='indicator'>
-                  <span>{currentFlashCard}</span>/
-                  <span>
-                    {
-                      shuffledMillennium?.length
-                    }
-                  </span>
+                  <span>{currentFlashCard}</span>/<span>{shuffledMillennium?.length}</span>
                 </div>
               </div>
               <div className='control-buttons'>

@@ -74,7 +74,7 @@ const NumbersGame = () => {
                 .map((_, index) => (
                   <>
                     {tab === index && (
-                      <div className={'cards'}>
+                      <div key={index} className={'cards'}>
                         {randomNumbers.slice(dynamic * tab, dynamic * (tab + 1)).map((i, k) => (
                           <div
                             onClick={() => handleChangeCursor(k)}

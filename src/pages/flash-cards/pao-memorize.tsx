@@ -17,7 +17,7 @@ const PaoMemorize = () => {
     currentFlashCard,
     setCurrentFlashCard,
     navigationFlashCards,
-    shuffledPao
+    shuffledPao,
   } = useFlashCardsContext()
 
   const { startTime } = useHomeContext()
@@ -47,6 +47,7 @@ const PaoMemorize = () => {
   }
 
   const handleNavigate = () => {
+    location.reload()
     navigate('/flash-cards/pao/results')
   }
 
