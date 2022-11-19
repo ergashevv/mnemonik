@@ -17,7 +17,7 @@ const PaoMemorize = () => {
     currentFlashCard,
     setCurrentFlashCard,
     navigationFlashCards,
-    shuffledPao
+    shuffledPao,
   } = useFlashCardsContext()
 
   const { startTime } = useHomeContext()
@@ -91,15 +91,10 @@ const PaoMemorize = () => {
                           }
                         >
                           <div className='front-face'>
-                            <div>
-                              P. <br /> A. <br /> O.
-                            </div>
-                            <div>
-                              {person}
-                              <br />
-                              {action}
-                              <br />
-                              {object}
+                            <div className='card-title'>
+                              <p>P. {person}</p>
+                              <p>A. {action}</p>
+                              <p>O. {object}</p>
                             </div>
                           </div>
                           <div className='back-face'>
@@ -118,21 +113,21 @@ const PaoMemorize = () => {
               </div>
               <div className='control-buttons'>
                 <button
-                  style={{ pointerEvents: navigationFlashCards === 'auto' ? 'none' : 'all' }}
+                  style={{ display: navigationFlashCards === 'auto' ? 'none' : 'block' }}
                   {...flashCardsPrevButton}
                   className='prev-button'
                 >
                   <img src={ArrowLeft} alt='ArrowLeft' />
                 </button>
                 <button
-                  style={{ pointerEvents: navigationFlashCards === 'auto' ? 'none' : 'all' }}
+                  style={{ display: navigationFlashCards === 'auto' ? 'none' : 'block' }}
                   onClick={firstPage}
                   className='first-button'
                 >
                   <img src={ChevronsLeft} alt='First Page' />
                 </button>
                 <button
-                  style={{ pointerEvents: navigationFlashCards === 'auto' ? 'none' : 'all' }}
+                  style={{ display: navigationFlashCards === 'auto' ? 'none' : 'block' }}
                   {...flashCardsNextButton}
                   className='next-button'
                 >

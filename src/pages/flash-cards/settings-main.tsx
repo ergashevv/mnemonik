@@ -36,9 +36,6 @@ const SettingsMain = () => {
     setAutoSecondFlashCards(+e.target.value)
   }
 
-  console.log(allMillennium[0].id, 'allMillennium')
-  console.log(+hundreds, 'hundreds')
-
   const handleNavigate = (e: any) => {
     e.preventDefault()
     if (

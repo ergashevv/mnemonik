@@ -25,7 +25,6 @@ const SettingsMajor = () => {
     )
   }
 
-  // console.log(major)
   const allMajor: IMajor[] = []
 
   major.forEach((el: string, i: number) =>

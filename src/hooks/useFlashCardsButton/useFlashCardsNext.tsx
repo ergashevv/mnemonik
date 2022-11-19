@@ -74,7 +74,7 @@ const useFlashCardsNext = () => {
     return () => {
       clearInterval(Number(intervalId.current))
     }
-  }, [nextPageFlashCards, longPress, autoSecondFlashCards, variableArray.length, startTime])
+  }, [nextPageFlashCards, longPress, autoSecondFlashCards, variableArray?.length, startTime])
 
   return {
     flashCardsNextButton: {

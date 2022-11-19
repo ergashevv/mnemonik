@@ -36,8 +36,6 @@ const SettingsMillenniumHundreds = () => {
     })
   })
 
-  console.log(allMillennium, 'allMillennium')
-
   const removedEmptyMillenniumObjects = allMillennium.filter((el) => {
     if (Object.keys(el.millenniumObraz).length !== 0) {
       return true

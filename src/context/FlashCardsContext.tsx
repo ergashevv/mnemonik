@@ -130,29 +130,27 @@ export const FlashCardsContextProvider = ({ children }: { children: ReactNode })
       .map(({ value }) => value)
   }
 
-  // console.log(allMajor, 'allMajor')
 
   const shuffledMajor: any = useMemo(() => shuffle(allMajor), [])
   const shuffledMillennium: any = useMemo(() => shuffle(allMillennium), [])
   const shuffledPao: any = useMemo(() => shuffle(pao), [])
   const shuffledPoa: any = useMemo(() => shuffle(poa), [])
 
-  // console.log(shuffledMajor, 'shuffledMajor')
 
   useEffect(() => {
-    if (hundreds.length === 0) {
+    if (!hundreds) {
       setHundreds('0')
     }
-    if (hundreds.length > 0) {
+    if (hundreds) {
       localStorage.setItem('hundreds', JSON.stringify(hundreds))
     }
   }, [hundreds])
 
   useEffect(() => {
-    if (flashCardSections.length === 0) {
+    if (!flashCardSections) {
       setFlashCardSections('major')
     }
-    if (flashCardSections.length > 0) {
+    if (flashCardSections) {
       localStorage.setItem('value', JSON.stringify(flashCardSections))
     }
   }, [flashCardSections])

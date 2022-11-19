@@ -43,7 +43,6 @@ const CardGame = () => {
       setCursor(cursor - parsedCursorW)
     }
   }
-  // console.log(cursor)
 
   return (
     <>
