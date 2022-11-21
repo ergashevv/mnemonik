@@ -35,24 +35,23 @@ const SettingsMain = () => {
   const handleAutoSecond = (e: ChangeEvent<HTMLInputElement>) => {
     setAutoSecondFlashCards(+e.target.value)
   }
-
   const handleNavigate = (e: any) => {
     e.preventDefault()
-
     if (
-      (allMajor && flashCardSections === 'major') ||
-      (allMillennium && flashCardSections === 'millennium') ||
-      (poa && flashCardSections === 'poa') ||
-      (pao && flashCardSections === 'pao')
+      (Boolean(allMajor) && flashCardSections === 'major') ||
+      (Boolean(allMillennium) &&
+        allMillennium[0].id === +hundreds &&
+        flashCardSections === 'millennium') ||
+      (Boolean(poa) && flashCardSections === 'poa') ||
+      (Boolean(pao) && flashCardSections === 'pao')
     ) {
       navigate(`/flash-cards/${flashCardSections}/memorization`)
     } else {
       alert('Iltimos obraz yarating!')
-      setTimeout(() => {
-        navigate(`/flash-cards/settings/systems/${flashCardSections}`)
-      }, 1000)
+      navigate(`/flash-cards/settings/systems/${flashCardSections}`)
     }
 
+    window.location.reload()
     setCurrentFlashCard(1)
   }
 
@@ -73,7 +72,7 @@ const SettingsMain = () => {
           </div>
           <div className='settings-header__title'>Flash Cards</div>
         </div>
-        <form className='settings-form'>
+        <form className='settings-form' onSubmit={handleNavigate}>
           <SelectStartTime time={5} />
           <label>Tizim tanlash</label>
           <select
@@ -131,7 +130,7 @@ const SettingsMain = () => {
               />
             </div>
           ) : null}
-          <button onClick={handleNavigate}>Boshlash</button>
+          <button>Boshlash</button>
         </form>
       </div>
     </div>

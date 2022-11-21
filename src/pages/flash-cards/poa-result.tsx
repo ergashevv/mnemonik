@@ -3,6 +3,7 @@ import './FlashCards.scss'
 
 const PoaResult = () => {
   const { timePoa, shuffledPoa } = useFlashCardsContext()
+  const slicedTime = timePoa.slice(0, shuffledPoa.length)
 
   return (
     <div className='flashCards'>
@@ -11,12 +12,12 @@ const PoaResult = () => {
           <div className='flashCards-result__card-numbers'>
             {shuffledPoa.map((el: any, index: number) => {
               const { poaNumber } = el
-              return <div key={index}>{poaNumber < 10 ? `0${index}` : poaNumber}- card</div>
+              return <div key={index}>{poaNumber < 10 ? `0${index}` : poaNumber} - card</div>
             })}
           </div>
           <div className='flashCards-result__card-time'>
-            {timePoa.map((time, index) => {
-              return <div key={index}>{time.toFixed(2)} s time spent</div>
+            {slicedTime.map((time, index) => {
+              return <div key={index}>{time.toFixed(2)} s</div>
             })}
           </div>
         </div>

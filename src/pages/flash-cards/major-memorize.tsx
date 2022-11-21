@@ -20,6 +20,7 @@ const MajorMemorize = () => {
     shuffledMajor,
   } = useFlashCardsContext()
 
+
   const { startTime } = useHomeContext()
 
   const { flashCardsNextButton } = useFlashCardsNext()
@@ -40,7 +41,7 @@ const MajorMemorize = () => {
     }, 10)
 
     return () => clearInterval(Number(interval.current))
-  }, [setTimeMajor, currentFlashCard, timeMajor, startTime])
+  }, [setTimeMajor, currentFlashCard, startTime])
 
   const firstPage = () => {
     setCurrentFlashCard(1)

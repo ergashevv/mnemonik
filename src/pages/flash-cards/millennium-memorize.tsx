@@ -18,6 +18,7 @@ const MillenniumMemorize = () => {
     setCurrentFlashCard,
     navigationFlashCards,
     shuffledMillennium,
+    hundreds
   } = useFlashCardsContext()
 
   const { startTime } = useHomeContext()
@@ -27,8 +28,6 @@ const MillenniumMemorize = () => {
 
   const [flipCards, setFlipCards] = useState(() => Array(100).fill(false))
   const navigate = useNavigate()
-
-  const hundredNumbers = JSON.parse(localStorage.getItem('hundreds')!)
 
   const interval = useRef<ReturnType<typeof setInterval>>()
 
@@ -40,9 +39,8 @@ const MillenniumMemorize = () => {
         numbers.map((number, index) => (currentFlashCard - 1 === index ? number + 0.01 : number))
       )
     }, 10)
-
     return () => clearInterval(Number(interval.current))
-  }, [setTimeMillennium, currentFlashCard, timeMillennium, startTime])
+  }, [currentFlashCard, setTimeMillennium, interval])
 
   const firstPage = () => {
     setCurrentFlashCard(1)
@@ -83,7 +81,7 @@ const MillenniumMemorize = () => {
                     if (index === currentFlashCard - 1) {
                       return (
                         <article
-                          key={index + Number(hundredNumbers)}
+                          key={index + Number(hundreds)}
                           style={{ transform: flipCards[index] && 'rotateY(180deg)' }}
                           onClick={() =>
                             setFlipCards((cards) =>

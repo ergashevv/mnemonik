@@ -18,7 +18,6 @@ const Result = () => {
     })
     return count
   }, [dynum, randomNumbers, result, tab])
-  console.log(count)
   return (
     <div className='container'>
       <span>Umumiy {randomNumbers.length}</span>

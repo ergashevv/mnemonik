@@ -133,7 +133,7 @@ export const FacesContextProvider = ({ children }: { children: ReactNode }): JSX
   }
 
   const memorizationShuffle = useMemo(() => shuffle(allPeople), [])
-  const recallShuffle = useMemo(() => shuffle(allPeople), [])
+  const recallShuffle = useMemo(() => shuffle(memorizationShuffle), [])
 
   // used in answers section
   for (let i = 0; i < recallPeople?.length; i++) {

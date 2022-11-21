@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router'
 import BackIcon from '../../assets/images/icons/back-icon.svg'
 import { useFlashCardsContext } from '../../context/FlashCardsContext'
 import { flashCardsData } from '../../datas/flash-cards/FlashCardsData'
+import useScroll from '../../hooks/useScroll/useScroll'
 export interface AllPAO {
   paoNumber: number
   person: string
@@ -20,6 +21,8 @@ const SettingsPAO = () => {
     setPaoAction,
     paoNumbers,
   } = useFlashCardsContext()
+
+  const { scrollDown } = useScroll()
 
   const navigate = useNavigate()
 
@@ -62,18 +65,35 @@ const SettingsPAO = () => {
     })
   }
 
+  const removedEmptyPaoObjects = pao.filter((el) => {
+    if (
+      Object.keys(el.action).length !== 0 &&
+      Object.keys(el.object).length !== 0 &&
+      Object.keys(el.person).length !== 0
+    ) {
+      return true
+    }
+
+    return false
+  })
+
   const handleStorage = (e: any) => {
     e.preventDefault()
-    localStorage.setItem('pao', JSON.stringify(pao))
-    alert('Muvaffaqqiyatli yaratildi!')
-    setTimeout(() => {
+    localStorage.setItem('pao', JSON.stringify(removedEmptyPaoObjects))
+    if (removedEmptyPaoObjects.length === 0) {
+      alert('Qayta yarating')
+    } else {
+      alert('Muvaffaqqiyatli yaratildi!')
       navigate(`/flash-cards/settings/main`)
-    }, 1000)
+    }
   }
 
   return (
     <div className='settings'>
       <div className='container'>
+        <div className='down'>
+          <img src={BackIcon} alt='down' {...scrollDown} />
+        </div>
         <div className='settings-header'>
           <div className='settings-header__back'>
             <img src={BackIcon} alt='Back' onClick={handleBack} />

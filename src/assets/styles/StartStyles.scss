@@ -17,9 +17,11 @@
         bottom: 1rem;
         right: 1rem;
         background-color: var(--primary-color);
+        border-radius: 50%;
 
         img {
             transform: rotate(270deg);
+            padding: .5rem;
         }
     }
 

@@ -32,7 +32,7 @@
         "no-trailing-spaces": "off",
         "prefer-const": "off",
         "eol-last": "off",
-        "react/prop-types": "off",
+        "react/prop-types": "off",   
         "react/jsx-key": "off",
         "indent": "off",
         "quotes": "off",
