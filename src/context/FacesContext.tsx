@@ -91,14 +91,12 @@ export const FacesContextProvider = ({ children }: { children: ReactNode }): JSX
   let femaleLastNames: PersonWithLastName[] = []
 
   function shuffle<T>(result: T[]): T[] {
-    return result?.map((value) => ({ value, sort: Math.random() }))
-      .sort((a: any, b: any) => a.sort - b.sort)
-      .map(({ value }) => value)
+    return result?.sort(() => Math.random() - 0.5)
   }
 
   const shuffledImages = useMemo(() => shuffle(imagesData).slice(0, 50), [])
 
-  for (let i = 0; i < shuffledImages.length; i++) {
+  for (let i = 0; i < shuffledImages?.length; i++) {
     if (shuffledImages[i].gender === 'male') {
       maleFirstNames = firstNameData.filter((i) => i.gender === 'male')
       maleLastNames = lastNameData.filter((i) => i.gender === 'male')
@@ -108,11 +106,11 @@ export const FacesContextProvider = ({ children }: { children: ReactNode }): JSX
     }
 
     const randomIndexOfFirstNames = Math.floor(
-      Math.random() * (maleFirstNames.length | femaleFirstNames.length)
+      Math.random() * (maleFirstNames?.length | femaleFirstNames?.length)
     )
 
     const randomIndexOfLastNames = Math.floor(
-      Math.random() * (maleLastNames.length | femaleLastNames.length)
+      Math.random() * (maleLastNames?.length | femaleLastNames?.length)
     )
 
     if (shuffledImages[i].gender === 'male') {
@@ -132,8 +130,17 @@ export const FacesContextProvider = ({ children }: { children: ReactNode }): JSX
     }
   }
 
-  const memorizationShuffle = useMemo(() => shuffle(allPeople), [])
-  const recallShuffle = useMemo(() => shuffle(memorizationShuffle), [])
+  const memorizationShuffle = shuffle(allPeople)
+
+  const recallShuffle = shuffle(memorizationShuffle)
+  
+  console.log(allPeople, 'allPeople')
+  console.log(recallPeople, 'recallPeopls')
+
+  useEffect(() => {
+    setMemorizationPeople(memorizationShuffle)
+    setRecallPeople(recallShuffle)
+  }, [])
 
   // used in answers section
   for (let i = 0; i < recallPeople?.length; i++) {
@@ -143,11 +150,6 @@ export const FacesContextProvider = ({ children }: { children: ReactNode }): JSX
       lastName: lastNames[i]?.trim(),
     })
   }
-
-  useEffect(() => {
-    setMemorizationPeople(memorizationShuffle)
-    setRecallPeople(recallShuffle)
-  }, [])
 
   const value = {
     memorizationPeople,

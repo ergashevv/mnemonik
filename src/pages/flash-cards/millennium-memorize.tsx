@@ -18,7 +18,7 @@ const MillenniumMemorize = () => {
     setCurrentFlashCard,
     navigationFlashCards,
     shuffledMillennium,
-    hundreds
+    hundreds,
   } = useFlashCardsContext()
 
   const { startTime } = useHomeContext()
@@ -112,21 +112,21 @@ const MillenniumMemorize = () => {
               </div>
               <div className='control-buttons'>
                 <button
-                  style={{ pointerEvents: navigationFlashCards === 'auto' ? 'none' : 'all' }}
+                  style={{ display: navigationFlashCards === 'auto' ? 'none' : 'block' }}
                   {...flashCardsPrevButton}
                   className='prev-button'
                 >
                   <img src={ArrowLeft} alt='ArrowLeft' />
                 </button>
                 <button
-                  style={{ pointerEvents: navigationFlashCards === 'auto' ? 'none' : 'all' }}
+                  style={{ display: navigationFlashCards === 'auto' ? 'none' : 'block' }}
                   onClick={firstPage}
                   className='first-button'
                 >
                   <img src={ChevronsLeft} alt='First Page' />
                 </button>
                 <button
-                  style={{ pointerEvents: navigationFlashCards === 'auto' ? 'none' : 'all' }}
+                  style={{ display: navigationFlashCards === 'auto' ? 'none' : 'block' }}
                   {...flashCardsNextButton}
                   className='next-button'
                 >

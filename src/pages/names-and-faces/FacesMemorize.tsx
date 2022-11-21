@@ -78,21 +78,21 @@ const Recall = () => {
               </div>
               <div className='control-buttons'>
                 <button
-                  style={{ pointerEvents: navigationFaces === 'auto' ? 'none' : 'all' }}
+                  style={{ display: navigationFaces === 'auto' ? 'none' : 'all' }}
                   {...facesPrevButton}
                   className='prev-button'
                 >
                   <img src={ArrowLeft} alt='ArrowLeft' />
                 </button>
                 <button
-                  style={{ pointerEvents: navigationFaces === 'auto' ? 'none' : 'all' }}
+                  style={{ display: navigationFaces === 'auto' ? 'none' : 'all' }}
                   onClick={firstPage}
                   className='first-button'
                 >
                   <img src={ChevronsLeft} alt='First Page' />
                 </button>
                 <button
-                  style={{ pointerEvents: navigationFaces === 'auto' ? 'none' : 'all' }}
+                  style={{ display: navigationFaces === 'auto' ? 'none' : 'all' }}
                   {...facesNextButton}
                   className='next-button'
                 >
