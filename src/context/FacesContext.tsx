@@ -133,14 +133,14 @@ export const FacesContextProvider = ({ children }: { children: ReactNode }): JSX
   const memorizationShuffle = shuffle(allPeople)
 
   const recallShuffle = shuffle(memorizationShuffle)
-  
+
   console.log(allPeople, 'allPeople')
   console.log(recallPeople, 'recallPeopls')
 
   useEffect(() => {
-    setMemorizationPeople(memorizationShuffle)
+    setMemorizationPeople(shuffle(memorizationShuffle))
     setRecallPeople(recallShuffle)
-  }, [])
+  }, [setMemorizationPeople])
 
   // used in answers section
   for (let i = 0; i < recallPeople?.length; i++) {
