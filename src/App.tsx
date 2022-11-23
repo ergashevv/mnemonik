@@ -5,10 +5,10 @@ import './assets/styles/customize.scss'
 import './assets/styles/StartStyles.scss'
 import CardsLayout from './layouts/cards'
 import DatesLayout from './layouts/dates'
-import FlashCardLayout from './layouts/flash-cards'
-import NamesAndFaceLayout from './layouts/nf'
+import FlashCardLayout from './layouts/flash-cards-layout'
+import NamesAndFaceLayout from './layouts/faces-layout'
 import NumberLayout from './layouts/numbers'
-import WordsLayout from './layouts/words'
+import WordsLayout from './layouts/words-layout'
 import HomePage from './pages/home/home'
 
 function App() {
