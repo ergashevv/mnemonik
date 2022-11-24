@@ -26,7 +26,8 @@ const WordsSettings = () => {
     setAutoSecondWords(+e.target.value)
   }
 
-  const handleNavigate = () => {
+  const handleNavigate = (e: any) => {
+    e.preventDefault()
     navigate('/words/memorization')
     setHighlightedWords(0)
     setCurrentPageWords(1)

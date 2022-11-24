@@ -15,7 +15,8 @@ const MillenniumSettingsHundreds = () => {
     navigate('/flash-cards/settings/systems')
   }
 
-  const handleNavigate = () => {
+  const handleNavigate = (e: any) => {
+    e.preventDefault()
     navigate('/flash-cards/settings/systems/millennium/hundreds')
   }
 
@@ -28,7 +29,7 @@ const MillenniumSettingsHundreds = () => {
           </div>
           <div className='settings-header__title'>Millennium Hundreds</div>
         </div>
-        <form className='settings-form'>
+        <form className='settings-form' onSubmit={handleNavigate}>
           <label>Yuzliklar tanlash</label>
           <select onChange={handleChange} defaultValue={hundreds}>
             <option value='0'>000-099</option>
@@ -42,7 +43,7 @@ const MillenniumSettingsHundreds = () => {
             <option value='800'>800-899</option>
             <option value='900'>900-999</option>
           </select>
-          <button onClick={handleNavigate}>Yaratish</button>
+          <button>Yaratish</button>
         </form>
       </div>
     </div>

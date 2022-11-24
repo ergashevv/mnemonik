@@ -28,9 +28,6 @@ const useWordsPrev = () => {
     }
   }, [highlightedWords, currentWords.length, cursorWidth, setHighlightedWords])
 
-  // console.log(currentWords, 'currentWords')
-  // console.log(highlightedWords, 'highlightedWords')
-
   const prevHighlightedWords = useCallback(() => {
     setHighlightedWords((oldWords) => oldWords - cursorWidth)
 
