@@ -12,7 +12,8 @@ const SystemSettings = () => {
     setFlashCardSections(e.target.value)
   }
 
-  const handleNavigate = () => {
+  const handleNavigate = (e: any) => {
+    e.preventDefault()
     navigate(`/flash-cards/settings/systems/${flashCardSections}`)
   }
 
@@ -29,7 +30,7 @@ const SystemSettings = () => {
           </div>
           <div className='settings-header__title'>Tizim Yaratish</div>
         </div>
-        <form className='settings-form'>
+        <form className='settings-form' onSubmit={handleNavigate}>
           <label>Tizim sozlash</label>
           <select onChange={handleChange} defaultValue={flashCardSections}>
             <option value='major'>Major</option>
@@ -37,7 +38,7 @@ const SystemSettings = () => {
             <option value='poa'>POA</option>
             <option value='pao'>PAO</option>
           </select>
-          <button onClick={handleNavigate}>Tizim yaratish</button>
+          <button>Tizim yaratish</button>
         </form>
       </div>
     </div>

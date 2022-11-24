@@ -32,15 +32,16 @@ const MajorMemorization = () => {
 
   useEffect(() => {
     if (interval.current != null) clearInterval(interval.current)
-
-    interval.current = setInterval(() => {
-      setTimeMajor((numbers) =>
-        numbers.map((number, index) => (currentFlashCard - 1 === index ? number + 0.01 : number))
-      )
-    }, 10)
+    if (Number(startTime) < 1) {
+      interval.current = setInterval(() => {
+        setTimeMajor((numbers) =>
+          numbers.map((number, index) => (currentFlashCard - 1 === index ? number + 0.01 : number))
+        )
+      }, 10)
+    }
 
     return () => clearInterval(Number(interval.current))
-  }, [setTimeMajor, currentFlashCard])
+  }, [setTimeMajor, currentFlashCard, startTime])
 
   const firstPage = () => {
     setCurrentFlashCard(1)
