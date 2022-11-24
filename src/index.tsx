@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, HashRouter } from 'react-router-dom'
 import App from './App'
 import { CardsContextProvider } from './context/cards-context'
 import { DatesContextProvider } from './context/date-context'
@@ -13,7 +13,7 @@ const root = ReactDOM.createRoot(document.getElementById('root')!)
 
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <HashRouter>
       <HomeContextProvider>
         <CardsContextProvider>
           <DatesContextProvider>
@@ -27,6 +27,6 @@ root.render(
           </DatesContextProvider>
         </CardsContextProvider>
       </HomeContextProvider>
-    </BrowserRouter>
+    </HashRouter>
   </React.StrictMode>
 )
