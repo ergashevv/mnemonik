@@ -9,6 +9,7 @@ import './numbers-page.scss'
 const StartNumberGame = () => {
   const { numbers, randomNumbers, setResult, tab, setTab, dynamic, timerForAnswer } =
     useHomeContext()
+  console.log(timerForAnswer, 'timerForAnswer')
 
   const [inputs, setInputs] = useState(Array(numbers.length).fill(''))
   const handleValue = useCallback((val: any, index: number | undefined) => {
@@ -65,10 +66,10 @@ const StartNumberGame = () => {
       randomNumbers,
     ]
   )
-  const finishGame = () => {
+  const finishGame = useCallback(() => {
     setResult(inputs)
     setTab(0)
-  }
+  }, [])
 
   return (
     <div className='start-game-page container'>

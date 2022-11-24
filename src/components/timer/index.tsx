@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, memo } from 'react'
 import { useNavigate } from 'react-router'
 
 interface ITimerProps {
@@ -7,11 +7,12 @@ interface ITimerProps {
   finishTimeFunc?: any
 }
 
-const TimerComponent = ({ time, navigateTo, finishTimeFunc }: ITimerProps) => {
+function TimerComponent({ time, navigateTo, finishTimeFunc }: ITimerProps) {
   const [seconds, setSeconds] = useState<number>(0)
   const [minutes, setMinutes] = useState<number>(time)
+  console.log(seconds)
 
-  const navigate = useNavigate() 
+  const navigate = useNavigate()
 
   useEffect(() => {
     const timeInterval = setInterval(() => {
@@ -20,32 +21,32 @@ const TimerComponent = ({ time, navigateTo, finishTimeFunc }: ITimerProps) => {
           navigate(navigateTo)
           if (finishTimeFunc) {
             finishTimeFunc()
-          }    
-          clearInterval(timeInterval)
+          }
+          // c   learInterval(timeInterval)
         } else {
-          setMinutes(minutes - 1)
+          setMinutes((minutes) => minutes - 1)
           setSeconds(59)
         }
       }
       if (seconds > 0) {
-        setSeconds(seconds - 1)
+        setSeconds((seconds) => seconds - 1)
       }
     }, 1000)
 
     return () => {
       clearInterval(timeInterval)
     }
-  }, [finishTimeFunc, minutes, navigate, navigateTo, seconds])
+  }, [finishTimeFunc, minutes, setSeconds, navigate, navigateTo, seconds])
 
   return (
     <>
       <div>
-        <span className="timer">
-          {minutes < 10 ? `0${minutes}` : minutes}:
-          {seconds < 10 ? `0${seconds}` : seconds}
+        <span className='timer'>
+          {minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}
         </span>
       </div>
     </>
   )
 }
-export default TimerComponent
+
+export default memo(TimerComponent)
