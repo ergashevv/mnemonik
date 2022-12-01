@@ -53,10 +53,10 @@ const useFlashCardsNext = () => {
 
     if (
       navigationFlashCards === 'auto' &&
-      (window.location.pathname === '/flash-cards/major/memorization' ||
-        window.location.pathname === '/flash-cards/millennium/memorization' ||
-        window.location.pathname === '/flash-cards/poa/memorization' ||
-        window.location.pathname === '/flash-cards/pao/memorization') &&
+      (window.location.hash === '#/flash-cards/major/memorization' ||
+        window.location.hash === '#/flash-cards/millennium/memorization' ||
+        window.location.hash === '#/flash-cards/poa/memorization' ||
+        window.location.hash === '#/flash-cards/pao/memorization') &&
       Number(startTime) < 1
     ) {
       const timer = setInterval(() => {
