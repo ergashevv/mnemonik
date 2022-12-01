@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
-import '../../assets/styles/StartStyles.scss'
+import '../../assets/styles/settings.scss'
 import SelectStartTime from '../../components/start-game-select'
 import { useHomeContext } from '../../context/home-context'
 import BackIcon from '../../assets/images/icons/back-icon.svg'
