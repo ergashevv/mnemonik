@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import './home-page.scss'
+import { useState } from 'react'
 import Logo from '../../assets/images/logotype.png'
 import Hmaburger from '../../assets/images/menu.svg'
 import Numbers from '../../assets/images/numbers.svg'
@@ -17,38 +18,39 @@ import Behzodakaimg from '../../assets/images/behzodaka.png'
 import ProductCard from '../../components/product-card'
 import ContactUsTelegram from '../../components/contact-us-telegram'
 import BlackWhiteLogo from '../../assets/images/bgw.svg'
+import HamburgerMenu from '../../components/hamburger-menu/hamburger-menu'
 const HomePage = () => {
   const CardsData = [
     {
       img: Numbers,
       link: '/numbers/settings',
-      text: 'Raqamlar'
+      text: 'Raqamlar',
     },
     {
       img: Cards,
       link: '/cards/settings',
-      text: 'Playing Cards'
+      text: 'Playing Cards',
     },
     {
       img: Face,
       link: '/names-and-faces/settings',
-      text: 'Yuzlar'
+      text: 'Yuzlar',
     },
     {
       img: Dates,
       link: '/dates/settings',
-      text: 'Sanalar'
+      text: 'Sanalar',
     },
     {
       img: Words,
       link: '/words/settings',
-      text: 'So’zlar'
+      text: 'So’zlar',
     },
     {
       img: Flash,
       link: '/flash-cards/settings',
-      text: 'Flash Cards'
-    } 
+      text: 'Flash Cards',
+    },
   ]
 
   const mnemonics = [
@@ -56,108 +58,104 @@ const HomePage = () => {
       img: Behzodakaimg,
       link: 'https://t.me/bekzod_memory',
       name: 'MegaMind',
-      score: 1827
+      score: 1827,
     },
     {
       img: Behzodakaimg,
       link: 'https://t.me/bekzod_memory',
       name: 'MegaMind',
-      score: 1827
+      score: 1827,
     },
     {
       img: Behzodakaimg,
       link: 'https://t.me/bekzod_memory',
       name: 'MegaMind',
-      score: 1830
-    }
+      score: 1830,
+    },
   ]
 
   const products = [
     {
       img: TimerImg,
       title: 'LED Pomodoro Taymer',
-      cost: '199.000'
+      cost: '199.000',
     },
     {
       img: TimerImg,
       title: 'LED Pomodoro Taymer',
-      cost: '199.000'
+      cost: '199.000',
     },
     {
       img: TimerImg,
       title: 'LED Pomodoro Taymer',
-      cost: '199.000'
+      cost: '199.000',
     },
     {
       img: TimerImg,
       title: 'LED Pomodoro Taymer',
-      cost: '199.000'
+      cost: '199.000',
     },
     {
       img: TimerImg,
       title: 'LED Pomodoro Taymer',
-      cost: '199.000'
+      cost: '199.000',
     },
     {
       img: TimerImg,
       title: 'LED Pomodoro Taymer',
-      cost: '199.000'
-    }
+      cost: '199.000',
+    },
   ]
 
   const Banner = {
     text: "Chet tili so'zlari va imtihon javoblarini 10 barobar tezroq eslab qolish usuli",
     link: '/',
-    backgrounImg: Bgi
+    backgrounImg: Bgi,
   }
-  const largest: any = mnemonics.reduce(
-    (prev, curr) => (prev.score > curr.score ? prev : curr),
-    { score: 0 }
-  )
-
+  const largest: any = mnemonics.reduce((prev, curr) => (prev.score > curr.score ? prev : curr), {
+    score: 0,
+  })
+  const [open, setOpen] = useState(false)
   return (
     <>
-      <div className="home container">
-        <div className="home-header">
-          <Link to="/">
-            <img src={Logo} alt="" className="logo" />
+      <div className='home container'>
+        <div
+          style={{
+            position: 'relative',
+          }}
+          className='home-header'
+        >
+          <Link to='/'>
+            <img src={Logo} alt='' className='logo' />
           </Link>
-          <div className="menu">
-            <button>
-              <img src={Hmaburger} alt="" />
+          <div className='menu'>
+            <button onClick={() => setOpen(!open)}>
+              <img src={Hmaburger} alt='' />
             </button>
           </div>
+          {open && <HamburgerMenu />}
         </div>
-        <HomeBanner
-          text={Banner.text}
-          backgrounImg={Banner.backgrounImg}
-          link={Banner.link}
-        />
-        <div className="category-games">
+        <HomeBanner text={Banner.text} backgrounImg={Banner.backgrounImg} link={Banner.link} />
+        <div className='category-games'>
           <h2>Yo’nalishlar</h2>
-          <div className="game-cards">
+          <div className='game-cards'>
             {CardsData.map((item, key) => (
-              <HomeCategoryCard
-                text={item.text}
-                img={item.img}
-                link={item.link}
-                key={key}
-              />
+              <HomeCategoryCard text={item.text} img={item.img} link={item.link} key={key} />
             ))}
           </div>
         </div>
-        <div className="reyting-mnemics">
-          <div className="titles">
+        <div className='reyting-mnemics'>
+          <div className='titles'>
             <h2>Mnemonistlar</h2>
             <h3>Hammasini ko'rish</h3>
           </div>
-          <div className="top-reyting">
-            <img src={largest.img} alt="" />
+          <div className='top-reyting'>
+            <img src={largest.img} alt='' />
             <h2>{largest.score} ball</h2>
             <h3>{largest.name}</h3>
             <a href={largest.link}>@bekzod_memory</a>
           </div>
-          <div className="reyting">
+          <div className='reyting'>
             {mnemonics.map((item, key) => (
               <Mnemonics
                 name={item.name}
@@ -169,38 +167,32 @@ const HomePage = () => {
             ))}
           </div>
         </div>
-        <div className="product-cards">
-          <div className="titles">
+        <div className='product-cards'>
+          <div className='titles'>
             <h2>Top mahsulotlar</h2>
             <h3>Hammasini ko'rish</h3>
           </div>
-          <div className="products">
+          <div className='products'>
             {products.map((item, key) => (
-              <ProductCard
-                cost={item.cost}
-                img={item.img}
-                title={item.title}
-                key={key}
-              />
+              <ProductCard cost={item.cost} img={item.img} title={item.title} key={key} />
             ))}
           </div>
         </div>
-        <div className="contact">
+        <div className='contact'>
           <ContactUsTelegram />
         </div>
-        <div className="links">
-          <Link to="/">Bosh sahifa</Link>
-          <Link to="/">Yordam</Link>
-          <Link to="/">Xato topdingizmi?</Link>
+        <div className='links'>
+          <Link to='/'>Bosh sahifa</Link>
+          <Link to='/'>Yordam</Link>
+          <Link to='/'>Xato topdingizmi?</Link>
         </div>
-        <div className="footer">
-          <Link to="/">
-            <img src={BlackWhiteLogo} alt="" />
+        <div className='footer'>
+          <Link to='/'>
+            <img src={BlackWhiteLogo} alt='' />
           </Link>
           <p>
-            OOO “SUPER-MIYA” Toshkent shahri, Yunusobod tumani, Buyuk Turon MFY,
-            Ц-2, 24A uy. H/R 2020 8000 5055 5783 4001 “KDB BANK UZBEKISTAN” MFO:
-            01065 INN: 309769049
+            OOO “SUPER-MIYA” Toshkent shahri, Yunusobod tumani, Buyuk Turon MFY, Ц-2, 24A uy. H/R
+            2020 8000 5055 5783 4001 “KDB BANK UZBEKISTAN” MFO: 01065 INN: 309769049
           </p>
         </div>
       </div>

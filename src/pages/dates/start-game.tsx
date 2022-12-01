@@ -29,32 +29,32 @@ const DatesStartGame = () => {
     }
   }
   return (
-    <div className="container">
+    <div className='container'>
       <div
-        className="d-flex"
+        className='d-flex'
         style={{
-          justifyContent: 'space-between'
+          justifyContent: 'space-between',
         }}
       >
         <TimerComponent time={timerForAnswer} navigateTo={'/dates/result'} />
-        <Link to="/dates/result">Finish</Link>
+        <Link to='/dates/result'>Finish</Link>
       </div>
-      <div className="start-date-game">
-        <div className="inputs">
-          <div className="inp">
+      <div className='start-date-game'>
+        <div className='inputs'>
+          <div className='inp'>
             {Array(data.length)
               .fill(null)
               .map((_, index) => (
                 <input
-                  pattern="[0-9]*"
+                  pattern='[0-9]*'
                   onKeyUp={(e) => removeHandler(e)}
                   onChange={(e) => handleFocusOnNext(e, index)}
-                  type="number"
+                  type='number'
                   key={index}
                 />
               ))}
           </div>
-          <div className="text">
+          <div className='text'>
             {even.map((item, key) => (
               <p key={key}>{item}</p>
             ))}

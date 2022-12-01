@@ -1,4 +1,4 @@
-import { useEffect, useState, memo } from 'react'
+import { useState, memo, useLayoutEffect } from 'react'
 import { useNavigate } from 'react-router'
 
 interface ITimerProps {
@@ -14,7 +14,7 @@ function TimerComponent({ time, navigateTo, finishTimeFunc }: ITimerProps) {
 
   const navigate = useNavigate()
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const timeInterval = setInterval(() => {
       if (seconds === 0) {
         if (minutes === 0) {
@@ -22,7 +22,7 @@ function TimerComponent({ time, navigateTo, finishTimeFunc }: ITimerProps) {
           if (finishTimeFunc) {
             finishTimeFunc()
           }
-          // c   learInterval(timeInterval)
+          // clearInterval(timeInterval)
         } else {
           setMinutes((minutes) => minutes - 1)
           setSeconds(59)
