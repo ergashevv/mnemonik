@@ -19,12 +19,16 @@ export interface IContext {
   setCursorW: Function
   setLine: Function
   setNavigation: Function
+  setToken: Function
+  token: string
   setAutoSecond: Function
   setResult: Function
   timerForRecall: number
   setTimerForRecall: Function
   timerForAnswer: number
   setTimerForAnswer: Function
+  user?: string[]
+  setUser: Function
 }
 
 const HomeContext = createContext<IContext>({} as IContext)
@@ -35,6 +39,7 @@ export const HomeContextProvider = ({ children }: { children: ReactNode }) => {
   const [navigation, setNavigation] = useState<string>(() =>
     JSON.parse(localStorage.getItem('navigation')!)
   )
+  const [token, setToken] = useState<string>(() => JSON.parse(localStorage.getItem('token')!))
   const [startTime, setStartTime] = useState<string>(() =>
     JSON.parse(localStorage.getItem('startTime')!)
   )
@@ -43,6 +48,7 @@ export const HomeContextProvider = ({ children }: { children: ReactNode }) => {
   const [timerForAnswer, setTimerForAnswer] = useState<number>(15)
 
   const [cursor, setCursor] = useState(0)
+  const [user, setUser] = useState()
   const [result, setResult] = useState<string[]>()
   const [tab, setTab] = useState<number>(0)
   const [autoSecond, setAutoSecond] = useState(1)
@@ -66,6 +72,9 @@ export const HomeContextProvider = ({ children }: { children: ReactNode }) => {
   }, [setRandomNumbers, numbers])
 
   useEffect(() => {
+    if (token) {
+      localStorage.setItem('token', JSON.stringify(token))
+    }
     if (cursorW) {
       localStorage.setItem('cursorW', JSON.stringify(cursorW))
     }
@@ -89,6 +98,8 @@ export const HomeContextProvider = ({ children }: { children: ReactNode }) => {
       setLine('2')
     }
   }, [navigation, startTime])
+
+  console.log(token)
 
   const value = {
     cursorW,
@@ -118,6 +129,10 @@ export const HomeContextProvider = ({ children }: { children: ReactNode }) => {
     setTimerForRecall,
     timerForAnswer,
     setTimerForAnswer,
+    token,
+    setToken,
+    user,
+    setUser,
   }
 
   return <HomeContext.Provider value={value}>{children}</HomeContext.Provider>

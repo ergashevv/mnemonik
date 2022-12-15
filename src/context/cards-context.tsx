@@ -1,10 +1,4 @@
-import {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useState
-} from 'react'
+import { createContext, ReactNode, useContext, useEffect, useState } from 'react'
 
 import CardImg from '../assets/images/empty.png'
 import { Cards } from '../datas/data-cards'
@@ -30,19 +24,13 @@ export interface ICardsContext {
 const CardsContext = createContext<ICardsContext>({} as ICardsContext)
 
 export const CardsContextProvider = ({ children }: { children: ReactNode }) => {
-  const [navigation, setNavigation] = useState(
-    JSON.parse(localStorage.getItem('navigation')!)
-  )
+  const [navigation, setNavigation] = useState(JSON.parse(localStorage.getItem('navigation')!))
 
   const [data, setData] = useState<Card[]>(Cards)
 
-  const [show, setShow] = useState<string>(
-    JSON.parse(localStorage.getItem('show')!)
-  )
+  const [show, setShow] = useState<string>(JSON.parse(localStorage.getItem('show')!))
 
-  const [inputs, setInputs] = useState(
-    Array(data.length).fill({ image: CardImg })
-  )
+  const [inputs, setInputs] = useState(Array(data.length).fill({ image: CardImg }))
 
   const [focus, setFocus] = useState(0)
   const [randomCard, setRandomCard] = useState<Card[]>([])
@@ -50,6 +38,7 @@ export const CardsContextProvider = ({ children }: { children: ReactNode }) => {
     if (navigation === 'left') {
       localStorage.setItem('navigation', JSON.stringify(navigation))
     }
+
     if (navigation === 'right') {
       localStorage.setItem('navigation', JSON.stringify(navigation))
     }
@@ -77,7 +66,7 @@ export const CardsContextProvider = ({ children }: { children: ReactNode }) => {
     randomCard,
     setRandomcard: setRandomCard,
     show,
-    setShow
+    setShow,
   }
   return <CardsContext.Provider value={value}>{children}</CardsContext.Provider>
 }

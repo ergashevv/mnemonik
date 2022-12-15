@@ -144,6 +144,9 @@ const HomePage = () => {
             ))}
           </div>
         </div>
+        <Link to='signin'>signin</Link>
+        <Link to='login'>login</Link>
+        <Link to='dashboard/user-profile'>profile</Link>
         <div className='reyting-mnemics'>
           <div className='titles'>
             <h2>Mnemonistlar</h2>

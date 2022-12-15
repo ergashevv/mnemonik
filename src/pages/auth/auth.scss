@@ -1,0 +1,142 @@
+.register-main {
+  .register-title {
+    margin-top: 0;
+    margin-bottom: 23px;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 44px;
+    color: #274372;
+  }
+
+  .register-text {
+    margin-top: 0;
+    margin-bottom: 43px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #696871;
+  }
+
+  .register-text a {
+    color: #0a80ff;
+    transition: 0.3s ease;
+  }
+  .register-text a:hover {
+    color: #081d34;
+  }
+
+  .register-label {
+    width: 100%;
+    margin-bottom: 24px;
+  }
+
+  .register-label:last-of-type {
+    margin-bottom: 30px;
+  }
+
+  .register-label span {
+    display: block;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #081d34;
+    margin-bottom: 10px;
+  }
+
+  .register-label div {
+    border: 1px solid #fff;
+    padding: 18px 14px;
+    display: flex;
+    background: #fff;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+
+  .register-label .not-same {
+    border-color: red;
+  }
+
+  .register-label svg {
+    margin-right: 13px;
+  }
+
+  .register-label input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+  }
+
+  .register-submit {
+    cursor: pointer;
+    width: 100%;
+    padding: 18px 25px;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    color: #fff;
+    background: #081d34;
+    border-radius: 5px;
+    border: 1px solid #081d34;
+    outline: none;
+    transition: 0.3s ease;
+    margin-bottom: 60px;
+  }
+
+  .register-submit:hover {
+    background-color: transparent;
+    color: #081d34;
+  }
+
+  .register-submit:active {
+    transform: scale(0.97);
+  }
+
+  .register-forget {
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: #a2a7b0;
+    transition: 0.3s ease;
+  }
+
+  .register-forget:hover {
+    color: #081d34;
+  }
+
+  @media only screen and (max-width: 500px) {
+    .register-form {
+      padding: 20px 25px;
+      border-radius: 12px;
+    }
+
+    .register-title {
+      font-size: 24px;
+      line-height: 32px;
+      margin-bottom: 10px;
+    }
+
+    .register-text {
+      font-size: 14px;
+      line-height: 18px;
+      margin-bottom: 25px;
+    }
+
+    .register-label span {
+      font-size: 14px;
+      line-height: 18px;
+    }
+
+    .register-label div {
+      padding: 15px 10px;
+    }
+
+    .register-submit {
+      font-size: 16px;
+      line-height: 25px;
+      margin-bottom: 35px;
+      padding: 15px;
+    }
+  }
+}
